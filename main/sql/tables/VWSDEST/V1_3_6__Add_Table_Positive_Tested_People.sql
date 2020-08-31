@@ -1,0 +1,19 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+-- Production table for national results of infected people
+IF NOT EXISTS(SELECT * FROM sys.sequences WHERE object_id = OBJECT_ID(N'[dbo].[SEQ_VWSDEST_POSITIVE_TESTED_PEOPLE]') AND type = 'SO')
+CREATE SEQUENCE SEQ_VWSDEST_POSITIVE_TESTED_PEOPLE
+  START WITH 1
+  INCREMENT BY 1;
+GO
+
+ CREATE TABLE VWSDEST.POSITIVE_TESTED_PEOPLE(
+	[ID] INT PRIMARY KEY NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSDEST_POSITIVE_TESTED_PEOPLE]),
+	DATE_OF_REPORT DATETIME NULL,
+	DATE_OF_REPORT_UNIX BIGINT NULL,
+	INFECTED_DAILY_INCREASE DECIMAL(16, 1) NULL,
+	INFECTED_DAILY_TOTAL INT NULL,
+	DATE_LAST_INSERTED DATETIME DEFAULT GETDATE()
+ );
+

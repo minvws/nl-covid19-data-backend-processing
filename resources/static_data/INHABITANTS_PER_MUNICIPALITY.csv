@@ -1,0 +1,356 @@
+REGIO,GMCODE,VRCODE,VRNAME,INHABITANTS
+Aa en Hunze,GM1680,VR03,Drenthe,25445
+Aalsmeer,GM0358,VR13,Amsterdam-Amstelland,31859
+Aalten,GM0197,VR06,Noord-enOost-Gelderland,27121
+Achtkarspelen,GM0059,VR02,Fryslân,27843
+Alblasserdam,GM0482,VR18,Zuid-Holland-Zuid,20165
+Albrandswaard,GM0613,VR17,Rotterdam-Rijnmond,25590
+Alkmaar,GM0361,VR10,Noord-Holland-Noord,109436
+Almelo,GM0141,VR05,Twente,73107
+Almere,GM0034,VR25,Flevoland,211893
+Alphen aan den Rijn,GM0484,VR16,Hollands-Midden,111897
+Alphen-Chaam,GM1723,VR20,Midden-enWest-Brabant,10203
+Altena,GM1959,VR20,Midden-enWest-Brabant,55967
+Ameland,GM0060,VR02,Fryslân,3716
+Amersfoort,GM0307,VR09,Utrecht,157276
+Amstelveen,GM0362,VR13,Amsterdam-Amstelland,91675
+Amsterdam,GM0363,VR13,Amsterdam-Amstelland,872757
+Apeldoorn,GM0200,VR06,Noord-enOost-Gelderland,163818
+Appingedam,GM0003,VR01,Groningen,11642
+Arnhem,GM0202,VR07,Gelderland-Midden,161348
+Assen,GM0106,VR03,Drenthe,68599
+Asten,GM0743,VR22,Brabant-Zuidoost,16721
+Baarle-Nassau,GM0744,VR20,Midden-enWest-Brabant,6859
+Baarn,GM0308,VR09,Utrecht,24868
+Barendrecht,GM0489,VR17,Rotterdam-Rijnmond,48714
+Barneveld,GM0203,VR07,Gelderland-Midden,59082
+Beek (L.),GM0888,VR24,Limburg-Zuid,15865
+Beekdaelen,GM1954,VR24,Limburg-Zuid,35938
+Beemster,GM0370,VR11,Zaanstreek-Waterland,10022
+Beesel,GM0889,VR23,Limburg-Noord,13482
+Berg en Dal,GM1945,VR08,Gelderland-Zuid,34992
+Bergeijk,GM1724,VR22,Brabant-Zuidoost,18635
+Bergen (L.),GM0893,VR23,Limburg-Noord,13085
+Bergen (NH.),GM0373,VR10,Noord-Holland-Noord,29839
+Bergen op Zoom,GM0748,VR20,Midden-enWest-Brabant,67496
+Berkelland,GM1859,VR06,Noord-enOost-Gelderland,43747
+Bernheze,GM1721,VR21,Brabant-Noord,31240
+Best,GM0753,VR22,Brabant-Zuidoost,29988
+Beuningen,GM0209,VR08,Gelderland-Zuid,25890
+Beverwijk,GM0375,VR12,Kennemerland,41626
+De Bilt,GM0310,VR09,Utrecht,43137
+Bladel,GM1728,VR22,Brabant-Zuidoost,20390
+Blaricum,GM0376,VR14,GooienVechtstreek,11540
+Bloemendaal,GM0377,VR12,Kennemerland,23571
+Bodegraven-Reeuwijk,GM1901,VR16,Hollands-Midden,34872
+Boekel,GM0755,VR21,Brabant-Noord,10785
+Borger-Odoorn,GM1681,VR03,Drenthe,25559
+Borne,GM0147,VR05,Twente,23312
+Borsele,GM0654,VR19,Zeeland,22739
+Boxmeer,GM0756,VR21,Brabant-Noord,29365
+Boxtel,GM0757,VR21,Brabant-Noord,30801
+Breda,GM0758,VR20,Midden-enWest-Brabant,184069
+Brielle,GM0501,VR17,Rotterdam-Rijnmond,17271
+Bronckhorst,GM1876,VR06,Noord-enOost-Gelderland,36055
+Brummen,GM0213,VR06,Noord-enOost-Gelderland,20726
+Brunssum,GM0899,VR24,Limburg-Zuid,27821
+Bunnik,GM0312,VR09,Utrecht,15191
+Bunschoten,GM0313,VR09,Utrecht,21866
+Buren,GM0214,VR08,Gelderland-Zuid,26749
+Capelle aan den IJssel,GM0502,VR17,Rotterdam-Rijnmond,67122
+Castricum,GM0383,VR10,Noord-Holland-Noord,35986
+Coevorden,GM0109,VR03,Drenthe,35297
+Cranendonck,GM1706,VR22,Brabant-Zuidoost,21138
+Cuijk,GM1684,VR21,Brabant-Noord,25130
+Culemborg,GM0216,VR08,Gelderland-Zuid,28955
+Dalfsen,GM0148,VR04,IJsselland,28587
+Dantumadiel,GM1891,VR02,Fryslân,18922
+Delft,GM0503,VR15,Haaglanden,103595
+Delfzijl,GM0010,VR01,Groningen,24678
+Deurne,GM0762,VR22,Brabant-Zuidoost,32471
+Deventer,GM0150,VR04,IJsselland,100719
+Diemen,GM0384,VR13,Amsterdam-Amstelland,30780
+Dinkelland,GM1774,VR05,Twente,26461
+Doesburg,GM0221,VR07,Gelderland-Midden,11077
+Doetinchem,GM0222,VR06,Noord-enOost-Gelderland,58001
+Dongen,GM0766,VR20,Midden-enWest-Brabant,26222
+Dordrecht,GM0505,VR18,Zuid-Holland-Zuid,119284
+Drechterland,GM0498,VR10,Noord-Holland-Noord,19719
+Drimmelen,GM1719,VR20,Midden-enWest-Brabant,27272
+Dronten,GM0303,VR25,Flevoland,41555
+Druten,GM0225,VR08,Gelderland-Zuid,18926
+Duiven,GM0226,VR07,Gelderland-Midden,25126
+Echt-Susteren,GM1711,VR23,Limburg-Noord,31610
+Edam-Volendam,GM0385,VR11,Zaanstreek-Waterland,36197
+Ede,GM0228,VR07,Gelderland-Midden,117165
+Eemnes,GM0317,VR09,Utrecht,9247
+Eersel,GM0770,VR22,Brabant-Zuidoost,19313
+Eijsden-Margraten,GM1903,VR24,Limburg-Zuid,25768
+Eindhoven,GM0772,VR22,Brabant-Zuidoost,234394
+Elburg,GM0230,VR06,Noord-enOost-Gelderland,23161
+Emmen,GM0114,VR03,Drenthe,107048
+Enkhuizen,GM0388,VR10,Noord-Holland-Noord,18591
+Enschede,GM0153,VR05,Twente,159640
+Epe,GM0232,VR06,Noord-enOost-Gelderland,33178
+Ermelo,GM0233,VR06,Noord-enOost-Gelderland,27008
+Etten-Leur,GM0777,VR20,Midden-enWest-Brabant,43878
+De Fryske Marren,GM1940,VR02,Fryslân,51564
+Geertruidenberg,GM0779,VR20,Midden-enWest-Brabant,21544
+Geldrop-Mierlo,GM1771,VR22,Brabant-Zuidoost,39726
+Gemert-Bakel,GM1652,VR22,Brabant-Zuidoost,30723
+Gennep,GM0907,VR23,Limburg-Noord,16921
+Gilze en Rijen,GM0784,VR20,Midden-enWest-Brabant,26431
+Goeree-Overflakkee,GM1924,VR17,Rotterdam-Rijnmond,50049
+Goes,GM0664,VR19,Zeeland,38082
+Goirle,GM0785,VR20,Midden-enWest-Brabant,23904
+Gooise Meren,GM1942,VR14,GooienVechtstreek,58055
+Gorinchem,GM0512,VR18,Zuid-Holland-Zuid,37022
+Gouda,GM0513,VR16,Hollands-Midden,73427
+Grave,GM0786,VR21,Brabant-Noord,12436
+'s-Gravenhage (gemeente),GM0518,VR15,Haaglanden,545838
+Groningen (gemeente),GM0014,VR01,Groningen,232874
+Gulpen-Wittem,GM1729,VR24,Limburg-Zuid,14171
+Haaksbergen,GM0158,VR05,Twente,24311
+Haaren,GM0788,VR21,Brabant-Noord,14370
+Haarlem,GM0392,VR12,Kennemerland,162902
+Haarlemmermeer,GM0394,VR12,Kennemerland,156002
+Halderberge,GM1655,VR20,Midden-enWest-Brabant,30284
+Hardenberg,GM0160,VR04,IJsselland,60948
+Harderwijk,GM0243,VR06,Noord-enOost-Gelderland,48414
+Hardinxveld-Giessendam,GM0523,VR18,Zuid-Holland-Zuid,18295
+Harlingen,GM0072,VR02,Fryslân,15722
+Hattem,GM0244,VR06,Noord-enOost-Gelderland,12209
+Heemskerk,GM0396,VR12,Kennemerland,39182
+Heemstede,GM0397,VR12,Kennemerland,27234
+Heerde,GM0246,VR06,Noord-enOost-Gelderland,18589
+Heerenveen,GM0074,VR02,Fryslân,50493
+Heerhugowaard,GM0398,VR10,Noord-Holland-Noord,57587
+Heerlen,GM0917,VR24,Limburg-Zuid,87086
+Heeze-Leende,GM1658,VR22,Brabant-Zuidoost,16152
+Heiloo,GM0399,VR10,Noord-Holland-Noord,23968
+Den Helder,GM0400,VR10,Noord-Holland-Noord,56296
+Hellendoorn,GM0163,VR05,Twente,35916
+Hellevoetsluis,GM0530,VR17,Rotterdam-Rijnmond,40142
+Helmond,GM0794,VR22,Brabant-Zuidoost,92423
+Hendrik-Ido-Ambacht,GM0531,VR18,Zuid-Holland-Zuid,31202
+Hengelo (O.),GM0164,VR05,Twente,81140
+'s-Hertogenbosch,GM0796,VR21,Brabant-Noord,155111
+Heumen,GM0252,VR08,Gelderland-Zuid,16454
+Heusden,GM0797,VR21,Brabant-Noord,44692
+Hillegom,GM0534,VR16,Hollands-Midden,22209
+Hilvarenbeek,GM0798,VR20,Midden-enWest-Brabant,15518
+Hilversum,GM0402,VR14,GooienVechtstreek,90831
+Hoeksche Waard,GM1963,VR18,Zuid-Holland-Zuid,87401
+Hof van Twente,GM1735,VR05,Twente,35017
+Het Hogeland,GM1966,VR01,Groningen,47801
+Hollands Kroon,GM1911,VR10,Noord-Holland-Noord,48432
+Hoogeveen,GM0118,VR03,Drenthe,55699
+Hoorn,GM0405,VR10,Noord-Holland-Noord,73261
+Horst aan de Maas,GM1507,VR23,Limburg-Noord,42429
+Houten,GM0321,VR09,Utrecht,50146
+Huizen,GM0406,VR14,GooienVechtstreek,41273
+Hulst,GM0677,VR19,Zeeland,27556
+IJsselstein,GM0353,VR09,Utrecht,34109
+Kaag en Braassem,GM1884,VR16,Hollands-Midden,27297
+Kampen,GM0166,VR04,IJsselland,54319
+Kapelle,GM0678,VR19,Zeeland,12695
+Katwijk,GM0537,VR16,Hollands-Midden,65753
+Kerkrade,GM0928,VR24,Limburg-Zuid,45749
+Koggenland,GM1598,VR10,Noord-Holland-Noord,22749
+Krimpen aan den IJssel,GM0542,VR17,Rotterdam-Rijnmond,29526
+Krimpenerwaard,GM1931,VR16,Hollands-Midden,56319
+Laarbeek,GM1659,VR22,Brabant-Zuidoost,22523
+Landerd,GM1685,VR21,Brabant-Noord,15730
+Landgraaf,GM0882,VR24,Limburg-Zuid,37445
+Landsmeer,GM0415,VR11,Zaanstreek-Waterland,11491
+Langedijk,GM0416,VR10,Noord-Holland-Noord,28163
+Lansingerland,GM1621,VR17,Rotterdam-Rijnmond,62384
+Laren (NH.),GM0417,VR14,GooienVechtstreek,11280
+Leeuwarden,GM0080,VR02,Fryslân,124084
+Leiden,GM0546,VR16,Hollands-Midden,125099
+Leiderdorp,GM0547,VR16,Hollands-Midden,27056
+Leidschendam-Voorburg,GM1916,VR15,Haaglanden,76534
+Lelystad,GM0995,VR25,Flevoland,78598
+Leudal,GM1640,VR23,Limburg-Noord,35879
+Leusden,GM0327,VR09,Utrecht,30401
+Lingewaard,GM1705,VR07,Gelderland-Midden,46601
+Lisse,GM0553,VR16,Hollands-Midden,22955
+Lochem,GM0262,VR06,Noord-enOost-Gelderland,33729
+Loon op Zand,GM0809,VR20,Midden-enWest-Brabant,23408
+Lopik,GM0331,VR09,Utrecht,14467
+Loppersum,GM0024,VR01,Groningen,9537
+Losser,GM0168,VR05,Twente,22683
+Maasdriel,GM0263,VR08,Gelderland-Zuid,25030
+Maasgouw,GM1641,VR23,Limburg-Noord,23965
+Maassluis,GM0556,VR17,Rotterdam-Rijnmond,33213
+Maastricht,GM0935,VR24,Limburg-Zuid,121575
+Medemblik,GM0420,VR10,Noord-Holland-Noord,45101
+Meerssen,GM0938,VR24,Limburg-Zuid,18828
+Meierijstad,GM1948,VR21,Brabant-Noord,81194
+Meppel,GM0119,VR03,Drenthe,33920
+Middelburg (Z.),GM0687,VR19,Zeeland,48822
+Midden-Delfland,GM1842,VR15,Haaglanden,19341
+Midden-Drenthe,GM1731,VR03,Drenthe,33185
+Midden-Groningen,GM1952,VR01,Groningen,60797
+Mill en Sint Hubert,GM0815,VR21,Brabant-Noord,10939
+Moerdijk,GM1709,VR20,Midden-enWest-Brabant,37129
+Molenlanden,GM1978,VR18,Zuid-Holland-Zuid,43909
+Montferland,GM1955,VR06,Noord-enOost-Gelderland,36011
+Montfoort,GM0335,VR09,Utrecht,13917
+Mook en Middelaar,GM0944,VR23,Limburg-Noord,7847
+Neder-Betuwe,GM1740,VR08,Gelderland-Zuid,24339
+Nederweert,GM0946,VR23,Limburg-Noord,17019
+Nieuwegein,GM0356,VR09,Utrecht,63462
+Nieuwkoop,GM0569,VR16,Hollands-Midden,28811
+Nijkerk,GM0267,VR07,Gelderland-Midden,43171
+Nijmegen,GM0268,VR08,Gelderland-Zuid,177659
+Nissewaard,GM1930,VR17,Rotterdam-Rijnmond,85219
+Noardeast-Fryslân,GM1970,VR02,Fryslân,45228
+Noord-Beveland,GM1695,VR19,Zeeland,7392
+Noordenveld,GM1699,VR03,Drenthe,31253
+Noordoostpolder,GM0171,VR25,Flevoland,47291
+Noordwijk,GM0575,VR16,Hollands-Midden,43508
+"Nuenen, Gerwen en Nederwetten",GM0820,VR22,Brabant-Zuidoost,23383
+Nunspeet,GM0302,VR06,Noord-enOost-Gelderland,27851
+Oegstgeest,GM0579,VR16,Hollands-Midden,24840
+Oirschot,GM0823,VR22,Brabant-Zuidoost,18714
+Oisterwijk,GM0824,VR20,Midden-enWest-Brabant,26245
+Oldambt,GM1895,VR01,Groningen,38209
+Oldebroek,GM0269,VR06,Noord-enOost-Gelderland,23646
+Oldenzaal,GM0173,VR05,Twente,31836
+Olst-Wijhe,GM1773,VR04,IJsselland,18252
+Ommen,GM0175,VR04,IJsselland,18009
+Oost Gelre,GM1586,VR06,Noord-enOost-Gelderland,29627
+Oosterhout,GM0826,VR20,Midden-enWest-Brabant,55982
+Ooststellingwerf,GM0085,VR02,Fryslân,25469
+Oostzaan,GM0431,VR11,Zaanstreek-Waterland,9735
+Opmeer,GM0432,VR10,Noord-Holland-Noord,11836
+Opsterland,GM0086,VR02,Fryslân,29733
+Oss,GM0828,VR21,Brabant-Noord,91915
+Oude IJsselstreek,GM1509,VR06,Noord-enOost-Gelderland,39388
+Ouder-Amstel,GM0437,VR13,Amsterdam-Amstelland,14026
+Oudewater,GM0589,VR09,Utrecht,10230
+Overbetuwe,GM1734,VR07,Gelderland-Midden,47906
+Papendrecht,GM0590,VR18,Zuid-Holland-Zuid,32136
+Peel en Maas,GM1894,VR23,Limburg-Noord,43425
+Pekela,GM0765,VR01,Groningen,12196
+Pijnacker-Nootdorp,GM1926,VR15,Haaglanden,55308
+Purmerend,GM0439,VR11,Zaanstreek-Waterland,81249
+Putten,GM0273,VR06,Noord-enOost-Gelderland,24112
+Raalte,GM0177,VR04,IJsselland,37712
+Reimerswaal,GM0703,VR19,Zeeland,22730
+Renkum,GM0274,VR07,Gelderland-Midden,31419
+Renswoude,GM0339,VR09,Utrecht,5444
+Reusel-De Mierden,GM1667,VR22,Brabant-Zuidoost,13112
+Rheden,GM0275,VR07,Gelderland-Midden,43761
+Rhenen,GM0340,VR09,Utrecht,20119
+Ridderkerk,GM0597,VR17,Rotterdam-Rijnmond,46189
+Rijssen-Holten,GM1742,VR05,Twente,38177
+Rijswijk (ZH.),GM0603,VR15,Haaglanden,54450
+Roerdalen,GM1669,VR23,Limburg-Noord,20574
+Roermond,GM0957,VR23,Limburg-Noord,58260
+De Ronde Venen,GM0736,VR09,Utrecht,44456
+Roosendaal,GM1674,VR20,Midden-enWest-Brabant,77251
+Rotterdam,GM0599,VR17,Rotterdam-Rijnmond,651157
+Rozendaal,GM0277,VR07,Gelderland-Midden,1704
+Rucphen,GM0840,VR20,Midden-enWest-Brabant,22878
+Schagen,GM0441,VR10,Noord-Holland-Noord,46483
+Scherpenzeel,GM0279,VR07,Gelderland-Midden,9880
+Schiedam,GM0606,VR17,Rotterdam-Rijnmond,78730
+Schiermonnikoog,GM0088,VR02,Fryslân,947
+Schouwen-Duiveland,GM1676,VR19,Zeeland,33839
+Simpelveld,GM0965,VR24,Limburg-Zuid,10555
+Sint Anthonis,GM1702,VR21,Brabant-Noord,11664
+Sint-Michielsgestel,GM0845,VR21,Brabant-Noord,29208
+Sittard-Geleen,GM1883,VR24,Limburg-Zuid,92429
+Sliedrecht,GM0610,VR18,Zuid-Holland-Zuid,25220
+Sluis,GM1714,VR19,Zeeland,23210
+Smallingerland,GM0090,VR02,Fryslân,56150
+Soest,GM0342,VR09,Utrecht,46606
+Someren,GM0847,VR22,Brabant-Zuidoost,19368
+Son en Breugel,GM0848,VR22,Brabant-Zuidoost,17322
+Stadskanaal,GM0037,VR01,Groningen,31686
+Staphorst,GM0180,VR04,IJsselland,17145
+Stede Broec,GM0532,VR10,Noord-Holland-Noord,21726
+Steenbergen,GM0851,VR20,Midden-enWest-Brabant,24416
+Steenwijkerland,GM1708,VR04,IJsselland,44126
+Stein (L.),GM0971,VR24,Limburg-Zuid,25007
+Stichtse Vecht,GM1904,VR09,Utrecht,64931
+Súdwest-Fryslân,GM1900,VR02,Fryslân,89987
+Terneuzen,GM0715,VR19,Zeeland,54426
+Terschelling,GM0093,VR02,Fryslân,4888
+Texel,GM0448,VR10,Noord-Holland-Noord,13575
+Teylingen,GM1525,VR16,Hollands-Midden,37440
+Tholen,GM0716,VR19,Zeeland,25757
+Tiel,GM0281,VR08,Gelderland-Zuid,42159
+Tilburg,GM0855,VR20,Midden-enWest-Brabant,219789
+Tubbergen,GM0183,VR05,Twente,21275
+Twenterand,GM1700,VR05,Twente,33743
+Tynaarlo,GM1730,VR03,Drenthe,33887
+Tytsjerksteradiel,GM0737,VR02,Fryslân,32052
+Uden,GM0856,VR21,Brabant-Noord,42119
+Uitgeest,GM0450,VR12,Kennemerland,13666
+Uithoorn,GM0451,VR13,Amsterdam-Amstelland,29478
+Urk,GM0184,VR25,Flevoland,21031
+Utrecht (gemeente),GM0344,VR09,Utrecht,357597
+Utrechtse Heuvelrug,GM1581,VR09,Utrecht,49580
+Vaals,GM0981,VR24,Limburg-Zuid,10105
+Valkenburg aan de Geul,GM0994,VR24,Limburg-Zuid,16367
+Valkenswaard,GM0858,VR22,Brabant-Zuidoost,31193
+Veendam,GM0047,VR01,Groningen,27384
+Veenendaal,GM0345,VR09,Utrecht,66493
+Veere,GM0717,VR19,Zeeland,21880
+Veldhoven,GM0861,VR22,Brabant-Zuidoost,45466
+Velsen,GM0453,VR12,Kennemerland,68648
+Venlo,GM0983,VR23,Limburg-Noord,101802
+Venray,GM0984,VR23,Limburg-Noord,43614
+Vijfheerenlanden,GM1961,VR09,Utrecht,56811
+Vlaardingen,GM0622,VR17,Rotterdam-Rijnmond,73397
+Vlieland,GM0096,VR02,Fryslân,1155
+Vlissingen,GM0718,VR19,Zeeland,44360
+Voerendaal,GM0986,VR24,Limburg-Zuid,12475
+Voorschoten,GM0626,VR16,Hollands-Midden,25596
+Voorst,GM0285,VR06,Noord-enOost-Gelderland,24552
+Vught,GM0865,VR21,Brabant-Noord,26558
+Waadhoeke,GM1949,VR02,Fryslân,46090
+Waalre,GM0866,VR22,Brabant-Zuidoost,17456
+Waalwijk,GM0867,VR20,Midden-enWest-Brabant,48637
+Waddinxveen,GM0627,VR16,Hollands-Midden,29291
+Wageningen,GM0289,VR07,Gelderland-Midden,39664
+Wassenaar,GM0629,VR15,Haaglanden,26305
+Waterland,GM0852,VR11,Zaanstreek-Waterland,17424
+Weert,GM0988,VR23,Limburg-Noord,50105
+Weesp,GM0457,VR14,GooienVechtstreek,19738
+West Betuwe,GM1960,VR08,Gelderland-Zuid,51128
+West Maas en Waal,GM0668,VR08,Gelderland-Zuid,19324
+Westerkwartier,GM1969,VR01,Groningen,63329
+Westerveld,GM1701,VR03,Drenthe,19460
+Westervoort,GM0293,VR07,Gelderland-Midden,14971
+Westerwolde,GM1950,VR01,Groningen,25733
+Westland,GM1783,VR15,Haaglanden,110375
+Weststellingwerf,GM0098,VR02,Fryslân,25914
+Westvoorne,GM0614,VR17,Rotterdam-Rijnmond,14731
+Wierden,GM0189,VR05,Twente,24446
+Wijchen,GM0296,VR08,Gelderland-Zuid,41110
+Wijdemeren,GM1696,VR14,GooienVechtstreek,24358
+Wijk bij Duurstede,GM0352,VR09,Utrecht,23914
+Winterswijk,GM0294,VR06,Noord-enOost-Gelderland,28854
+Woensdrecht,GM0873,VR20,Midden-enWest-Brabant,21876
+Woerden,GM0632,VR09,Utrecht,52299
+De Wolden,GM1690,VR03,Drenthe,24330
+Wormerland,GM0880,VR11,Zaanstreek-Waterland,16270
+Woudenberg,GM0351,VR09,Utrecht,13362
+Zaanstad,GM0479,VR11,Zaanstreek-Waterland,156794
+Zaltbommel,GM0297,VR08,Gelderland-Zuid,28881
+Zandvoort,GM0473,VR12,Kennemerland,17116
+Zeewolde,GM0050,VR25,Flevoland,22653
+Zeist,GM0355,VR09,Utrecht,64905
+Zevenaar,GM0299,VR07,Gelderland-Midden,43750
+Zoetermeer,GM0637,VR15,Haaglanden,125285
+Zoeterwoude,GM0638,VR16,Hollands-Midden,8605
+Zuidplas,GM1892,VR16,Hollands-Midden,43885
+Zundert,GM0879,VR20,Midden-enWest-Brabant,21829
+Zutphen,GM0301,VR06,Noord-enOost-Gelderland,47934
+Zwartewaterland,GM1896,VR04,IJsselland,22685
+Zwijndrecht,GM0642,VR18,Zuid-Holland-Zuid,44737
+Zwolle,GM0193,VR04,IJsselland,128840
