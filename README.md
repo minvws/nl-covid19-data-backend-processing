@@ -15,7 +15,7 @@
 <a name="about"></a>
 ## 1. About the Project
 
-With the information on the dashboard, early signs that the rate of infection is increasing can be picked up. This project describes the definitions and calculations on various indicators to that purpose. See https://coronadashboard.rijksoverheid.nl/verantwoording for even more information on data calculation and presentation for the corona dashboard.
+With the information on the dashboard, early signs that the rate of infection is increasing can be picked up. This project describes the definitions and calculations on various indicators to that purpose. See https://coronadashboard.government.nl/verantwoording for even more information on data calculation and presentation for the corona dashboard.
 The COVID-19 dashboard figures originate from a number of data sources, which are either combined or used independently. In order to streamline the calculations for the dashboard, each dashboard item has been split into separate data flows.
 
 By means of stored procedures, separate data layers, and end states available in views, the figures are made available to be extracted.
