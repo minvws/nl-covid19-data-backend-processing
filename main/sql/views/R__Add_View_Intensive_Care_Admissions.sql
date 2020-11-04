@@ -2,7 +2,7 @@
 -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
 
 -- Create view for pulling intensive care admissions
-CREATE VIEW VWSDEST.V_INTENSIVE_CARE_ADMISSIONS AS
+CREATE OR ALTER VIEW VWSDEST.V_INTENSIVE_CARE_ADMISSIONS AS
 SELECT
     [DATE_OF_REPORT_UNIX],
 	DBO.NO_NEGATIVE_NUMBER_F([MOVING_AVERAGE_IC]) AS MOVING_AVERAGE_IC,

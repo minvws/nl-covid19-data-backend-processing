@@ -15,7 +15,7 @@
 <a name="about"></a>
 ## 1. About the Project
 
-With the information on the dashboard, early signs that the rate of infection is increasing can be picked up. This project describes the definitions and calculations on various indicators to that purpose. See https://coronadashboard.government.nl/verantwoording for even more information on data calculation and presentation for the corona dashboard.
+With the information on the dashboard, early signs that the rate of infection is increasing can be picked up. This project describes the definitions and calculations on various indicators to that purpose. See https://coronadashboard.rijksoverheid.nl/verantwoording for even more information on data calculation and presentation for the corona dashboard.
 The COVID-19 dashboard figures originate from a number of data sources, which are either combined or used independently. In order to streamline the calculations for the dashboard, each dashboard item has been split into separate data flows.
 
 By means of stored procedures, separate data layers, and end states available in views, the figures are made available to be extracted.
@@ -42,25 +42,32 @@ If you do not want to use Flyway, you can choose a tool of your own liking or ex
 
 Please make sure you specify a **flyway.conf** file containing the following information.
 ```
-flyway.url={{__SERVER_JDBC_CONNECTION_STRING__}}
-flyway.user={{__DB_USER_NAME__}}
-flyway.password={{__DB_PASSWORD__}}
+flyway.url=jdbc:sqlserver://<server>:1433;Database=<database>
+flyway.user=
+flyway.password=
 flyway.schemas=\
 VWSSTAGE,\
 VWSSTATIC,\
 VWSINTER,\
 VWSDEST
 flyway.locations=\
-filesystem:main/sql/functions,\
-filesystem:main/sql/stored_procedures,\
 filesystem:main/sql/views,\
+filesystem:main/sql/migration_views,\
+filesystem:main/sql/functions,\
+filesystem:main/sql/indexes,\
+filesystem:main/sql/tables/VWSARCHIVE,\
 filesystem:main/sql/tables/VWSSTATIC,\
 filesystem:main/sql/tables/VWSSTAGE,\
 filesystem:main/sql/tables/VWSINTER,\
 filesystem:main/sql/tables/VWSDEST,\
 filesystem:main/sql/data_import/static_data,\
 filesystem:main/sql/datatino_configuration/orchestration,\
-filesystem:main/sql/datatino_configuration/proto
+filesystem:main/sql/datatino_configuration/proto,\
+filesystem:main/sql/stored_procedures,\
+filesystem:main/sql/stored_procedures/vwsdest,\
+filesystem:main/sql/stored_procedures/vwsinter,\
+filesystem:main/sql/stored_procedures/archive/vwsstage,\
+filesystem:main/sql/stored_procedures/archive/vwsinter
 
 ```
 <a name="datatino"></a>

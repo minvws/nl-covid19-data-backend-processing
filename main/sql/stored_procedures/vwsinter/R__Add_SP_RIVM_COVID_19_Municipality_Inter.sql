@@ -1,0 +1,39 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+-- Move municipality data from staging to intermediate table.
+CREATE OR ALTER PROCEDURE DBO.SP_RIVM_COVID_19_MUNICIPALITY_INTER
+AS
+BEGIN
+    INSERT INTO VWSINTER.RIVM_COVID_19_NUMBER_MUNICIPALITY
+    (
+        DATE_OF_REPORT,
+        DATE_OF_PUBLICATION,
+        MUNICIPALITY_CODE,
+        MUNICIPALITY_NAME,
+        SECURITY_REGION_CODE,
+        SECURITY_REGION_NAME,
+        PROVINCE,
+        MUNICIPAL_HEALTH_SERVICE,
+        ROAZ_REGION,
+        TOTAL_REPORTED,
+        HOSPITAL_ADMISSION,
+        DECEASED
+    )
+    SELECT 
+        DATE_OF_REPORT,
+        DATE_OF_PUBLICATION,
+        TRIM(MUNICIPALITY_CODE),
+        TRIM(MUNICIPALITY_NAME),
+        TRIM(SECURITY_REGION_CODE),
+        TRIM(SECURITY_REGION_NAME),
+        TRIM(PROVINCE),
+        TRIM(MUNICIPAL_HEALTH_SERVICE),
+        TRIM(ROAZ_REGION),
+        TOTAL_REPORTED,
+        HOSPITAL_ADMISSION,
+        DECEASED
+    FROM 
+       VWSSTAGE.RIVM_COVID_19_NUMBER_MUNICIPALITY
+    WHERE DATE_LAST_INSERTED = (SELECT MAX(DATE_LAST_INSERTED) from VWSSTAGE.RIVM_COVID_19_NUMBER_MUNICIPALITY)
+END;

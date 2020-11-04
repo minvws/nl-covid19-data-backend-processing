@@ -2,7 +2,7 @@
 -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
 
 -- Create view for pulling infected people per age group
-CREATE VIEW VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_AGE_GROUP AS
+CREATE OR ALTER VIEW VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_AGE_GROUP AS
 SELECT
     [DATE_OF_REPORT_UNIX],
     [AGEGROUP],

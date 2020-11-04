@@ -8,13 +8,13 @@
 
 -- Insert workflows into table
 -- Perform a safe insert because flyway does not clear datatino tables
-exec [dbo].[SafeInsertWorkflow] 'RIVM_COVID_19_CASE_NATIONAL', 'Day', 'N';
-exec [dbo].[SafeInsertWorkflow] 'FOUNDATION_NICE_IC_INTAKE_COUNT', 'Day', 'N'
-exec [dbo].[SafeInsertWorkflow] 'RIVM_COVID_19_NUMBER_MUNICIPALITY_CUMULATIVE', 'Day', 'N'
-exec [dbo].[SafeInsertWorkflow] 'RIVM_REPRODUCTION_NUMBER', 'Week', 'N'
-exec [dbo].[SafeInsertWorkflow] 'RIVM_INFECTIOUS_PEOPLE', 'Week', 'N'
-exec [dbo].[SafeInsertWorkflow] 'RIVM_NURSING_HOME_INTAKE', 'Day', 'N'
-exec [dbo].[SafeInsertWorkflow] 'NIVEL_SUSPICIONS_GENERAL_PRACTITIONERS', 'Week', 'N'
-exec [dbo].[SafeInsertWorkflow] 'RIVM_SEWER_MEASUREMENTS', 'Week', 'N'
-exec [dbo].[SafeInsertWorkflow] 'NIVEL_SUSPICIONS_GENERAL_PRACTITIONERS_ABSOLUTE', 'Week', 'N'
+exec [dbo].[SafeInsertWorkflow] 'REINDEX_TABLES', 'Day', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_COVID_19_CASE_NATIONAL', 'Day', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'FOUNDATION_NICE_IC_INTAKE_COUNT', 'Day',  '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_COVID_19_NUMBER_MUNICIPALITY_CUMULATIVE', 'Day', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_REPRODUCTION_NUMBER', 'Week', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_INFECTIOUS_PEOPLE', 'Week',  '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_NURSING_HOME_INTAKE', 'Day', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'NIVEL_SUSPICIONS_GENERAL_PRACTITIONERS', 'Week', '12:17', 'N', 'true';
+exec [dbo].[SafeInsertWorkflow] 'RIVM_SEWER_MEASUREMENTS', 'Week', '12:17', 'N', 'true';
 GO

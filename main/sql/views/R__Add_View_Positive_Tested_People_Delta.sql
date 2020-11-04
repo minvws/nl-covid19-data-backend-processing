@@ -1,7 +1,7 @@
 -- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
 -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
 
-CREATE VIEW VWSDEST.V_POSITIVE_TESTED_PEOPLE_DELTA AS
+CREATE OR ALTER VIEW VWSDEST.V_POSITIVE_TESTED_PEOPLE_DELTA AS
 SELECT 
     [DATE_OF_REPORT_UNIX],
     DBO.NO_NEGATIVE_NUMBER_F([INFECTED_DAILY_INCREASE]) AS INFECTED_DAILY_INCREASE,

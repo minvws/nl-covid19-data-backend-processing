@@ -1,4 +1,3 @@
-
 # Introduction
 This is the technical documentation of the SQL module. 
 The module was developed on a mssql database, so if another database is used some of the functionality might need adjustments.
@@ -63,4 +62,4 @@ If any of the stored procedures encounters data which was not expected, the stor
 
 ## Adding new data
 
-Check the [README](./main/sql/README.md) for more information about adding sources and new data fields to the processing pipeline.
+Check the [README](./main/sql/README.MD) for more information about adding sources and new data fields to the processing pipeline.

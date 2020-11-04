@@ -2,7 +2,7 @@
 -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
 
 -- View to disclose link between municipality and veiligheids regio to front end
-CREATE VIEW VWSDEST.V_MATCH_MUNICIPALITY_SAFETY_REGION
+CREATE OR ALTER VIEW VWSDEST.V_MATCH_MUNICIPALITY_SAFETY_REGION
 AS
 SELECT 
     GMNAAM AS [MUNICIPALITY_NAME],
