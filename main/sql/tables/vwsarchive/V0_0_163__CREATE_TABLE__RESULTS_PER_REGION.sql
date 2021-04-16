@@ -1,0 +1,25 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+IF NOT EXISTS(SELECT * FROM sys.sequences WHERE object_id = OBJECT_ID(N'[dbo].[SEQ_VWSARCHIVE_RESULTS_PER_REGION]') AND type = 'SO')
+CREATE SEQUENCE SEQ_VWSARCHIVE_RESULTS_PER_REGION
+  START WITH 1
+  INCREMENT BY 1;
+GO
+CREATE TABLE [VWSARCHIVE].[RESULTS_PER_REGION](
+	[ID] INT PRIMARY KEY NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSARCHIVE_RESULTS_PER_REGION]),
+	[DATE_OF_REPORT] [datetime] NULL,
+	[DATE_OF_REPORT_UNIX] [bigint] NULL,
+	[VRCODE] [varchar](100) NULL,
+	[TOTAL_REPORTED_INCREASE_PER_REGION] [int] NULL,
+	[INFECTED_TOTAL_COUNTS_PER_REGION] [decimal](16, 1) NULL,
+	[HOSPITAL_TOTAL_COUNTS_PER_REGION] [decimal](16, 1) NULL,
+	[INFECTED_INCREASE_PER_REGION] [decimal](16, 1) NULL,
+	[HOSPITAL_INCREASE_PER_REGION] [decimal](16, 1) NULL,
+	[INFECTED_MOVING_AVG_PER_REGION] [decimal](16, 1) NULL,
+	[HOSPITAL_MOVING_AVG_PER_REGION] [decimal](16, 1) NULL,
+	[DATE_LAST_INSERTED] [datetime] NULL,
+	[DECEASED] [int] NULL,
+	[ACTIVE_CLUSTERS] [int] NULL,
+	[CLUSTER_AVERAGE] [decimal](16, 1) NULL
+);

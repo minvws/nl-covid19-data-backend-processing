@@ -1,5 +1,20 @@
 
 # Adding new data
+We consider data to be added when we have a destination table (DEST) where the new data is available.
+Data is first added to Staging tables (STAGE): all fields are read as varchar. 
+A stored procedure is used to automatically move the data from Stage to Intermediate (INTER). In this step we make use of
+implicit type conversion done by SQL. (https://docs.microsoft.com/en-us/sql/t-sql/data-types/data-type-conversion-database-engine?view=sql-server-ver15).
+Mind you: Conversion to Binary or Timestamp need to be done explicit.
+Finally we create a stored procedure to move the data from INTER to the Destination tables (Dest). 
+In this step data transformation can be performed (Groupby/joins/..)
+
+Therefore to add 1 indicator one needs to create:
+- 3 tables: Stage, Inter, Dest.
+- A stored procedure to move data from Stage to Inter
+- A stored procedure to move/transform data from Inter to Dest.
+- A process to insert the data in stage table (SafeInsertProcess for example)
+- A workflow to schedule the process(es)
+
 In the current set-up of the project, adding new data and adding that data to the process are two different steps. 
 1. First a set-up is created in the database to enable the storage of the staging, intermediate and destination tables as well as the view to read the output from the destination table. If required in the process the transformations if done in stored procedures can also be added to the database.
 2. The datatino-run-configuration for the run of the new data-flow should be added. As described before the project depends on a sql-based-scheduler, this scheduler should be told where to get new data, how to promote the data to the different tables and what data should be used to generate new output-files.

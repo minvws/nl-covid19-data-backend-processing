@@ -1,0 +1,33 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+IF NOT EXISTS(SELECT * FROM sys.sequences WHERE object_id = OBJECT_ID(N'[dbo].[SEQ_VWSINTER_VACCINE_ADMINISTERED_TEMP]') AND type = 'SO')
+CREATE SEQUENCE SEQ_VWSINTER_VACCINE_ADMINISTERED_TEMP
+  START WITH 1
+  INCREMENT BY 1;
+GO
+
+/*
+    This format is used for the 
+    Dit format wordt gebruikt voor het aanleveren van de cijfers over de gezette prikken, vanuit team vaccinatie (VWS) en RIVM. 
+    Dit betreft een tijdelijk format, tot dat RIVM open data aanbiedt. 
+*/
+
+CREATE TABLE VWSINTER.VACCINE_ADMINISTERED_TEMP(
+    [ID] INT PRIMARY KEY NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSINTER_VACCINE_ADMINISTERED_TEMP]),
+    [DATE_OF_REPORT] DATE NULL,
+    [DATE_OF_STATISTIC] DATE NULL,
+    [TARGET_GROUP] VARCHAR(100) NULL,
+    [SUB_TARGET_GROUP] VARCHAR(100) NULL,
+    [VACCINATION_NAME] VARCHAR(100) NULL,
+    [SHOT_ROUND] VARCHAR(100) NULL,
+    [VACCINATIONS_AMOUNT] INT NULL,
+    [SOURCE] VARCHAR(100) NULL,
+    [REPORT_STATUS] VARCHAR(100) NULL,
+	[DATE_LAST_INSERTED] DATETIME DEFAULT GETDATE()
+);
+
+IF NOT EXISTS(SELECT * FROM sys.indexes WHERE NAME='IX_VWS_VWSINTER_VACCINE_ADMINISTERED_TEMP')
+    CREATE NONCLUSTERED INDEX IX_VWS_VWSINTER_VACCINE_ADMINISTERED_TEMP
+    ON VWSINTER.VACCINE_ADMINISTERED_TEMP(DATE_LAST_INSERTED);
+GO

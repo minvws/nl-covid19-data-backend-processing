@@ -1,0 +1,29 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+CREATE OR ALTER PROCEDURE DBO.SP_NICE_HOSPITAL_INTER
+AS
+BEGIN
+-- Main select and insert into statement. Filtered values on max datelastinserted.
+-- Move infectious data from staging to intermediate table.
+INSERT INTO VWSINTER.NICE_HOSPITAL(
+	[DATE_OF_REPORT]
+,	[DATE_OF_STATISTICS]
+,	[MUNICIPALITY_CODE]
+,	[MUNICIPALITY_NAME]
+,	[SECURITY_REGION_CODE]
+,	[SECURITY_REGION_NAME]
+,	[REPORTED]
+,	[HOSPITALIZED]
+)
+    SELECT
+	CAST([DATE_OF_REPORT] AS DATETIME)
+,	CAST([DATE_OF_STATISTICS] AS DATETIME)
+,	[MUNICIPALITY_CODE]
+,	[MUNICIPALITY_NAME]
+,	[SECURITY_REGION_CODE]
+,	[SECURITY_REGION_NAME]
+,	[HOSPITAL_ADMISSION_NOTIFICATION] AS [REPORTED]
+,	[HOSPITAL_ADMISSION]              AS [HOSPITALIZED]
+    FROM VWSSTAGE.NICE_HOSPITAL
+    WHERE DATE_LAST_INSERTED = (SELECT MAX(DATE_LAST_INSERTED) FROM VWSSTAGE.NICE_HOSPITAL)
+END;

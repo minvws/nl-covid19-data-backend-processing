@@ -1,0 +1,24 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van Volksgezondheid, Welzijn en Sport.
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordination for more information.
+
+CREATE OR ALTER VIEW VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES AS
+SELECT 
+    DATE_START_UNIX,
+    DATE_END_UNIX,
+    GMCODE,
+    AVERAGE,
+    TOTAL_INSTALLATION_COUNT,
+    DATE_OF_INSERTION_UNIX
+FROM (
+SELECT
+        DATE_START_UNIX
+    ,   DATE_END_UNIX
+    ,   GMCODE
+    ,   AVERAGE
+    ,   TOTAL_INSTALLATION_COUNT
+    ,   DATE_OF_INSERTION_UNIX
+    ,   RANK() OVER (PARTITION BY GMCODE ORDER BY DATE_START_UNIX DESC) RANKING
+FROM VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY
+) T1
+WHERE T1.RANKING =1
+;
