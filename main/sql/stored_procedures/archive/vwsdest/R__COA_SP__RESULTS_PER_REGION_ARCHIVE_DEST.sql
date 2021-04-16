@@ -1,0 +1,80 @@
+-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+CREATE OR ALTER PROCEDURE [dbo].[SP_RESULTS_PER_REGION_ARCHIVE_DEST]
+AS
+BEGIN
+
+    BEGIN TRANSACTION;
+
+    DECLARE @TmpTable TABLE (
+        [DATE_OF_REPORT] [datetime] NULL,
+        [DATE_OF_REPORT_UNIX] [bigint] NULL,
+        [VRCODE] [varchar](100) NULL,
+        [TOTAL_REPORTED_INCREASE_PER_REGION] [int] NULL,
+        [INFECTED_TOTAL_COUNTS_PER_REGION] [decimal](16, 1) NULL,
+        [HOSPITAL_TOTAL_COUNTS_PER_REGION] [decimal](16, 1) NULL,
+        [INFECTED_INCREASE_PER_REGION] [decimal](16, 1) NULL,
+        [HOSPITAL_INCREASE_PER_REGION] [decimal](16, 1) NULL,
+        [INFECTED_MOVING_AVG_PER_REGION] [decimal](16, 1) NULL,
+        [HOSPITAL_MOVING_AVG_PER_REGION] [decimal](16, 1) NULL,
+        [DATE_LAST_INSERTED] [datetime] NULL,
+        [DECEASED] [int] NULL
+    );
+
+
+    DELETE FROM [VWSDEST].[RESULTS_PER_REGION]
+        OUTPUT DELETED.DATE_OF_REPORT,
+                DELETED.DATE_OF_REPORT_UNIX,
+                DELETED.VRCODE,
+                DELETED.TOTAL_REPORTED_INCREASE_PER_REGION
+                ,DELETED.INFECTED_TOTAL_COUNTS_PER_REGION
+                ,DELETED.HOSPITAL_TOTAL_COUNTS_PER_REGION
+                ,DELETED.INFECTED_INCREASE_PER_REGION
+                ,DELETED.HOSPITAL_INCREASE_PER_REGION
+                ,DELETED.INFECTED_MOVING_AVG_PER_REGION
+                ,DELETED.HOSPITAL_MOVING_AVG_PER_REGION
+                ,DELETED.DATE_LAST_INSERTED
+                ,DELETED.DECEASED
+        INTO  @TmpTable
+    WHERE DATE_LAST_INSERTED IN (
+        SELECT SubQueryC.DATE_LAST_INSERTED
+        FROM(
+        SELECT SubQueryB.DATE_LAST_INSERTED, SubQueryB.RANKING
+        FROM (
+            SELECT SubQueryA.DATE_LAST_INSERTED, rank() OVER(ORDER BY DATE_LAST_INSERTED DESC) RANKING
+            FROM (
+            SELECT DISTINCT DATE_LAST_INSERTED
+            FROM [VWSDEST].[RESULTS_PER_REGION]) SubQueryA
+        ) SubQueryB
+        WHERE SubQueryB.RANKING > 2)SubQueryC)
+
+    INSERT INTO VWSARCHIVE.RESULTS_PER_REGION
+            ([DATE_OF_REPORT]
+          ,[DATE_OF_REPORT_UNIX]
+          ,[VRCODE]
+          ,[TOTAL_REPORTED_INCREASE_PER_REGION]
+          ,[INFECTED_TOTAL_COUNTS_PER_REGION]
+          ,[HOSPITAL_TOTAL_COUNTS_PER_REGION]
+          ,[INFECTED_INCREASE_PER_REGION]
+          ,[HOSPITAL_INCREASE_PER_REGION]
+          ,[INFECTED_MOVING_AVG_PER_REGION]
+          ,[HOSPITAL_MOVING_AVG_PER_REGION]
+          ,[DATE_LAST_INSERTED]
+          ,[DECEASED])
+         SELECT
+            [DATE_OF_REPORT]
+          ,[DATE_OF_REPORT_UNIX]
+          ,[VRCODE]
+          ,[TOTAL_REPORTED_INCREASE_PER_REGION]
+          ,[INFECTED_TOTAL_COUNTS_PER_REGION]
+          ,[HOSPITAL_TOTAL_COUNTS_PER_REGION]
+          ,[INFECTED_INCREASE_PER_REGION]
+          ,[HOSPITAL_INCREASE_PER_REGION]
+          ,[INFECTED_MOVING_AVG_PER_REGION]
+          ,[HOSPITAL_MOVING_AVG_PER_REGION]
+          ,[DATE_LAST_INSERTED]
+          ,[DECEASED]
+        FROM @TmpTable;
+    COMMIT;
+END;

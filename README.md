@@ -14,12 +14,12 @@
 
 <a name="about"></a>
 ## 1. About the Project
-
-With the information on the dashboard, early signs that the rate of infection is increasing can be picked up. This project describes the definitions and calculations on various indicators to that purpose. See https://coronadashboard.rijksoverheid.nl/verantwoording for even more information on data calculation and presentation for the corona dashboard.
-The COVID-19 dashboard figures originate from a number of data sources, which are either combined or used independently. In order to streamline the calculations for the dashboard, each dashboard item has been split into separate data flows.
-
-By means of stored procedures, separate data layers, and end states available in views, the figures are made available to be extracted.
-
+This project aims to describes the definitions and calculations of various covid related
+indicators present on the national corona dashboard. Supplementary information can be 
+found at https://coronadashboard.rijksoverheid.nl/verantwoording. A variety of data 
+sources is used to calculate the various indicators. Some indicators are calculated 
+using a single data source, others require a combination of data sources. The calculation of indicators
+is logically split in separate workflows.
 
 <a name="built"></a>
 ### 1.1 Built With
@@ -32,69 +32,55 @@ By means of stored procedures, separate data layers, and end states available in
 
 <a name="sql"></a>
 ### 2.1 Have a SQL database available
-For this project we have made use of Microsoft SQL Server 2019. You are free to choose another database type, but some parts of this project may need adjustments then. If you do not have an on-premise or cloud solution at your disposal, a Docker image has also been made available by [Microsoft](https://hub.docker.com/_/microsoft-mssql-server), which you can also use for initializing the project.
+A Microsoft SQL Server 2019 is used in this project. A docker image can be used if no 
+on-premise or cloud solution is available ([Microsoft](https://hub.docker.com/_/microsoft-mssql-server). 
+Mind you: deviating from these build parameters will most likely result in a different working solution.
 
 <a name="flyway"></a>
 ### 2.2 Install Flyway (Optional)
-We use Flyway, in order to automate and version our database setup. See the technical documentation for more explanation on this. You can download Flyway [here](https://flywaydb.org/documentation/commandline/).
+Flyway is used to automate and version the database setup. See the technical 
+documentation for more explanation. [here](https://flywaydb.org/documentation/commandline/).
 
-If you do not want to use Flyway, you can choose a tool of your own liking or exececute the files by hand.
-
-Please make sure you specify a **flyway.conf** file containing the following information.
+The **flyway.conf** file should contain the following information.
 ```
 flyway.url=jdbc:sqlserver://<server>:1433;Database=<database>
-flyway.user=
-flyway.password=
+flyway.user=<db-user>
+flyway.password=<db-password>
 flyway.schemas=\
+VWSARCHIVE,\
 VWSSTAGE,\
 VWSSTATIC,\
 VWSINTER,\
-VWSDEST
-flyway.locations=\
-filesystem:main/sql/views,\
-filesystem:main/sql/migration_views,\
-filesystem:main/sql/functions,\
-filesystem:main/sql/indexes,\
-filesystem:main/sql/tables/VWSARCHIVE,\
-filesystem:main/sql/tables/VWSSTATIC,\
-filesystem:main/sql/tables/VWSSTAGE,\
-filesystem:main/sql/tables/VWSINTER,\
-filesystem:main/sql/tables/VWSDEST,\
-filesystem:main/sql/data_import/static_data,\
-filesystem:main/sql/datatino_configuration/orchestration,\
-filesystem:main/sql/datatino_configuration/proto,\
-filesystem:main/sql/stored_procedures,\
-filesystem:main/sql/stored_procedures/vwsdest,\
-filesystem:main/sql/stored_procedures/vwsinter,\
-filesystem:main/sql/stored_procedures/archive/vwsstage,\
-filesystem:main/sql/stored_procedures/archive/vwsinter
-
+VWSDEST,\
+VWSMISC
+flyway.locations=filesystem:main/sql/
 ```
 <a name="datatino"></a>
 ### 2.3 Install Datatino Orchestrator & Proto (Optional)
-**Datatino Orchestrator** is used for the automation of the ingestion of data and processing of the data flows. This tool has been made in-house and we are currently working on making it publicly available. We will make a reference to the project when it is open sourced.
+To schedule and automate the ingestion and processing of data sources a solution has 
+been created and used: **Datatino Orchestrator** (publicly available soon). 
+However the user could use a different schedule and automate solution (or do it by hand).
 
-The installation of this solution is not a requirement in order to be able to run the calculations. You can also execute the stored procedures, and other filetypes manually, or make use of another solution to your liking. 
-
-**Datatino Proto** is used for generating JSON files based on a defined data selection. This tool has been made in-house and we are currently working on making it publicly available. We will make a reference to the project when it is open sourced. 
-
-You only need this tool if you wish to generate the same JSON files as is used for the dashboard. It is not a requirement to have it available for running calculcations of any sort. 
-
+After the covid indicators are calculated **Datatino Proto** (Short for Protocol, publicly available soon) 
+is used to package the results in a predefined and desired (human readable) manner.
 ---
 <a name="usage"></a>
 ## 3. Usage
-In the [technical documentation](./technical_doc.md) you can read how an identical data environment can be set up. In order to gain understanding of what the data means, a [functional documentation](./functional_doc.md) has also been made available.
-
-If you want to know how you could add new data items yourself, an instruction on this can be found [here](./main/sql/README.md).
+How to create an identical (data) environment is shown in [technical documentation](./technical_doc.md)
+To gain a better understanding of the data: [functional documentation](./functional_doc.md) has also been made available.
+An instruction on how to add new indicators can be found in [here](./main/sql/README.md) 
 
 <a name="disc"></a>
 ## 4. Disclaimer
-This dashboard is developed and maintained by a different team than the NL COVID19 Notification App. They are separate projects. If you want to get in touch with the team, please join the CODE for NL Slack and join the channel #coronadashboard.
-
-Tamas Erkelens from the Municipality of Amsterdam is contact person for the project team that made the dashboard.
+One can get in touch with the development team by joining the CODE for NL Slack, channel: #coronadashboard.
+Tamas Erkelens (from the Municipality of Amsterdam) is the main contact person for the project team.
+Mind you: This is not the same development team that created the NL COVID19 Notification App
 
 [CODE For NL Slack](https://doemee.codefor.nl)
 
 <a name="cont"></a>
 ## 5. Development & Contribution process
-The core team works directly from this open-source repository. If you plan to propose changes, we recommend to open an issue beforehand where we can discuss your planned changes. This increases the chance that we might be able to use your contribution (or it avoids doing work if there are reasons why we wouldn't be able to use it).
+The core team works directly from this open-source repository. If you want to make a 
+contribution we recommend opening an issue first in order to avoid the situation where 
+we already have your contribution staged or can't use your contribution due to certain 
+causes.
