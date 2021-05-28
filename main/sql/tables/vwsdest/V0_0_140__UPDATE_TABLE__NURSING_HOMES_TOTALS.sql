@@ -1,5 +1,0 @@
--- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
--- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
-
-ALTER TABLE VWSDEST.NURSING_HOMES_TOTALS
-ADD [DATE_RANGE_START] DATETIME NULL ,[DATE_OF_REPORTS_LAG] DATETIME NULL ,DATE_RANGE_START_LAG DATETIME NULL , [7D_AVERAGE_TOTAL_INFECTED] DECIMAL(16,2), [7D_AVERAGE_TOTAL_INFECTED_LAG] DECIMAL(16,2), [7D_AVERAGE_TOTAL_DECEASED] DECIMAL(16,2), [7D_AVERAGE_TOTAL_DECEASED_LAG] DECIMAL(16,2)

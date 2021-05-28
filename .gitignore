@@ -75,6 +75,10 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+<<<<<<< Updated upstream
+=======
+*.drawio
+>>>>>>> Stashed changes
 
 # Chutzpah Test files
 _Chutzpah*
@@ -267,4 +271,8 @@ __pycache__/
 *.pyc
 
 # OSX file
+<<<<<<< Updated upstream
 .DS_Store
+=======
+.DS_Store
+>>>>>>> Stashed changes
