@@ -71,8 +71,9 @@ Below you can find an example flyway configuration.
 flyway.url=
 flyway.user=
 flyway.password=
-flyway.baselineVersion=0.0.123
+flyway.baselineVersion=0.0.169
 flyway.baselineDescription=Base Migration
+flyway.baselineOnMigrate=true
 flyway.schemas=VWS,\
                VWSARCHIVE, \
                VWSSTAGE, \
@@ -88,8 +89,6 @@ flyway.locations= filesystem:main/sql/views,\
                   filesystem:main/sql/tables/VWSSTAGE, \
                   filesystem:main/sql/tables/VWSINTER, \
                   filesystem:main/sql/tables/VWSDEST, \
-                  filesystem:main/sql/datatino_configuration/orchestration, \
-                  filesystem:main/sql/datatino_configuration/proto, \
                   filesystem:main/sql/stored_procedures, \
                   filesystem:main/sql/stored_procedures/vwsdest, \
                   filesystem:main/sql/stored_procedures/vwsinter, \
