@@ -7,6 +7,7 @@
 ------------------------------------------------------------------------------
 -- DATATINO_ORCHESTRATOR.V_WORKFLOWS_CONFIG / DATATINO_ORCHESTRATOR.UPSERT_WORKFLOW
 ------------------------------------------------------------------------------
+
 EXECUTE DATATINO_ORCHESTRATOR.UPSERT_WORKFLOW
  @id = null,
  @workflow_name = 'REINDEX_TABLES',
