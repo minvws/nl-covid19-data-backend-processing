@@ -108,7 +108,7 @@ jobs:
             --build-arg VCS_REF=${GITHUB_SHA::8} \
             --file .github/Dockerfile \
             ${TAGS} \
-            .
+            ./.github
 
       - name: 7 - Build & Push Packages
         if: success()
