@@ -10,7 +10,6 @@ ENV GITHUB_ACCESS_TOKEN=""
 ENV RUNNER_ALLOW_RUNASROOT=false
 ENV AGENT_TOOLS_DIRECTORY=/opt/hosted-tool-cache
 
-ARG TARGETPLATFORM
 ARG OWNER="minvws"
 ARG REPOSITORY_NAME="nl-covid19-data-backend-processing"
 
