@@ -1,0 +1,39 @@
+trigger: none
+
+# this pipeline will be triggered by another pipeline
+resources:
+  pipelines:
+    - pipeline: build # name of the pipeline resource
+      source: "cdb - ci"
+      trigger: 
+        branches:
+          include:
+            - main
+            - master
+            - release/*
+
+pool:
+  name: "default"
+
+stages:
+  - stage: Development
+    jobs:
+      - template: templates/release-template.yml
+        parameters:
+          environment: development
+
+  - stage: Acceptance
+    dependsOn:
+    - Development
+    jobs:
+    - template: templates/release-template.yml
+      parameters:
+        environment: acceptance
+
+  - stage: Production
+    dependsOn:
+    - Acceptance
+    jobs:
+    - template: templates/release-template.yml
+      parameters:
+        environment: production

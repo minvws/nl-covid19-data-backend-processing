@@ -1,0 +1,79 @@
+trigger: 
+  branches:
+    include:
+      - main
+      - master
+      - release/*
+  paths:
+    include:
+      - src/
+    exclude:
+      - "**/*.md"
+
+pool:
+  name: "default"
+
+variables:
+  PipelineWorkspace: $(Build.SourcesDirectory)/deploy
+
+stages:
+  - stage: Build
+    jobs:
+      - job: "Build"
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: "$(PipelineWorkspace)/scripts/build-script.ps1"
+              arguments: '-SourceDirectory "$(Build.SourcesDirectory)"'
+              failOnStderr: true
+              pwsh: true
+            displayName: "Task 1: Build MSSQL Artifacts"
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/'
+              Contents: '*.sql'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/src'
+              OverWrite: true
+            displayName: "Task 2: Copy Files: MSSQL"
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: "$(PipelineWorkspace)/scripts"
+              Contents: "**/*.ps1"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/scripts"
+              OverWrite: true
+            displayName: "Task 3: Copy Files: Scripts"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "drop"
+              publishLocation: "Container"
+            displayName: "Task 4: Publish Artifacts"
+
+          - task: PowerShell@2
+            condition: always()
+            inputs:
+              targetType: "inline"
+              script: |              
+                $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+                $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
+                
+                $createdOn = [System.DateTime]::ParseExact(
+                  $containerSettings.Created, 
+                  'MM/dd/yyyy HH:mm:ss', 
+                  [System.Globalization.DateTimeFormatInfo]::CurrentInfo
+                )
+
+                $diff = $(Get-Date) - $createdOn
+
+                if ($diff.Days -ge 1) {
+                    Write-Host "Removing container(s)....."
+                    docker container stop $containerName
+                    docker container rm $containerName
+                }
+              errorActionPreference: "default" 
+              failOnStderr: true
+              pwsh: true
+            displayName: "Task 5: Post Build"

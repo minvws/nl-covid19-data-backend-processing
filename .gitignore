@@ -6,6 +6,7 @@ local.settings.json
 
 # configuration files
 *flyway.conf
+/flyway*
 
 # User-specific files
 *.suo
@@ -269,3 +270,10 @@ __pycache__/
 
 # OSX file
 .DS_Store
+
+# Other
+/*.ipynb
+/*.sql
+.vscode/
+
+!.initiate*

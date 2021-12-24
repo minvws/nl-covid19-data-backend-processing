@@ -1,0 +1,64 @@
+parameters:
+  - name: environment
+    type: string
+    values:
+      - development
+      - acceptance
+      - production
+
+jobs:
+  - deployment:
+    environment: "cdb-${{ parameters.environment }}"
+    variables:
+      - group: "cdb-${{ parameters.environment }}-vg"
+      - name: PipelineWorkspace
+        value: $(Pipeline.Workspace)/build/drop/$(Build.SourceVersion)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: none
+
+            - download: build
+              artifact: "drop"
+              displayName: "Task 1: Download Artifacts"
+
+            - task: PowerShell@2
+              displayName: "Task 2: Replace Tokens"
+              inputs:
+                targetType: "inline"
+                script: |
+                  $mssqlScripts = Get-ChildItem -Path "$(PipelineWorkspace)/src" -Filter "*.sql"
+
+                  Write-Host "Replace tokens:"
+
+                  foreach ($script in $mssqlScripts | Sort-Object -Property Fullname) {
+                    Write-Host "`t$($script)" -ForegroundColor Blue
+
+                    $content = (Get-Content $script) -replace '#{ Environment }#', '${{ parameters.environment }}' 
+                    $content | Out-File $script
+                  }
+                errorActionPreference: "default"
+                failOnStderr: true
+                pwsh: true
+
+            - task: PowerShell@2
+              displayName: "Task 3: Migrate MSSQL Artifacts"
+              inputs:
+                filePath: "$(PipelineWorkspace)/scripts/release-script.ps1"
+                arguments: '-Server "$(MssqlServer)" -Database "$(MssqlDatabase)" -SourceDirectory "$(PipelineWorkspace)/src" -Password "$(LoginPassword)" -Username "$(LoginUsername)"'
+                errorActionPreference: "default"
+                failOnStderr: true
+                pwsh: true
+
+            - task: PowerShell@2
+              condition: always()
+              displayName: "Task 4: Post Deployment"
+              inputs:
+                targetType: "inline"
+                script: |
+                  Write-Host "Removing $(PipelineWorkspace)....."
+                  Remove-Item -Recurse -Force "$(PipelineWorkspace)"
+                errorActionPreference: "default"
+                failOnStderr: true
+                pwsh: true
