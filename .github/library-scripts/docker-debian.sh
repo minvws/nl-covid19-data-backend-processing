@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-#-------------------------------------------------------------------------------------------------------------
-# -- Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
-# -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
-#-------------------------------------------------------------------------------------------------------------
-#
+# Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+# Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
+
 # Syntax: ./docker-debian.sh [use moby] [upgrade packages]
 
 USE_MOBY=${1:-"true"}
