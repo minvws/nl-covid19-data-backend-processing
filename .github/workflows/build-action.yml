@@ -9,7 +9,7 @@ on:
   # workflow_dispatch:
   push:
     paths: 
-      - "src/"
+      - "src/*"
     branches:
       - "topic/*"
   pull_request:
