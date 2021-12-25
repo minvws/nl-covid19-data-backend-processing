@@ -1,5 +1,6 @@
 Param (
-    [String]$SourceDirectory = $env:PWD
+    [String]$SourceDirectory = $env:PWD,
+    [String[]]$ModifiedFiles = "$(git diff HEAD HEAD~ --name-only -R)"
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -10,7 +11,7 @@ $containerPort = 14331
 $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = $(git diff HEAD HEAD~ --name-only -R) | Where-Object { $_.endswith(".ipynb") }
+$notebooks = $ModifiedFiles | Where-Object { $_.endswith(".ipynb") }
 
 ### SETUP DATATINO MOCK CONTAINER(S).....
 Install-ContainerUnit `

@@ -48,7 +48,7 @@ jobs:
 
             switch -wildcard ($_) 
             {
-              "*src/*.ipynb" { echo "::set-output name=modified_ipynb::true"; Write-Host "yes-true" }
+              "*src/*.ipynb" { echo "::set-output name=modified_ipynb::true" }
               "*.github/runners/*" { echo "::set-output name=modified_runners::true" }
               default { }
             }
@@ -67,7 +67,7 @@ jobs:
       - name: 2 - Build MSSQL Artifacts
         run: |
           & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
-            -SourceDirectory "${{ github.workspace }}"" `
+            -SourceDirectory "${{ github.workspace }}" `
             -ModifiedFiles "${{ needs.analyse.outputs.modified_all }}"
         shell: pwsh
 
