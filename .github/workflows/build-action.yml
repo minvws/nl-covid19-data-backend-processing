@@ -87,21 +87,9 @@ jobs:
         if: always()
         run: |
           $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
-          $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
-
-          $createdOn = [System.DateTime]::ParseExact(
-            $containerSettings.Created,
-            'MM/dd/yyyy HH:mm:ss',
-            [System.Globalization.DateTimeFormatInfo]::CurrentInfo
-          )
-
-          $diff = $(Get-Date) - $createdOn
-
-          if ($diff.Days -ge 1) {
-              Write-Host "Removing container(s)....."
-              docker container stop $containerName
-              docker container rm $containerName
-          }
+          Write-Host "Removing container(s)....."
+          docker container stop $containerName
+          docker container rm $containerName
         shell: pwsh
 
   # image:

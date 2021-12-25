@@ -17,7 +17,7 @@ $notebooks = $ModifiedFiles | Where-Object { $_.endswith(".ipynb") }
 Install-ContainerUnit `
     -ContainerName $containerName `
     -ContainerPort $containerPort `
-    -ContainerScript "./.github/workflows/scripts/utils/mssql-helpers.sql"
+    -ContainerScript "./.github/workflows/scripts/utils/mssql-scripts.sql"
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
