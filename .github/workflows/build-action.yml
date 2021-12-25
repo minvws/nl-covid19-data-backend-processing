@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           path: |
-            "*.sql"
+            "./*.sql"
             "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
             "${{ env.GITHUB_WORKSPACE }}/**/utils/**/*.ps1"
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
