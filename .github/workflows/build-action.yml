@@ -2,15 +2,14 @@
 # Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
 
 # This is a basic workflow to help you get started with Actions
-name: "actions-runner-image-ci"
+name: "cdb - ci"
 
 on:
   push:
     paths:
-      - "**/.github/Dockerfile"
-      - "**/.github/entrypoint.sh"
-      - "**/.github/supervisord.conf"
-      - "**/.github/library-scripts/"
+      - "src/"
+      - "!**/*.md"
+      - "**/.github/runners/"
     branches:
       - "topic/redesign"
     tags:
@@ -20,13 +19,89 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: ghcr.io
-  TARGET_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7
+  GITHUB_WORKSPACE: ${{ github.workspace }}/.github
 
 jobs:
-  build-and-push:
-    name: "build & push"
+
+  analyse:
+    name: "analyse modified files"
+    outputs:
+      is-modified: ${{ steps.check-modified-files.outputs.is-modified }}
     runs-on: ubuntu-latest
+    steps:
+      - name: 1 - Checkout
+        uses: actions/checkout@v2
+      
+      - name: 2 - Check Modified Files
+        id: check-modified-files
+        run: |
+          echo "=============== list modified files ==============="
+          git diff --name-only HEAD^ HEAD
+          
+          echo "========== check paths of modified files =========="
+          git diff --name-only HEAD^ HEAD > _tmp.txt
+          while IFS= read -r file
+          do
+            echo $file
+            if [[ $file != *.ipynb ]]; then
+              echo "This modified file is not a 'ipynb' file."
+              echo "::set-output name=is-modified::false"
+              break
+            else
+              echo "::set-output name=is-modified::true"
+            fi
+          done < _tmp.txt    
+
+  mssql:
+    name: "build mssql scripts"
+    needs: analyse
+    if: needs.analyse.outputs.is-modified == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - Checkout
+        uses: actions/checkout@v2
+
+      - name: 2 - Build MSSQL Artifacts
+        run: |
+          & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
+            -SourceDirectory "${{ github.workspace }}"
+        shell: pwsh
+
+      - name: "3 - Copy Files: Scripts"
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          path: |
+            "${{ env.GITHUB_WORKSPACE }}/*.sql"
+            "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+          retention-days: 28
+
+      - name: 4 - Post Build
+        if: always()
+        run: |
+          $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+          $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
+
+          $createdOn = [System.DateTime]::ParseExact(
+            $containerSettings.Created, 
+            'MM/dd/yyyy HH:mm:ss', 
+            [System.Globalization.DateTimeFormatInfo]::CurrentInfo
+          )
+
+          $diff = $(Get-Date) - $createdOn
+
+          if ($diff.Days -ge 1) {
+              Write-Host "Removing container(s)....."
+              docker container stop $containerName
+              docker container rm $containerName
+          }
+        shell: pwsh
+
+  image:
+    name: "register container image"
+    runs-on: ubuntu-latest
+    needs: analyse
+    if: needs.analyse.outputs.is-modified == 'true'
     env:
       IMAGE_NAME: corona-dashboard/backend-processing/github-runners
 
@@ -108,7 +183,7 @@ jobs:
             --build-arg VCS_REF=${GITHUB_SHA::8} \
             --file .github/Dockerfile \
             ${TAGS} \
-            ./.github
+            "./.github/scripts"
 
       - name: 7 - Build & Push Packages
         if: success()
