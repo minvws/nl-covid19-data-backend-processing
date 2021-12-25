@@ -5,12 +5,16 @@
 # name: "cdb-cd"
 
 on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build description'
+        required: false
+    
   workflow_run:
-    workflows: ["build-action.yml"]
+    workflows: ["cdb-ci"]
     types: 
       - completed
-  
-  workflow_dispatch:
 
 jobs:
   on-success:
