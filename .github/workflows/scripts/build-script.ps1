@@ -1,6 +1,6 @@
 Param (
     [String]$SourceDirectory = $env:PWD,
-    [String[]]$ModifiedFiles = "$(git diff HEAD HEAD~ --name-only -R)"
+    [String[]]$ModifiedFiles = "$(git diff HEAD HEAD~ --name-only -R)" -Split ' '
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
