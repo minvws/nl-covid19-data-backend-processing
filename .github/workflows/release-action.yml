@@ -9,6 +9,15 @@ on:
     workflows: ["cdb-ci"]
     types: 
       - completed
+    
+  push:
+    paths: 
+      - "src/**/*.ipynb"
+    branches:
+      - "topic/*"
+  pull_request:
+    branches:
+      - master
   
   workflow_dispatch:
 
