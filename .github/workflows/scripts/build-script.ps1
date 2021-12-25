@@ -4,7 +4,7 @@ Param (
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
-. "./.github/scripts/utils/helper-scripts.ps1"
+. "./.github/workflows/scripts/utils/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
 $containerPort = 14331
@@ -17,7 +17,7 @@ $notebooks = $ModifiedFiles | Where-Object { $_.endswith(".ipynb") }
 Install-ContainerUnit `
     -ContainerName $containerName `
     -ContainerPort $containerPort `
-    -ContainerScript "./.github/scripts/utils/mssql-helpers.sql"
+    -ContainerScript "./.github/workflows/scripts/utils/mssql-helpers.sql"
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {

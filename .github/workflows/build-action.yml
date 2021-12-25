@@ -15,7 +15,7 @@ on:
       - master
 
 env:
-  GITHUB_WORKSPACE: "./.github"
+  GITHUB_WORKSPACE: "./.github/workflows"
 
 jobs:
   analyse:
