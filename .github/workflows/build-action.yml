@@ -7,7 +7,7 @@ name: "cdb - ci"
 on:
   push:
     paths:
-      - "**/src/"
+      - "src/"
       - "**/.github/runners/"
     branches:
       - "*"
@@ -24,8 +24,8 @@ jobs:
 
   analyse:
     name: "analyse modified files"
-    outputs:
-      is_modified: ${{ steps.check_modified_files.outputs.is_modified }}
+    # outputs:
+    #   is_modified: ${{ steps.check_modified_files.outputs.is_modified }}
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
