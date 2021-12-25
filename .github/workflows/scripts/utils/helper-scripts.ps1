@@ -86,7 +86,7 @@ function Install-ContainerUnit {
 
         Write-Host "Install Flyway tool(s)....." -ForegroundColor Yellow
         $flywayVersion = "8.2.2"
-        $flywayInstallPath = "/root/.flyway"    
+        $flywayInstallPath = "./.flyway"    
 
         if (!(Test-Path "/usr/local/bin/flyway")) {
             $currentLocation = Get-Location
