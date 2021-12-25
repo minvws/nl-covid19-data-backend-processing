@@ -15,11 +15,12 @@ on:
       - master
 
 jobs:
-  build:
+  analyse:
     name: "analyse modified files"
     outputs:
-      has_modified_ipynb: ${{ steps.check_modified_files.outputs.has_modified_ipynb }}
-      has_modified_runners: ${{ steps.check_modified_files.outputs.has_modified_runners }}
+      modified_ipynb: ${{ steps.check_modified_files.outputs.modified_ipynb }}
+      modified_runners: ${{ steps.check_modified_files.outputs.modified_runners }}
+      modified_all: ${{ steps.check_modified_files.outputs.modified_all }}
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
@@ -30,69 +31,75 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       
       - name: 3 - Analyse Modified Files
+        id: check_modified_files
         run: |
           $fs = "${{ steps.modified_files.outputs.added_modified }}"
 
           Write-Host "========== modified files =========="
           Write-Host $fs
 
-          echo "::set-output name=has_modified_ipynb::false"
-          echo "::set-output name=has_modified_runners::false"
+          if (($fs -ne "") -and ($null -ne $fs)) {
+            echo "::set-output name=modified_all::${fs}"
+          }
+
+          echo "::set-output name=modified_ipynb::false"
+          echo "::set-output name=modified_runners::false"
           $fs | ForEach-Object {
 
             switch -wildcard ($_) 
             {
-              "*/src/*.ipynb" { echo "::set-output name=has_modified_ipynb::true" }
-              "*/.github/runners/*" { echo "::set-output name=has_modified_runners::true" }
+              "*/src/*.ipynb" { echo "::set-output name=modified_ipynb::true" }
+              "*/.github/runners/*" { echo "::set-output name=modified_runners::true" }
               default { }
             }
           }
         shell: pwsh
 
-  # mssql:
-  #   name: "build mssql scripts"
-  #   needs: analyse
-  #   if: needs.analyse.outputs.is-modified == 'true'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 1 - Checkout
-  #       uses: actions/checkout@v2
+  mssql:
+    name: "build mssql scripts"
+    needs: analyse
+    if: needs.analyse.outputs.modified_ipynb == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - Checkout
+        uses: actions/checkout@v2
 
-  #     - name: 2 - Build MSSQL Artifacts
-  #       run: |
-  #         & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
-  #           -SourceDirectory "${{ github.workspace }}"
-  #       shell: pwsh
+      - name: 2 - Build MSSQL Artifacts
+        run: |
+          & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
+            -SourceDirectory "${{ github.workspace }}"" `
+            -ModifiedFiles "${{ needs.analyse.outputs.modified_all }}"
+        shell: pwsh
 
-  #     - name: "3 - Copy Files: Scripts"
-  #       uses: actions/upload-artifact@v2.3.1
-  #       with:
-  #         path: |
-  #           "${{ env.GITHUB_WORKSPACE }}/*.sql"
-  #           "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
-  #         if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
-  #         retention-days: 28
+      - name: "3 - Copy Files: Scripts"
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          path: |
+            "${{ env.GITHUB_WORKSPACE }}/*.sql"
+            "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+          retention-days: 28
 
-  #     - name: 4 - Post Build
-  #       if: always()
-  #       run: |
-  #         $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
-  #         $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
+      - name: 4 - Post Build
+        if: always()
+        run: |
+          $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+          $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
 
-  #         $createdOn = [System.DateTime]::ParseExact(
-  #           $containerSettings.Created,
-  #           'MM/dd/yyyy HH:mm:ss',
-  #           [System.Globalization.DateTimeFormatInfo]::CurrentInfo
-  #         )
+          $createdOn = [System.DateTime]::ParseExact(
+            $containerSettings.Created,
+            'MM/dd/yyyy HH:mm:ss',
+            [System.Globalization.DateTimeFormatInfo]::CurrentInfo
+          )
 
-  #         $diff = $(Get-Date) - $createdOn
+          $diff = $(Get-Date) - $createdOn
 
-  #         if ($diff.Days -ge 1) {
-  #             Write-Host "Removing container(s)....."
-  #             docker container stop $containerName
-  #             docker container rm $containerName
-  #         }
-  #       shell: pwsh
+          if ($diff.Days -ge 1) {
+              Write-Host "Removing container(s)....."
+              docker container stop $containerName
+              docker container rm $containerName
+          }
+        shell: pwsh
 
   # image:
   #   name: "register container image"
