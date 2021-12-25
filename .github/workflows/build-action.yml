@@ -30,11 +30,11 @@ jobs:
         id: check_modified_files
         run: |
           echo "=============== list modified files ==============="
-          # git diff HEAD HEAD~ --name-only -R
-          git rev-parse --long "$GITHUB_SHA"
+          $COMMIT_ID=$(git rev-parse --long "$GITHUB_SHA")
+          git diff $COMMIT_ID^ $COMMIT_ID --name-only -R
           
           echo "========== check paths of modified files =========="
-          git diff HEAD HEAD~ --name-only -R > file.txt
+          git diff $COMMIT_ID^ $COMMIT_ID --name-only -R > file.txt
           while IFS= read -r file
           do
             echo $file
