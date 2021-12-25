@@ -7,9 +7,8 @@ name: "cdb - ci"
 on:
   push:
     paths:
-      - "**/src/*"
-      - "!**/*.md"
-      - "**/.github/runners/*"
+      - "**/src/"
+      - "**/.github/runners/"
     branches:
       - "topic/redesign"
     tags:
