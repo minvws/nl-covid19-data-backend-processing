@@ -45,7 +45,7 @@ jobs:
               echo "::set-output name=is_modified::true"
             fi
           done < file.txt
-        shell: powershell
+        shell: pwsh
 
   # mssql:
   #   name: "build mssql scripts"
