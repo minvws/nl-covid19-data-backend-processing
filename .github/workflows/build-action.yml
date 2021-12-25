@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "=============== list modified files ==============="
           # git diff HEAD HEAD~ --name-only -R
-          git rev-parse --short "$GITHUB_SHA"
+          git rev-parse "$GITHUB_SHA"
           
           echo "========== check paths of modified files =========="
           git diff HEAD HEAD~ --name-only -R > file.txt
