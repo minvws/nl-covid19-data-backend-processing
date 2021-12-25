@@ -48,7 +48,7 @@ jobs:
 
             switch -wildcard ($_) 
             {
-              "*/src/*.ipynb" { echo "::set-output name=modified_ipynb::true" }
+              "*/src/*.ipynb" { echo "::set-output name=modified_ipynb::true"; Write-Host "yes-true" }
               "*/.github/runners/*" { echo "::set-output name=modified_runners::true" }
               default { }
             }
