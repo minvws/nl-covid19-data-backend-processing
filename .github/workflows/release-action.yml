@@ -1,10 +1,7 @@
 name: "cdb-cd"
 
 on:    
-  workflow_run:
-    workflows: ["cdb-ci"]
-    types: 
-      - completed
+  workflow_dispatch:
 
 jobs:
   on-success:
