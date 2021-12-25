@@ -33,7 +33,7 @@ jobs:
       - name: 3 - Analyse Modified Files
         id: check_modified_files
         run: |
-          $fs = "${{ steps.modified_files.outputs.added_modified }}"
+          $fs = "${{ steps.modified_files.outputs.added_modified }}" -Split ' '
 
           Write-Host "========== modified files =========="
           Write-Host $fs
@@ -48,8 +48,8 @@ jobs:
 
             switch -wildcard ($_) 
             {
-              "*/src/*.ipynb" { echo "::set-output name=modified_ipynb::true"; Write-Host "yes-true" }
-              "*/.github/runners/*" { echo "::set-output name=modified_runners::true" }
+              "*src/*.ipynb" { echo "::set-output name=modified_ipynb::true"; Write-Host "yes-true" }
+              "*.github/runners/*" { echo "::set-output name=modified_runners::true" }
               default { }
             }
           }
