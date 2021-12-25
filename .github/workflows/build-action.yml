@@ -15,7 +15,7 @@ on:
       - master
 
 env:
-  GITHUB_WORKSPACE: "${{ github.workspace }}/.github"
+  GITHUB_WORKSPACE: "./.github"
 
 jobs:
   analyse:
