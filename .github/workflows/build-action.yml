@@ -29,7 +29,7 @@ jobs:
         id: check_modified_files
         run: |
           Write-Host $GITHUB_SHA
-          $fs = $(git diff $GITHUB_SHA^ "$GITHUB_SHA" --name-only -R)
+          $fs = $(git diff HEAD HEAD~ --name-only -R)
 
           Write-Host "========== modified files =========="
           Write-Host $fs
