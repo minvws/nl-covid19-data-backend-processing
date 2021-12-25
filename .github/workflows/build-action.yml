@@ -16,8 +16,10 @@ on:
 
 env:
   GITHUB_WORKSPACE: "./.github/workflows"
+  REGISTRY: ghcr.io
 
 jobs:
+
   analyse:
     name: "analyse modified files"
     outputs:
