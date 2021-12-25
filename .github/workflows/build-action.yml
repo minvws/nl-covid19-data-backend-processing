@@ -25,14 +25,14 @@ jobs:
   analyse:
     name: "analyse modified files"
     outputs:
-      is-modified: ${{ steps.check-modified-files.outputs.is-modified }}
+      is_modified: ${{ steps.check_modified_files.outputs.is_modified }}
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
         uses: actions/checkout@v2
       
       - name: 2 - Check Modified Files
-        id: check-modified-files
+        id: check_modified_files
         run: |
           echo "=============== list modified files ==============="
           git diff --name-only HEAD^ HEAD
@@ -44,10 +44,10 @@ jobs:
             echo $file
             if [[ $file != *.ipynb ]]; then
               echo "This modified file is not a 'ipynb' file."
-              echo "::set-output name=is-modified::false"
+              echo "::set-output name=is_modified::false"
               break
             else
-              echo "::set-output name=is-modified::true"
+              echo "::set-output name=is_modified::true"
             fi
           done < _tmp.txt    
 
