@@ -9,6 +9,8 @@ on:
     workflows: ["cdb-ci"]
     types: 
       - completed
+  
+  workflow_dispatch:
 
 jobs:
   on-success:
