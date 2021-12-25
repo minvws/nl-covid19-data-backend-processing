@@ -6,7 +6,7 @@
 
 on:
   workflow_run:
-    workflows: ["cdb-ci"]
+    workflows: ["build-action.yml"]
     types: 
       - completed
   
