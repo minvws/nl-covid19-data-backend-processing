@@ -25,7 +25,7 @@ COPY library-scripts/*.sh /tmp/library-scripts/
 ARG USE_MOBY=false
 ARG UPGRADE_PACKAGES=true
 RUN apt-get update \
-    && /bin/bash /tmp/library-scripts/docker-debian.sh "${USE_MOBY}" "${UPGRADE_PACKAGES}" \
+    && /bin/bash /tmp/library-scripts/common-debian.sh "${USE_MOBY}" "${UPGRADE_PACKAGES}" \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
