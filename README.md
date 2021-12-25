@@ -109,6 +109,7 @@ docker run `
     -e RUNNER_NAME="default" `
     -e RUNNER_TOKEN=$GITHUB_RUNNER_TOKEN `
     -e RUNNER_REPOSITORY_URL=$REPOSITORY_URL `
+    --restart unless-stopped `
     -d `
     $TAG
 ```

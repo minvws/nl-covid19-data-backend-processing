@@ -11,14 +11,8 @@ on:
       - completed
 
 jobs:
-  on-success:
-    name: "Test Step"
-    runs-on: ubuntu-latest
+  development:
+    uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      - uses: actions/checkout@v2
-
-  # development:
-  #   uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
-  #   with:
-  #     environment: development
+    with:
+      environment: development
