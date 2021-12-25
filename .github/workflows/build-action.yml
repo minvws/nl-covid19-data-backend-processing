@@ -5,24 +5,26 @@
 name: "cdb - ci"
 
 on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
   push:
     paths:
       - "**/src/"
-      # - "**/.github/runners/"
+      - "**/.github/runners/"
     branches:
       - "*"
     tags:
       - v*
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
 
 env:
-  GITHUB_WORKSPACE: ${{ github.workspace }}/.github
+  GITHUB_WORKSPACE: ./.github
 
 jobs:
 
-  analyse:
+  analysis:
     name: "analyse modified files"
     # outputs:
     #   is_modified: ${{ steps.check_modified_files.outputs.is_modified }}
