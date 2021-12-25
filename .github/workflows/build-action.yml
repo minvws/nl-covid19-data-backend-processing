@@ -7,7 +7,7 @@ name: "cdb - ci"
 on:
   push:
     paths:
-      - "src/*"
+      - "**/src/*"
       - "!**/*.md"
       - "**/.github/runners/*"
     branches:
