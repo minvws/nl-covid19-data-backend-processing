@@ -15,6 +15,7 @@ on:
       - master
 
 env:
+  TARGET_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7
   GITHUB_WORKSPACE: "./.github/workflows"
   REGISTRY: ghcr.io
 
