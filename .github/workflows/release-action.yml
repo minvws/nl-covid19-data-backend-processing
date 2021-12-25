@@ -6,18 +6,17 @@ name: "cdb-cd"
 
 on:
   workflow_run:
-    branches: "*"
-    workflows: [cdb-ci]
-    types: [completed]
+    workflows: ["cdb-ci"]
+    types: 
+      - completed
 
 jobs:
-  test:
+  on-success:
     name: "Test Step"
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
 
   # development:
   #   uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
