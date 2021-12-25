@@ -16,6 +16,6 @@ on:
 jobs:
 
   development:
-    uses: "${{ github.owner }}/${{ github.repository }}/.github/workflows/release-template.yml@topic/redesign"
+    uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
     with:
       environment: development
