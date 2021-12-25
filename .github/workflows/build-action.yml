@@ -78,7 +78,8 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           path: |
-            "${{ github.workspace }}/*.sql"
+            "${{ github.workspace }}/**/*.sql"
+            "${{ env.GITHUB_WORKSPACE }}/scripts/**/*.ps1"
             "${{ env.GITHUB_WORKSPACE }}/scripts/**/*.ps1"
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
           retention-days: 28
