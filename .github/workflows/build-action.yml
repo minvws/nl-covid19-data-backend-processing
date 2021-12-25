@@ -14,9 +14,7 @@ on:
     branches:
       - master
 
-
 jobs:
-
   build:
     name: "analyse modified files"
     outputs:
@@ -26,10 +24,11 @@ jobs:
     steps:
       - name: 1 - Checkout
         uses: actions/checkout@v2
-      
+
       - name: 2 - Check Modified Files
         id: check_modified_files
-        run: |        
+        run: |
+          Write-Host $GITHUB_SHA
           $fs = $(git diff $GITHUB_SHA^ "$GITHUB_SHA" --name-only -R)
 
           Write-Host "========== modified files =========="
@@ -79,8 +78,8 @@ jobs:
   #         $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
 
   #         $createdOn = [System.DateTime]::ParseExact(
-  #           $containerSettings.Created, 
-  #           'MM/dd/yyyy HH:mm:ss', 
+  #           $containerSettings.Created,
+  #           'MM/dd/yyyy HH:mm:ss',
   #           [System.Globalization.DateTimeFormatInfo]::CurrentInfo
   #         )
 
@@ -154,7 +153,7 @@ jobs:
   #         fi
 
   #         # Use `latest` tag convention
-  #         if [ "$VERSION" == "master" ]; then 
+  #         if [ "$VERSION" == "master" ]; then
   #           VERSION=latest
   #           echo IMAGE_ID=${IMAGE_ID}
   #           echo VERSION=${VERSION}
@@ -169,7 +168,7 @@ jobs:
   #         # Set outputs
   #         echo ::set-output name=image_id::${IMAGE_ID}
   #         echo ::set-output name=version::${VERSION}
-          
+
   #         # Dockerfile.base arguments
   #         echo ::set-output name=buildx_args::--cache-from "type=local,src=${{ github.workspace }}/base/.buildx-cache" \
   #           --cache-to "type=local,dest=${{ github.workspace }}/base/.buildx-cache" \
