@@ -77,16 +77,16 @@ jobs:
       - name: "3 - Copy Files: MSSQL Scripts"
         uses: actions/upload-artifact@v2.3.1
         with:
-          path: |
-            "${{ github.workspace }}/"
+          name: mssql-artifacts
+          path: "${{ github.workspace }}/*.sql"
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
           retention-days: 28
 
       - name: "4 - Copy Files: Powershell Scripts"
         uses: actions/upload-artifact@v2.3.1
         with:
-          path: |
-            "${{ env.GITHUB_WORKSPACE }}/scripts/
+          name: pwsh-artifacts
+          path: "${{ env.GITHUB_WORKSPACE }}/scripts/"
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
           retention-days: 28
 
