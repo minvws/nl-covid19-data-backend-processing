@@ -30,10 +30,10 @@ jobs:
         id: check_modified_files
         run: |
           echo "=============== list modified files ==============="
-          git diff --name-only HEAD^ HEAD
+          git diff HEAD HEAD~ --name-only -R
           
           echo "========== check paths of modified files =========="
-          git diff --name-only HEAD^ HEAD > _tmp.txt
+          git diff HEAD HEAD~ --name-only -R > file.txt
           while IFS= read -r file
           do
             echo $file
@@ -44,7 +44,7 @@ jobs:
             else
               echo "::set-output name=is_modified::true"
             fi
-          done < _tmp.txt    
+          done < file.txt    
 
   # mssql:
   #   name: "build mssql scripts"
