@@ -8,9 +8,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   push:
-    paths:
-      - "**/src/"
-      - "**/.github/runners/"
     branches:
       - "topic/*"
   pull_request:
