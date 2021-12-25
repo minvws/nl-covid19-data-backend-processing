@@ -9,11 +9,18 @@ on:
     workflows:
       - "cdb-ci"
     types:
-      - "completed"
+      - completed
 
 jobs:
-
-  development:
-    uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
-    with:
-      environment: development
+  test:
+    name: "Test Step"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+  
+  # development:
+  #   uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/release-template.yml@topic/redesign"
+  #   with:
+  #     environment: development
