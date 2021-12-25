@@ -10,7 +10,7 @@ on:
       - "**/src/"
       - "**/.github/runners/"
     branches:
-      - "topic/redesign"
+      - "*"
     tags:
       - v*
 
@@ -51,145 +51,145 @@ jobs:
             fi
           done < _tmp.txt    
 
-  mssql:
-    name: "build mssql scripts"
-    needs: analyse
-    if: needs.analyse.outputs.is-modified == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 1 - Checkout
-        uses: actions/checkout@v2
+  # mssql:
+  #   name: "build mssql scripts"
+  #   needs: analyse
+  #   if: needs.analyse.outputs.is-modified == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 1 - Checkout
+  #       uses: actions/checkout@v2
 
-      - name: 2 - Build MSSQL Artifacts
-        run: |
-          & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
-            -SourceDirectory "${{ github.workspace }}"
-        shell: pwsh
+  #     - name: 2 - Build MSSQL Artifacts
+  #       run: |
+  #         & "${{ env.GITHUB_WORKSPACE }}/scripts/build-script.ps1" `
+  #           -SourceDirectory "${{ github.workspace }}"
+  #       shell: pwsh
 
-      - name: "3 - Copy Files: Scripts"
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          path: |
-            "${{ env.GITHUB_WORKSPACE }}/*.sql"
-            "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
-          retention-days: 28
+  #     - name: "3 - Copy Files: Scripts"
+  #       uses: actions/upload-artifact@v2.3.1
+  #       with:
+  #         path: |
+  #           "${{ env.GITHUB_WORKSPACE }}/*.sql"
+  #           "${{ env.GITHUB_WORKSPACE }}/**/*.ps1"
+  #         if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+  #         retention-days: 28
 
-      - name: 4 - Post Build
-        if: always()
-        run: |
-          $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
-          $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
+  #     - name: 4 - Post Build
+  #       if: always()
+  #       run: |
+  #         $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+  #         $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
 
-          $createdOn = [System.DateTime]::ParseExact(
-            $containerSettings.Created, 
-            'MM/dd/yyyy HH:mm:ss', 
-            [System.Globalization.DateTimeFormatInfo]::CurrentInfo
-          )
+  #         $createdOn = [System.DateTime]::ParseExact(
+  #           $containerSettings.Created, 
+  #           'MM/dd/yyyy HH:mm:ss', 
+  #           [System.Globalization.DateTimeFormatInfo]::CurrentInfo
+  #         )
 
-          $diff = $(Get-Date) - $createdOn
+  #         $diff = $(Get-Date) - $createdOn
 
-          if ($diff.Days -ge 1) {
-              Write-Host "Removing container(s)....."
-              docker container stop $containerName
-              docker container rm $containerName
-          }
-        shell: pwsh
+  #         if ($diff.Days -ge 1) {
+  #             Write-Host "Removing container(s)....."
+  #             docker container stop $containerName
+  #             docker container rm $containerName
+  #         }
+  #       shell: pwsh
 
-  image:
-    name: "register container image"
-    runs-on: ubuntu-latest
-    needs: analyse
-    if: needs.analyse.outputs.is-modified == 'true'
-    env:
-      IMAGE_NAME: corona-dashboard/backend-processing/github-runners
+  # image:
+  #   name: "register container image"
+  #   runs-on: ubuntu-latest
+  #   needs: analyse
+  #   if: needs.analyse.outputs.is-modified == 'true'
+  #   env:
+  #     IMAGE_NAME: corona-dashboard/backend-processing/github-runners
 
-    steps:
-      - name: 1 - Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: 1 - Checkout
+  #       uses: actions/checkout@v2
 
-      - name: 2 - Access Registry
-        id: login
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: 2 - Access Registry
+  #       id: login
+  #       uses: docker/login-action@v1
+  #       with:
+  #         registry: ${{ env.REGISTRY }}
+  #         username: ${{ github.repository_owner }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 3 - Setup QEMU
-        id: qemu
-        uses: docker/setup-qemu-action@v1
+  #     - name: 3 - Setup QEMU
+  #       id: qemu
+  #       uses: docker/setup-qemu-action@v1
 
-      - name: 4 - Setup Build
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          install: true
+  #     - name: 4 - Setup Build
+  #       id: buildx
+  #       uses: docker/setup-buildx-action@v1
+  #       with:
+  #         install: true
 
-      - name: 5 - Setup Caching
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ github.workspace }}/base/.buildx-cache
-          key: ${{ runner.os }}-base-buildx-${{ hashfiles('.buildx-cache/**') }}
-          restore-keys: |
-            ${{ runner.os }}-base-buildx-
+  #     - name: 5 - Setup Caching
+  #       id: cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ${{ github.workspace }}/base/.buildx-cache
+  #         key: ${{ runner.os }}-base-buildx-${{ hashfiles('.buildx-cache/**') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-base-buildx-
 
-      - name: 6 - Setup Registry Metadata
-        id: metadata
-        run: |
+  #     - name: 6 - Setup Registry Metadata
+  #       id: metadata
+  #       run: |
 
-          # Change all uppercase to lowercase
-          IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+  #         # Change all uppercase to lowercase
+  #         IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+  #         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+  #         # Strip git ref prefix from version
+  #         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
-          # Strip "v" prefix from tag name
-          if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
-            VERSION=$(echo $VERSION | sed -e 's/^v//')
-          fi
+  #         # Strip "v" prefix from tag name
+  #         if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
+  #           VERSION=$(echo $VERSION | sed -e 's/^v//')
+  #         fi
 
-          # Set tag as nightly
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            VERSION=nightly
-          fi
+  #         # Set tag as nightly
+  #         if [ "${{ github.event_name }}" = "schedule" ]; then
+  #           VERSION=nightly
+  #         fi
 
-          # Use `latest` tag convention
-          if [ "$VERSION" == "master" ]; then 
-            VERSION=latest
-            echo IMAGE_ID=${IMAGE_ID}
-            echo VERSION=${VERSION}
-          fi
+  #         # Use `latest` tag convention
+  #         if [ "$VERSION" == "master" ]; then 
+  #           VERSION=latest
+  #           echo IMAGE_ID=${IMAGE_ID}
+  #           echo VERSION=${VERSION}
+  #         fi
 
-          # Use versioning tag convention
-          TAGS="--tag ${IMAGE_ID}:${VERSION}"
-          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            TAGS="$TAGS --tag ${IMAGE_ID}:latest"
-          fi
+  #         # Use versioning tag convention
+  #         TAGS="--tag ${IMAGE_ID}:${VERSION}"
+  #         if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+  #           TAGS="$TAGS --tag ${IMAGE_ID}:latest"
+  #         fi
 
-          # Set outputs
-          echo ::set-output name=image_id::${IMAGE_ID}
-          echo ::set-output name=version::${VERSION}
+  #         # Set outputs
+  #         echo ::set-output name=image_id::${IMAGE_ID}
+  #         echo ::set-output name=version::${VERSION}
           
-          # Dockerfile.base arguments
-          echo ::set-output name=buildx_args::--cache-from "type=local,src=${{ github.workspace }}/base/.buildx-cache" \
-            --cache-to "type=local,dest=${{ github.workspace }}/base/.buildx-cache" \
-            --platform ${{ env.TARGET_PLATFORMS }} \
-            --build-arg VERSION=${VERSION} \
-            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-            --build-arg VCS_REF=${GITHUB_SHA::8} \
-            --file .github/Dockerfile \
-            ${TAGS} \
-            "./.github/scripts"
+  #         # Dockerfile.base arguments
+  #         echo ::set-output name=buildx_args::--cache-from "type=local,src=${{ github.workspace }}/base/.buildx-cache" \
+  #           --cache-to "type=local,dest=${{ github.workspace }}/base/.buildx-cache" \
+  #           --platform ${{ env.TARGET_PLATFORMS }} \
+  #           --build-arg VERSION=${VERSION} \
+  #           --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+  #           --build-arg VCS_REF=${GITHUB_SHA::8} \
+  #           --file .github/Dockerfile \
+  #           ${TAGS} \
+  #           "./.github/scripts"
 
-      - name: 7 - Build & Push Packages
-        if: success()
-        run: |
-          docker buildx build --output "type=image,push=true" ${{ steps.metadata.outputs.buildx_args }}
+  #     - name: 7 - Build & Push Packages
+  #       if: success()
+  #       run: |
+  #         docker buildx build --output "type=image,push=true" ${{ steps.metadata.outputs.buildx_args }}
 
-      - name: 8 - Inspect Packages
-        if: success()
-        run: |
-          docker buildx imagetools inspect ${{ steps.metadata.outputs.image_id }}:${{ steps.metadata.outputs.version }}
+  #     - name: 8 - Inspect Packages
+  #       if: success()
+  #       run: |
+  #         docker buildx imagetools inspect ${{ steps.metadata.outputs.image_id }}:${{ steps.metadata.outputs.version }}
