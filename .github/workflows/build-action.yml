@@ -19,8 +19,9 @@ jobs:
 
   build:
     name: "analyse modified files"
-    # outputs:
-    #   is_modified: ${{ steps.check_modified_files.outputs.is_modified }}
+    outputs:
+      has_modified_ipynb: ${{ steps.check_modified_files.outputs.has_modified_ipynb }}
+      has_modified_runners: ${{ steps.check_modified_files.outputs.has_modified_runners }}
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
@@ -28,23 +29,23 @@ jobs:
       
       - name: 2 - Check Modified Files
         id: check_modified_files
-        run: |
-          echo "=============== list modified files ==============="
-          git diff $GITHUB_SHA^ "$GITHUB_SHA" --name-only -R
-          
-          echo "========== check paths of modified files =========="
-          git diff $GITHUB_SHA^ $GITHUB_SHA --name-only -R > file.txt
-          while IFS= read -r file
-          do
-            echo $file
-            if [[ $file != *.ipynb ]]; then
-              echo "This modified file is not a 'ipynb' file."
-              echo "::set-output name=is_modified::false"
-              break
-            else
-              echo "::set-output name=is_modified::true"
-            fi
-          done < file.txt
+        run: |        
+          $fs = $(git diff $GITHUB_SHA^ $GITHUB_SHA --name-only -R)
+
+          Write-Host "========== modified files =========="
+          Write-Host $fs
+
+          echo "::set-output name=has_modified_ipynb::false"
+          echo "::set-output name=has_modified_runners::false"
+          $fs | ForEach-Object {
+
+            switch -wildcard ($_) 
+            {
+              "*/src/*.ipynb" { echo "::set-output name=has_modified_ipynb::true" }
+              "*/.github/runners/*" { echo "::set-output name=has_modified_runners::true" }
+              default { }
+            }
+          }
         shell: pwsh
 
   # mssql:
