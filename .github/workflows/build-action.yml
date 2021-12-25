@@ -30,7 +30,7 @@ jobs:
         id: check_modified_files
         run: |
           echo "=============== list modified files ==============="
-          git diff $GITHUB_SHA^ $GITHUB_SHA --name-only -R
+          git diff $GITHUB_SHA^ "$GITHUB_SHA" --name-only -R
           
           echo "========== check paths of modified files =========="
           git diff $GITHUB_SHA^ $GITHUB_SHA --name-only -R > file.txt
@@ -44,7 +44,8 @@ jobs:
             else
               echo "::set-output name=is_modified::true"
             fi
-          done < file.txt    
+          done < file.txt
+        shell: powershell
 
   # mssql:
   #   name: "build mssql scripts"
