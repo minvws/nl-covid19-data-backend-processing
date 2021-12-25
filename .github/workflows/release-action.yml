@@ -1,0 +1,21 @@
+# Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+# Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
+
+# This is a basic workflow to help you get started with Actions
+name: "cdb-cd"
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "cdb-ci"
+    types:
+      - "completed"
+
+jobs:
+
+  development:
+    uses: "${{ github.owner }}/${{ github.repository }}/.github/workflows/release-template.yml@topic/redesign"
+    with:
+      environment: development

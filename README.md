@@ -4,7 +4,8 @@
 
 **<a style="color:red">NOTE! STILL WORKING ON IT.</a>**
 
-[![build](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/actions-runner-image-ci?logo=github)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/actions-runner-image-ci.yml)
+[![build](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/cdb-ci/topic/redesign?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/build-action.yml)
+[![Made with GH Actions](https://img.shields.io/badge/CI-GitHub_Actions-blue?logo=github-actions&logoColor=white)](https://github.com/features/actions "Go to GitHub Actions homepage")
 [![repo size](https://img.shields.io/github/repo-size/minvws/nl-covid19-data-backend-processing?logo=github)](https://github.com/minvws/nl-covid19-data-backend-processing)
 
 
@@ -102,7 +103,7 @@ Use the following command to start listening for `Github Action` jobs with self-
 > Powershell
 
 ```powershell
-$TAG="ghcr.io/minvws/corona-dashboard/backend-processing/github-runners:redesign"
+$TAG="ghcr.io/minvws/corona-dashboard/github-runners:unstable"
 $REPOSITORY_URL="https://github.com/minvws/nl-covid19-data-backend-processing"
 
 docker run `
