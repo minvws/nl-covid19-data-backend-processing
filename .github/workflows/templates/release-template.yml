@@ -1,0 +1,58 @@
+# Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+# Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
+
+name: "cdb-cd"
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: The environment to deploy to.
+        required: true
+
+jobs:
+  deployment:
+    runs-on: self-hosted
+    steps:
+      - name: "1 - Download Artifacts: MSSQL Scripts"
+        uses: actions/download-artifact@v2
+        with:
+          name: mssql-artifacts
+          path: ${{ github.workspace }}/src
+
+      - name: "2 - Download Artifacts: Powershell Scripts"
+        uses: actions/download-artifact@v2
+        with:
+          name: pwsh-artifacts
+
+      - name: 3 - Display Structures
+        run: ls -R
+
+      - name: 4 - Replace Tokens
+        id: check_modified_files
+        run: |
+          $scripts = Get-ChildItem -Path "${{ github.workspace }}/src" -Filter "*.sql"          
+
+          Write-Host "Replace tokens:"          
+
+          foreach ($script in $scripts | Sort-Object -Property Fullname) {
+            Write-Host "`t$($script)" -ForegroundColor Blue         
+            $content = (Get-Content $script) -replace '#{ Environment }#', '${{ inputs.environment }}' 
+            $content | Out-File $script
+          }
+        shell: pwsh
+
+      - name: 5 - Migrate MSSQL Artifacts
+        run: |
+          & "${{ env.GITHUB_WORKSPACE }}/scripts/release-script.ps1" `
+            -Server "${{ env.MSSQL_SERVER }}" `
+            -Database "${{ env.MSSQL_DATABASE }}" `
+            -SourceDirectory "${{ github.workspace }}/src" `
+            -Username "${{ secrets.LOGIN_USERNAME }}" `
+            -Password "${{ secrets.LOGIN_PASSWORD }}"
+        shell: pwsh
+
+      - name: 6 - Post Deployment
+        if: always()
+        run: Remove-Item -Recurse -Force "${{ github.workspace }}/src"
+        shell: pwsh

@@ -5,25 +5,17 @@
 name: "cdb-cd"
 
 on:
-  workflow_run:
-    workflows: ["cdb-ci"]
-    types: 
-      - completed
-    
-  push:
-    paths: 
-      - "src/**/*.ipynb"
-    branches:
-      - "topic/*"
-  pull_request:
-    branches:
-      - master
-  
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "cdb-ci"
+    types:
+      - "completed"
 
 jobs:
-  on-success:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 1 - Checkout
-        uses: actions/checkout@v2
+
+  development:
+    uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/templates/release-template.yml@topic/redesign"
+    with:
+      environment: development
