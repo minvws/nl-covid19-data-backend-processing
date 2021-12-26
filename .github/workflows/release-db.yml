@@ -105,7 +105,7 @@ jobs:
         Write-Host "Replace tokens:"          
         foreach ($script in $scripts | Sort-Object -Property Fullname) {
           Write-Host "`t$($script)" -ForegroundColor Blue         
-          $content = (Get-Content $script) -replace '#{ Environment }#', '${{ inputs.environment }}' 
+          $content = (Get-Content $script) -replace '#{ Environment }#', 'development' 
           $content | Out-File $script
         }
       shell: pwsh
@@ -153,7 +153,7 @@ jobs:
         Write-Host "Replace tokens:"          
         foreach ($script in $scripts | Sort-Object -Property Fullname) {
           Write-Host "`t$($script)" -ForegroundColor Blue         
-          $content = (Get-Content $script) -replace '#{ Environment }#', '${{ inputs.environment }}' 
+          $content = (Get-Content $script) -replace '#{ Environment }#', 'acceptance' 
           $content | Out-File $script
         }
       shell: pwsh
@@ -201,7 +201,7 @@ jobs:
         Write-Host "Replace tokens:"          
         foreach ($script in $scripts | Sort-Object -Property Fullname) {
           Write-Host "`t$($script)" -ForegroundColor Blue         
-          $content = (Get-Content $script) -replace '#{ Environment }#', '${{ inputs.environment }}' 
+          $content = (Get-Content $script) -replace '#{ Environment }#', 'production' 
           $content | Out-File $script
         }
       shell: pwsh
