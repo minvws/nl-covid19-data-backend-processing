@@ -160,9 +160,9 @@ jobs:
   
     - name: 5 - Migrate MSSQL Artifacts
       run: |
-        & "${{ env.GITHUB_WORKSPACE }}/scripts/release-script.ps1" `
-          -Server "${{ env.MSSQL_SERVER }}" `
-          -Database "${{ env.MSSQL_DATABASE }}" `
+        & "${{ github.workspace }}/scripts/release-script.ps1" `
+          -Server "${{ secrets.MSSQL_SERVER }}" `
+          -Database "${{ secrets.MSSQL_DATABASE }}" `
           -SourceDirectory "${{ github.workspace }}/src" `
           -Username "${{ secrets.LOGIN_USERNAME }}" `
           -Password "${{ secrets.LOGIN_PASSWORD }}"
@@ -208,9 +208,9 @@ jobs:
   
     - name: 5 - Migrate MSSQL Artifacts
       run: |
-        & "${{ env.GITHUB_WORKSPACE }}/scripts/release-script.ps1" `
-          -Server "${{ env.MSSQL_SERVER }}" `
-          -Database "${{ env.MSSQL_DATABASE }}" `
+        & "${{ github.workspace }}/scripts/release-script.ps1" `
+          -Server "${{ secrets.MSSQL_SERVER }}" `
+          -Database "${{ secrets.MSSQL_DATABASE }}" `
           -SourceDirectory "${{ github.workspace }}/src" `
           -Username "${{ secrets.LOGIN_USERNAME }}" `
           -Password "${{ secrets.LOGIN_PASSWORD }}"
