@@ -93,6 +93,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: pwsh-artifacts
+        path: ${{ github.workspace }}/scripts
   
     - name: 3 - Display Structures
       run: ls -R
@@ -140,6 +141,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: pwsh-artifacts
+        path: ${{ github.workspace }}/scripts
   
     - name: 3 - Display Structures
       run: ls -R
@@ -187,6 +189,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: pwsh-artifacts
+        path: ${{ github.workspace }}/scripts
   
     - name: 3 - Display Structures
       run: ls -R
