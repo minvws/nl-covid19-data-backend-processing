@@ -7,7 +7,7 @@ Param (
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
-. "$($SourceDirectory)/../scripts/utils/build-and-release-helpers.ps1"
+. "$($SourceDirectory)/../scripts/utils/helper-scripts.ps1"
 
 ### MIGRATING/DEPLOYING MSSQL ARTIFACT(S)....
 Write-Host "Start migration:" -ForegroundColor Green
