@@ -1,10 +1,6 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-$modules = (Get-InstalledModule | Select-Object -Property Name).Name
-
-if (($null -ne $modules) -and (!$modules.Contains("SqlServer"))) {
-    Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
-    Install-Module -Name SqlServer -AllowClobber -Confirm:$False -Force  
-}
+Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
+Install-Module -Name SqlServer -AllowClobber -Confirm:$False -Force
 
 function Invoke-RetryCommand {
     [CmdletBinding()]
