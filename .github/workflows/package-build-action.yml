@@ -26,8 +26,6 @@ jobs:
   package:
     name: "register packages"
     runs-on: ubuntu-latest
-    needs: analyse
-    if: needs.analyse.outputs.modified_runners == 'true'
     env:
       IMAGE_NAME: corona-dashboard/github-runners
 

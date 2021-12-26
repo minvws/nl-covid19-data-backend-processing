@@ -106,9 +106,8 @@ $TAG="ghcr.io/minvws/corona-dashboard/github-runners:unstable"
 $REPOSITORY_URL="https://github.com/minvws/nl-covid19-data-backend-processing"
 
 docker run `
-    -e RUNNER_NAME="default" `
-    -e RUNNER_TOKEN=$GITHUB_RUNNER_TOKEN `
-    -e RUNNER_REPOSITORY_URL=$REPOSITORY_URL `
+    -e GITHUB_RUNNER_TOKEN=$GITHUB_RUNNER_TOKEN `
+    -e GITHUB_RUNNER_REPOSITORY_URL=$REPOSITORY_URL `
     --restart unless-stopped `
     -d `
     $TAG
@@ -116,9 +115,8 @@ docker run `
 
 |Name|Description|Defaults|
 |--|--|--|
-|`RUNNER_NAME`|Name of the runner displayed in the GitHub UI|Hostname of the container|
-|`RUNNER_TOKEN`|Runner token provided by GitHub in the Actions page. These tokens are valid for a short period.|Required if `GITHUB_ACCESS_TOKEN` is not provided|
-|`RUNNER_REPOSITORY_URL`|The runner will be linked to this repository URL||
+|`GITHUB_RUNNER_TOKEN`|Runner token provided by GitHub in the Actions page. These tokens are valid for a short period.|Required if `GITHUB_ACCESS_TOKEN` is not provided|
+|`GITHUB_RUNNER_REPOSITORY_URL`|The runner will be linked to this repository URL||
 
 
 ## **DEVELOPMENT PROCESS**
