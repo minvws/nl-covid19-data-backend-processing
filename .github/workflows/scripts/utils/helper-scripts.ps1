@@ -78,7 +78,8 @@ function Install-ContainerUnit {
                     -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$ContainerName') BEGIN CREATE DATABASE [$ContainerName] END;" `
                     -Username "sa" `
                     -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-        }
+            } `
+            -RetryCount 10
 
         Write-Host "Install Flyway tool(s)....." -ForegroundColor Yellow
         $flywayVersion = "8.2.2"
