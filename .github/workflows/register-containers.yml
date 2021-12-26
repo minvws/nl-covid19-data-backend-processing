@@ -2,14 +2,15 @@
 # Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
 
 # This is a basic workflow to help you get started with Actions
-name: "packages"
+name: "register containers"
 
 on:
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
   push:
-    paths: 
-      - ".github/packages/*"
+    paths:
+      - ".containers/*"
+      - "!**/*.md"
     branches:
       - "topic/*" # USED FOR TESTING
   pull_request:
@@ -18,11 +19,10 @@ on:
 
 env:
   TARGET_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7
-  GITHUB_PACKAGES: "./.github/packages"
+  CONTAINERS_PATH: ".containers"
   REGISTRY: ghcr.io
 
 jobs:
-
   package:
     name: "register packages"
     runs-on: ubuntu-latest
@@ -100,16 +100,24 @@ jobs:
             --build-arg VERSION=${VERSION} \
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
             --build-arg VCS_REF=${GITHUB_SHA::8} \
-            --file ${{ env.GITHUB_PACKAGES }}/Dockerfile \
+            --file ${{ env.CONTAINERS_PATH }}/Dockerfile \
             ${TAGS} \
-            ${{ env.GITHUB_PACKAGES }}
+            ${{ env.CONTAINERS_PATH }}
 
-      - name: 7 - Build & Push Packages
+      - name: 7 - Replace Tokens
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["${{ env.CONTAINERS_PATH }}/Dockerfile"]'
+        env:
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: 8 - Build & Push Packages
         if: success()
         run: |
           docker buildx build --output "type=image,push=true" ${{ steps.metadata.outputs.buildx_args }}
 
-      - name: 8 - Inspect Packages
+      - name: 9 - Inspect Packages
         if: success()
         run: |
           docker buildx imagetools inspect ${{ steps.metadata.outputs.image_id }}:${{ steps.metadata.outputs.version }}

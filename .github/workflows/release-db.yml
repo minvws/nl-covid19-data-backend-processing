@@ -2,7 +2,7 @@
 # Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
 
 # This is a basic workflow to help you get started with Actions
-name: "dashboard"
+name: "release db"
 
 on:
   # Allows you to run this workflow manually from the Actions tab

@@ -13,8 +13,8 @@ ENV GITHUB_ACCESS_TOKEN=""
 ENV GITHUB_RUNNER_ALLOW_RUNASROOT=false
 ENV AGENT_TOOLS_DIRECTORY=/opt/hosted-tool-cache
 
-ARG OWNER="minvws"
-ARG REPOSITORY_NAME="nl-covid19-data-backend-processing"
+ARG OWNER="#{GITHUB_OWNER}#"
+ARG REPOSITORY_NAME="#{GITHUB_REPOSITORY_NAME}#"
 
 LABEL org.opencontainers.image.source https://github.com/${OWNER}/${REPOSITORY_NAME}
 

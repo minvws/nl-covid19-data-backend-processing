@@ -1,23 +1,24 @@
-# **HOW TO BUILD AND RELEASE IMPLEMENTATIONS**
+# **GITHUB ACTIONS**
 
 ---
 
-Three separate ***GitHub Actions*** are used to build and release, respecitively, executable `.sql` scripts and an optional self-hosted runners packages (registered within **[GitHub Container Registry](https://github.blog/2020-09-01-introducing-github-container-registry/)**). The release pipeline will automatically be trigger when the build pipeline has successfully finished executing. 
+Multiple `GitHub Actions` are used to **[release the Corona Dashboard](release-db.yml)** and/or **[register containers](register-containers.yml)**. 
+
+Regarding the **[containers](../../.containers)**, an optional self-hosted runners packages (registered within **[GitHub Container Registry](https://github.blog/2020-09-01-introducing-github-container-registry/)**) can be used to run `GitHub Actions`. 
 
 ## **TABLE OF CONTENTS**
 
 ---
 
-1. **[Build Actions](#**build-actions**)**
-2. **[Release Actions](#**release-actions**)**
-3. **[Package Build Actions](#**package-build-actions)**
+1. **[Release Corona Dashboard](#**release-corona-dashboard**)**
+2. **[Register Containers](#**register-containers)**
 
 
-## **BUILD ACTIONS**
+## **BUILD AND RELEASE ACTIONS**
 
 ---
 
-The **[build action](workflows/build-action.yml)** will convert all commited and modified `.ipynb` files into executable `.sql` scripts when a pull request has been approved (one the `master/` branch). 
+During the release, when a pull request has been approved on the `master/` branch, the build actions will convert all commited and modified `.ipynb` files into executable `.sql` scripts 
 
 During the conversion, all `.sql` scripts will be validated within an `mcr.microsoft.com/mssql/server:2019-latest` container by executing the scripts on a blank database. 
 
@@ -29,11 +30,11 @@ env:
   run: |
     & "${{ env.GITHUB_WORKFLOWS }}/scripts/build-script.ps1" `
       -SourceDirectory "${{ github.workspace }}" `
-      -ModifiedFiles "${{ needs.analyse.outputs.modified_all }}"
+      -ModifiedFiles "${{ needs.analyse.outputs.modified_scripts }}"
   shell: pwsh
 ```
 
-Sequentually, the `.sql`, including the **[release script](workflows/scripts/release-script.ps1)** artifacts, will be archived for future releases.
+Sequentually, the `.sql`, including the **[release script](scripts/release-script.ps1)** artifacts, will be archived for future releases.
 
 ```yml
 - name: "3 - Copy Files: MSSQL Scripts"
@@ -53,11 +54,7 @@ Sequentually, the `.sql`, including the **[release script](workflows/scripts/rel
     retention-days: 28
 ```
 
-## **RELEASE ACTIONS**
-
----
-
-On the other hand, the **[release pipeline](release-pipeline.yml)** will retreive the archived artifacts and only executes the `.sql` scripts using `Invoke-Sqlcmd` which is part of the `SqlServer` Powershell module. 
+On the other hand, the **[release actions](release-pipeline.yml)** will retreive the archived artifacts and only executes the `.sql` scripts using `Invoke-Sqlcmd` which is part of the `SqlServer` Powershell module. 
 
 ```yml
 - name: 5 - Migrate MSSQL Artifacts
@@ -71,15 +68,15 @@ On the other hand, the **[release pipeline](release-pipeline.yml)** will retreiv
   shell: pwsh
 ```
 
-## **PACKAGE BUILD ACTIONS**
+## **REGISTER CONTAINERS**
 
 ---
 
-The **[package action](workflows/package-build-action.yml)** contains the instruction to create and register a `Docker image` (i.e. **[ghcr.io/minvws/corona-dashboard/github-runners:unstable](packages/Dockerfile)**) to enable the use of a self-hosted runner within a container. 
+While running the **[workflow](register-containers.yml)** a `Docker image` will be created and registered (i.e. **[ghcr.io/minvws/corona-dashboard/github-runners:unstable](../../..containers/Dockerfile)**) to enable the use of a containerized self-hosted runner. 
 
 Please note that this is most likely a workaround when the `GitHub build-in runners` are restricted (e.g. IP restrictions) during a build or release action.
 
-Use the following command to start listening for `Github Action` jobs within self-hosted runners:
+Use the following command to start listening for `GitHub Actions` within self-hosted runners:
 
 > Powershell
 
@@ -94,3 +91,8 @@ docker run `
     -d `
     $TAG
 ```
+
+|Name|Description|Defaults|
+|--|--|--|
+|`GITHUB_RUNNER_TOKEN`|Runner token provided by GitHub in the Actions page. These tokens are valid for a short period.|Required if `GITHUB_ACCESS_TOKEN` is not provided|
+|`GITHUB_RUNNER_REPOSITORY_URL`|The runner will be linked to this repository URL||
