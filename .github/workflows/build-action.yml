@@ -23,49 +23,33 @@ env:
 jobs:
 
   analyse:
-    name: "analyse modified files"
+    name: "select modified scripts"
     outputs:
-      modified_ipynb: ${{ steps.check_modified_files.outputs.modified_ipynb }}
-      modified_runners: ${{ steps.check_modified_files.outputs.modified_runners }}
-      modified_all: ${{ steps.check_modified_files.outputs.modified_all }}
+      modified_scripts: ${{ steps.check_modified_scripts.outputs.modified_scripts }}
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
         uses: actions/checkout@v2
 
-      - name: 2 - Select Modified Files
-        id: modified_files
+      - name: 2 - Select Modified Scripts
+        id: select_modified_scripts
         uses: jitterbit/get-changed-files@v1
       
-      - name: 3 - Analyse Modified Files
-        id: check_modified_files
+      - name: 3 - Analyse Modified Scripts
+        id: check_modified_scripts
         run: |
-          $fs = "${{ steps.modified_files.outputs.added_modified }}" -Split ' '
+          $scripts = "${{ steps.select_modified_scripts.outputs.added_modified }}"
+          $scripts += " ${{ steps.select_modified_scripts.outputs.renamed }}" 
 
           Write-Host "========== modified files =========="
-          Write-Host $fs
+          Write-Host $scripts
 
-          if (($fs -ne "") -and ($null -ne $fs)) {
-            echo "::set-output name=modified_all::${fs}"
-          }
-
-          echo "::set-output name=modified_ipynb::false"
-          echo "::set-output name=modified_runners::false"
-          $fs | ForEach-Object {
-
-            switch -wildcard ($_) 
-            {
-              "*src/*.ipynb" { echo "::set-output name=modified_ipynb::true" }
-              "*.github/runners/*" { echo "::set-output name=modified_runners::true" }
-              default { }
-            }
-          }
+          echo "::set-output name=modified_scripts::${scripts}"          
         shell: pwsh
 
   build:
     name: "build mssql scripts"
     needs: analyse
-    if: needs.analyse.outputs.modified_ipynb == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: 1 - Checkout
@@ -75,7 +59,7 @@ jobs:
         run: |
           & "${{ env.GITHUB_WORKFLOWS }}/scripts/build-script.ps1" `
             -SourceDirectory "${{ github.workspace }}" `
-            -ModifiedFiles "${{ needs.analyse.outputs.modified_all }}"
+            -ModifiedFiles "${{ needs.analyse.outputs.modified_scripts }}"
         shell: pwsh
 
       - name: "3 - Copy Files: MSSQL Scripts"
