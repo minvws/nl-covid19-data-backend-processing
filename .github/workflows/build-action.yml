@@ -23,7 +23,7 @@ env:
 jobs:
 
   analyse:
-    name: "select modified scripts"
+    name: "select scripts"
     outputs:
       modified_scripts: ${{ steps.check_modified_scripts.outputs.modified_scripts }}
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
         shell: pwsh
 
   build:
-    name: "build mssql scripts"
+    name: "build scripts"
     needs: analyse
     runs-on: ubuntu-latest
     steps:

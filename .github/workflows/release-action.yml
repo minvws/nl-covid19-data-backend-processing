@@ -16,6 +16,7 @@ on:
 jobs:
 
   development:
-    uses: "minvws/nl-covid19-data-backend-processing/.github/workflows/templates/release-template.yml@topic/redesign"
-    with:
-      environment: development
+    name: development
+    runs-on: self-hosted
+    steps:
+    - uses: ./.github/workflows/templates
