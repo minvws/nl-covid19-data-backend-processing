@@ -4,7 +4,7 @@
 
 **<a style="color:red">NOTE! STILL WORKING ON IT.</a>**
 
-[![build](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/cdb-ci/topic/redesign?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/build-action.yml)
+[![build](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/release%20db/topic/redesign?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/release-db.yml)
 [![repo size](https://img.shields.io/github/repo-size/minvws/nl-covid19-data-backend-processing?logo=github)](https://github.com/minvws/nl-covid19-data-backend-processing)
 
 
