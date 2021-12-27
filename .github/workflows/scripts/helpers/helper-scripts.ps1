@@ -70,6 +70,9 @@ function Install-MssqlContainer {
             mcr.microsoft.com/mssql/server > /dev/null 2>&1) 
 
         Write-Host "Starting server(s)....." -ForegroundColor Blue
+        
+        Start-Sleep -Seconds 30
+
         Invoke-RetryCommand `
             -ScriptBlock {
                 Invoke-Sqlcmd `
@@ -79,7 +82,7 @@ function Install-MssqlContainer {
                     -Username "sa" `
                     -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
             } `
-            -RetryCount 10
+            -RetryCount 20
 
         Write-Host "Install Flyway tool(s)....." -ForegroundColor Yellow
         $flywayVersion = "8.2.2"
