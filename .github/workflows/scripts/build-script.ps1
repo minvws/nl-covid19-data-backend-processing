@@ -4,7 +4,7 @@ Param (
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
-. "./.github/workflows/scripts/utils/helper-scripts.ps1"
+. "./.github/workflows/scripts/helpers/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
 $containerPort = 14331
@@ -13,46 +13,33 @@ $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
 ### GET MODIFIED NOTEBOOK(S).....
 $notebooks = ($ModifiedFiles -Split ' ') | Where-Object { $_.endswith(".ipynb") }
 
+$deps = @()
+foreach ($notebook in $notebooks) {
+    $deps += $(Get-Dependencies $notebook)
+
+    if (!$deps.Contains($notebook)) {
+        $deps += $notebook
+    }
+}
+
+$notebooks = $($deps | Select-Object -Unique)
+
 ### SETUP DATATINO MOCK CONTAINER(S).....
-Install-ContainerUnit `
+Install-MssqlContainer `
     -ContainerName $containerName `
     -ContainerPort $containerPort `
-    -ContainerScript "./.github/workflows/scripts/utils/mssql-scripts.sql"
+    -ContainerScript "./.github/workflows/scripts/helpers/initial-configurations.sql"
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
-    $rank = 0
-    $prevEnv = ''
-    $notebooks = Get-ChildItem $notebooks | Select-Object FullName, Length, @{ 
-        n = 'Directory'; e = { $_.Name -replace '.*(utils|workflows).*', '$1' } 
-    } |
-    Sort-Object FileName | Select-Object *, @{
-        n = 'Rank'; e = {
-            --$rank
-
-            if ($prevEnv -ne $_.Environment) { 
-                $rank = 1
-                Set-Variable -Scope 1 prevEnv $_.Environment
-            }
-
-            Set-Variable -Scope 1 rank $rank
-            $rank
-        }
-    }
-
-    if ($notebooks.Count -ne 1) {
-        [System.Array]::Reverse($notebooks)
-    }
-
-    $notebooks.FullName | ForEach-Object {
-
+    $($notebooks -Split ' ') | ForEach-Object {
         if (Test-Path $_) {        
             try {
                 $scriptPath = [System.IO.Path]::ChangeExtension(
                     $(Join-Path -Path $SourceDirectory -ChildPath (Split-Path $_ -Leaf)), 
                     ".sql"
                 )
-                $scriptIndex = [System.Array]::IndexOf($notebooks.FullName, $_)
+                $scriptIndex = [System.Array]::IndexOf($notebooks, $_)
                 $scriptFileName = "$($scriptIndex)-$([System.IO.Path]::GetFileName($scriptPath))"  
                 $scriptCodes = (Get-Content -Raw -Path $_ | ConvertFrom-Json).cells | Where-Object { $_.cell_type -eq "code" }  
 

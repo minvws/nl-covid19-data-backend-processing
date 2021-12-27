@@ -112,12 +112,14 @@ jobs:
   
     - name: 5 - Migrate MSSQL Artifacts
       run: |
+        $loginPassword = ConvertTo-SecureString -String "${{ secrets.LOGIN_PASSWORD }}"
+        
         & "${{ github.workspace }}/scripts/release-script.ps1" `
           -Server "${{ secrets.MSSQL_SERVER }}" `
           -Database "${{ secrets.MSSQL_DATABASE }}" `
           -SourceDirectory "${{ github.workspace }}/src" `
           -Username "${{ secrets.LOGIN_USERNAME }}" `
-          -Password "${{ secrets.LOGIN_PASSWORD }}"
+          -Password $loginPassword
       shell: pwsh
   
     - name: 6 - Post Deployment

@@ -6,7 +6,7 @@ local.settings.json
 
 # configuration files
 *flyway.conf
-/flyway*
+/*flyway*
 
 # User-specific files
 *.suo

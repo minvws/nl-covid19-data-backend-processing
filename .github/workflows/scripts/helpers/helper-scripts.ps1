@@ -48,7 +48,7 @@ function Invoke-RetryCommand {
     }
 }
 
-function Install-ContainerUnit {
+function Install-MssqlContainer {
     [CmdletBinding()]
     param (
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ContainerName,          
@@ -83,7 +83,7 @@ function Install-ContainerUnit {
 
         Write-Host "Install Flyway tool(s)....." -ForegroundColor Yellow
         $flywayVersion = "8.2.2"
-        $flywayInstallPath = "./.flyway"    
+        $flywayInstallPath = "./.flyway"
 
         if (!(Test-Path "/usr/local/bin/flyway")) {
             $currentLocation = Get-Location
@@ -116,8 +116,6 @@ function Install-ContainerUnit {
         Remove-Item -Path "$($flywayInstallPath)/flyway-$($flywayVersion)/conf/flyway.conf" -Force
 
         Write-Host "Setup Datatino script(s)....." -ForegroundColor Yellow
-        docker cp $ContainerScript ${ContainerName}:/mssql-script.sql
-
         Invoke-Sqlcmd `
             -ServerInstance "$(hostname -i),${containerPort}" `
             -Database $ContainerName `
@@ -128,4 +126,26 @@ function Install-ContainerUnit {
         
         Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
     }
+}
+
+function Get-Dependencies {
+    [CmdletBinding()]
+    param (
+        [String] $ScriptPath
+    )
+    
+    $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $cells = (Get-Content -Raw -Path $ScriptPath | ConvertFrom-Json).cells
+    $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source.toLower()) }
+    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()) } | ConvertFrom-Json)."depends-on"
+
+    $resultSet = @()
+    if ($null -ne $dependencies) {
+        foreach ($dependency in $dependencies) {
+            $resultSet += $(Get-Dependencies $dependency)
+        }
+    }
+
+    $resultSet += $dependencies
+    return $resultSet
 }
