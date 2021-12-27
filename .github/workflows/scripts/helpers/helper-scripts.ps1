@@ -137,7 +137,7 @@ function Get-Dependencies {
     $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
     $cells = (Get-Content -Raw -Path $ScriptPath | ConvertFrom-Json).cells
     $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source.toLower()) }
-    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()) } | ConvertFrom-Json)."depends-on"
+    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()).Value.Trim() } | ConvertFrom-Json)."depends-on"
 
     $resultSet = @()
     if ($null -ne $dependencies) {

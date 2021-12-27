@@ -16,7 +16,6 @@ $notebooks = ($ModifiedFiles -Split ' ') | Where-Object { $_.endswith(".ipynb") 
 $deps = @()
 foreach ($notebook in $notebooks) {
     $deps += $(Get-Dependencies $notebook)
-
     if (!$deps.Contains($notebook)) {
         $deps += $notebook
     }
