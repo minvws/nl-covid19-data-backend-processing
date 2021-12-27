@@ -25,7 +25,7 @@ try {
                 -Database $Database `
                 -InputFile $script `
                 -Username $Username `
-                -Password $(New-Object PSCredential $Username, $Password).GetNetworkCredential().Password `
+                -Password $Password `
                 -Verbose 
         } -Verbose
         
