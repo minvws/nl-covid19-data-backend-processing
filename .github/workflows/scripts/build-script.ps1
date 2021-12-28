@@ -1,6 +1,6 @@
 Param (
     [String]$SourceDirectory = $env:PWD,
-    [String[]]$ModifiedFiles = "$(git diff HEAD HEAD~ --name-only -R)"
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' })
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....

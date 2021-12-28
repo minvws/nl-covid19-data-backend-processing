@@ -81,40 +81,6 @@ function Install-MssqlContainer {
             } `
             -RetryCount 10
 
-        Write-Host "Install Flyway tool(s)....." -ForegroundColor Yellow
-        $flywayVersion = "8.2.2"
-        $flywayInstallPath = "./.flyway"
-
-        if (!(Test-Path "/usr/local/bin/flyway")) {
-            $currentLocation = Get-Location
-        
-            New-Item -Path $flywayInstallPath -ItemType Directory -Force
-            Set-Location $flywayInstallPath
-            $("wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/$($flywayVersion)/flyway-commandline-$($flywayVersion)-linux-x64.tar.gz | tar xvz && sudo ln -s ``pwd``/flyway-$($flywayVersion)/flyway /usr/local/bin" | sh) 
-            Set-Location $currentLocation
-        }
-
-        "flyway.url=jdbc:sqlserver://$(hostname -i):$($ContainerPort);databaseName=$($ContainerName)
-        flyway.user=sa
-        flyway.password=$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')
-        flyway.baselineDescription=Base Migration
-        flyway.baselineOnMigrate=true
-        flyway.schemas= VWS,\
-                        VWSARCHIVE, \
-                        VWSSTAGE, \
-                        VWSSTATIC, \
-                        VWSINTER, \
-                        VWSDEST, \
-                        VWSREPORT, \
-                        VWSMISC, \
-                        VWSANALYTICS, \
-                        DATATINO_ORCHESTRATOR_1, \
-                        DATATINO_PROTO_1" | Out-File "$($flywayInstallPath)/flyway-$($flywayVersion)/conf/flyway.conf"
-
-        $(flyway migrate)
-
-        Remove-Item -Path "$($flywayInstallPath)/flyway-$($flywayVersion)/conf/flyway.conf" -Force
-
         Write-Host "Setup Datatino script(s)....." -ForegroundColor Yellow
         Invoke-Sqlcmd `
             -ServerInstance "$(hostname -i),${containerPort}" `
