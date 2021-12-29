@@ -51,9 +51,9 @@ function Invoke-RetryCommand {
 function Install-MssqlContainer {
     [CmdletBinding()]
     param (
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ContainerName,          
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()] [string] $ContainerScript,
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ContainerPort
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ContainerName,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ContainerPort,
+        [string]$DatatinoDevOpsPAT
     )
 
     if ($null -eq $(docker ps -asq --filter "name=$ContainerName")) {
@@ -82,13 +82,37 @@ function Install-MssqlContainer {
             -RetryCount 10
 
         Write-Host "Setup Datatino script(s)....." -ForegroundColor Yellow
-        Invoke-Sqlcmd `
-            -ServerInstance "$(hostname -i),${containerPort}" `
-            -Database $ContainerName `
-            -InputFile $ContainerScript `
-            -Username "sa" `
-            -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-            -Verbose
+
+        $devOpsUrl = "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
+        $devOpsBranch = "topic/add_missing_configurations"
+        if ($null -ne $DatatinoDevOpsPAT) { 
+            $devOpsUrl = $devOpsUrl.Replace("kpmg-nl@", "$($devOpsPAT)@")
+        }
+
+        $(git clone -b $devOpsBranch $devOpsUrl)
+        Set-Location Datatino/Datatino.Model
+
+        '{ 
+            "DatabaseConnectionString": "' + "Data Source=$(hostname -i),${containerPort};Initial Catalog=${ContainerName};User ID=sa;Password=$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
+        }' | Out-File ".database"
+        
+        $(dotnet tool install --global dotnet-ef)
+        $(dotnet ef migrations add SecondVersion-1.0.1)
+        $(dotnet ef database update)
+
+        foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
+            Invoke-Sqlcmd `
+                -ServerInstance "$(hostname -i),${containerPort}" `
+                -Database $ContainerName `
+                -InputFile $script `
+                -Username "sa" `
+                -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                -Verbose
+        }
+
+        Set-Location ../..
+
+        Remove-Item -Path ./Datatino -Force -Recurse        
         
         Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
     }

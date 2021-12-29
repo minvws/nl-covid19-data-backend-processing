@@ -1,6 +1,7 @@
 Param (
     [String]$SourceDirectory = $env:PWD,
-    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' })
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' }),
+    [String]$DevOpsPAT = $null
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -27,7 +28,7 @@ $notebooks = $($deps | Select-Object -Unique)
 Install-MssqlContainer `
     -ContainerName $containerName `
     -ContainerPort $containerPort `
-    -ContainerScript "./.github/workflows/scripts/helpers/initial-configurations.sql"
+    -DatatinoDevOpsPAT $DevOpsPAT
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
