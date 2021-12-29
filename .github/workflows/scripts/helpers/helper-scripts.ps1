@@ -81,7 +81,7 @@ function Install-MssqlContainer {
             } `
             -RetryCount 10
 
-        Write-Host "Setup Datatino script(s)....." -ForegroundColor Yellow
+        Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
 
         $devOpsUrl = "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
         $devOpsBranch = "topic/add_missing_configurations"
