@@ -73,7 +73,7 @@ jobs:
       - name: "7 - Post Build"
         if: always()
         run: |
-          $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+          $containerName = "local-mssql"
           Write-Host "Removing container(s)....."
           docker container stop $containerName
           docker container rm $containerName
