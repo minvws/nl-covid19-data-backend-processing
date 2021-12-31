@@ -49,7 +49,9 @@ jobs:
           & "${{ env.GITHUB_WORKFLOWS }}/scripts/build-script.ps1" `
             -SourceDirectory "${{ github.workspace }}" `
             -ModifiedFiles "${{ steps.analyse_modified_scripts.outputs.modified_scripts }}" `
-            -DevOpsPAT "${{ secrets.DEV_OPS_PAT }}"
+            -DatatinoDevOpsPAT "${{ secrets.DEV_OPS_PAT }}" `
+            -DatatinoDevOpsGitBranch "topic/add_missing_configurations" `
+            -DatatinoDevOpsGitUrl "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
         shell: pwsh
 
       - name: "5 - Copy Files: MSSQL Scripts"
@@ -99,7 +101,6 @@ jobs:
         run: ls -R
 
       - name: 4 - Replace Tokens
-        id: check_modified_files
         run: |
           $scripts = Get-ChildItem -Path "${{ github.workspace }}/src" -Filter "*.sql"
           Write-Host "Replace tokens:"
@@ -147,7 +148,6 @@ jobs:
         run: ls -R
 
       - name: 4 - Replace Tokens
-        id: check_modified_files
         run: |
           $scripts = Get-ChildItem -Path "${{ github.workspace }}/src" -Filter "*.sql"
           Write-Host "Replace tokens:"
@@ -195,7 +195,6 @@ jobs:
         run: ls -R
 
       - name: 4 - Replace Tokens
-        id: check_modified_files
         run: |
           $scripts = Get-ChildItem -Path "${{ github.workspace }}/src" -Filter "*.sql"
           Write-Host "Replace tokens:"

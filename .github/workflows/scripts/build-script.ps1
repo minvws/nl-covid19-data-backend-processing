@@ -1,15 +1,18 @@
 Param (
     [String]$SourceDirectory = $env:PWD,
     [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' }),
-    [String]$DevOpsPAT = $null
+    [String]$DatatinoDevOpsPAT = $null,
+    [String]$DatatinoDevOpsGitBranch = "topic/add_missing_configurations",
+    [String]$DatatinoDevOpsGitUrl = "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
 . "./.github/workflows/scripts/helpers/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
-$containerPort = 14331
-$containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
+$databaseName = "CoronaDashboardDb"
+$serverName = "local-mssql"
+$serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
 $notebooks = ($ModifiedFiles -Split ' ') | Where-Object { $_.endswith(".ipynb") }
@@ -26,9 +29,12 @@ $notebooks = $($deps | Select-Object -Unique)
 
 ### SETUP DATATINO MOCK CONTAINER(S).....
 Install-MssqlContainer `
-    -ContainerName $containerName `
-    -ContainerPort $containerPort `
-    -DatatinoDevOpsPAT $DevOpsPAT
+    -DatabaseName $databaseName `
+    -ServerName $serverName `
+    -ServerPort $serverPort `
+    -DatatinoDevOpsPAT $DatatinoDevOpsPAT `
+    -DatatinoDevOpsGitBranch $DatatinoDevOpsGitBranch `
+    -DatatinoDevOpsGitUrl $DatatinoDevOpsGitUrl
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
@@ -70,11 +76,11 @@ if ($notebooks.Count -gt 0) {
 
                 Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
                     Invoke-Sqlcmd `
-                        -ServerInstance "$(hostname -i),${containerPort}" `
-                        -Database $containerName `
+                        -ServerInstance "$(hostname -i),${serverPort}" `
+                        -Database $databaseName `
                         -InputFile $scriptFileName `
                         -Username "sa" `
-                        -Password "$(docker exec $containerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                        -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
                 }
 
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green

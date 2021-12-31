@@ -1,6 +1,11 @@
 ### INSTALL ADDITIONAL MODULE(S).....
 Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
-Install-Module -Name SqlServer -AllowClobber -Confirm:$False -Force
+
+$moduleName = "SqlServer"
+$modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
+if ($modules.Count -eq 0) {
+    Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
+}
 
 function Invoke-RetryCommand {
     [CmdletBinding()]
@@ -51,49 +56,56 @@ function Invoke-RetryCommand {
 function Install-MssqlContainer {
     [CmdletBinding()]
     param (
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ContainerName,
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ContainerPort,
-        [string]$DatatinoDevOpsPAT
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $DatabaseName,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ServerName,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ServerPort,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitUrl,
+        [string]$DatatinoDevOpsGitBranch = "master",
+        [string]$DatatinoDevOpsPAT = $null
     )
 
-    if ($null -eq $(docker ps -asq --filter "name=$ContainerName")) {
+    if ($null -eq $(docker ps -asq --filter "name=$ServerName")) {
         
         Write-Host "Setup server(s)....." -ForegroundColor Yellow
         $(docker run `
             --cap-add SYS_PTRACE `
             -e "ACCEPT_EULA=1" `
             -e "MSSQL_SA_PASSWORD=$(gpg --gen-random --armor 1 14)" `
-            -p ${ContainerPort}:1433 `
+            -p ${ServerPort}:1433 `
             --restart unless-stopped `
             -d `
-            --name $ContainerName `
+            --name $ServerName `
             mcr.microsoft.com/mssql/server > /dev/null 2>&1) 
 
         Write-Host "Starting server(s): $(hostname -i)....." -ForegroundColor Blue
         Invoke-RetryCommand `
             -ScriptBlock {
                 Invoke-Sqlcmd `
-                    -ServerInstance "$(hostname -i),${ContainerPort}" `
+                    -ServerInstance "$(hostname -i),${ServerPort}" `
                     -Database "master" `
-                    -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$ContainerName') BEGIN CREATE DATABASE [$ContainerName] END;" `
+                    -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
                     -Username "sa" `
-                    -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                    -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
             } `
             -RetryCount 10
 
         Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
 
-        $devOpsUrl = "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
-        $devOpsBranch = "topic/add_missing_configurations"
-        if ($null -ne $DatatinoDevOpsPAT) { 
-            $devOpsUrl = $devOpsUrl.Replace("kpmg-nl@", "$($devOpsPAT)@")
+        $devOpsUrl = $DatatinoDevOpsGitUrl
+        $devOpsBranch = $DatatinoDevOpsGitBranch
+        if ($null -ne $DatatinoDevOpsPAT) {
+            $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+            $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
+
+            $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
         }
 
         $(git clone -b $devOpsBranch $devOpsUrl)
+
         Set-Location Datatino/Datatino.Model
 
         '{ 
-            "DatabaseConnectionString": "' + "Data Source=$(hostname -i),${containerPort};Initial Catalog=${ContainerName};User ID=sa;Password=$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
+            "DatabaseConnectionString": "' + "Data Source=$(hostname -i),${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
         }' | Out-File ".database"
         
         $(dotnet tool install --global dotnet-ef)
@@ -102,11 +114,11 @@ function Install-MssqlContainer {
 
         foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
             Invoke-Sqlcmd `
-                -ServerInstance "$(hostname -i),${containerPort}" `
-                -Database $ContainerName `
+                -ServerInstance "$(hostname -i),${ServerPort}" `
+                -Database $DatabaseName `
                 -InputFile $script `
                 -Username "sa" `
-                -Password "$(docker exec $ContainerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
                 -Verbose
         }
 
