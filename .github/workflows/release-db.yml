@@ -15,7 +15,9 @@ on:
       - "topic/*" # USED FOR TESTING!
   pull_request:
     branches:
+      - main
       - master
+      - release/*
 
 env:
   GITHUB_WORKFLOWS: "./.github/workflows"
@@ -217,5 +219,5 @@ jobs:
 
       - name: 6 - Post Deployment
         if: always()
-        run: Remove-Item -Recurse -Force "${{ github.workspace }}/src"
+        run: Remove-Item -Recurse -Force "${{ github.workspace }}"
         shell: pwsh

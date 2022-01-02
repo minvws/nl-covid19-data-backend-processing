@@ -1,6 +1,6 @@
 Param (
     [String]$Server = "$(hostname -i),14331",
-    [String]$Database = "a1049e34-6129-11ec-90d6-0242ac120003",
+    [String]$Database = "local-mssql",
     [String]$Password = $(docker exec $Database /bin/bash -c 'echo $MSSQL_SA_PASSWORD'),
     [String]$Username = "sa",
     [String]$SourceDirectory = $env:PWD

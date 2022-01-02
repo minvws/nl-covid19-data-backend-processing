@@ -29,12 +29,9 @@ jobs:
                 targetType: "inline"
                 script: |
                   $mssqlScripts = Get-ChildItem -Path "$(PipelineWorkspace)/src" -Filter "*.sql"
-
                   Write-Host "Replace tokens:"
-
                   foreach ($script in $mssqlScripts | Sort-Object -Property Fullname) {
                     Write-Host "`t$($script)" -ForegroundColor Blue
-
                     $content = (Get-Content $script) -replace '#{ Environment }#', '${{ parameters.environment }}' 
                     $content | Out-File $script
                   }
@@ -56,9 +53,7 @@ jobs:
               displayName: "Task 4: Post Deployment"
               inputs:
                 targetType: "inline"
-                script: |
-                  Write-Host "Removing $(PipelineWorkspace)....."
-                  Remove-Item -Recurse -Force "$(PipelineWorkspace)"
+                script: Remove-Item -Recurse -Force "$(PipelineWorkspace)"
                 errorActionPreference: "default"
                 failOnStderr: true
                 pwsh: true

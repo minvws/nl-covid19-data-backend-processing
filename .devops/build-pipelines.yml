@@ -6,28 +6,41 @@ trigger:
       - release/*
   paths:
     include:
-      - src/
+      - "src/**/*.ipynb"
     exclude:
       - "**/*.md"
 
 pool:
-  name: "default"
+  vmImage: ubuntu-latest
 
 variables:
-  PipelineWorkspace: $(Build.SourcesDirectory)/deploy
+  PipelineWorkspace: $(Build.SourcesDirectory)/.devops
 
 stages:
   - stage: Build
     jobs:
       - job: "Build"
         steps:
+
+          - task: PowerShell@2
+            name: SelectModifiedScripts
+            inputs:
+              targetType: "inline"
+              script: |              
+                $scripts = $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
+                Write-Host '##vso[task.setvariable variable=ModifiedScripts]$scripts'
+              errorActionPreference: "default" 
+              failOnStderr: true
+              pwsh: true
+            displayName: "Task 1: Select Modified Scripts"
+
           - task: PowerShell@2
             inputs:
               filePath: "$(PipelineWorkspace)/scripts/build-script.ps1"
-              arguments: '-SourceDirectory "$(Build.SourcesDirectory)"'
+              arguments: '-SourceDirectory "$(Build.SourcesDirectory)" -ModifiedFiles $(SelectModifiedScripts.ModifiedScripts) -DatatinoDevOpsPAT "$(DatatinoDevOpsPAT)" -DatatinoDevOpsGitBranch "$(DatatinoDevOpsGitBranch)" -DatatinoDevOpsGitUrl "$(DatatinoDevOpsGitUrl)"'
               failOnStderr: true
               pwsh: true
-            displayName: "Task 1: Build MSSQL Artifacts"
+            displayName: "Task 2: Build MSSQL Artifacts"
 
           - task: CopyFiles@2
             inputs:
@@ -35,7 +48,7 @@ stages:
               Contents: '*.sql'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/src'
               OverWrite: true
-            displayName: "Task 2: Copy Files: MSSQL"
+            displayName: "Task 3: Copy Files: MSSQL Scripts"
 
           - task: CopyFiles@2
             inputs:
@@ -43,36 +56,24 @@ stages:
               Contents: "**/*.ps1"
               TargetFolder: "$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/scripts"
               OverWrite: true
-            displayName: "Task 3: Copy Files: Scripts"
+            displayName: "Task 4: Copy Files: Powershell Scripts"
 
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
               publishLocation: "Container"
-            displayName: "Task 4: Publish Artifacts"
+            displayName: "Task 5: Publish Artifacts"
 
           - task: PowerShell@2
             condition: always()
             inputs:
               targetType: "inline"
-              script: |              
-                $containerName = "a1049e34-6129-11ec-90d6-0242ac120003"
-                $containerSettings = $(docker container inspect $containerName) | ConvertFrom-Json
-                
-                $createdOn = [System.DateTime]::ParseExact(
-                  $containerSettings.Created, 
-                  'MM/dd/yyyy HH:mm:ss', 
-                  [System.Globalization.DateTimeFormatInfo]::CurrentInfo
-                )
-
-                $diff = $(Get-Date) - $createdOn
-
-                if ($diff.Days -ge 1) {
-                    Write-Host "Removing container(s)....."
-                    docker container stop $containerName
-                    docker container rm $containerName
-                }
+              script: |
+                $containerName = "local-mssql"
+                Write-Host "Removing container(s)....."
+                docker container stop $containerName
+                docker container rm $containerName
               errorActionPreference: "default" 
               failOnStderr: true
               pwsh: true
