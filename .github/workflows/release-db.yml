@@ -8,16 +8,16 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  push:
+  pull_request:
     paths:
       - "src/**/*.ipynb"
-    branches:
-      - "topic/*" # USED FOR TESTING!
-  pull_request:
+    types:
+      - closed
     branches:
       - main
       - master
       - release/*
+      - topic/redesign
 
 env:
   GITHUB_WORKFLOWS: "./.github/workflows"
@@ -25,6 +25,7 @@ env:
 jobs:
   build:
     name: "build"
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: "1 - Checkout"

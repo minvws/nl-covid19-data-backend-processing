@@ -10,7 +10,7 @@ Param (
 . "./.github/workflows/scripts/helpers/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
-$databaseName = "CoronaDashboardDb"
+$databaseName = "cdb-db"
 $serverName = "local-mssql"
 $serverPort = 14331
 
