@@ -1,9 +1,9 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
 
 $moduleName = "SqlServer"
 $modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
 if ($modules.Count -eq 0) {
+    Write-Host "Installing module $($moduleName)....." -ForegroundColor Yellow
     Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
 }
 

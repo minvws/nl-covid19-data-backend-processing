@@ -8,6 +8,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  push:
+    paths:
+      - "src/**/*.ipynb"
+    branches: 
+      - "*"
+
   pull_request:
     paths:
       - "src/**/*.ipynb"
@@ -25,7 +31,6 @@ env:
 jobs:
   build:
     name: "build"
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: "1 - Checkout"
@@ -131,6 +136,7 @@ jobs:
 
   acceptance:
     name: acceptance
+    if: github.event.pull_request.merged == true
     environment: acceptance
     runs-on: self-hosted
     needs: development
