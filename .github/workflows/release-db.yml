@@ -58,8 +58,8 @@ jobs:
             -SourceDirectory "${{ github.workspace }}" `
             -ModifiedFiles "${{ steps.analyse_modified_scripts.outputs.modified_scripts }}" `
             -DatatinoDevOpsPAT "${{ secrets.DEV_OPS_PAT }}" `
-            -DatatinoDevOpsGitBranch "topic/add_missing_configurations" `
-            -DatatinoDevOpsGitUrl "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
+            -DatatinoDevOpsGitBranch "master" `
+            -DatatinoDevOpsGitUrl "https://dev.azure.com/mke/_git/orchestrator"
         shell: pwsh
 
       - name: "5 - Copy Files: MSSQL Scripts"
