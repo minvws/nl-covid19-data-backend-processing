@@ -102,7 +102,7 @@ function Install-MssqlContainer {
 
         $(git clone -b $devOpsBranch $devOpsUrl)
 
-        Set-Location Datatino/Datatino.Model
+        Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model"
 
         '{ 
             "DatabaseConnectionString": "' + "Data Source=$(hostname -i),${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
@@ -124,7 +124,7 @@ function Install-MssqlContainer {
 
         Set-Location ../..
 
-        Remove-Item -Path ./Datatino -Force -Recurse        
+        Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
         Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
     }
