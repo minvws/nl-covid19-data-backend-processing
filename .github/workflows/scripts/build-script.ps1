@@ -2,8 +2,8 @@ Param (
     [String]$SourceDirectory = $env:PWD,
     [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
-    [String]$DatatinoDevOpsGitBranch = "topic/add_missing_configurations",
-    [String]$DatatinoDevOpsGitUrl = "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
+    [String]$DatatinoDevOpsGitBranch = "main",
+    [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator"
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....

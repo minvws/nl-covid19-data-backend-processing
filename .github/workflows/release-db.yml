@@ -58,8 +58,8 @@ jobs:
             -SourceDirectory "${{ github.workspace }}" `
             -ModifiedFiles "${{ steps.analyse_modified_scripts.outputs.modified_scripts }}" `
             -DatatinoDevOpsPAT "${{ secrets.DEV_OPS_PAT }}" `
-            -DatatinoDevOpsGitBranch "master" `
-            -DatatinoDevOpsGitUrl "https://dev.azure.com/mke/_git/orchestrator"
+            -DatatinoDevOpsGitBranch "main" `
+            -DatatinoDevOpsGitUrl "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator"
         shell: pwsh
 
       - name: "5 - Copy Files: MSSQL Scripts"
