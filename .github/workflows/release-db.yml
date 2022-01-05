@@ -11,13 +11,19 @@ on:
   push:
     paths:
       - "src/**/*.ipynb"
-    branches:
-      - "topic/*" # USED FOR TESTING!
+    branches: 
+      - "topic/*"
+
   pull_request:
+    paths:
+      - "src/**/*.ipynb"
+    types:
+      - closed
     branches:
       - main
       - master
       - release/*
+      - topic/redesign
 
 env:
   GITHUB_WORKFLOWS: "./.github/workflows"
@@ -52,8 +58,8 @@ jobs:
             -SourceDirectory "${{ github.workspace }}" `
             -ModifiedFiles "${{ steps.analyse_modified_scripts.outputs.modified_scripts }}" `
             -DatatinoDevOpsPAT "${{ secrets.DEV_OPS_PAT }}" `
-            -DatatinoDevOpsGitBranch "topic/add_missing_configurations" `
-            -DatatinoDevOpsGitUrl "https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino"
+            -DatatinoDevOpsGitBranch "main" `
+            -DatatinoDevOpsGitUrl "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator"
         shell: pwsh
 
       - name: "5 - Copy Files: MSSQL Scripts"
@@ -130,6 +136,7 @@ jobs:
 
   acceptance:
     name: acceptance
+    if: github.event.pull_request.merged == true
     environment: acceptance
     runs-on: self-hosted
     needs: development
