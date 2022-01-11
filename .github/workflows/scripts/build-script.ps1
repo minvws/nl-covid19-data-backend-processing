@@ -1,9 +1,10 @@
 Param (
-    [String]$SourceDirectory = $env:PWD,
-    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD)/", '' }),
+    [String]$SourceDirectory = $env:PWD ?? $(Get-Location),
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "main",
-    [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator"
+    [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator",
+    [String]$Hostname = $(hostname -i) #put your minikube ip address here if running on windows
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -34,7 +35,8 @@ Install-MssqlContainer `
     -ServerPort $serverPort `
     -DatatinoDevOpsPAT $DatatinoDevOpsPAT `
     -DatatinoDevOpsGitBranch $DatatinoDevOpsGitBranch `
-    -DatatinoDevOpsGitUrl $DatatinoDevOpsGitUrl
+    -DatatinoDevOpsGitUrl $DatatinoDevOpsGitUrl `
+    -Hostname $Hostname
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
@@ -76,7 +78,7 @@ if ($notebooks.Count -gt 0) {
 
                 Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
                     Invoke-Sqlcmd `
-                        -ServerInstance "$(hostname -i),${serverPort}" `
+                        -ServerInstance "$Hostname,${serverPort}" `
                         -Database $databaseName `
                         -InputFile $scriptFileName `
                         -Username "sa" `
