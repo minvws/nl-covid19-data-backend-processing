@@ -26,7 +26,7 @@ foreach ($notebook in $notebooks) {
     }
 }
 
-$notebooks = $($deps | Select-Object -Unique)
+$notebooks = $($deps | Select-Object -Unique | ForEach-Object { return $(Get-ChildItem -Path $_).FullName } | Select-Object -Unique) 
 
 ### SETUP DATATINO MOCK CONTAINER(S).....
 Install-MssqlContainer `
