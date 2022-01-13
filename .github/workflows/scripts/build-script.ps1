@@ -1,6 +1,6 @@
 Param (
     [String]$SourceDirectory = $env:PWD ?? $(Get-Location),
-    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "main",
     [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator",
