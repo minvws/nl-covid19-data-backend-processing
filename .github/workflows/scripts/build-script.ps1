@@ -1,10 +1,10 @@
 Param (
     [String]$SourceDirectory = $env:PWD ?? $(Get-Location),
-    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "main",
     [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator",
-    [String]$Hostname = $(hostname - i) #put your minikube ip address here if running on windows
+    [String]$Hostname = $(hostname -i) #put your minikube ip address here if running on windows
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -26,7 +26,7 @@ foreach ($notebook in $notebooks) {
     }
 }
 
-$notebooks = $($deps | Select-Object -Unique)
+$notebooks = $($deps | Select-Object -Unique | ForEach-Object { return $(Get-ChildItem -Path $_).FullName } | Select-Object -Unique) 
 
 ### SETUP DATATINO MOCK CONTAINER(S).....
 Install-MssqlContainer `
@@ -88,7 +88,7 @@ if ($notebooks.Count -gt 0) {
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green
             }
             catch {
-                Write-Error "$($_.exception.message)"
+                throw "$($_.exception.message)"
             }
         }
     }

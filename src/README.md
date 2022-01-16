@@ -2,9 +2,9 @@
 
 ---
 
-All code is written in *Jupyter Notebook* (with a optional `SQL kernel`), meaning that the files must be created and/or saved with the `.ipynb` file extension. The file itself will automatically be rendered into a *Jupyter Notebook*, enabling documenting and writing code at the same time.
+All code is written in *Jupyter Notebook* (with a optional `SQL kernel`), meaning that the files must be created and/or saved with the `.ipynb` file extension. The file itself will automatically be rendered into a *Jupyter Notebook* (within **[Visual Studio Code](https://code.visualstudio.com/Download)**), enabling documenting and writing code at the same time.
 
-**[Azure DevOps CI/CD Pipelines](../deploy)** will be used to convert the modified `.ipynb` files into executable `.sql`.
+**[Azure DevOps CI/CD Pipelines](../.devops)** or **[GitHub Actions](../.github/workflows)** will be used to convert the modified `.ipynb` files into executable `.sql` scripts.
 
 Generally the code, within *Jupyter Notebook*, is separated into multiple sections:
 
@@ -44,25 +44,24 @@ DROP TABLE IF EXISTS [VWSSTAGE].[<table_name>]
 CREATE TABLE [VWSSTAGE].[<table_name>](
 	[ID] [INT] PRIMARY KEY NONCLUSTERED NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSSTAGE_<table_name>]),
     [DATE_LAST_INSERTED] [DATETIME] NOT NULL DEFAULT GETDATE()
-	-- Add additional columns (all with type NVARCHAR(256))
+	-- ADD ADDITIONAL COLUMNS (ALL WITH TYPE NVARCHAR(256))
 );
 GO
 
 -- 3) CREATE INDEX(ES).....
-CREATE NONCLUSTERED INDEX [IX_STAGE_<table_name>] ON [VWSSTAGE].[<table_name>]
-(
+CREATE NONCLUSTERED INDEX [IX_STAGE_<table_name>] ON [VWSSTAGE].[<table_name>] (
 	[DATE_LAST_INSERTED] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+) WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
 GO
 
 ```
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. The `[DATE_LAST_INSERTED]` is used to filter the most recent inserted record(s) downstream the dataflows. 
 3. :heavy_exclamation_mark: Do **not** insert or updated the `[DATE_LAST_INSERTED]` by external queries.
-4. All column types, besides `[ID]` and `[DATE_LAST_INSERTED]`, must be set to NVARCHAR(256) to enablesuccessful ingestions.
+4. All column types, besides `[ID]` and `[DATE_LAST_INSERTED]`, must be set to `NVARCHAR(256)` to enable successful data ingestion.
 
 ### INTERMEDIATES
 
@@ -91,24 +90,23 @@ DROP TABLE IF EXISTS [VWSINTER].[<table_name>]
 CREATE TABLE [VWSINTER].[<table_name>](
 	[ID] [INT] PRIMARY KEY NONCLUSTERED NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSINTER_<table_name>]),
     [DATE_LAST_INSERTED] [DATETIME] NOT NULL DEFAULT GETDATE()
-	-- Add additional columns (with to correct type e.g. DATE, NVARCHAR, INT, etc.)
+	-- ADD ADDITIONAL COLUMNS (WITH TO CORRECT TYPE E.G. DATE, NVARCHAR(...), INT, ETC.)
 );
 GO
 
 -- 3) CREATE INDEX(ES).....
-CREATE NONCLUSTERED INDEX [IX_INTER_<table_name>] ON [VWSINTER].[<table_name>]
-(
+CREATE NONCLUSTERED INDEX [IX_INTER_<table_name>] ON [VWSINTER].[<table_name>] (
 	[DATE_LAST_INSERTED] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+) WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
 GO
 ```
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. The `[DATE_LAST_INSERTED]` is used to filter the most recent inserted record(s) downstream the dataflows. 
 3. :heavy_exclamation_mark: Do **not** insert or updated the `[DATE_LAST_INSERTED]` by external queries.
-4. Cast all column types to the correct SQL datatypes (e.g. `DATE`, `NVARCHAR`, `INT`).
+4. Cast all column types to the correct SQL datatypes (e.g. `DATE`, `NVARCHAR(...)`, `INT`).
 
 ### DESTINATIONS
 
@@ -138,24 +136,23 @@ DROP TABLE IF EXISTS [VWSDEST].[<table_name>]
 CREATE TABLE [VWSDEST].[<table_name>](
 	[ID] [INT] PRIMARY KEY NONCLUSTERED NOT NULL DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSDEST_<table_name>]),
     [DATE_LAST_INSERTED] [DATETIME] NOT NULL DEFAULT GETDATE()
-	-- Add additional columns (with to correct type e.g. DATE, NVARCHAR, INT, etc.)
+	-- ADD ADDITIONAL COLUMNS (WITH TO CORRECT TYPE E.G. DATE, NVARCHAR(...), INT, ETC.)
 );
 GO
 
 -- 3) CREATE INDEX(ES).....
-CREATE NONCLUSTERED INDEX [IX_DEST_<table_name>] ON [VWSDEST].[<table_name>]
-(
+CREATE NONCLUSTERED INDEX [IX_DEST_<table_name>] ON [VWSDEST].[<table_name>] (
 	[DATE_LAST_INSERTED] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+) WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
 GO
 ```
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. The `[DATE_LAST_INSERTED]` is used to filter the most recent inserted record(s) downstream the dataflows. 
 3. :heavy_exclamation_mark: Do **not** insert or updated the `[DATE_LAST_INSERTED]` by external queries.
-4. Cast all column types to the correct SQL datatypes (e.g. `DATE`, `NVARCHAR`, `INT`).
+4. Cast all column types to the correct SQL datatypes (e.g. `DATE`, `NVARCHAR(...)`, `INT`).
 
 # **VIEW TEMPLATES**
 
@@ -169,7 +166,7 @@ GO
 CREATE OR ALTER  VIEW [VWSDEST].[V_<table_name>]
 AS
     SELECT
-        -- Select columns,
+        -- SELECT COLUMNS,
         [DATE_OF_INSERTION_UNIX] = [dbo].[CONVERT_DATETIME_TO_UNIX][DATE_LAST_INSERTED]) 
     FROM [VWSDEST].[<table_name>]
     WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSDEST].[<table_name>])
@@ -178,7 +175,7 @@ GO
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. All DATE and DATETIME column types must be converted into UNIX with SQL functions such as `[dbo].[CONVERT_DATETIME_TO_UNIX](...)`.
     - After conversion add suffix `_unix` or `_UNIX` to the column name(s) (e.g. `[COLUMN_NAME]` to `[COLUMN_NAME_UNIX]` )
 3. :heavy_exclamation_mark: `[DATE_OF_INSERTION_UNIX]` must always be included in the views.
@@ -202,10 +199,10 @@ AS
 BEGIN
     INSERT INTO [VWSINTER].[<table_name>]
     (
-        -- Add columns to be populated 
+        -- ADD COLUMNS TO BE POPULATED 
     )
     SELECT
-        -- Select columns to be inserted into the table and additional functionality. (cast to the correct datatype, e.g. CAST([STAGE-field] AS datatype))
+        -- SELECT COLUMNS TO BE INSERTED INTO THE TABLE AND ADDITIONAL FUNCTIONALITY. (CAST TO THE CORRECT DATATYPE, E.G. CAST([STAGE-FIELD] AS DATATYPE))
     FROM 
         [VWSSTAGE].[<table_name>]
     WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSSTAGE].[<table_name>])
@@ -215,7 +212,7 @@ GO
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. :heavy_exclamation_mark: Do **not** insert or updated the value regarding `[DATE_LAST_INSERTED]` and `[ID]` within the target table(s).
 
 ### INTERMEDIATE &rarr; DESTINATION MAPPING
@@ -232,10 +229,10 @@ AS
 BEGIN
     INSERT INTO [VWSDEST].[<table_name>]
     (
-        -- Add columns to be populated
+        -- ADD COLUMNS TO BE POPULATED
     )
     SELECT
-        -- Select columns to be inserted into the table and additional functionality.
+        -- SELECT COLUMNS TO BE INSERTED INTO THE TABLE AND ADDITIONAL FUNCTIONALITY.
     FROM 
         [VWSINTER].[<table_name>]
     WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSINTER].[<table_name>])
@@ -245,7 +242,7 @@ GO
 
 #### *Details*:
 
-1. `<table_name>` must be replaced with a unique name (i.e. lower-cased).
+1. `<table_name>` must be replaced with an unique name.
 2. :heavy_exclamation_mark: Do **not** insert or updated the value regarding `[DATE_LAST_INSERTED]` and `[ID]` within the target table(s).
 
 # **DATATINO CONFIGURATIONS**
@@ -277,7 +274,7 @@ EXECUTE [DATATINO_ORCHESTRATOR_1].[UPSERT_WORKFLOW]
     @id = @workflow_id, 
     @workflow_name = @workflow_name,
     @description = @workflow_description,
-    @schedule = '<cron_expression>', -- see https://crontab.cronhub.io/ for more information.
+    @schedule = '<cron_expression>', -- SEE https://crontab.cronhub.io/ FOR MORE INFORMATION.
     @active = 1 /*
         1) 0 = inactive,
         2) 1 = active

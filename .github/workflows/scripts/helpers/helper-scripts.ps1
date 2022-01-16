@@ -1,9 +1,9 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
 
 $moduleName = "SqlServer"
 $modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
 if ($modules.Count -eq 0) {
+    Write-Host "Installing module $($moduleName)....." -ForegroundColor Yellow
     Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
 }
 
@@ -71,25 +71,25 @@ function Install-MssqlContainer {
 
         Write-Host "Setup server(s)....." -ForegroundColor Yellow
         $(docker run `
-            --cap-add SYS_PTRACE `
-            -e "ACCEPT_EULA=1" `
-            -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
-            -p ${ServerPort}:1433 `
-            --restart unless-stopped `
-            -d `
-            --name $ServerName `
-            mcr.microsoft.com/mssql/server > $null 2>&1) 
+                --cap-add SYS_PTRACE `
+                -e "ACCEPT_EULA=1" `
+                -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
+                -p ${ServerPort}:1433 `
+                --restart unless-stopped `
+                -d `
+                --name $ServerName `
+                mcr.microsoft.com/mssql/server > $null 2>&1) 
 
         Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
         Invoke-RetryCommand `
             -ScriptBlock {
-                Invoke-Sqlcmd `
-                    -ServerInstance "$Hostname,${ServerPort}" `
-                    -Database "master" `
-                    -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
-                    -Username "sa" `
-                    -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-            } `
+            Invoke-Sqlcmd `
+                -ServerInstance "$Hostname,${ServerPort}" `
+                -Database "master" `
+                -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
+                -Username "sa" `
+                -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+        } `
             -RetryCount 10
 
         Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
@@ -105,7 +105,7 @@ function Install-MssqlContainer {
 
         $(git clone -b $devOpsBranch $devOpsUrl)
 
-        Set-Location Datatino/Datatino.Model
+        Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model"
 
         '{ 
             "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
@@ -127,7 +127,7 @@ function Install-MssqlContainer {
 
         Set-Location ../..
 
-        Remove-Item -Path ./Datatino -Force -Recurse        
+        Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
         Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
     }
@@ -143,6 +143,18 @@ function Get-Dependencies {
     $cells = (Get-Content -Raw -Path $ScriptPath | ConvertFrom-Json).cells
     $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source.toLower()) }
     $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()).Value.Trim() } | ConvertFrom-Json)."depends-on"
+
+    $dependencies = $($dependencies | ForEach-Object {
+            if ($null -ne $_) {
+                try {                    
+                    return $(Get-ChildItem -Path $_ -ErrorAction Stop).FullName
+                }
+                catch {
+                    throw "Failed to get dependencies for: $($ScriptPath). Reason: $($_)"
+                }
+                
+            }
+        })
 
     $resultSet = @()
     if ($null -ne $dependencies) {
