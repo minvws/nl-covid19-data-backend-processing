@@ -146,7 +146,13 @@ function Get-Dependencies {
 
     $dependencies = $($dependencies | ForEach-Object {
             if ($null -ne $_) {
-                return $(Get-ChildItem -Path $_).FullName
+                try {                    
+                    return $(Get-ChildItem -Path $_ -ErrorAction Stop).FullName
+                }
+                catch {
+                    throw "Failed to get dependencies for: $($ScriptPath). Reason: $($_)"
+                }
+                
             }
         })
 

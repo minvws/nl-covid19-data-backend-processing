@@ -88,7 +88,7 @@ if ($notebooks.Count -gt 0) {
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green
             }
             catch {
-                Write-Error "$($_.exception.message)"
+                throw "$($_.exception.message)"
             }
         }
     }
