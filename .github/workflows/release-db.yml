@@ -13,6 +13,9 @@ on:
       - "src/**/*.ipynb"
     branches: 
       - "**" # Matches all branch and tag names. This is the default behavior when you don't use a branches or tags filter.
+      - '!main'
+      - '!master'
+      - '!release/*'
 
   pull_request:
     paths:
