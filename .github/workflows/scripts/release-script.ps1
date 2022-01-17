@@ -37,4 +37,3 @@ catch [Exception] {
     Write-Error "$($_)"
     throw
 }
-
