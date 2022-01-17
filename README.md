@@ -4,7 +4,7 @@
 
 **<a style="color:red">NOTE! STILL WORKING ON IT.</a>**
 
-[![build](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/release%20db/topic/redesign?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/release-db.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/release%20db?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/release-db.yml)
 [![repo size](https://img.shields.io/github/repo-size/minvws/nl-covid19-data-backend-processing?logo=github)](https://github.com/minvws/nl-covid19-data-backend-processing)
 
 
@@ -23,11 +23,11 @@ The **[dashboard](https://coronadashboard.rijksoverheid.nl)** provides informati
 
 ---
 
-### MSSQL
+### MICROSOFT SQL SERVER 2019
 
 A **[Microsoft SQL Server 2019](https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2019)** is used to ingest and digest the various sources. A **[docker](https://docs.docker.com/engine/install/)** image can also be used if no on-premise or cloud solution is available (**[Microsoft](https://hub.docker.com/_/microsoft-mssql-server)**):
 
->Command Prompt Terminal
+> Powershell
 
 ```powershell
 docker run `
@@ -40,9 +40,9 @@ docker run `
 
 ### DATATINO
 
-To schedule and automate the ingestion and processing of data a solution has been created and used: **[Datatino Orchestrator](https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino)** (publicly available soon). However the user could use a different schedule and automate solution (or do it by hand).
+To schedule and automate the ingestion and digestion of data, custom a application is used: **[Datatino Orchestrator](https://kpmg-nl@dev.azure.com/kpmg-nl/VWS-covid19-migration-project/_git/Datatino)** (publicly available soon). However the user could use a different schedule and automate solution (or manually).
 
->Powershell
+> Powershell
 
 ```powershell
 # Trigger a or multiple workflows
@@ -95,15 +95,16 @@ Invoke-RestMethod @parameters;
 
 ### CI/CD PIPELINES
 
-**[Azure DevOps CI/CD Pipelines](../deploy)** or **[Github Actions](../.github/workflows/build-pipelines.yml)** will be used to build executable `Transact-SQL` (i.e. `T-SQL`) scripts and release these scripts to their respective environment (i.e. `Development`, `Acceptance` and `Production`).
+**[Azure DevOps CI/CD Pipelines](../deploy)** or **[Github Actions](../.github/workflows/build-pipelines.yml)** can be used to build executable `Transact-SQL` (i.e. `T-SQL`) scripts and release these scripts to their respective environment (i.e. `Development`, `Acceptance` and `Production`).
 
-Use the following command to start listening for `Github Action` jobs with self-hosted runners:
+When running into CI/CD issues (e.g. IP Address restrictions), use the following command to start listening for `Github Action` jobs with self-hosted runners - on a computer with the required premissions:
 
 > Powershell
 
 ```powershell
 $TAG="ghcr.io/minvws/corona-dashboard/github-runners:unstable"
 $REPOSITORY_URL="https://github.com/minvws/nl-covid19-data-backend-processing"
+$GITHUB_RUNNER_TOKEN="<token>"
 
 docker run `
     -e GITHUB_RUNNER_TOKEN=$GITHUB_RUNNER_TOKEN `
@@ -123,7 +124,7 @@ docker run `
 
 ---
 
-The core team aims to define and calculate various related indicators which are ultimately presented on **[dashboard](https://coronadashboard.rijksoverheid.nl)**. Some indicators are calculated using a single data source, others require a combination of data sources. The calculation of indicators is logically split in separate workflows (see **[HOW TO IMPLEMENT WORKFLOWS*](src/)**).
+The core team aims to define and calculate various related indicators which are ultimately presented on **[dashboard](https://coronadashboard.rijksoverheid.nl)**. Some indicators are calculated using a single data source, others require a combination of data sources. The calculation of indicators is logically split in separate workflows (see **[HOW TO IMPLEMENT WORKFLOWS](src/)**).
 
 Supplementary information regarding the dashboard can be 
 found here: **[link](https://coronadashboard.rijksoverheid.nl/verantwoording)**.
