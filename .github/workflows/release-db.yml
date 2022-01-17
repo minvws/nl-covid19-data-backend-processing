@@ -12,7 +12,7 @@ on:
     paths:
       - "src/**/*.ipynb"
     branches: 
-      - "topic/*"
+      - "**" # Matches all branch and tag names. This is the default behavior when you don't use a branches or tags filter.
 
   pull_request:
     paths:
@@ -23,7 +23,6 @@ on:
       - main
       - master
       - release/*
-      - topic/redesign
 
 env:
   GITHUB_WORKFLOWS: "./.github/workflows"
