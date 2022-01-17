@@ -12,7 +12,7 @@ on:
     paths:
       - "src/**/*.ipynb"
     branches: 
-      - "*"
+      - "**"
 
   pull_request:
     paths:
