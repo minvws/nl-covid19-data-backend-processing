@@ -13,17 +13,24 @@ Param (
 Write-Host "Start migration:" -ForegroundColor Green
 
 try {
+    $hashTable = @{}
+    $scripts = $((Get-ChildItem -Path $SourceDirectory -Filter "*.sql") -Split ' ') | 
+    ForEach-Object {
+        $script = Split-Path -Path $_ -Leaf
+        $hashTable.Add([int]([regex]::Match($script, '\d+').Value), $_)
+    };
 
-    $scripts = $((Get-ChildItem -Path $SourceDirectory -Filter "*.sql") -Split ' ') | Sort-Object
-    foreach ($script in $scripts | Sort-Object -Property Fullname) {
+    $scripts = $($hashTable.GetEnumerator() | Sort-Object -Property name)
+
+    foreach ($script in $scripts ) {
         
-        Write-Host "$($script)" -ForegroundColor Blue
+        Write-Host "$($script.Value)" -ForegroundColor Blue
 
         Invoke-RetryCommand -ScriptBlock { 
             Invoke-Sqlcmd `
                 -ServerInstance $Server `
                 -Database $Database `
-                -InputFile $script `
+                -InputFile $script.Value `
                 -Username $Username `
                 -Password $Password `
                 -Verbose 
