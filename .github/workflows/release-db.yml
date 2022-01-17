@@ -12,7 +12,7 @@ on:
     paths:
       - "src/**/*.ipynb"
     branches: 
-      - "topic/*"
+      - "*"
 
   pull_request:
     paths:
@@ -23,7 +23,6 @@ on:
       - main
       - master
       - release/*
-      - topic/redesign
 
 env:
   GITHUB_WORKFLOWS: "./.github/workflows"
