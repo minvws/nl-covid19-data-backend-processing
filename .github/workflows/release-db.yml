@@ -228,5 +228,5 @@ jobs:
 
       - name: 6 - Post Deployment
         if: always()
-        run: Remove-Item -Recurse -Force "${{ github.workspace }}"
+        run: Remove-Item -Recurse -Force "${{ github.workspace }}/src"
         shell: pwsh
