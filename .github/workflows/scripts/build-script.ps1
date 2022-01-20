@@ -11,12 +11,12 @@ Param (
 . "./.github/workflows/scripts/helpers/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
-$databaseName = "cdb-db"
+$databaseName = "dashboard-db"
 $serverName = "local-mssql"
 $serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { $_.endswith(".ipynb") }
+$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.endswith(".ipynb")) -and (Test-Path -LiteralPath $_) }
 
 $deps = @()
 foreach ($notebook in $notebooks) {
