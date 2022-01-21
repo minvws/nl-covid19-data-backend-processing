@@ -1,0 +1,123 @@
+# Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+# Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
+
+# This is a workflow to build and register a Linux based runner/agent that can be used as listener for workflows and pipelines.
+name: "ci-runners"
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
+  push:
+    paths:
+      - ".runners/*"
+      - "!**/*.md"
+    branches:
+      - "topic/*" # USED FOR TESTING
+  pull_request:
+    branches:
+      - master
+
+env:
+  TARGET_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7
+  CONTAINERS_PATH: ".runners"
+  REGISTRY: ghcr.io
+
+jobs:
+  package:
+    name: "register packages"
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: corona-dashboard/github-runners
+
+    steps:
+      - name: 1 - Checkout
+        uses: actions/checkout@v2
+
+      - name: 2 - Access Registry
+        id: login
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 3 - Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+
+      - name: 4 - Setup Build
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+
+      - name: 5 - Setup Caching
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/base/.buildx-cache
+          key: ${{ runner.os }}-base-buildx-${{ hashfiles('.buildx-cache/**') }}
+          restore-keys: |
+            ${{ runner.os }}-base-buildx-
+
+      - name: 6 - Setup Registry Metadata
+        id: metadata
+        run: |
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Set default version
+          VERSION=unstable
+
+          # Set tag as nightly
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            VERSION=nightly
+          fi
+
+          # Use `latest` tag convention
+          if [ "$VERSION" == "master" ]; then
+            VERSION=latest
+            echo IMAGE_ID=${IMAGE_ID}
+            echo VERSION=${VERSION}
+          fi
+
+          # Use versioning tag convention
+          TAGS="--tag ${IMAGE_ID}:${VERSION}"
+          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            TAGS="$TAGS --tag ${IMAGE_ID}:latest"
+          fi
+
+          # Set outputs
+          echo ::set-output name=image_id::${IMAGE_ID}
+          echo ::set-output name=version::${VERSION}
+
+          # Dockerfile.base arguments
+          echo ::set-output name=buildx_args::--cache-from "type=local,src=${{ github.workspace }}/base/.buildx-cache" \
+            --cache-to "type=local,dest=${{ github.workspace }}/base/.buildx-cache" \
+            --platform ${{ env.TARGET_PLATFORMS }} \
+            --build-arg VERSION=${VERSION} \
+            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+            --build-arg VCS_REF=${GITHUB_SHA::8} \
+            --file ${{ env.CONTAINERS_PATH }}/Dockerfile \
+            ${TAGS} \
+            ${{ env.CONTAINERS_PATH }}
+
+      - name: 7 - Replace Tokens
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["${{ env.CONTAINERS_PATH }}/Dockerfile"]'
+        env:
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: 8 - Build & Push Packages
+        if: success()
+        run: |
+          docker buildx build --output "type=image,push=true" ${{ steps.metadata.outputs.buildx_args }}
+
+      - name: 9 - Inspect Packages
+        if: success()
+        run: |
+          docker buildx imagetools inspect ${{ steps.metadata.outputs.image_id }}:${{ steps.metadata.outputs.version }}

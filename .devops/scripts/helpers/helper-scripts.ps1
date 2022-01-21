@@ -1,9 +1,9 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-Write-Host "Installing module SqlServer....." -ForegroundColor Yellow
 
 $moduleName = "SqlServer"
 $modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
 if ($modules.Count -eq 0) {
+    Write-Host "Installing module $($moduleName)....." -ForegroundColor Yellow
     Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
 }
 
@@ -61,27 +61,30 @@ function Install-MssqlContainer {
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ServerPort,
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitUrl,
         [string]$DatatinoDevOpsGitBranch = "master",
-        [string]$DatatinoDevOpsPAT = $null
+        [string]$DatatinoDevOpsPAT = $null,
+        [string]$Hostname = $null
     )
 
     if ($null -eq $(docker ps -asq --filter "name=$ServerName")) {
         
+        $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
+
         Write-Host "Setup server(s)....." -ForegroundColor Yellow
         $(docker run `
             --cap-add SYS_PTRACE `
             -e "ACCEPT_EULA=1" `
-            -e "MSSQL_SA_PASSWORD=$(gpg --gen-random --armor 1 14)" `
+            -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
             -p ${ServerPort}:1433 `
             --restart unless-stopped `
             -d `
             --name $ServerName `
-            mcr.microsoft.com/mssql/server > /dev/null 2>&1) 
+            mcr.microsoft.com/mssql/server > $null 2>&1) 
 
-        Write-Host "Starting server(s): $(hostname -i)....." -ForegroundColor Blue
+        Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
         Invoke-RetryCommand `
             -ScriptBlock {
                 Invoke-Sqlcmd `
-                    -ServerInstance "$(hostname -i),${ServerPort}" `
+                    -ServerInstance "$Hostname,${ServerPort}" `
                     -Database "master" `
                     -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
                     -Username "sa" `
@@ -102,10 +105,10 @@ function Install-MssqlContainer {
 
         $(git clone -b $devOpsBranch $devOpsUrl)
 
-        Set-Location Datatino/Datatino.Model
+        Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model"
 
         '{ 
-            "DatabaseConnectionString": "' + "Data Source=$(hostname -i),${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
+            "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
         }' | Out-File ".database"
         
         $(dotnet tool install --global dotnet-ef)
@@ -114,7 +117,7 @@ function Install-MssqlContainer {
 
         foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
             Invoke-Sqlcmd `
-                -ServerInstance "$(hostname -i),${ServerPort}" `
+                -ServerInstance "$Hostname,${ServerPort}" `
                 -Database $DatabaseName `
                 -InputFile $script `
                 -Username "sa" `
@@ -124,7 +127,7 @@ function Install-MssqlContainer {
 
         Set-Location ../..
 
-        Remove-Item -Path ./Datatino -Force -Recurse        
+        Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
         Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
     }
