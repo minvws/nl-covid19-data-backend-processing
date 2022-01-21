@@ -1,0 +1,54 @@
+name: "composite-action"
+description: "composite action"
+inputs:
+  ENVIRONMENT:
+    required: true
+    description: "Available values: 'development', 'acceptance', 'production'"
+  MSSQL_SERVER:
+    required: true
+    description: "SQL Server hostname"
+  MSSQL_DATABASE:
+    required: true
+    description: "SQL Server database name"
+  LOGIN_USERNAME:
+    required: true
+    description: "SQL Server login username"
+  LOGIN_PASSWORD:
+    required: true
+    description: "SQL Server login password"
+
+runs:
+  using: composite
+  steps:
+
+    - name: "Download Artifacts: Scripts"
+      uses: actions/download-artifact@v2
+      with:
+        name: drop
+        path: ./src/Scripts
+
+    - name: "Replace Tokens"
+      run: |
+        $scripts = Get-ChildItem -Path "./src/**" -Filter "*.sql" -Recurse | Where-Object { $_.PSIsContainer -eq $false }
+        Write-Host "Replace tokens:"
+        foreach ($script in $scripts | Sort-Object -Property Fullname) {
+          Write-Host "`t$($script)" -ForegroundColor Blue
+          $content = (Get-Content $script) -replace '#{ Environment }#', '${{ inputs.ENVIRONMENT }}'
+          $content | Out-File $script
+        }
+      shell: pwsh
+
+    - name: "Deploy: Scripts"
+      run: |
+        & "${{ env.GITHUB_WORKFLOWS }}/scripts/release-script.ps1" `
+          -Server "${{ inputs.MSSQL_SERVER }}" `
+          -Database "${{ inputs.MSSQL_DATABASE }}" `
+          -SourceDirectory "./src/Scripts" `
+          -Username "${{ inputs.LOGIN_USERNAME }}" `
+          -Password "${{ inputs.LOGIN_PASSWORD }}"
+      shell: pwsh
+
+    - name: "Postdeploy: Remove Scripts"
+      if: always()
+      run: Remove-Item -Recurse -Force "./src/Scripts"
+      shell: pwsh

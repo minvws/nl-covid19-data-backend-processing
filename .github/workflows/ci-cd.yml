@@ -1,0 +1,123 @@
+# Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
+# Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
+
+# This is a workflow to build and release the business logic regarding the Corona Dashboard
+name: "ci-cd"
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  push:
+    paths:
+      - "src/**/*.ipynb"
+    branches: 
+      - "**" # Matches all branch and tag names. This is the default behavior when you don't use a branches or tags filter.
+      - '!main'
+      - '!master'
+      - '!release/*'
+
+  pull_request:
+    paths:
+      - "src/**/*.ipynb"
+    types:
+      - closed
+    branches:
+      - main
+      - master
+      - release/*
+
+env:
+  GITHUB_WORKFLOWS: "./.github/workflows"
+  CLIENT_NAME: ${{ github.repository_owner }}
+
+jobs:
+  # Build jobs
+  build:
+    name: "build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Select Modified Scripts"
+        id: select_modified_scripts
+        uses: jitterbit/get-changed-files@v1
+
+      - name: "Build MSSQL Scripts"
+        run: |
+          & "${{ env.GITHUB_WORKFLOWS }}/scripts/build-script.ps1" `
+            -SourceDirectory "${{ github.workspace }}" `
+            -ModifiedFiles "${{ steps.select_modified_scripts.outputs.all }}" `
+            -DatatinoDevOpsPAT "${{ secrets.DEV_OPS_PAT }}" `
+            -DatatinoDevOpsGitBranch "main" `
+            -DatatinoDevOpsGitUrl "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator"
+        shell: pwsh
+
+      - name: "Copy Files: Scripts"
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: drop
+          path: "${{ github.workspace }}/*.sql"
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+          retention-days: 28
+
+      - name: "Post Build"
+        if: always()
+        run: |
+          $containerName = "local-mssql"
+          Write-Host "Removing container(s)....."
+          docker container stop $containerName
+          docker container rm $containerName
+        shell: pwsh
+
+  # Development
+  development:
+    name: development
+    environment: development
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Deploy Artifacts"
+        uses: ./.github/workflows/templates/releases
+        with:
+          ENVIRONMENT: development
+          MSSQL_SERVER: ${{ secrets.MSSQL_SERVER }}
+          MSSQL_DATABASE: ${{ secrets.MSSQL_DATABASE }}
+          LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+
+  # Acceptance
+  acceptance:
+    name: acceptance
+    if: github.event.pull_request.merged == true
+    environment: acceptance
+    runs-on: self-hosted
+    needs: development
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Deploy Artifacts"
+        uses: ./.github/workflows/templates/releases
+        with:
+          ENVIRONMENT: acceptance
+          MSSQL_SERVER: ${{ secrets.MSSQL_SERVER }}
+          MSSQL_DATABASE: ${{ secrets.MSSQL_DATABASE }}
+          LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+
+  # Production
+  production:
+    name: production
+    environment: production
+    runs-on: self-hosted
+    needs: acceptance
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Deploy Artifacts"
+        uses: ./.github/workflows/templates/releases
+        with:
+          ENVIRONMENT: production
+          MSSQL_SERVER: ${{ secrets.MSSQL_SERVER }}
+          MSSQL_DATABASE: ${{ secrets.MSSQL_DATABASE }}
+          LOGIN_USERNAME: ${{ secrets.LOGIN_USERNAME }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}

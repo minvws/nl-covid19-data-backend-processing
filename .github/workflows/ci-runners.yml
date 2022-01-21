@@ -1,15 +1,15 @@
 # Copyright (c) 2021 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
 # Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-covid19-data-backend-processing for more information.
 
-# This is a basic workflow to help you get started with Actions
-name: "register containers"
+# This is a workflow to build and register a Linux based runner/agent that can be used as listener for workflows and pipelines.
+name: "ci-runners"
 
 on:
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
   push:
     paths:
-      - ".containers/*"
+      - ".runners/*"
       - "!**/*.md"
     branches:
       - "topic/*" # USED FOR TESTING
@@ -19,7 +19,7 @@ on:
 
 env:
   TARGET_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7
-  CONTAINERS_PATH: ".containers"
+  CONTAINERS_PATH: ".runners"
   REGISTRY: ghcr.io
 
 jobs:
