@@ -1,10 +1,12 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-
-$moduleName = "SqlServer"
-$modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
-if ($modules.Count -eq 0) {
-    Write-Host "Installing module $($moduleName)....." -ForegroundColor Yellow
-    Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
+$moduleList = @("SqlServer")
+$moduleList | ForEach-Object {
+    $module = $_
+    $modules = Get-InstalledModule | Where-Object { $_.Name -eq $module }
+    if ($modules.Count -eq 0) {
+        Write-Host "Installing module $($module)....." -ForegroundColor Yellow
+        Install-Module -Name $module -AllowClobber -Confirm:$False -Force
+    }
 }
 
 function Invoke-RetryCommand {
@@ -67,69 +69,79 @@ function Install-MssqlContainer {
 
     if ($null -eq $(docker ps -asq --filter "name=$ServerName")) {
         
-        $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
+        try 
+        {
+            $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
 
-        Write-Host "Setup server(s)....." -ForegroundColor Yellow
-        $(docker run `
-                --cap-add SYS_PTRACE `
-                -e "ACCEPT_EULA=1" `
-                -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
-                -p ${ServerPort}:1433 `
-                --restart unless-stopped `
-                -d `
-                --name $ServerName `
-                mcr.microsoft.com/mssql/server > $null 2>&1) 
+            Write-Host "Setup server(s)....." -ForegroundColor Yellow
+            $(docker run `
+                    --cap-add SYS_PTRACE `
+                    -e "ACCEPT_EULA=1" `
+                    -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
+                    -p ${ServerPort}:1433 `
+                    --restart unless-stopped `
+                    -d `
+                    --name $ServerName `
+                    mcr.microsoft.com/mssql/server > $null 2>&1) 
 
-        Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
-        Invoke-RetryCommand `
-            -ScriptBlock {
-            Invoke-Sqlcmd `
-                -ServerInstance "$Hostname,${ServerPort}" `
-                -Database "master" `
-                -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
-                -Username "sa" `
-                -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-        } `
+            Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
+            $password = "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')"
+            Invoke-RetryCommand `
+                -ScriptBlock {
+                    Invoke-Sqlcmd `
+                        -ServerInstance "$Hostname,${ServerPort}" `
+                        -Database "master" `
+                        -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
+                        -Username "sa" `
+                        -Password $password `
+            } `
             -RetryCount 10
 
-        Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
+            Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
 
-        $devOpsUrl = $DatatinoDevOpsGitUrl
-        $devOpsBranch = $DatatinoDevOpsGitBranch
-        if ($null -ne $DatatinoDevOpsPAT) {
-            $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
-            $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
+            $devOpsUrl = $DatatinoDevOpsGitUrl
+            $devOpsBranch = $DatatinoDevOpsGitBranch
+            if ($null -ne $DatatinoDevOpsPAT) {
+                $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+                $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
 
-            $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
-        }
+                $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
+            }
 
-        $(git clone -b $devOpsBranch $devOpsUrl)
+            $(git clone -b $devOpsBranch $devOpsUrl)
 
-        Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model"
+            Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model" -ErrorAction Stop
 
-        '{ 
-            "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
-        }' | Out-File ".database"
+            '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
         
-        $(dotnet tool install --global dotnet-ef)
-        $(dotnet ef migrations add SecondVersion-1.0.1)
-        $(dotnet ef database update)
+            $(dotnet tool install --global dotnet-ef)
+            $(dotnet ef migrations add SecondVersion-1.0.1)
+            $(dotnet ef database update)
 
-        foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
-            Invoke-Sqlcmd `
-                -ServerInstance "$Hostname,${ServerPort}" `
-                -Database $DatabaseName `
-                -InputFile $script `
-                -Username "sa" `
-                -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-                -Verbose
-        }
+            foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
+                Invoke-Sqlcmd `
+                    -ServerInstance "$Hostname,${ServerPort}" `
+                    -Database $DatabaseName `
+                    -InputFile $script `
+                    -Username "sa" `
+                    -Password $password `
+                    -Verbose
+            }
 
-        Set-Location ../..
+            Set-Location ../..
 
-        Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
+            Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
-        Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
+            Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
+        }
+        catch {
+            if ($null -ne $(docker ps -asq --filter "name=$ServerName")) {
+                $(docker container stop $ServerName > $null 2>&1)
+                $(docker container rm $ServerName > $null 2>&1)
+            }
+
+            throw "$($_.exception.message)"
+        }
     }
 }
 
@@ -165,4 +177,10 @@ function Get-Dependencies {
 
     $resultSet += $dependencies
     return $resultSet
+}
+
+function Set-LocalIPAddress {
+    return ([System.Net.DNS]::GetHostAddresses((hostname)) |
+        Where-Object { $_.AddressFamily -eq "InterNetwork" } |  
+        Select-Object IPAddressToString)[0].IPAddressToString
 }
