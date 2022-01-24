@@ -8,10 +8,10 @@ All code is written in *Jupyter Notebook* (with a optional `SQL kernel`), meanin
 
 Generally the code, within *Jupyter Notebook*, is separated into multiple sections:
 
-1. **[Tables](#**table-templates**)**
-2. **[Views](#**view-templates**)**
-3. **[Stored Procedures](#**stored-procedure-templates**)**
-4. **[Datatino Configurations](#**datatino-configurations**)**
+1. **[Tables](#table-templates)**
+2. **[Views](#view-templates)**
+3. **[Stored Procedures](#stored-procedure-templates)**
+4. **[Datatino Configurations](#datatino-configurations)**
 
 # **TABLE TEMPLATES**
 
@@ -163,7 +163,7 @@ GO
 -- LICENSED UNDER THE EUROPEAN UNION PUBLIC LICENCE V. 1.2 - SEE HTTPS://GITHUB.COM/MINVWS/NL-CONTACT-TRACING-APP-COORDINATION FOR MORE INFORMATION.
 
 -- 1) CREATE VIEW(S).....
-CREATE OR ALTER  VIEW [VWSDEST].[V_<table_name>]
+CREATE OR ALTER VIEW [VWSDEST].[V_<table_name>]
 AS
     SELECT
         -- SELECT COLUMNS,
@@ -288,26 +288,26 @@ EXECUTE [DATATINO_ORCHESTRATOR_1].[UPSERT_SOURCE]
     @source = '<source_location>', /* 
         1) URL, 
         2) datafiles/<client>/<filename>.<file_extension> (see BlobStorage for clients)
-        3) A storeprocedure (i.e. [dbo].[storeprocedure_name]) 
+        3) A Stored Procedure (i.e. [dbo].[stored_procedure_name]) 
     */
     @source_columns = '<exact_column_names>', /* 
         1) column1|column2|...|etc. (case sensitive)
-        2) null (if @source is a Storeprocedure) 
+        2) null (if @source is a Stored Procedure) 
     */
     @target_columns = '<exact_target_names>', /*
         1) target1|target2|...|etc. (case sensitive)
-        2) null (if @source is a Storeprocedure) 
+        2) null (if @source is a Stored Procedure) 
     */
     @target_name = '<target_name>', /*
         1) A table (i.g. [schema].[table_name])
-        2) null (if @source is a Storeprocedure)
+        2) null (if @source is a Stored Procedure)
     */
     @source_type = '<source_type>', /* 
         1) CsvFile  (for CSV files)
         2) JsonFile (for JSON files)
-        3) StoredProcedure
-        4) HTTP_POST
-        5) RestrictedApi (to restrict the ingest records' amount)
+        3) Stored Procedure
+        4) HTTP(S) POST
+        5) Restricted Api (to restrict the ingest records' amount)
     */
     @location_type = '<location_type>', /* 
         1) N/A (if using a storeprocedure)
@@ -323,10 +323,7 @@ EXECUTE [DATATINO_ORCHESTRATOR_1].[UPSERT_SOURCE]
     */
     @security_profile= 'RIVM' /* 
         1) NA 
-        2) NETWORK_CREDENTIAL (authenication by using <USERNAME>|<PASSWORD>)
-        3) AZURE_BLOB (authentication by using a AzureBlob connection string)
-        4) SQL_SERVER (authentication by using a Database connection string: Server=tcp:<SERVER_NAME>,<PORT>;Initial Catalog=<DATABASE_NAME>;User ID=<USER_NAME;Password=<PASSWORD>;)
-        5) BEARER (authentication by using a Bearer token: Bearer <TOKEN>)
+        2) RIVM (authenication by using <USERNAME>|<PASSWORD> for RIVM HTTP requests)
     */
 
 -- 3) UPSERT PROCESS(ES).....
@@ -390,13 +387,6 @@ DECLARE @config_id INT,
 SET @view_description = CONCAT('VIEW: ', @view_name)
 SET @config_description = CONCAT('VIEW CONFIGURATION: ', @view_name)
 
-SELECT TOP(1)
-    @config_id = configs.[ID],
-    @view_id = views.[ID]
-FROM [DATATINO_PROTO_1].[CONFIGURATIONS] configs
-INNER JOIN [DATATINO_PROTO_1].[VIEWS] views ON views.[ID] = configs.[VIEW_ID] AND views.[NAME] = @view_name
-INNER JOIN [DATATINO_PROTO_1].[PROTOS] protos ON protos.[ID] = configs.[PROTO_ID] AND protos.[NAME] = @proto_name
-WHERE configs.[NAME] = @item_name
 
 -- 2) UPSERT PROTO VIEW(S).....
 EXECUTE [DATATINO_PROTO_1].[UPSERT_VIEW]
