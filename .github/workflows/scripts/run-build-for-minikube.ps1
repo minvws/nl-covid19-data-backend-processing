@@ -38,7 +38,7 @@ $localSettings = $envSettings | ? {
 
 $database =  $localSettings.availableDatabases | ? { $_.databaseSecretName -eq "DatatinoDatabase" }
 
-$database.databaseConnectionString = "DataSource=$sqlHost,$portNr;user id=SA;password=$sqlPassword;InitialCatalog=dashboard-db;IntegratedSecurity=True;MultipleActiveResultSets=True"
+$database.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
 
 $storageConnectionString = ($localSettings.availableStorages | ? { $_.storageSecretName -eq "DatatinoStorage" }).storageConnectionString
 
@@ -64,8 +64,8 @@ $localSettingsStorage = $envSettingsStorage | ? {
 
 $databaseStorage =  $localSettingsStorage.availableDatabases | ? { $_.databaseSecretName -eq "DatatinoDatabase" }
 
-$databaseStorage.databaseConnectionString = "DataSource=$sqlHost,$portNr;user id=SA;password=$sqlPassword;InitialCatalog=dashboard-db;IntegratedSecurity=True;MultipleActiveResultSets=True"
-$localSettingsStorage.databaseConnectionString = "DataSource=$sqlHost,$portNr;user id=SA;password=$sqlPassword;InitialCatalog=dashboard-db;IntegratedSecurity=True;MultipleActiveResultSets=True"
+$databaseStorage.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
+$localSettingsStorage.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
 
 
 ConvertTo-JSon @($envSettingsStorage) -Depth 100 | Out-File $tempDirectory\.env -Force
@@ -82,7 +82,7 @@ Write-Host "Updating EF core config in the Datatino.Model project: [$datatinoDir
 
 $datatinoSettings = Get-Content $datatinoDirectory\Datatino.Model\.database -Encoding UTF8 | ConvertFrom-Json
 
-$datatinoSettings.DatabaseConnectionString = "DataSource=$sqlHost,$portNr;user id=SA;password=$sqlPassword;InitialCatalog=dashboard-db;IntegratedSecurity=True;MultipleActiveResultSets=True"
+$datatinoSettings.DatabaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
 
 ConvertTo-JSon $datatinoSettings -Depth 100 | Out-File $datatinoDirectory\Datatino.Model\.database -Force
 
