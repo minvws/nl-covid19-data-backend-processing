@@ -151,10 +151,10 @@ function Get-Dependencies {
         [String] $ScriptPath
     )
     
-    $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline + [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
     $cells = (Get-Content -Raw -Path $ScriptPath | ConvertFrom-Json).cells
-    $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source.toLower()) }
-    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()).Value.Trim() } | ConvertFrom-Json)."depends-on"
+    $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source) }
+    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source).Value.Trim() } | ConvertFrom-Json)."depends-on"
 
     $dependencies = $($dependencies | ForEach-Object {
             if ($null -ne $_) {
