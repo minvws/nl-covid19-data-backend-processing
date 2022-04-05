@@ -277,3 +277,4 @@ __pycache__/
 /*.sql
 .vscode/
 !.github/**
+*.ps1
