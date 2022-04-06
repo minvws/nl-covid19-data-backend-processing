@@ -4,6 +4,8 @@
 
 **<a style="color:red">NOTE! STILL WORKING ON IT.</a>**
 
+**<a style="color:red">NOTE! DUE TO TECHNICAL ISSUES THE GITHUB ACTION RUN INTO ERRORS. WE ARE TRYING TO FIX THIS AS SOON AS POSSIBLE.</a>**
+
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/minvws/nl-covid19-data-backend-processing/ci-cd?label=build&logo=github-actions&logoColor=white)](https://github.com/minvws/nl-covid19-data-backend-processing/blob/topic/redesign/.github/workflows/ci-cd.yml)
 [![repo size](https://img.shields.io/github/repo-size/minvws/nl-covid19-data-backend-processing?logo=github)](https://github.com/minvws/nl-covid19-data-backend-processing)
 
@@ -18,6 +20,20 @@ The **[dashboard](https://coronadashboard.rijksoverheid.nl)** provides informati
 2. **[Development Process](#development-process)**
 3. **[Contributions](#contributions)**
 4. **[Disclaimers](#disclaimers)**
+
+## **RELEASE NOTES**
+
+---
+
+**<a style="color:red">NOTE! Including the tracked and planned releases on the *README.md* started on 2022-04-05!</a>**
+
+Hereby the tracked and planned changes that are implemented on the Acceptance and Production environments.
+
+|Date of release|Source|Change|Environments|
+|:---|:---|:---|:--|
+|2022-04-06|[vws_vaccine_deliveries_administered.ipynb](./src/dataflows/vws_vaccine_deliveries_administered.ipynb)|Added "Novavax" within the JSON-object *[vaccine_administered](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/vaccine_administered.json)*.| <input type="checkbox" disabled checked/> Acceptance<br/><input type="checkbox" disabled /> Production|
+|2022-04-06|[vws_manual_input_vaccine_shots_planned.ipynb](./src/dataflows/vws_manual_input_vaccine_shots_planned.ipynb)|Replaces a workflow to populate the JSON-object *[vaccine_administered_planned](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/vaccine_administered_planned.json)*. Previously the JSON-object was populated by [vws_vaccine_deliveries_administered.ipynb](./src/dataflows/vws_vaccine_deliveries_administered.ipynb).| <input type="checkbox" disabled checked/> Acceptance<br/><input type="checkbox" disabled /> Production|
+|2022-04-06|[vws_behavior_annotations_nl.ipynb](./src/dataflows/vws_behavior_annotations_nl.ipynb)|Temporary workflow to include annotations to the **[Behavior Graphs](https://coronadashboard.rijksoverheid.nl/landelijk/gedrag)** within the JSON-object *[behavior_annotation](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/behavior_annotations.json)*.| <input type="checkbox" disabled checked/> Acceptance<br/><input type="checkbox" disabled /> Production|
 
 ## **Getting Started**
 
@@ -187,42 +203,6 @@ The core team aims to define and calculate various related indicators which are 
 
 Supplementary information regarding the dashboard can be 
 found here: **[link](https://coronadashboard.rijksoverheid.nl/verantwoording)**.
-
-### **Running build-script.ps1 locally (with minikube)**
-Since Docker Desktop is now a paid for product, running docker on windows requires some alternatives. One such alternative is making use of **[minikube](https://minikube.sigs.k8s.io/docs/start/)** for windows. It can be easily installed using winget:  
-`winget install minikube`   
-after which it is important that there is an available **[driver](https://minikube.sigs.k8s.io/docs/drivers/hyperv/)** in order to run it, hyperv is recommended; so simply enable the hyperv windows feature:  
-`Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All`  
-Install the docker-cli via the **[chocolatey](https://chocolatey.org/install)** package manager as follows:  
-`choco install docker`  
-
-The PowerShell scripts in use require PowerShell 7, so install this as well:  
-`winget install --id Microsoft.Powershell --source winget`  
-
-You might require some restarts of your console or computer in between these steps.
-
-Then you can start minikube as follows:  
-`minikube start --driver=hyperv`  
-When minikube is started, you need to run the following command in your powershell console in order to be able to use docker commands directly:  
-`& minikube -p minikube docker-env --shell powershell | Invoke-Expression`  
-This is required in every instance of PowerShell that you wish to perform docker commands in such as `docker ps -a` 
-To get the ip address that is used by your docker container you can run the follow command:  
-`([System.Uri]$Env:DOCKER_HOST).Host`, which is necessary information for running the build-script.ps1
-
-This is all that is required to run the build-script.ps1:
-Go to the root of this project where this readme is also located and run the following command:  
-`.\.github\workflows\scripts\build-script.ps1 -Hostname ([System.Uri]$Env:DOCKER_HOST).Host`  
-
-#### **updating your datatino configuration automatically with the currently running docker container**
-The previous section showed how to run the script to update the database automatically, but if you recreate your docker containers, the password and location of the MSSQL server can change. To automatically update there is another script called run-build-for-minikube.ps1 which will automatically update your .env and .database files of the datatino solution in all locations with the correct connection string.
-
-Install the Az powerhsell module:  
-`Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber`  
-
-Make sure your local Azure Storage (azurite) is running if your current .env file is configured to use it:  
-`azurite --silent --location c:\azurite --debug c:\azurite\debug.log`  
-
-Update the locations at the top of the `run-build-for-minikube.ps1` script and then run it. 
 
 ## **CONTRIBUTIONS**
 
