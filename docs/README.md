@@ -87,4 +87,12 @@ Static data is used by linking sporadic changing transactional data and expand m
 
 ---
 
-*t.b.d.*
+**<a style="color:red">NOTE! Including the tracked and planned releases on the *README.md* started on 2022-04-05!</a>**
+
+Hereby the tracked and planned changes that are implemented on the Acceptance and Production environments.
+
+|Date of release|Source|Change|Environments|
+|:---|:---|:---|:--|
+|2022-04-06|[vws_vaccine_deliveries_administered.ipynb](./src/dataflows/vws_vaccine_deliveries_administered.ipynb)|Added "Novavax" within the JSON-object *[vaccine_administered](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/vaccine_administered.json)*.| <input type="checkbox" disabled checked /> Acceptance<br/><input type="checkbox" disabled checked /> Production|
+|2022-04-05|[vws_manual_input_vaccine_shots_planned.ipynb](./src/dataflows/vws_manual_input_vaccine_shots_planned.ipynb)|Replaces a workflow to populate the JSON-object *[vaccine_administered_planned](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/vaccine_administered_planned.json)*. Previously the JSON-object was populated by [vws_vaccine_deliveries_administered.ipynb](./src/dataflows/vws_vaccine_deliveries_administered.ipynb).| <input type="checkbox" disabled checked/> Acceptance|
+|2022-04-06|[vws_behavior_annotations_nl.ipynb](./src/dataflows/vws_behavior_annotations_nl.ipynb)|Temporary workflow to include annotations to the **[Behavior Graphs](https://coronadashboard.rijksoverheid.nl/landelijk/gedrag)** within the JSON-object *[behavior_annotation](https://github.com/minvws/nl-covid19-data-dashboard/blob/develop/packages/app/schema/nl/behavior_annotations.json)*.| <input type="checkbox" disabled checked /> Acceptance<br/><input type="checkbox" disabled checked /> Production|
