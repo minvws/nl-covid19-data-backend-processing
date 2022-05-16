@@ -80,13 +80,15 @@ if ($notebooks.Count -gt 0) {
                     "GO`n"
                 } | Out-File $scriptFileName
 
-                Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
-                    Invoke-Sqlcmd `
-                        -ServerInstance "$Hostname,${serverPort}" `
-                        -Database $databaseName `
-                        -InputFile $scriptFileName `
-                        -Username "sa" `
-                        -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                foreach ($i in 1..2) {
+                    Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
+                        Invoke-Sqlcmd `
+                            -ServerInstance "$Hostname,${serverPort}" `
+                            -Database $databaseName `
+                            -InputFile $scriptFileName `
+                            -Username "sa" `
+                            -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                    }
                 }
 
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green
