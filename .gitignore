@@ -279,3 +279,4 @@ __pycache__/
 !.github/**
 *.ps1
 /orchestrator
+!/src/*/*.ps1
