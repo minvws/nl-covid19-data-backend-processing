@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 ### Set Variables
 
-$tableName = $($InputEntity + $($IPynbName -creplace '([A-Z\W]|\d+)(?<![a-z])', '_$&' ).Trim()).ToUpper();
+$tableName = $($InputEntity + "_" + $($IPynbName -creplace '([A-Z\W]|\d+)(?<![a-z])', '_$&' ).Trim('_')).ToUpper();
 
 $fs = "src/DataFactory/$($IPynbType)/pl_Process$($IPynbName).ipynb";
 
