@@ -16,7 +16,7 @@ $serverName = "local-mssql"
 $serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.endswith(".ipynb")) -and (Test-Path -LiteralPath $_) }
+$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and ( $_.Contains("DataFactory") -eq $false )}
 
 $deps = @()
 foreach ($notebook in $notebooks) {
