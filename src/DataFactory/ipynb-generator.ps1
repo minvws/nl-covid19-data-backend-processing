@@ -91,16 +91,30 @@ function Set-MarkdownSnippet {
 
 function Set-CodeSnippet {
     param (
-        [System.String] $Source
+        [System.Boolean] $Condition,
+        [System.String] $TrueStatement,
+        [System.String] $FalseStatement = $null
     )
+
+    Write-Host $Condition
     
-    return '{
-        "cell_type": "code",
-        "execution_count": null,
-        "metadata": {},
-        "outputs": [],
-        "source": [' + $Source + ']
-    }';
+    if ($Condition) {
+        return '{
+            "cell_type": "code",
+            "execution_count": null,
+            "metadata": {},
+            "outputs": [],
+            "source": [' + $TrueStatement + ']
+        }';
+    } else {
+        return '{
+            "cell_type": "code",
+            "execution_count": null,
+            "metadata": {},
+            "outputs": [],
+            "source": [' + $FalseStatement + ']
+        }';
+    }
 }
 
 function Set-OutputLayers {
@@ -131,28 +145,32 @@ function Set-OutputLayers {
         $constraintValue = $_.ConstraintValue?.ToUpper();
         if ($null -eq $constraintValue) {
             $constraintValue = "NULL"
-        } elseif ($constraintValue -ne "NULL") {
+        }
+        elseif ($constraintValue -ne "NULL") {
             $constraintValue = '"' + $constraintValue + '"'
         }      
 
         $constraintKeyName = $_.ConstraintKeyName?.ToUpper();
         if ($null -eq $constraintKeyName) {
             $constraintKeyName = "NULL"
-        } elseif ($constraintKeyName -ne "NULL") {
+        }
+        elseif ($constraintKeyName -ne "NULL") {
             $constraintKeyName = '"' + $constraintKeyName + '"'
         }
 
         $groupedKeyName = $_.GroupedKeyName?.ToUpper();
         if ($null -eq $groupedKeyName) {
             $groupedKeyName = "NULL"
-        } elseif ($groupedKeyName -ne "NULL") {
+        }
+        elseif ($groupedKeyName -ne "NULL") {
             $groupedKeyName = '"' + $groupedKeyName + '"'
         }
 
         $groupedLastUpdateName = $_.GroupedLastUpdateName?.ToUpper();
         if ($null -eq $groupedLastUpdateName) {
             $groupedLastUpdateName = "NULL"
-        } elseif ($groupedLastUpdateName -ne "NULL") {
+        }
+        elseif ($groupedLastUpdateName -ne "NULL") {
             $groupedLastUpdateName = '"' + $groupedLastUpdateName + '"'
         }
 
@@ -160,7 +178,7 @@ function Set-OutputLayers {
         return $subLayer.AppendJoin(",",                
             $(Set-MarkdownSnippet('"## **<span style=''color:teal''>' + $_.Name?.ToUpper() + " " + $_.ProtoName?.ToUpper() + '</span>**"')),
             $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>TABLES</span>**"')),
-            $(Set-CodeSnippet('"SET ANSI_NULLS ON\n",
+            $(Set-CodeSnippet -Condition $True -TrueStatement ('"SET ANSI_NULLS ON\n",
                     "GO\n",
                     "\n",
                     "SET QUOTED_IDENTIFIER ON\n",
@@ -184,11 +202,11 @@ function Set-OutputLayers {
                     "    ON [VWSDEST].['+ $name + '] (\n",
                     "\t\t[DATE_LAST_INSERTED]\n",
                     "\t)\n",
-                    "GO"'
-                )
+                    "GO"')
+                
             ),
             $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>STORED PROCEDURES</span>**"')),
-            $(Set-CodeSnippet('"-- 1) CREATE STORED PROCEDURE(S): ' + $(Set-LayerType) + ' TO DESTINATION.....\n",
+            $(Set-CodeSnippet -Condition $True -TrueStatement ('"-- 1) CREATE STORED PROCEDURE(S): ' + $(Set-LayerType) + ' TO DESTINATION.....\n",
                     "CREATE OR ALTER PROCEDURE [dbo].[SP_INSERT_OL_'+ $name + ']\n",
                     "AS\n",
                     "BEGIN\n",
@@ -201,11 +219,10 @@ function Set-OutputLayers {
                     "        [VWSINTER].['+ $tableName + ']\n",
                     "    WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSINTER].['+ $tableName + '])\n",
                     "END;\n",
-                    "GO"'
-                )
+                    "GO"')
             ),
             $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS</span>**"')),
-            $(Set-CodeSnippet('"-- 1) CREATE VIEW(S).....\n",
+            $(Set-CodeSnippet -Condition $True -TrueStatement ('"-- 1) CREATE VIEW(S).....\n",
                     "CREATE OR ALTER VIEW [VWSDEST].[V_'+ $name + '] AS\n",
                     "WITH CTE AS (\n",
                     "    SELECT\n",
@@ -216,11 +233,10 @@ function Set-OutputLayers {
                     "SELECT\n",
                     "    *\n",
                     "FROM CTE\n",
-                    "GO"'
-                )
+                    "GO"')
             ),
             $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS | CONFIGURATION</span>**"')),
-            $(Set-CodeSnippet('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
+            $(Set-CodeSnippet -Condition (($protoName.ToUpper() -eq "VR") -or ($protoName.ToUpper() -eq "GM")) -FalseStatement ('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
                     "DECLARE @view_name VARCHAR(256) = ''VWSDEST.V_'+ $name + ''',\n",
                     "        @view_description VARCHAR(256),\n",
                     "        @item_name VARCHAR(256) = '''+ $itemName + ''',\n",
@@ -317,15 +333,145 @@ function Set-OutputLayers {
                     "    @constraint_value = @constraint_value,\n",
                     "    @grouped_key_name = @grouped_key_name,\n",
                     "    @grouped_last_update_name = @grouped_last_update_name;\n",
-                    "GO"'
+                    "GO"') -TrueStatement ('"-- 1) SELECT PROTO(S).....\n",
+                    "DECLARE @current_proto_name VARCHAR(50)\n",
+                    "\n",
+                    "DECLARE @proto_name_table TABLE (\n",
+                    "    [PROTO_NAME] VARCHAR(50)\n",
+                    ");\n",
+                    "INSERT INTO @proto_name_table \n",
+                    "SELECT Distinct [NAME]\n",
+                    "    FROM [DATATINO_PROTO_1].[PROTOS]\n",
+                    "    WHERE NAME NOT LIKE ''' + $protoName + '_COLLECTION'' AND NAME LIKE ''' + $protoName + '%'' \n",
+                    "ORDER BY NAME\n",
+                    "\n",
+                    "DECLARE CUR CURSOR LOCAL FAST_FORWARD\n",
+                    "FOR\n",
+                    "SELECT [PROTO_NAME]\n",
+                    "FROM @proto_name_table;\n",
+                    "\n",
+                    "OPEN CUR;\n",
+                    "\n",
+                    "FETCH NEXT FROM CUR\n",
+                    "INTO @current_proto_name;\n",
+                    "\n",
+                    "WHILE @@FETCH_STATUS = 0\n",
+                    "BEGIN\n",
+                    "\n",
+                    "    -- 2) SET ENVIRONMENTAL VARIABLES.....\n",
+                    "    DECLARE @view_name VARCHAR(256) = ''VWSDEST.V_'+ $name + ''',\n",
+                    "        @view_description VARCHAR(256),\n",
+                    "        @item_name VARCHAR(256) = '''+ $itemName + ''',\n",
+                    "        @config_description VARCHAR(256),\n",
+                    "        @constraint_value VARCHAR(50) = @current_proto_name,\n",
+                    "        @constraint_key_name VARCHAR(50) = ' + $constraintKeyName + ',\n",
+                    "        @grouped_key_name VARCHAR(50) = ' + $groupedKeyName + ',\n",
+                    "        @grouped_last_update_name VARCHAR(50) = ' + $groupedLastUpdateName + ',\n",
+                    "        @proto_name VARCHAR(50) = @current_proto_name,\n",
+                    "        @columns VARCHAR(256) = ''' + $columns + ''',\n",
+                    "        @layout_type_id INT = ' + $layoutTypeId + ',\n",
+                    "        @last_update_name VARCHAR(50) = ''' + $lastUpdateName + ''',\n",
+                    "        @is_active INT;\n",
+                    "\n",
+                    "    SET @is_active = CASE LOWER(''#{ Environment }#'')\n",
+                    "        WHEN ''production'' THEN 1\n",
+                    "        WHEN ''acceptance'' THEN 1\n",
+                    "        ELSE 1\n",
+                    "    END;\n",
+                    "\n",
+                    "    SET @view_description = CONCAT(''VIEW: '', @view_name, '' FOR '', @item_name);\n",
+                    "    SET @config_description = CONCAT(''VIEW CONFIGURATION: '', @view_name, '' FOR '', @item_name);\n",
+                    "\n",
+                    "    -- 3) DETERMINE VIEW ID & CONFIGURATION ID\n",
+                    "    DECLARE @constrained INT,\n",
+                    "            @grouped INT,\n",
+                    "            @view_id BIGINT,\n",
+                    "            @config_id BIGINT;\n",
+                    "\n",
+                    "    SET @constrained = CASE \n",
+                    "        WHEN @constraint_key_name IS NULL THEN 0\n",
+                    "        ELSE 1\n",
+                    "    END;\n",
+                    "    SET @grouped = CASE \n",
+                    "        WHEN @grouped_key_name IS NULL THEN 0\n",
+                    "        ELSE 1\n",
+                    "    END;\n",
+                    "\n",
+                    "    DELETE FROM [DATATINO_PROTO_1].[CONFIGURATIONS]\n",
+                    "    WHERE [ID] IN (\n",
+                    "        SELECT\n",
+                    "            configs.[ID]\n",
+                    "        FROM [DATATINO_PROTO_1].[VIEWS] views\n",
+                    "        INNER JOIN [DATATINO_PROTO_1].[CONFIGURATIONS] AS configs ON views.[ID] = configs.[VIEW_ID]\n",
+                    "            AND configs.[NAME] = @item_name\n",
+                    "        INNER JOIN [DATATINO_PROTO_1].[PROTOS] AS protos ON protos.[ID] = configs.[PROTO_ID]\n",
+                    "            AND protos.[NAME] = @proto_name\n",
+                    "    );\n",
+                    "\n",
+                    "    SELECT \n",
+                    "        @view_id = [ID]\n",
+                    "    FROM [DATATINO_PROTO_1].[VIEWS]\n",
+                    "    WHERE ISNULL([CONSTRAINT_VALUE], ''X'') = ISNULL(@constraint_value, ''X'')\n",
+                    "        AND ISNULL([CONSTRAINT_KEY_NAME], ''X'') = ISNULL(@constraint_key_name, ''X'')\n",
+                    "        AND ISNULL([GROUPED_KEY_NAME], ''X'') = ISNULL(@grouped_key_name, ''X'')\n",
+                    "        AND ISNULL([GROUPED_LAST_UPDATE_NAME], ''X'') = ISNULL(@grouped_last_update_name, ''X'')\n",
+                    "        AND [NAME] = @view_name\n",
+                    "\n",
+                    "    SELECT\n",
+                    "        @config_id = configs.[ID]\n",
+                    "    FROM [DATATINO_PROTO_1].[VIEWS] views\n",
+                    "    INNER JOIN [DATATINO_PROTO_1].[CONFIGURATIONS] AS configs ON views.[ID] = configs.[VIEW_ID]\n",
+                    "        AND configs.[NAME] = @item_name\n",
+                    "        AND configs.[VIEW_ID] = @view_id\n",
+                    "    INNER JOIN [DATATINO_PROTO_1].[PROTOS] AS protos ON protos.[ID] = configs.[PROTO_ID]\n",
+                    "        AND protos.[NAME] = @proto_name\n",
+                    "    WHERE views.[NAME] = @view_name;\n",
+                    "\n",
+                    "    -- 4) UPSERT PROTO VIEW(S).....\n",
+                    "    EXECUTE [DATATINO_PROTO_1].[UPSERT_VIEW]\n",
+                    "        @id = @view_id,\n",
+                    "        @view_name = @view_name,\n",
+                    "        @description = @view_description,\n",
+                    "        @last_update_name = @last_update_name,\n",
+                    "        @constraint_key_name = @constraint_key_name,\n",
+                    "        @constraint_value = @constraint_value,\n",
+                    "        @grouped_key_name = @grouped_key_name,\n",
+                    "        @grouped_last_update_name = @grouped_last_update_name;\n",
+                    "\n",
+                    "    -- 5) UPSERT PROTO CONFIGURATION(S).....\n",
+                    "    EXECUTE [DATATINO_PROTO_1].[UPSERT_CONFIGURATION]\n",
+                    "        @id = @config_id,\n",
+                    "        @proto_name = @proto_name,\n",
+                    "        @description =  @config_description,\n",
+                    "        @view_name = @view_name,\n",
+                    "        @item_name = @item_name,\n",
+                    "        @constrained = @constrained,\n",
+                    "        @grouped = @grouped,\n",
+                    "        @columns = @columns,\n",
+                    "        @mapping = ''=LOWER()'',\n",
+                    "        @layout_type_id = @layout_type_id,\n",
+                    "        @active = @is_active,\n",
+                    "        @constraint_key_name = @constraint_key_name,\n",
+                    "        @constraint_value = @constraint_value,\n",
+                    "        @grouped_key_name = @grouped_key_name,\n",
+                    "        @grouped_last_update_name = @grouped_last_update_name;\n",
+                    "\n",
+                    "    FETCH NEXT FROM CUR\n",
+                    "    INTO @current_proto_name;    \n",
+                    "END\n",
+                    "\n",
+                    "CLOSE CUR;\n",
+                    "DEALLOCATE CUR;\n",
+                    "DELETE FROM @proto_name_table;\n",
+                    "GO"')
                 )
             )
-        )
     }
 
     if ($subLayers.Count -ne 0) {
         return ((Set-MarkdownSnippet('"# **OUTPUT LAYER**\n", "\n", "---"')) + "," + $($subLayers -Join ","))
-    } else {
+    }
+    else {
         $null
     }
 }
@@ -348,7 +494,7 @@ else {
         # Input Layer
         $(Set-MarkdownSnippet('"# **INPUT LAYER**\n", "\n", "---"') ),
         $(Set-MarkdownSnippet('"## **<span style=''color:teal''>TABLES</span>**"')),
-        $(Set-CodeSnippet('"SET ANSI_NULLS ON\n",
+        $(Set-CodeSnippet -Condition $True -TrueStatement ('"SET ANSI_NULLS ON\n",
             "GO\n",
             "\n",
             "SET QUOTED_IDENTIFIER ON\n",
@@ -361,14 +507,12 @@ else {
             "\t[DATE_LAST_INSERTED] [DATETIME] DEFAULT GETDATE(),\n",
             "\t-- ADD COLUMNS\n",
             ");\n",
-            "GO"'
-            )
+            "GO"')
         ),
         # Intermediate/Static Layer
         $(Set-MarkdownSnippet('"# **' + $(Set-LayerType) + ' LAYER**\n", "\n", "---"')),
         $(Set-MarkdownSnippet('"## **<span style=''color:teal''>TABLES</span>**"')),
-        $(Set-CodeSnippet('
-            "SET ANSI_NULLS ON\n",
+        $(Set-CodeSnippet -Condition $True -TrueStatement ('"SET ANSI_NULLS ON\n",
             "GO\n",
             "\n",
             "SET QUOTED_IDENTIFIER ON\n",
@@ -381,11 +525,10 @@ else {
             "\t[DATE_LAST_INSERTED] [DATETIME] DEFAULT GETDATE(),\n",
             "\t-- ADD COLUMNS\n",
             ");\n",
-            "GO"'
-            )
+            "GO"')
         ),
         $(Set-MarkdownSnippet('"## **<span style=''color:teal''>STORED PROCEDURES</span>**"')),
-        $(Set-CodeSnippet('"-- 1) CREATE STORED PROCEDURE(S): STAGING TO ' + $(Set-LayerType) + '.....\n",
+        $(Set-CodeSnippet -Condition $True -TrueStatement ('"-- 1) CREATE STORED PROCEDURE(S): STAGING TO ' + $(Set-LayerType) + '.....\n",
             "CREATE OR ALTER PROCEDURE [dbo].[SP_INSERT_' + $(Set-SProcType) + '_' + $tableName + ']\n",
             "AS\n",
             "BEGIN\n",
@@ -398,8 +541,7 @@ else {
             "        [VWSSTAGE].['+ $tableName + ']\n",
             "    WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSSTAGE].['+ $tableName + '])\n",
             "END;\n",
-            "GO"'
-            )
+            "GO"')
         ),
         # Output Layer
         $(Set-OutputLayers -Layers $OutputLayers)
