@@ -110,7 +110,7 @@ function Install-MssqlContainer {
 
             $(git clone -b $devOpsBranch $devOpsUrl)
 
-            Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model" -ErrorAction Stop
+            Set-Location "$(Split-Path $devOpsUrl -Leaf)/src/Datatino.Model" -ErrorAction Stop
 
             '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
         
@@ -128,7 +128,7 @@ function Install-MssqlContainer {
                     -Verbose
             }
 
-            Set-Location ../..
+            Set-Location ../../..
 
             Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
