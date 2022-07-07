@@ -280,3 +280,4 @@ __pycache__/
 *.ps1
 /orchestrator
 !/src/*/*.ps1
+*.bak
