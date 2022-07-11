@@ -11,7 +11,7 @@ pool:
 
 variables:
   SERVICE_PRINCIPAL_NAME: 'AzureRM-TF-Connection'
-  WORKING_DIRECTORY: '$(Pipeline.Workspace)/drop'
+  WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/drop'
 
 stages:
   - stage: Development
