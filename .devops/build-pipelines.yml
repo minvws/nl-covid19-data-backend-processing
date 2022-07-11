@@ -31,9 +31,9 @@ stages:
 
           - checkout: self
           - checkout: nl-cdb-be-apis
-            path: './__nl-cdb-be-apis'
+            path: '$(Build.SourcesDirectory)/__nl-cdb-be-apis'
 
-          - script: ls .
+          - script: ls $(Build.SourcesDirectory)
 
           - task: PowerShell@2
             displayName: "Task 1: Build Artifacts"
