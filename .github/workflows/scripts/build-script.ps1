@@ -3,7 +3,7 @@ Param (
     [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "master",
-    [String]$DatatinoDevOpsGitUrl = "https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_git/nl-cdb-be-apis",
+    [String]$DatatinoDevOpsGitRefUrl = "https://VWSCoronaDashboard@dev.azure.com/VWSCoronaDashboard/Corona Dashboard/_git/nl-cdb-be-apis",
     [String]$Hostname = $null #put your minikube ip address here if running on windows
 )
 
@@ -16,7 +16,7 @@ $serverName = "local-mssql"
 $serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and ( $_.Contains("DataFactory") -eq $false )}
+$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.endswith(".ipynb")) -and (Test-Path -LiteralPath $_) }
 
 $deps = @()
 foreach ($notebook in $notebooks) {

@@ -61,16 +61,16 @@ function Install-MssqlContainer {
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $DatabaseName,
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ServerName,
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ServerPort,
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitUrl,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitRefUrl,
         [string]$DatatinoDevOpsGitBranch = "master",
         [string]$DatatinoDevOpsPAT = $null,
         [string]$Hostname = $null
     )
 
+    $currentLocation = Get-Location
     if ($null -eq $(docker ps -asq --filter "name=$ServerName")) {
         
-        try 
-        {
+        try {
             $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
 
             Write-Host "Setup server(s)....." -ForegroundColor Yellow
@@ -88,32 +88,34 @@ function Install-MssqlContainer {
             $password = "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')"
             Invoke-RetryCommand `
                 -ScriptBlock {
-                    Invoke-Sqlcmd `
-                        -ServerInstance "$Hostname,${ServerPort}" `
-                        -Database "master" `
-                        -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
-                        -Username "sa" `
-                        -Password $password `
+                Invoke-Sqlcmd `
+                    -ServerInstance "$Hostname,${ServerPort}" `
+                    -Database "master" `
+                    -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
+                    -Username "sa" `
+                    -Password $password `
             } `
-            -RetryCount 10
+                -RetryCount 10
 
             Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
 
-            $devOpsUrl = $DatatinoDevOpsGitUrl
+            $devOpsUrl = $DatatinoDevOpsGitRefUrl
             $devOpsBranch = $DatatinoDevOpsGitBranch
-            if ($null -ne $DatatinoDevOpsPAT) {
+
+            if ((Test-Path -Path "../_$(Split-Path $devOpsUrl -Leaf)") -eq $false ) {
+                $devOpsUrl = $devOpsUrl.Replace(" ", "%20")
                 $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
                 $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
 
                 $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
+
+                $(git clone -b $devOpsBranch $devOpsUrl "../__$(Split-Path $devOpsUrl -Leaf)")
             }
 
-            $(git clone -b $devOpsBranch $devOpsUrl)
-
-            Set-Location "$(Split-Path $devOpsUrl -Leaf)/src/Datatino.Model" -ErrorAction Stop
+            Set-Location "../__$(Split-Path $devOpsUrl -Leaf)/src/Datatino.Model" -ErrorAction Stop
 
             '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
-        
+
             $(dotnet tool install --global dotnet-ef)
             $(dotnet ef migrations add SecondVersion-1.0.1)
             $(dotnet ef database update)
@@ -128,9 +130,9 @@ function Install-MssqlContainer {
                     -Verbose
             }
 
-            Set-Location ../../..
-
-            Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
+            Set-Location $currentLocation
+            
+            Remove-Item -Path "../__$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
             Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
         }

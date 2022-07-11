@@ -1,10 +1,12 @@
 ### INSTALL ADDITIONAL MODULE(S).....
-
-$moduleName = "SqlServer"
-$modules = Get-InstalledModule | Where-Object { $_.Name -eq $moduleName }
-if ($modules.Count -eq 0) {
-    Write-Host "Installing module $($moduleName)....." -ForegroundColor Yellow
-    Install-Module -Name $moduleName -AllowClobber -Confirm:$False -Force
+$moduleList = @("SqlServer")
+$moduleList | ForEach-Object {
+    $module = $_
+    $modules = Get-InstalledModule | Where-Object { $_.Name -eq $module }
+    if ($modules.Count -eq 0) {
+        Write-Host "Installing module $($module)....." -ForegroundColor Yellow
+        Install-Module -Name $module -AllowClobber -Confirm:$False -Force
+    }
 }
 
 function Invoke-RetryCommand {
@@ -59,77 +61,89 @@ function Install-MssqlContainer {
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $DatabaseName,
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string] $ServerName,
         [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][int] $ServerPort,
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitUrl,
+        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string]$DatatinoDevOpsGitRefUrl,
         [string]$DatatinoDevOpsGitBranch = "master",
         [string]$DatatinoDevOpsPAT = $null,
         [string]$Hostname = $null
     )
 
+    $currentLocation = Get-Location
     if ($null -eq $(docker ps -asq --filter "name=$ServerName")) {
         
-        $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
+        try {
+            $characterList = 'a'..'z' + 'A'..'Z' + '0'..'9' + '!@#$%^&*'.ToCharArray()
 
-        Write-Host "Setup server(s)....." -ForegroundColor Yellow
-        $(docker run `
-            --cap-add SYS_PTRACE `
-            -e "ACCEPT_EULA=1" `
-            -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
-            -p ${ServerPort}:1433 `
-            --restart unless-stopped `
-            -d `
-            --name $ServerName `
-            mcr.microsoft.com/mssql/server > $null 2>&1) 
+            Write-Host "Setup server(s)....." -ForegroundColor Yellow
+            $(docker run `
+                    --cap-add SYS_PTRACE `
+                    -e "ACCEPT_EULA=1" `
+                    -e "MSSQL_SA_PASSWORD=$(-join(Get-Random $characterList -Count 20))" `
+                    -p ${ServerPort}:1433 `
+                    --restart unless-stopped `
+                    -d `
+                    --name $ServerName `
+                    mcr.microsoft.com/mssql/server > $null 2>&1) 
 
-        Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
-        Invoke-RetryCommand `
-            -ScriptBlock {
+            Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
+            $password = "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')"
+            Invoke-RetryCommand `
+                -ScriptBlock {
                 Invoke-Sqlcmd `
                     -ServerInstance "$Hostname,${ServerPort}" `
                     -Database "master" `
                     -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
                     -Username "sa" `
-                    -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                    -Password $password `
             } `
-            -RetryCount 10
+                -RetryCount 10
 
-        Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
+            Write-Host "Setup Datatino Tool(s)....." -ForegroundColor Yellow
 
-        $devOpsUrl = $DatatinoDevOpsGitUrl
-        $devOpsBranch = $DatatinoDevOpsGitBranch
-        if ($null -ne $DatatinoDevOpsPAT) {
-            $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
-            $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
+            $devOpsUrl = $DatatinoDevOpsGitRefUrl
+            $devOpsBranch = $DatatinoDevOpsGitBranch
 
-            $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
-        }
+            if ((Test-Path -Path "../_$(Split-Path $devOpsUrl -Leaf)") -eq $false ) {
+                $devOpsUrl = $devOpsUrl.Replace(" ", "%20")
+                $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+                $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
 
-        $(git clone -b $devOpsBranch $devOpsUrl)
+                $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
 
-        Set-Location "$(Split-Path $devOpsUrl -Leaf)/Datatino.Model"
+                $(git clone -b $devOpsBranch $devOpsUrl "../__$(Split-Path $devOpsUrl -Leaf)")
+            }
 
-        '{ 
-            "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" + '"
-        }' | Out-File ".database"
+            Set-Location "../__$(Split-Path $devOpsUrl -Leaf)/src/Datatino.Model" -ErrorAction Stop
+
+            '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
+
+            $(dotnet tool install --global dotnet-ef)
+            $(dotnet ef migrations add SecondVersion-1.0.1)
+            $(dotnet ef database update)
+
+            foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
+                Invoke-Sqlcmd `
+                    -ServerInstance "$Hostname,${ServerPort}" `
+                    -Database $DatabaseName `
+                    -InputFile $script `
+                    -Username "sa" `
+                    -Password $password `
+                    -Verbose
+            }
+
+            Set-Location $currentLocation
+            
+            Remove-Item -Path "../__$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
         
-        $(dotnet tool install --global dotnet-ef)
-        $(dotnet ef migrations add SecondVersion-1.0.1)
-        $(dotnet ef database update)
-
-        foreach ($script in @("./Views/Views.sql", "./Sql/upsert_statements.sql")) {
-            Invoke-Sqlcmd `
-                -ServerInstance "$Hostname,${ServerPort}" `
-                -Database $DatabaseName `
-                -InputFile $script `
-                -Username "sa" `
-                -Password "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
-                -Verbose
+            Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
         }
+        catch {
+            if ($null -ne $(docker ps -asq --filter "name=$ServerName")) {
+                $(docker container stop $ServerName > $null 2>&1)
+                $(docker container rm $ServerName > $null 2>&1)
+            }
 
-        Set-Location ../..
-
-        Remove-Item -Path "./$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
-        
-        Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
+            throw "$($_.exception.message)"
+        }
     }
 }
 
@@ -139,10 +153,22 @@ function Get-Dependencies {
         [String] $ScriptPath
     )
     
-    $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $reg = [Regex]::new('(?<=dependencies.+json).+(?=```)', [System.Text.RegularExpressions.RegexOptions]::Singleline + [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
     $cells = (Get-Content -Raw -Path $ScriptPath | ConvertFrom-Json).cells
-    $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source.toLower()) }
-    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source.toLower()).Value.Trim() } | ConvertFrom-Json)."depends-on"
+    $markdowns = $cells | Where-Object { $_.cell_type -eq "markdown" -and $reg.IsMatch($_.source) }
+    $dependencies = ($markdowns | ForEach-Object { $reg.Match($_.source).Value.Trim() } | ConvertFrom-Json)."depends-on"
+
+    $dependencies = $($dependencies | ForEach-Object {
+            if ($null -ne $_) {
+                try {                    
+                    return $(Get-ChildItem -Path $_ -ErrorAction Stop).FullName
+                }
+                catch {
+                    throw "Failed to get dependencies for: $($ScriptPath). Reason: $($_)"
+                }
+                
+            }
+        })
 
     $resultSet = @()
     if ($null -ne $dependencies) {
@@ -153,4 +179,10 @@ function Get-Dependencies {
 
     $resultSet += $dependencies
     return $resultSet
+}
+
+function Set-LocalIPAddress {
+    return ([System.Net.DNS]::GetHostAddresses((hostname)) |
+        Where-Object { $_.AddressFamily -eq "InterNetwork" } |  
+        Select-Object IPAddressToString)[0].IPAddressToString
 }

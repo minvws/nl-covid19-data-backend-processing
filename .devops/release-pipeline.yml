@@ -18,7 +18,7 @@ pool:
 stages:
   - stage: Development
     jobs:
-      - template: templates/release-template.yml
+      - template: templates/deploy-business-logic.yml
         parameters:
           environment: development
 
@@ -26,7 +26,7 @@ stages:
     dependsOn:
     - Development
     jobs:
-    - template: templates/release-template.yml
+    - template: templates/deploy-business-logic.yml
       parameters:
         environment: acceptance
 
@@ -34,6 +34,6 @@ stages:
     dependsOn:
     - Acceptance
     jobs:
-    - template: templates/release-template.yml
+    - template: templates/deploy-business-logic.yml
       parameters:
         environment: production

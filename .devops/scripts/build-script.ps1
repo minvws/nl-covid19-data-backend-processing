@@ -1,22 +1,22 @@
 Param (
     [String]$SourceDirectory = $env:PWD ?? $(Get-Location),
-    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb").FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
-    [String]$DatatinoDevOpsGitBranch = "main",
-    [String]$DatatinoDevOpsGitUrl = "https://mke-netcompany@dev.azure.com/mke-netcompany/mke/_git/orchestrator",
-    [String]$Hostname = $(hostname -i) #put your minikube ip address here if running on windows
+    [String]$DatatinoDevOpsGitBranch = "master",
+    [String]$DatatinoDevOpsGitRefUrl = "https://VWSCoronaDashboard@dev.azure.com/VWSCoronaDashboard/Corona Dashboard/_git/nl-cdb-be-apis",
+    [String]$Hostname = $null #put your minikube ip address here if running on windows
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
-. "./.github/workflows/scripts/helpers/helper-scripts.ps1"
+. "./.devops/scripts/helpers/helper-scripts.ps1"
 
 ### SET VARIABLE(S).....
-$databaseName = "cdb-db"
+$databaseName = "dashboard-db"
 $serverName = "local-mssql"
 $serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { $_.endswith(".ipynb") }
+$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
 
 $deps = @()
 foreach ($notebook in $notebooks) {
@@ -26,16 +26,20 @@ foreach ($notebook in $notebooks) {
     }
 }
 
-$notebooks = $($deps | Select-Object -Unique)
+$notebooks = $($deps | Select-Object -Unique | ForEach-Object { return $(Get-ChildItem -Path $_).FullName } | Select-Object -Unique) 
 
 ### SETUP DATATINO MOCK CONTAINER(S).....
+if ($Hostname.Length -eq 0) {
+    $Hostname = $(Set-LocalIPAddress)
+}
+
 Install-MssqlContainer `
     -DatabaseName $databaseName `
     -ServerName $serverName `
     -ServerPort $serverPort `
     -DatatinoDevOpsPAT $DatatinoDevOpsPAT `
     -DatatinoDevOpsGitBranch $DatatinoDevOpsGitBranch `
-    -DatatinoDevOpsGitUrl $DatatinoDevOpsGitUrl `
+    -DatatinoDevOpsGitRefUrl $DatatinoDevOpsGitRefUrl `
     -Hostname $Hostname
 
 ### BUILD MSSQL SCRIPT(S).....
@@ -48,7 +52,7 @@ if ($notebooks.Count -gt 0) {
                     ".sql"
                 )
                 $scriptIndex = [System.Array]::IndexOf($notebooks, $_)
-                $scriptFileName = "$($scriptIndex)-$([System.IO.Path]::GetFileName($scriptPath))"  
+                $scriptFileName = "./$($scriptIndex)-$([System.IO.Path]::GetFileName($scriptPath))"  
                 $scriptCodes = (Get-Content -Raw -Path $_ | ConvertFrom-Json).cells | Where-Object { $_.cell_type -eq "code" }  
 
                 Write-Host "$($scriptPath):" -ForegroundColor Blue
@@ -76,19 +80,21 @@ if ($notebooks.Count -gt 0) {
                     "GO`n"
                 } | Out-File $scriptFileName
 
-                Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
-                    Invoke-Sqlcmd `
-                        -ServerInstance "$Hostname,${serverPort}" `
-                        -Database $databaseName `
-                        -InputFile $scriptFileName `
-                        -Username "sa" `
-                        -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                foreach ($i in 1..2) {
+                    Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
+                        Invoke-Sqlcmd `
+                            -ServerInstance "$Hostname,${serverPort}" `
+                            -Database $databaseName `
+                            -InputFile $scriptFileName `
+                            -Username "sa" `
+                            -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" `
+                    }
                 }
 
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green
             }
             catch {
-                Write-Error "$($_.exception.message)"
+                throw "$($_.exception.message)"
             }
         }
     }

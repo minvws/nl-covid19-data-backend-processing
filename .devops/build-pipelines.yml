@@ -6,15 +6,21 @@ trigger:
       - release/*
   paths:
     include:
-      - "src/**/*.ipynb"
+      - "src/"
     exclude:
       - "**/*.md"
+      
+resources:
+  repositories: 
+    - repository: nl-cdb-be-apis
+      type: git
+      name: "Corona Dashboard/nl-cdb-be-apis"
 
 pool:
   vmImage: ubuntu-latest
 
 variables:
-  PipelineWorkspace: $(Build.SourcesDirectory)/.devops
+  WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
 stages:
   - stage: Build
@@ -22,59 +28,54 @@ stages:
       - job: "Build"
         steps:
 
-          - task: PowerShell@2
-            name: SelectModifiedScripts
-            inputs:
-              targetType: "inline"
-              script: |              
-                $scripts = $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
-                Write-Host '##vso[task.setvariable variable=ModifiedScripts]$scripts'
-              errorActionPreference: "default" 
-              failOnStderr: true
-              pwsh: true
-            displayName: "Task 1: Select Modified Scripts"
+          - checkout: self
+          - checkout: nl-cdb-be-apis
+            path: '__nl-cdb-be-apis'
 
           - task: PowerShell@2
+            displayName: "Task 1: Build Artifacts"
             inputs:
-              filePath: "$(PipelineWorkspace)/scripts/build-script.ps1"
-              arguments: '-SourceDirectory "$(Build.SourcesDirectory)" -ModifiedFiles $(SelectModifiedScripts.ModifiedScripts) -DatatinoDevOpsPAT "$(DatatinoDevOpsPAT)" -DatatinoDevOpsGitBranch "$(DatatinoDevOpsGitBranch)" -DatatinoDevOpsGitUrl "$(DatatinoDevOpsGitUrl)"'
+              filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
+              arguments: > 
+                -SourceDirectory "./src" 
+                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
+                -DatatinoDevOpsGitRefUrl "../__nl-cdb-be-apis"
               failOnStderr: true
               pwsh: true
-            displayName: "Task 2: Build MSSQL Artifacts"
+              workingDirectory: $(WORKING_DIRECTORY)
+
+          - script: ls $(WORKING_DIRECTORY)
 
           - task: CopyFiles@2
+            displayName: "Task 2: Copy Scripts"
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)/'
+              SourceFolder: '$(WORKING_DIRECTORY)/..'
               Contents: '*.sql'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/src'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
               OverWrite: true
-            displayName: "Task 3: Copy Files: MSSQL Scripts"
 
           - task: CopyFiles@2
+            displayName: "Task 3: Copy Powershell Scripts"
             inputs:
-              SourceFolder: "$(PipelineWorkspace)/scripts"
+              SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
-              TargetFolder: "$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)/scripts"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/scripts"
               OverWrite: true
-            displayName: "Task 4: Copy Files: Powershell Scripts"
+
+          # Publish the artifact to be used as a source for a release pipeline.
+          - task: ArchiveFiles@2
+            displayName: "Task 5: Set Artifacts"
+            inputs:
+              rootFolderOrFile: $(ARM_TEMPLATES_DIRECTORY)
+              includeRootFolder: false
+              archiveType: 'tar'
+              tarCompression: 'gz'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-factory.tgz'
+              replaceExistingArchive: true
 
           - task: PublishBuildArtifacts@1
+            displayName: "Task 4: Publish Artifacts"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
               publishLocation: "Container"
-            displayName: "Task 5: Publish Artifacts"
-
-          - task: PowerShell@2
-            condition: always()
-            inputs:
-              targetType: "inline"
-              script: |
-                $containerName = "local-mssql"
-                Write-Host "Removing container(s)....."
-                docker container stop $containerName
-                docker container rm $containerName
-              errorActionPreference: "default" 
-              failOnStderr: true
-              pwsh: true
-            displayName: "Task 5: Post Build"
