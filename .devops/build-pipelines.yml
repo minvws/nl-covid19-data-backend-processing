@@ -52,8 +52,8 @@ stages:
           - task: CopyFiles@2
             displayName: "Task 3: Copy Scripts"
             inputs:
-              SourceFolder: '$(WORKING_DIRECTORY)/..'
-              Contents: '*.sql'
+              SourceFolder: '$(WORKING_DIRECTORY)'
+              Contents: '**/*.sql'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
               OverWrite: true
 
