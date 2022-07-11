@@ -62,7 +62,7 @@ stages:
             inputs:
               SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
-              TargetFolder: "$(Build.ArtifactStagingDirectory)/scripts"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/scripts"
               OverWrite: true
 
           - task: PublishBuildArtifacts@1
