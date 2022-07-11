@@ -1,10 +1,11 @@
 trigger: 
   branches:
-    include:
+    exclude:
       - main
       - master
       - release/*
-      - develop
+    include:
+      - '*'
   paths:
     include:
       - "src/"
