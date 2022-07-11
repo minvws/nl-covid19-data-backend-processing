@@ -1,39 +1,49 @@
 trigger: none
 
-# this pipeline will be triggered by another pipeline
 resources:
   pipelines:
-    - pipeline: build # name of the pipeline resource
-      source: "cdb - ci"
-      trigger: 
-        branches:
-          include:
-            - main
-            - master
-            - release/*
+    - pipeline: Build
+      source: 'nl-cdb-be-business-logic - CI'
+      trigger: true # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
 
 pool:
-  name: "default"
+  vmImage: 'ubuntu-latest'
+
+variables:
+  SERVICE_PRINCIPAL_NAME: 'AzureRM-TF-Connection'
+  WORKING_DIRECTORY: '$(Pipeline.Workspace)'
 
 stages:
   - stage: Development
+    variables:
+      ENVIRONMENT: Development
     jobs:
-      - template: templates/deploy-business-logic.yml
-        parameters:
-          environment: development
+    - template: templates/deploy-business-logic.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
   - stage: Acceptance
-    dependsOn:
-    - Development
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release/')) # to be changed to refs/heads/master
+    dependsOn: [ Development ]
+    variables:
+      ENVIRONMENT: Acceptance
     jobs:
     - template: templates/deploy-business-logic.yml
       parameters:
-        environment: acceptance
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
   - stage: Production
-    dependsOn:
-    - Acceptance
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release/')) # to be changed to refs/heads/master
+    dependsOn: [ Acceptance ]
+    variables:
+      ENVIRONMENT: Production
     jobs:
     - template: templates/deploy-business-logic.yml
       parameters:
-        environment: production
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
