@@ -4,11 +4,13 @@ resources:
   pipelines:
     - pipeline: Build
       source: 'nl-cdb-be-business-logic - CI'
-      include: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
-      - main
-      - master
-      - release/*
-      - develop*
+      trigger: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
+        branches:
+          include:
+            - main
+            - master
+            - release/*
+            - develop*
 
 pool:
   vmImage: 'ubuntu-latest'
