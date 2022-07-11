@@ -32,7 +32,9 @@ stages:
           - checkout: self
           - checkout: nl-cdb-be-apis
 
-          - script: mv dir ./nl-cdb-be-apis ./__nl-cdb-be-apis && dir $(Build.SourcesDirectory)
+          - script: | 
+              mv ./nl-cdb-be-apis ./__nl-cdb-be-apis 
+              dir $(Build.SourcesDirectory)
             displayName: "Task 1: Set Checkouts"
 
           - task: PowerShell@2
