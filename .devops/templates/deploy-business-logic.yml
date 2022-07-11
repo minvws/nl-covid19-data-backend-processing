@@ -43,7 +43,7 @@ jobs:
         
             # Stop Azure Data Factory Triggers
             - task: AzurePowerShell@5
-              displayName: 'Task 2: Stop Triggers'
+              displayName: 'Task 2: Execute Scripts'
               inputs:
                 azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
                 ScriptType: 'InlineScript'
