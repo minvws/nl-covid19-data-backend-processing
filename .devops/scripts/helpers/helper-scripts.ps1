@@ -101,18 +101,19 @@ function Install-MssqlContainer {
 
             $devOpsUrl = $DatatinoDevOpsGitRefUrl
             $devOpsBranch = $DatatinoDevOpsGitBranch
+            $devOpsDirectory = "__$(Split-Path $devOpsUrl -Leaf)"
 
-            if ((Test-Path -Path "../_$(Split-Path $devOpsUrl -Leaf)") -eq $false ) {
+            if ((Test-Path -Path "../$($devOpsDirectory)") -eq $false ) {
                 $devOpsUrl = $devOpsUrl.Replace(" ", "%20")
                 $reg = [Regex]::new('(?<=https://)(.+@+?)(?=.+)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
                 $devOpsUrl = $reg.Replace($devOpsUrl, [System.String]::Empty)
 
                 $devOpsUrl = $devOpsUrl.Insert("https://".Length, "$($DatatinoDevOpsPAT)@")
 
-                $(git clone -b $devOpsBranch $devOpsUrl "../__$(Split-Path $devOpsUrl -Leaf)")
+                $(git clone -b $devOpsBranch $devOpsUrl "../$($devOpsDirectory)")
             }
 
-            Set-Location "../__$(Split-Path $devOpsUrl -Leaf)/src/Datatino.Model" -ErrorAction Stop
+            Set-Location "../$($devOpsDirectory)/src/Datatino.Model" -ErrorAction Stop
 
             '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
 
@@ -132,7 +133,7 @@ function Install-MssqlContainer {
 
             Set-Location $currentLocation
             
-            Remove-Item -Path "../__$(Split-Path $devOpsUrl -Leaf)" -Force -Recurse        
+            Remove-Item -Path "../$($devOpsDirectory)" -Force -Recurse        
         
             Write-Host "Finished setting up server(s)..... `n" -ForegroundColor Green
         }

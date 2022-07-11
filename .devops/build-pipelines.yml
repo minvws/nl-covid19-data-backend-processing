@@ -31,51 +31,42 @@ stages:
 
           - checkout: self
           - checkout: nl-cdb-be-apis
-            path: '__nl-cdb-be-apis'
+
+          - script: | 
+              mv ./nl-cdb-be-apis ./__nl-cdb-be-apis 
+              dir $(Build.SourcesDirectory)
+            displayName: "Task 1: Set Checkouts"
 
           - task: PowerShell@2
-            displayName: "Task 1: Build Artifacts"
+            displayName: "Task 2: Build Artifacts"
             inputs:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
                 -SourceDirectory "./src" 
                 -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
-                -DatatinoDevOpsGitRefUrl "../__nl-cdb-be-apis"
+                -DatatinoDevOpsGitRefUrl "../nl-cdb-be-apis"
               failOnStderr: true
               pwsh: true
               workingDirectory: $(WORKING_DIRECTORY)
 
-          - script: ls $(WORKING_DIRECTORY)
-
           - task: CopyFiles@2
-            displayName: "Task 2: Copy Scripts"
+            displayName: "Task 3: Copy Scripts"
             inputs:
-              SourceFolder: '$(WORKING_DIRECTORY)/..'
-              Contents: '*.sql'
+              SourceFolder: '$(WORKING_DIRECTORY)'
+              Contents: '**/*.sql'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
               OverWrite: true
 
           - task: CopyFiles@2
-            displayName: "Task 3: Copy Powershell Scripts"
+            displayName: "Task 4: Copy Powershell Scripts"
             inputs:
               SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
-              TargetFolder: "$(Build.ArtifactStagingDirectory)/scripts"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/scripts"
               OverWrite: true
 
-          # Publish the artifact to be used as a source for a release pipeline.
-          - task: ArchiveFiles@2
-            displayName: "Task 5: Set Artifacts"
-            inputs:
-              rootFolderOrFile: $(ARM_TEMPLATES_DIRECTORY)
-              includeRootFolder: false
-              archiveType: 'tar'
-              tarCompression: 'gz'
-              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-factory.tgz'
-              replaceExistingArchive: true
-
           - task: PublishBuildArtifacts@1
-            displayName: "Task 4: Publish Artifacts"
+            displayName: "Task 5: Publish Artifacts"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
