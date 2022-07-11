@@ -31,12 +31,12 @@ stages:
 
           - checkout: self
           - checkout: nl-cdb-be-apis
-            path: '$(Build.SourcesDirectory)/__nl-cdb-be-apis'
 
-          - script: ls $(Build.SourcesDirectory)
+          - script: mv dir ./nl-cdb-be-apis ./__nl-cdb-be-apis && dir $(Build.SourcesDirectory)
+            displayName: "Task 1: Set Checkouts"
 
           - task: PowerShell@2
-            displayName: "Task 1: Build Artifacts"
+            displayName: "Task 2: Build Artifacts"
             inputs:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
@@ -48,7 +48,7 @@ stages:
               workingDirectory: $(WORKING_DIRECTORY)
 
           - task: CopyFiles@2
-            displayName: "Task 2: Copy Scripts"
+            displayName: "Task 3: Copy Scripts"
             inputs:
               SourceFolder: '$(WORKING_DIRECTORY)/..'
               Contents: '*.sql'
@@ -56,7 +56,7 @@ stages:
               OverWrite: true
 
           - task: CopyFiles@2
-            displayName: "Task 3: Copy Powershell Scripts"
+            displayName: "Task 4: Copy Powershell Scripts"
             inputs:
               SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
@@ -75,7 +75,7 @@ stages:
               replaceExistingArchive: true
 
           - task: PublishBuildArtifacts@1
-            displayName: "Task 4: Publish Artifacts"
+            displayName: "Task 6: Publish Artifacts"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
