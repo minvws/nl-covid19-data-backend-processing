@@ -4,6 +4,7 @@ trigger:
       - main
       - master
       - release/*
+      - develop
   paths:
     include:
       - "src/"
