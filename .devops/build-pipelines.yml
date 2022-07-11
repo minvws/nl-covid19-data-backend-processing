@@ -33,6 +33,8 @@ stages:
           - checkout: nl-cdb-be-apis
             path: '__nl-cdb-be-apis'
 
+          - script: ls $(WORKING_DIRECTORY)
+
           - task: PowerShell@2
             displayName: "Task 1: Build Artifacts"
             inputs:
@@ -40,12 +42,10 @@ stages:
               arguments: > 
                 -SourceDirectory "./src" 
                 -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
-                -DatatinoDevOpsGitRefUrl "../__nl-cdb-be-apis"
+                -DatatinoDevOpsGitRefUrl "../nl-cdb-be-apis"
               failOnStderr: true
               pwsh: true
               workingDirectory: $(WORKING_DIRECTORY)
-
-          - script: ls $(WORKING_DIRECTORY)
 
           - task: CopyFiles@2
             displayName: "Task 2: Copy Scripts"
