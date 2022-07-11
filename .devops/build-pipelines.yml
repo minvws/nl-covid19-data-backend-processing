@@ -65,19 +65,8 @@ stages:
               TargetFolder: "$(Build.ArtifactStagingDirectory)/scripts"
               OverWrite: true
 
-          # Publish the artifact to be used as a source for a release pipeline.
-          - task: ArchiveFiles@2
-            displayName: "Task 5: Set Artifacts"
-            inputs:
-              rootFolderOrFile: $(ARM_TEMPLATES_DIRECTORY)
-              includeRootFolder: false
-              archiveType: 'tar'
-              tarCompression: 'gz'
-              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-factory.tgz'
-              replaceExistingArchive: true
-
           - task: PublishBuildArtifacts@1
-            displayName: "Task 6: Publish Artifacts"
+            displayName: "Task 5: Publish Artifacts"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
