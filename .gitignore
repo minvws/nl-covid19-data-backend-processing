@@ -277,7 +277,7 @@ __pycache__/
 /*.sql
 .vscode/
 !.github/**
-*.ps1
+./*.ps1
 /orchestrator
 !/src/*/*.ps1
 *.bak

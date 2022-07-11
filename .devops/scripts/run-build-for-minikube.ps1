@@ -16,7 +16,7 @@ $sqlHost = ([System.Uri]$Env:DOCKER_HOST).Host
 Write-Host "Docker SQL host ip address: [$sqlHost]`n" -ForegroundColor Green
 Write-Host "Starting build script...`n"  -ForegroundColor Yellow
 
-.\.github\workflows\scripts\build-script.ps1 -Hostname $sqlHost
+.\.devops\scripts\build-script.ps1 -Hostname $sqlHost
 
 ######################################################################
 
