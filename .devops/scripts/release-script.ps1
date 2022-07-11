@@ -7,7 +7,7 @@ Param (
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
-. "./.devops/workflows/scripts/helpers/helper-scripts.ps1"
+. "./.devops/scripts/helpers/helper-scripts.ps1"
 
 ### MIGRATING/DEPLOYING MSSQL ARTIFACT(S)....
 Write-Host "Start migration:" -ForegroundColor Green
