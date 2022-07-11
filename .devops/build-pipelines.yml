@@ -33,7 +33,7 @@ stages:
           - checkout: nl-cdb-be-apis
             path: '__nl-cdb-be-apis'
 
-          - script: ls $(WORKING_DIRECTORY)
+          - script: ls
 
           - task: PowerShell@2
             displayName: "Task 1: Build Artifacts"
