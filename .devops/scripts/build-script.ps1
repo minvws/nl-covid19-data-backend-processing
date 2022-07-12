@@ -4,7 +4,8 @@ Param (
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "master",
     [String]$DatatinoDevOpsGitRefUrl = "https://VWSCoronaDashboard@dev.azure.com/VWSCoronaDashboard/Corona Dashboard/_git/nl-cdb-be-apis",
-    [String]$Hostname = $null #put your minikube ip address here if running on windows
+    [String]$Hostname = $null, #put your minikube ip address here if running on windows
+    [Int32]$Port = 14331
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -13,7 +14,7 @@ Param (
 ### SET VARIABLE(S).....
 $databaseName = "dashboard-db"
 $serverName = "local-mssql"
-$serverPort = 14331
+$serverPort = $Port
 
 ### GET MODIFIED NOTEBOOK(S).....
 $notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
