@@ -59,7 +59,7 @@ jobs:
                 pwsh: true
                 workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
                 
-            
+            # Post Deploy
             - script: | 
                 rm -rf "${{ parameters.WORKING_DIRECTORY }}/*.sql"
               displayName: "Task 3: Post Deploy"
