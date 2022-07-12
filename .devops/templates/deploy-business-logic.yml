@@ -50,7 +50,7 @@ jobs:
                 Inline: |
                   & "./.devops/scripts/release-script.ps1" `
                       -Server "$(AZURE_SQL_SERVER_NAME)" `
-                      -Database "$(AZURE_SQL_SERVER_NAME)" `
+                      -Database "$(AZURE_SQL_DATABASE_NAME)" `
                       -SourceDirectory "./src" `
                       -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
                       -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
@@ -61,6 +61,6 @@ jobs:
                 
             # Post Deploy
             - script: | 
-                rm -rf "${{ parameters.WORKING_DIRECTORY }}/*.sql"
+                rm -rf "${{ parameters.WORKING_DIRECTORY }}/src/*.sql"
               displayName: "Task 3: Post Deploy"
               condition: always()
