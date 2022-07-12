@@ -26,8 +26,8 @@ jobs:
             - task: replacetokens@5
               displayName: 'Task 1: Replace Tokens'
               inputs:
-                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}
-                targetFiles: '*'
+                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}/src
+                targetFiles: '**/*.sql'
                 encoding: 'auto'
                 tokenPattern: 'custom'
                 tokenPrefix: '#{'
@@ -61,6 +61,6 @@ jobs:
                 
             # Post Deploy
             - script: | 
-                rm -rf "${{ parameters.WORKING_DIRECTORY }}/src/*.sql"
+                rm -rfv ${{ parameters.WORKING_DIRECTORY }}
               displayName: "Task 3: Post Deploy"
               condition: always()
