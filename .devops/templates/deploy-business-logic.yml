@@ -41,7 +41,7 @@ jobs:
                 useLegacyPattern: false
                 enableTelemetry: true
         
-            # Stop Azure Data Factory Triggers
+            # Execute Scripts
             - task: AzurePowerShell@5
               displayName: 'Task 2: Execute Scripts'
               inputs:
@@ -58,3 +58,9 @@ jobs:
                 azurePowerShellVersion: 'LatestVersion'
                 pwsh: true
                 workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
+                
+            
+            - script: | 
+                rm -rf "${{ parameters.WORKING_DIRECTORY }}/*.sql"
+              displayName: "Task 3: Post Deploy"
+              condition: always()

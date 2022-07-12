@@ -12,8 +12,7 @@ resources:
             - release/*
             - develop*
 
-pool:
-  vmImage: 'ubuntu-latest'
+pool: Self-Hosted
 
 variables:
   SERVICE_PRINCIPAL_NAME: 'AzureRM-TF-Connection'
