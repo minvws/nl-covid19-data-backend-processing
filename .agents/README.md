@@ -4,7 +4,7 @@
 
 When running into CI/CD issues (e.g. Ip Address restrictions), use the following commands to start listening for `DevOps` jobs with self-hosted agents - on a computer or `Azure Container Instance` (i.e. ACR)  with the right permissions:
 
-> Terminal
+> Bash
 
 ```bash
 # Set variables
