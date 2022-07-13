@@ -29,7 +29,7 @@ By running the following command at the root of the project:
 > Powershell
 
 ```pwsh
-clear && ./.devops/scripts/build-script.ps1 && rm -r *.sql`
+clear && . ./.devops/scripts/build-script.ps1 && rm -r *.sql
 ```
 
 a SQL server with a database is created (**ONLY THE FIRST TIME**), which sequentially will be populated with all **[business logic](./src/)** from scratch **[link](./.devops/scripts/build-script.ps1)**.
