@@ -17,7 +17,7 @@ $serverName = "local-mssql"
 $serverPort = $Port
 
 ### GET MODIFIED NOTEBOOK(S).....
-$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
+$notebooks = $ModifiedFiles | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
 
 $deps = @()
 foreach ($notebook in $notebooks) {
@@ -45,7 +45,7 @@ Install-MssqlContainer `
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
-    $($notebooks -Split ' ') | ForEach-Object {
+    $notebooks | ForEach-Object {
         if (Test-Path $_) {        
             try {
                 $scriptPath = [System.IO.Path]::ChangeExtension(
