@@ -40,7 +40,7 @@ stages:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
                 -SourceDirectory "./src" 
-                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
+                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r HEAD^..HEAD)
                 -DatatinoDevOpsGitRefUrl "../nl-cdb-be-apis"
               failOnStderr: true
               pwsh: true
