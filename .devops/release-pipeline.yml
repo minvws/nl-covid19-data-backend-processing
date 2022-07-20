@@ -30,7 +30,7 @@ stages:
         WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
   - stage: Acceptance
-    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release/')) # to be changed to refs/heads/master
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
     dependsOn: [ Development ]
     variables:
       ENVIRONMENT: Acceptance
@@ -42,7 +42,7 @@ stages:
         WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
   - stage: Production
-    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release/')) # to be changed to refs/heads/master
+    condition: and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
     dependsOn: [ Acceptance ]
     variables:
       ENVIRONMENT: Production
