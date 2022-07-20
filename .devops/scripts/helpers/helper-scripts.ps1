@@ -82,7 +82,7 @@ function Install-MssqlContainer {
                     --restart unless-stopped `
                     -d `
                     --name $ServerName `
-                    mcr.microsoft.com/mssql/server:2022-latest > $null 2>&1) 
+                    mcr.microsoft.com/mssql/server > $null 2>&1) 
 
             Write-Host "Starting server(s): $Hostname....." -ForegroundColor Blue
             $password = "$(docker exec $ServerName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')"

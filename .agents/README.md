@@ -20,7 +20,6 @@ docker build -t $TAG -f "$CONTEXT_DIR/Dockerfile" $CONTEXT_DIR
 docker run \
     -e DEVOPS_SERVER_INSTANCE_URL=$DEVOPS_SERVER_INSTANCE_URL \
     -e DEVOPS_AGENT_TOKEN=$DEVOPS_AGENT_TOKEN \
-    --restart unless-stopped \
     -d \
     $TAG
 ```
@@ -41,7 +40,6 @@ docker build -t $TAG -f "$CONTEXT_DIR/Dockerfile" $CONTEXT_DIR
 docker run `
     -e DEVOPS_SERVER_INSTANCE_URL=$DEVOPS_SERVER_INSTANCE_URL `
     -e DEVOPS_AGENT_TOKEN=$DEVOPS_AGENT_TOKEN `
-    --restart unless-stopped `
     -d `
     $TAG
 ```

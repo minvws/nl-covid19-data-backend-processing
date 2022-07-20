@@ -74,8 +74,4 @@ else
 
     rm -rf packages-microsoft-prod.deb
 fi
-
-# Install Azure Az Powershell module
-pwsh -Command "Install-Module -Name 'Az' -AllowClobber -Force"
-
 echo "Done!"

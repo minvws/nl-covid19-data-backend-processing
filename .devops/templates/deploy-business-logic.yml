@@ -26,8 +26,8 @@ jobs:
             - task: replacetokens@5
               displayName: 'Task 1: Replace Tokens'
               inputs:
-                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}/src
-                targetFiles: '**/*.sql'
+                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}
+                targetFiles: '*'
                 encoding: 'auto'
                 tokenPattern: 'custom'
                 tokenPrefix: '#{'
@@ -41,7 +41,7 @@ jobs:
                 useLegacyPattern: false
                 enableTelemetry: true
         
-            # Execute Scripts
+            # Stop Azure Data Factory Triggers
             - task: AzurePowerShell@5
               displayName: 'Task 2: Execute Scripts'
               inputs:
@@ -50,7 +50,7 @@ jobs:
                 Inline: |
                   & "./.devops/scripts/release-script.ps1" `
                       -Server "$(AZURE_SQL_SERVER_NAME)" `
-                      -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                      -Database "$(AZURE_SQL_SERVER_NAME)" `
                       -SourceDirectory "./src" `
                       -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
                       -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
@@ -58,9 +58,3 @@ jobs:
                 azurePowerShellVersion: 'LatestVersion'
                 pwsh: true
                 workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
-                
-            # Post Deploy
-            - script: | 
-                rm -rfv ${{ parameters.WORKING_DIRECTORY }}
-              displayName: "Task 3: Post Deploy"
-              condition: always()

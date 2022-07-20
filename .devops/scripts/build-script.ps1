@@ -1,11 +1,10 @@
 Param (
     [String]$SourceDirectory = $env:PWD ?? $(Get-Location),
-    [String[]]$ModifiedFiles = $null,
+    [String[]]$ModifiedFiles = $($(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }),
     [String]$DatatinoDevOpsPAT = $null,
     [String]$DatatinoDevOpsGitBranch = "master",
     [String]$DatatinoDevOpsGitRefUrl = "https://VWSCoronaDashboard@dev.azure.com/VWSCoronaDashboard/Corona Dashboard/_git/nl-cdb-be-apis",
-    [String]$Hostname = $null, #put your minikube ip address here if running on windows
-    [Int32]$Port = 14331
+    [String]$Hostname = $null #put your minikube ip address here if running on windows
 )
 
 ### LOAD EXTERNAL SCRIPT(S).....
@@ -14,16 +13,10 @@ Param (
 ### SET VARIABLE(S).....
 $databaseName = "dashboard-db"
 $serverName = "local-mssql"
-$serverPort = $Port
+$serverPort = 14331
 
 ### GET MODIFIED NOTEBOOK(S).....
-if (($null -eq $ModifiedFiles) -or ($($ModifiedFiles | Where-Object { $_.Trim() -ne [System.String]::Empty}).Count -eq 0))  {
-    $files = $(Get-ChildItem -Path "src/**/*.ipynb" -Recurse).FullName | ForEach-Object { $_ -replace "$($env:PWD ?? [regex]::escape($(Get-Location)))/", '' }
-} else {
-    $files = $ModifiedFiles
-}
-
-$notebooks = $files | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
+$notebooks = ($ModifiedFiles -Split ' ') | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
 
 $deps = @()
 foreach ($notebook in $notebooks) {
@@ -51,7 +44,7 @@ Install-MssqlContainer `
 
 ### BUILD MSSQL SCRIPT(S).....
 if ($notebooks.Count -gt 0) {
-    $notebooks | ForEach-Object {
+    $($notebooks -Split ' ') | ForEach-Object {
         if (Test-Path $_) {        
             try {
                 $scriptPath = [System.IO.Path]::ChangeExtension(

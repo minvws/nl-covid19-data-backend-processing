@@ -6,13 +6,6 @@ param (
     [Parameter(Mandatory = $true)][String] $IPynbType = "Protocols"
 )
 
-<#
-An example call which generates three output layers for a single input file:
- .\src\DataFactory\ipynb-generator.ps1 -InputEntity "RIVM" -IPynbType "Protocols" -IPynbName "VaccinationCampaignsNl" -OutputLayers @(@{Name="Repeating shots administered";ProtoName="NL";ItemName="repeating_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},@{Name="Booster shots administered";ProtoName="NL";ItemName="booster_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},@{Name="Primary shots administered";ProtoName="NL";ItemName="primary_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"})
- 
-
-#>
-
 $ErrorActionPreference = "Stop"
 
 ### Set Variables

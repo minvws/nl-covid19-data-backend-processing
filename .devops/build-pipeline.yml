@@ -1,10 +1,7 @@
 trigger: 
   branches:
     include:
-      - main
-      - master
-      - release/*
-      - develop*
+      - '*'
   paths:
     include:
       - "src/"
@@ -43,7 +40,7 @@ stages:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
                 -SourceDirectory "./src" 
-                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion)^..$(Build.SourceVersion))
+                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion))
                 -DatatinoDevOpsGitRefUrl "../nl-cdb-be-apis"
               failOnStderr: true
               pwsh: true

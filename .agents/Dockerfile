@@ -20,7 +20,7 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Can be 'linux-x64', 'linux-arm64', 'linux-arm', 'rhel.6-x64'.
 ENV TARGETARCH=linux-x64
 
-WORKDIR /root/.agents
+WORKDIR /root/.self-hosted-agents
 
 # Run self-hosted agent
 COPY ./entrypoint.sh .
