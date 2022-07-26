@@ -23,7 +23,7 @@ jobs:
             - checkout: none
 
             - bash: |
-                echo $(System.PullRequest.TargetBranch)
+                echo $(Build.SourceBranch)
                 echo $(Build.Reason)
 
             # Replace Tokens
