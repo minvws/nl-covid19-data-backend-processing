@@ -22,10 +22,6 @@ jobs:
           
             - checkout: none
 
-            - bash: |
-                echo $(Build.SourceBranch)
-                echo $(Build.Reason)
-
             # Replace Tokens
             - task: replacetokens@5
               displayName: 'Task 1: Replace Tokens'
