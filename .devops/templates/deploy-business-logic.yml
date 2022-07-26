@@ -64,6 +64,6 @@ jobs:
               inputs: 
                 targetType: 'inline'
                 script: |
-                  rm -rfv ${{ parameters.WORKING_DIRECTORY }}
+                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse
               displayName: "Task 3: Post Deploy"
               condition: always()
