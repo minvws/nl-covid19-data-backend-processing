@@ -22,6 +22,10 @@ jobs:
           
             - checkout: none
 
+            - bash: |
+                echo $(System.PullRequest.TargetBranch)
+                echo $(Build.Reason)
+
             # Replace Tokens
             - task: replacetokens@5
               displayName: 'Task 1: Replace Tokens'
