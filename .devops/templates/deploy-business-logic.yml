@@ -60,7 +60,10 @@ jobs:
                 workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
                 
             # Post Deploy
-            - script: | 
-                rm -rfv ${{ parameters.WORKING_DIRECTORY }}
+            - task: PowerShell@2
+              inputs: 
+                targetType: 'inline'
+                script: |
+                  rm -rfv ${{ parameters.WORKING_DIRECTORY }}
               displayName: "Task 3: Post Deploy"
               condition: always()
