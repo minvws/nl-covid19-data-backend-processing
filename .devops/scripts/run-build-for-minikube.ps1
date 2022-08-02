@@ -1,7 +1,11 @@
 ﻿
-$tempDirectory = "C:\Projects\CoronaDashboard\Temp\Downloads\"
-$backendDirectory = "C:\Projects\CoronaDashboard\nl-covid19-data-backend-processing"
-$datatinoDirectory = "C:\Projects\CoronaDashboard\Datatino"
+Param (
+    [String]$tempDirectory = "C:\Projects\CoronaDashboard\Temp\Downloads\",
+    [String]$backendDirectory = "C:\Projects\CoronaDashboard\nl-covid19-data-backend-processing",
+    [String]$datatinoDirectory = "C:\Projects\CoronaDashboard\Datatino"
+)
+
+
 
 $dockerServerName = "local-mssql"
 
