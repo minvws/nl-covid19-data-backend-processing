@@ -96,12 +96,12 @@ When running the generator, the sections that are created within *Notebook* are 
 
 |IPynb Type|Output Layers|Sections|Why?|
 |--|--|--|--|
-|`Protocols`|`yes`|1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Intermediate Layers</br>5. Ouput Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) `JSON-objects`, which are updated regularly.|
-|`Protocols`|`no`|~~1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Intermediate Layers~~|**<font color="red">NOTE!</font>** Use a `Static` type with no `Output Layers` instead.|
-|`Statics`|`yes`|~~1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Static Layers</br>5. Ouput Layers~~|**<font color="red">NOTE!</font>** Use a `Protocols` type with one (or more) `Output Layers` instead.
-|`Statics`|`no`|1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Static Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) `ready-to-use` stored datasets, which change irregularly.|
-|`Reports`|`yes`|1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Intermediate Layers</br>5. Output Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) ***VIEWS*** that can be used for `Power BI`.|
-|`Reports`|`no`|~~1. Flow Diagrams</br>2. Dependencies</br>3. Input Layers</br>4. Intermediate Layers~~|**<font color="red">NOTE!</font>** Use a `Static` type with no `Output Layers` instead.
+|`Protocols`|`yes`|1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Intermediate Layers<br />5. Ouput Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) `JSON-objects`, which are updated regularly.|
+|`Protocols`|`no`|~~1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Intermediate Layers~~|**<font color="red">NOTE!</font>** Use a `Static` type with no `Output Layers` instead.|
+|`Statics`|`yes`|~~1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Static Layers<br />5. Ouput Layers~~|**<font color="red">NOTE!</font>** Use a `Protocols` type with one (or more) `Output Layers` instead.
+|`Statics`|`no`|1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Static Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) `ready-to-use` stored datasets, which change irregularly.|
+|`Reports`|`yes`|1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Intermediate Layers<br />5. Output Layers|Create a workflow that will have one (or more) sources that will be transformed (or translated) into one (or more) ***VIEWS*** that can be used for `Power BI`.|
+|`Reports`|`no`|~~1. Flow Diagrams<br />2. Dependencies<br />3. Input Layers<br />4. Intermediate Layers~~|**<font color="red">NOTE!</font>** Use a `Static` type with no `Output Layers` instead.
 
 ## **FLOW DIAGRAMS**
 
