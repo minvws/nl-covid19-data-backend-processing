@@ -4,7 +4,7 @@
 
 Two separate **Azure DevOps Pipelines** are used to build and release, respecitively executable `.sql` scripts. The release pipeline will automatically be trigger when the build pipeline has successfully finished. 
 
-<a style="color:red">**NOTE!**</a> The release pipeline will only be trigger when then the **build pipeline** is called `nl-cdb-be-business-logic - CI` within *Azure DevOps* while setting up the pipelines: **[link](https://docs.microsoft.com/en-us/azure/devops/pipelines/create-first-pipeline?view=azure-devops&tabs=java%2Ctfs-2018-2%2Cbrowser)**.
+<a style="color:red">**NOTE!**</a> The release pipeline will only be trigger when then the **build pipeline** is called `nl-cdb-be-business-logic - CI` within *Azure DevOps* while setting up the pipelines. **[Learn more](https://docs.microsoft.com/en-us/azure/devops/pipelines/create-first-pipeline?view=azure-devops&tabs=java%2Ctfs-2018-2%2Cbrowser)**
 
 ## **TABLE OF CONTENTS**
 
@@ -18,7 +18,7 @@ Two separate **Azure DevOps Pipelines** are used to build and release, respeciti
 
 ---
 
-The **[build pipeline](build-pipelines.yml)** will convert all commited and modified `.ipynb` files into executable `.sql` files when a code is pushed into a branch.
+The **[Build Pipeline](build-pipelines.yml)** will convert all commited and modified `.ipynb` files into executable `.sql` files when a code is pushed into a branch.
 
 ```yml
 - task: PowerShell@2
@@ -34,11 +34,11 @@ The **[build pipeline](build-pipelines.yml)** will convert all commited and modi
     workingDirectory: $(WORKING_DIRECTORY)
 ```
 
-Sequentually, the `.sql`, including the **[release script](scripts/release-script.ps1)** artifacts, will be archived for future releases.
+Sequentually, the `.sql`, including the **[Release Script](scripts/release-script.ps1)** artifacts, will be archived for future releases.
 
 ```yml
 - task: CopyFiles@2
-  displayName: "Task 3: Copy Scripts"
+  displayName: "Task 3: Copy MSSQL Database Update Scripts"
   inputs:
     SourceFolder: '$(WORKING_DIRECTORY)'
     Contents: '**/*.sql'
@@ -46,7 +46,7 @@ Sequentually, the `.sql`, including the **[release script](scripts/release-scrip
     OverWrite: true
 
 - task: CopyFiles@2
-  displayName: "Task 4: Copy Powershell Scripts"
+  displayName: "Task 4: Copy Powershell Release Scripts"
   inputs:
     SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
     Contents: "**/*.ps1"
@@ -58,11 +58,11 @@ Sequentually, the `.sql`, including the **[release script](scripts/release-scrip
 
 ---
 
-On the other hand, the **[release pipeline](release-pipeline.yml)** will retreive the archived artifacts and only executes the `.sql` files using `Invoke-Sqlcmd` which is part of the `SqlServer` Powershell module. 
+On the other hand, the **[Release Pipeline](release-pipeline.yml)** will retreive the archived artifacts and only executes the `.sql` files using `Invoke-Sqlcmd` which is part of the `SqlServer` Powershell module. 
 
 ```yml
 - task: AzurePowerShell@5
-  displayName: 'Task 2: Execute Scripts'
+  displayName: 'Task 2: Deploy MSSQL Update Scripts'
   inputs:
     azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
     ScriptType: 'InlineScript'
