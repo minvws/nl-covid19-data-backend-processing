@@ -10,6 +10,7 @@ trigger:
       - "src/"
     exclude:
       - "**/*.md"
+      - "**/*.ps1"
       
 resources:
   repositories: 
