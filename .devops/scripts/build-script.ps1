@@ -25,6 +25,9 @@ if (($null -eq $ModifiedFiles) -or ($($ModifiedFiles | Where-Object { $_.Trim() 
 
 $notebooks = $files | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
 
+# Recusively get all dependencies within the Notebooks and
+# garantee to only have the unique documents to prevent unneccessary duplicate documents
+# for futher uses.
 $deps = @()
 foreach ($notebook in $notebooks) {
     $deps += $(Get-Dependencies $notebook)
@@ -73,7 +76,7 @@ if ($notebooks.Count -gt 0) {
                     "GO`n" +
                     "BEGIN TRY`n" +
                     "BEGIN TRANSACTION CTRAN;`n" +
-                    "EXEC sp_executesql N'" + $($_.source -replace '^GO$', '' -replace '''', '''''') + "'`n" + ### ESCAPE &apos; WITHIN MSSQL SCRIPTS
+                    "EXEC sp_executesql N'" + $($_.source -replace '^\s*GO\s*$', '' -replace '''', '''''') + "'`n" + ### ESCAPE &apos; WITHIN MSSQL SCRIPTS
                     "COMMIT TRANSACTION CTRAN;`n" +
                     "END TRY`n" +
                     "BEGIN CATCH`n" +
@@ -87,7 +90,9 @@ if ($notebooks.Count -gt 0) {
                     "GO`n"
                 } | Out-File $scriptFileName
 
-                foreach ($i in 1..2) {
+                # Execute the MSSQL script atleast three times to ensure that the scripts are 
+                # re-runnable.
+                foreach ($i in 1..3) {
                     Invoke-RetryCommand -RetryCount 0 -ScriptBlock {
                         Invoke-Sqlcmd `
                             -ServerInstance "$Hostname,${serverPort}" `
@@ -101,7 +106,8 @@ if ($notebooks.Count -gt 0) {
                 Write-Host "Script build successfuly! `n" -ForegroundColor Green
             }
             catch {
-                throw "$($_.exception.message)"
+                $msg = ($_.exception.InnerException ?? $_.exception).Message
+                throw $msg
             }
         }
     }

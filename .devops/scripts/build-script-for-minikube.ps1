@@ -1,15 +1,12 @@
-﻿
-Param (
+﻿Param (
     [String]$tempDirectory = "C:\Projects\CoronaDashboard\Temp\Downloads\",
     [String]$backendDirectory = "C:\Projects\CoronaDashboard\nl-covid19-data-backend-processing",
     [String]$datatinoDirectory = "C:\Projects\CoronaDashboard\Datatino"
 )
 
-
-
 $dockerServerName = "local-mssql"
 
-cd $backendDirectory
+Set-Location $backendDirectory
 
 Write-Host "Fetching docker environment variables from minikube..."  -ForegroundColor Yellow
 
@@ -36,15 +33,15 @@ $datatinoLocalEnv = "$env:USERPROFILE\Datatino"
 Write-Host "Updating connection string in local .env file: [$datatinoLocalEnv\.env]..."  -ForegroundColor Yellow
 $envSettings = Get-Content $datatinoLocalEnv\.env -Encoding UTF8 | ConvertFrom-Json
 
-$localSettings = $envSettings | ? {
+$localSettings = $envSettings | Where-Object {
     $_.Level -eq 0
 } 
 
-$database =  $localSettings.availableDatabases | ? { $_.databaseSecretName -eq "DatatinoDatabase" }
+$database =  $localSettings.availableDatabases | Where-Object { $_.databaseSecretName -eq "DatatinoDatabase" }
 
 $database.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
 
-$storageConnectionString = ($localSettings.availableStorages | ? { $_.storageSecretName -eq "DatatinoStorage" }).storageConnectionString
+$storageConnectionString = ($localSettings.availableStorages | Where-Object { $_.storageSecretName -eq "DatatinoStorage" }).storageConnectionString
 
 ConvertTo-JSon @($envSettings) -Depth 100 | Out-File $datatinoLocalEnv\.env -fORCE
 
@@ -62,11 +59,11 @@ Write-Host "`nUpdating connection string in temp file..." -ForegroundColor yello
 
 $envSettingsStorage = Get-Content $tempDirectory\.env -Encoding UTF8 | ConvertFrom-Json
 
-$localSettingsStorage = $envSettingsStorage | ? {
+$localSettingsStorage = $envSettingsStorage | Where-Object {
     $_.Level -eq 0
 } 
 
-$databaseStorage =  $localSettingsStorage.availableDatabases | ? { $_.databaseSecretName -eq "DatatinoDatabase" }
+$databaseStorage =  $localSettingsStorage.availableDatabases | Where-Object { $_.databaseSecretName -eq "DatatinoDatabase" }
 
 $databaseStorage.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
 $localSettingsStorage.databaseConnectionString = "Data Source=$sqlHost,$portNr;user id=SA;password=$sqlPassword;Initial Catalog=dashboard-db;MultipleActiveResultSets=True"
