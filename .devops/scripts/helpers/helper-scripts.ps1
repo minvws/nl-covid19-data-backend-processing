@@ -9,6 +9,8 @@ $moduleList | ForEach-Object {
     }
 }
 
+# Function to retry any command within an `Script Block` i.e., {}. 
+# The amount of reties are by default 3 times with an interval of 30 seconds.
 function Invoke-RetryCommand {
     [CmdletBinding()]
     param (
@@ -55,6 +57,10 @@ function Invoke-RetryCommand {
     }
 }
 
+# Create a containerized MSSQL server and database when doesn't exists.
+# The function initiates and starts the container, that in turn gets populated with Datatino (Entity Framework; different repository) artifacts to
+# allow UPSERT functionality when a script is ran with needed. Additionally, Schemas and configuration settings will also be 
+# imported into the database.
 function Install-MssqlContainer {
     [CmdletBinding()]
     param (
@@ -148,6 +154,9 @@ function Install-MssqlContainer {
     }
 }
 
+# Determine the dependencies of any Notebook recussively, meaning that within a Notebook different dependencies will be detected.
+# This continues until a Notebook is hid without any dependencies.
+# !! KEEP IN MIND THAT THERE IS NO CHECK ON INFINIT LOOPS!!
 function Get-Dependencies {
     [CmdletBinding()]
     param (

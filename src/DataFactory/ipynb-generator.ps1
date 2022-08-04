@@ -8,9 +8,15 @@ param (
 
 <#
 An example call which generates three output layers for a single input file:
- .\src\DataFactory\ipynb-generator.ps1 -InputEntity "RIVM" -IPynbType "Protocols" -IPynbName "VaccinationCampaignsNl" -OutputLayers @(@{Name="Repeating shots administered";ProtoName="NL";ItemName="repeating_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},@{Name="Booster shots administered";ProtoName="NL";ItemName="booster_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},@{Name="Primary shots administered";ProtoName="NL";ItemName="primary_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"})
- 
-
+. ./src/DataFactory/ipynb-generator.ps1 `
+    -InputEntity "RIVM" `
+    -IPynbType "Protocols" `
+    -IPynbName "VaccinationCampaignsNl" `
+    -OutputLayers @(
+        @{Name="Repeating shots administered";ProtoName="NL";ItemName="repeating_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},
+        @{Name="Booster shots administered";ProtoName="NL";ItemName="booster_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"},
+        @{Name="Primary shots administered";ProtoName="NL";ItemName="primary_shots_administered";Columns="*";LayoutTypeId="1";LastUpdateName="DATE_START_UNIX"}
+    )
 #>
 
 $ErrorActionPreference = "Stop"
@@ -21,9 +27,14 @@ $tableName = $($InputEntity + "_" + $($IPynbName -creplace '([A-Z\W]|\d+)(?<![a-
 
 $fs = "src/DataFactory/$($IPynbType)/pl_Process$($IPynbName).ipynb";
 
+function IIf($If, $Right, $Wrong) {If ($If) {$Right} Else {$Wrong}}
+
 function Set-Sections {
     switch ($IPynbType.ToLower()) {
         "protocols" { 
+            return '"4. **[Intermediate Layer](#intermediate-layer)**\n", "5. **[Ouput Layer](#output-layer)**\n",';
+        }
+        "reports" { 
             return '"4. **[Intermediate Layer](#intermediate-layer)**\n", "5. **[Ouput Layer](#output-layer)**\n",';
         }
         "statics" {
@@ -41,6 +52,9 @@ function Set-Legend {
         "statics" {
             return '"- **<font color=teal>SL</font>**: Static Layer\n"';
         }
+        "reports" { 
+            return '"- **<font color=teal>IL</font>**: Intermediate Layer\n", "- **<font color=teal>OL</font>**: Output Layer"';
+        }
         Default {}
     }
 }
@@ -52,6 +66,9 @@ function Set-LayerType {
         }
         "statics" {
             return "STATIC";
+        }
+        "reports" { 
+            return "INTERMEDIATE";
         }
         Default {}
     }
@@ -65,6 +82,9 @@ function Set-Schema {
         "statics" {
             return "VWSSTATIC";
         }
+        "reports" {
+            return "VWSINTER";
+        }
         Default {}
     }
 }
@@ -76,6 +96,9 @@ function Set-SProcType {
         }
         "statics" {
             return "SL";
+        }
+        "reports" { 
+            return "IL";
         }
         Default {}
     }
@@ -102,8 +125,6 @@ function Set-CodeSnippet {
         [System.String] $TrueStatement,
         [System.String] $FalseStatement = $null
     )
-
-    Write-Host $Condition
     
     if ($Condition) {
         return '{
@@ -136,7 +157,7 @@ function Set-OutputLayers {
 
         $layoutTypeId = $_.LayoutTypeId;
         if ($null -eq $layoutTypeId) {
-            $layoutTypeId = "`'<1|2|3|4>`'";
+            $layoutTypeId = "`'<1|2|3|4|5|6>`'";
         } 
 
         $lastUpdateName = $_.LastUpdateName?.ToUpper();
@@ -230,7 +251,7 @@ function Set-OutputLayers {
             ),
             $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS</span>**"')),
             $(Set-CodeSnippet -Condition $True -TrueStatement ('"-- 1) CREATE VIEW(S).....\n",
-                    "CREATE OR ALTER VIEW [VWSDEST].[V_'+ $name + '] AS\n",
+                    "CREATE OR ALTER VIEW [' + (IIf ($IPynbType.ToLower() -eq "reports") "VWSREPORT" "VWSDEST") + '].[V_'+ $name + '] AS\n",
                     "WITH CTE AS (\n",
                     "    SELECT\n",
                     "        -- SELECT COLUMNS\n",
@@ -242,8 +263,8 @@ function Set-OutputLayers {
                     "FROM CTE\n",
                     "GO"')
             ),
-            $(Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS | CONFIGURATION</span>**"')),
-            $(Set-CodeSnippet -Condition (($protoName.ToUpper() -eq "VR") -or ($protoName.ToUpper() -eq "GM")) -FalseStatement ('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
+            $(IIf ($IPynbType.ToLower() -eq "reports") '""' (Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS | CONFIGURATION</span>**"'))),
+            $(IIf ($IPynbType.ToLower() -eq "reports") '""' (Set-CodeSnippet -Condition (($protoName.ToUpper() -eq "VR") -or ($protoName.ToUpper() -eq "GM")) -FalseStatement ('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
                     "DECLARE @view_name VARCHAR(256) = ''VWSDEST.V_'+ $name + ''',\n",
                     "        @view_description VARCHAR(256),\n",
                     "        @item_name VARCHAR(256) = '''+ $itemName + ''',\n",
@@ -470,7 +491,7 @@ function Set-OutputLayers {
                     "CLOSE CUR;\n",
                     "DEALLOCATE CUR;\n",
                     "DELETE FROM @proto_name_table;\n",
-                    "GO"')
+                    "GO"'))
                 )
             )
     }
@@ -496,7 +517,7 @@ else {
     $sb.Append('{ "cells": [');
     [Void] $sb.AppendJoin(",",        
         # Introduction
-        $(Set-MarkdownSnippet('"```sql\n", "-- COPYRIGHT (C) ' + $(Get-Date -Format "yyyy") + ' DE STAAT DER NEDERLANDEN, MINISTERIE VAN VOLKSGEZONDHEID, WELZIJN EN SPORT.\n", "-- LICENSED UNDER THE EUROPEAN UNION PUBLIC LICENCE V. 1.2 - SEE HTTPS://GITHUB.COM/MINVWS/NL-CONTACT-TRACING-APP-COORDINATIONFOR MORE INFORMATION.\n", "```\n", "\n", "# **INTRODUCTIONS**\n", "\n", "---\n", "\n", "The code is separated into multiple sections:\n", "\n", "1. **[Flow Diagrams](#flow-diagrams)**\n", "2. **[Dependencies](#dependencies)**\n", "3. **[Input Layer](#input-layer)**\n", ' + $(Set-Sections) + '"\n", "\n", "# **FLOW DIAGRAMS**\n", "\n", "---\n", "\n", "`ADD DIAGRAM HERE!`\n", "\n", "Required steps:\n", "\n", "1. `ADD REQUIRMENT STEP LIST HERE!`", "\n",' + $(Set-Legend))),
+        $(Set-MarkdownSnippet('"```sql\n", "-- COPYRIGHT (C) ' + $(Get-Date -Format "yyyy") + ' DE STAAT DER NEDERLANDEN, MINISTERIE VAN VOLKSGEZONDHEID, WELZIJN EN SPORT.\n", "-- LICENSED UNDER THE EUROPEAN UNION PUBLIC LICENCE V. 1.2 - SEE HTTPS://GITHUB.COM/MINVWS/NL-CONTACT-TRACING-APP-COORDINATIONFOR MORE INFORMATION.\n", "```\n", "\n", "# **INTRODUCTIONS**\n", "\n", "---\n", "\n", "The code is separated into multiple sections:\n", "\n", "1. **[Flow Diagrams](#flow-diagrams)**\n", "2. **[Dependencies](#dependencies)**\n", "3. **[Input Layer](#input-layer)**\n", ' + $(Set-Sections) + '"\n", "\n", "# **FLOW DIAGRAMS**\n", "\n", "---\n", "\n", "[![](https://mermaid.ink/img/pako:eNp1kE9rhDAQxb9KmJMLG8Grh57agyAVKpSC6SFrRs2uJjZOWmTZ796o_bulc0pmXn7vTc5QW4WQQtPbt7qTjhjLH4RhoSZ_aJ0cO5aZ0RPL5Yxum5QuQkOaZm7kgDvGORPQ6B6Xa1xPrwJC74aVVTSRbLVpd8_bSzTqD5zQDai0JPzlsRKyKtI_BP9jCk9XIbMVUCRV5I1-8cjtKuH9ItmCf9PYFU7AU6j4OFkjYJsVCePxsqdMG8mnURsTrIDFweXxPk-iRczt4Yg1bfgvOuxhCDtIrcJPn5e2AOpwQAFpOCrpTovLJej8qMKed0qTdRCM-gn3ID3ZcjY1pOQ8foputQxhhw_V5R2AMpSJ)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp1kE9rhDAQxb9KmJMLG8Grh57agyAVKpSC6SFrRs2uJjZOWmTZ796o_bulc0pmXn7vTc5QW4WQQtPbt7qTjhjLH4RhoSZ_aJ0cO5aZ0RPL5Yxum5QuQkOaZm7kgDvGORPQ6B6Xa1xPrwJC74aVVTSRbLVpd8_bSzTqD5zQDai0JPzlsRKyKtI_BP9jCk9XIbMVUCRV5I1-8cjtKuH9ItmCf9PYFU7AU6j4OFkjYJsVCePxsqdMG8mnURsTrIDFweXxPk-iRczt4Yg1bfgvOuxhCDtIrcJPn5e2AOpwQAFpOCrpTovLJej8qMKed0qTdRCM-gn3ID3ZcjY1pOQ8foputQxhhw_V5R2AMpSJ)\n\n`UPDATE DIAGRAM BY CLICKING ON THE DIAGRAM!`\n", "\n", "Required steps:\n", "\n", "1. `ADD REQUIRMENT STEP LIST HERE!`", "\n",' + $(Set-Legend))),
         $(Set-MarkdownSnippet('"# **DEPENDENCIES**\n", "\n", "---\n", "\n", "```json\n", "{\n", "    \"depends-on\": [\n", "        \"src/DataFactory/Utils/Functions.ipynb\",\n", "        \"src/DataFactory/Utils/Schemas.ipynb\",\n", "        \"src/DataFactory/Utils/Protos.ipynb\"\n", "        // Additional dependencies (!NOTE! DO NOT FORGET THE COMMA (i.e. ,))\n", "    ]\n", "}\n", "```"') ),
         # Input Layer
         $(Set-MarkdownSnippet('"# **INPUT LAYER**\n", "\n", "---"') ),
@@ -510,7 +531,7 @@ else {
             "-- 1) CREATE TABLE(S).....\n",
             "IF NOT EXISTS (SELECT * FROM [SYS].[TABLES] WHERE [OBJECT_ID] = OBJECT_ID(''[VWSSTAGE].['+ $tableName + ']''))\n",
             "CREATE TABLE [VWSSTAGE].['+ $tableName + '] (\n",
-            "\t[ID] [BIGINT] PRIMARY KEY IDENTITY(1,1),\n",
+            "\t[ID] [BIGINT] IDENTITY(1,1),\n",
             "\t[DATE_LAST_INSERTED] [DATETIME] DEFAULT GETDATE(),\n",
             "\t-- ADD COLUMNS\n",
             ");\n",
@@ -528,7 +549,7 @@ else {
             "-- 1) CREATE TABLE(S).....\n",
             "IF NOT EXISTS (SELECT * FROM [SYS].[TABLES] WHERE [OBJECT_ID] = OBJECT_ID(''[' + $(Set-Schema) + '].[' + $tableName + ']''))\n",
             "CREATE TABLE [' + $(Set-Schema) + '].[' + $tableName + '] (\n",
-            "\t[ID] [BIGINT] PRIMARY KEY IDENTITY(1,1),\n",
+            "\t[ID] [BIGINT] IDENTITY(1,1),\n",
             "\t[DATE_LAST_INSERTED] [DATETIME] DEFAULT GETDATE(),\n",
             "\t-- ADD COLUMNS\n",
             ");\n",
