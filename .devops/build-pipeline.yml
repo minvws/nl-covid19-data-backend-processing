@@ -10,6 +10,7 @@ trigger:
       - "src/"
     exclude:
       - "**/*.md"
+      - "**/*.ps1"
       
 resources:
   repositories: 
@@ -38,7 +39,7 @@ stages:
             displayName: "Task 1: Set Checkouts"
 
           - task: PowerShell@2
-            displayName: "Task 2: Build Artifacts"
+            displayName: "Task 2: Build MSSQL Artifacts"
             inputs:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
@@ -50,7 +51,7 @@ stages:
               workingDirectory: $(WORKING_DIRECTORY)
 
           - task: CopyFiles@2
-            displayName: "Task 3: Copy Scripts"
+            displayName: "Task 3: Copy MSSQL Database Update Scripts"
             inputs:
               SourceFolder: '$(WORKING_DIRECTORY)'
               Contents: '**/*.sql'
@@ -58,7 +59,7 @@ stages:
               OverWrite: true
 
           - task: CopyFiles@2
-            displayName: "Task 4: Copy Powershell Scripts"
+            displayName: "Task 4: Copy Powershell Release Scripts"
             inputs:
               SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
