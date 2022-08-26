@@ -264,7 +264,7 @@ function Set-OutputLayers {
                     "GO"')
             ),
             $(IIf ($IPynbType.ToLower() -eq "reports") '""' (Set-MarkdownSnippet('"### **<span style=''color:cadetblue''>VIEWS | CONFIGURATION</span>**"'))),
-            $(IIf ($IPynbType.ToLower() -eq "reports") '""' (Set-CodeSnippet -Condition (($protoName.ToUpper() -eq "VR") -or ($protoName.ToUpper() -eq "GM")) -FalseStatement ('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
+            $(IIf ($IPynbType.ToLower() -eq "reports") '""' (Set-CodeSnippet -Condition ((($protoName)?.ToUpper() -eq "VR") -or (($protoName)?.ToUpper() -eq "GM")) -FalseStatement ('"-- 1) SET ENVIRONMENTAL VARIABLES.....\n",
                     "DECLARE @view_name VARCHAR(256) = ''VWSDEST.V_'+ $name + ''',\n",
                     "        @view_description VARCHAR(256),\n",
                     "        @item_name VARCHAR(256) = '''+ $itemName + ''',\n",
