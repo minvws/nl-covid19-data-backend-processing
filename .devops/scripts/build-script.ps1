@@ -103,7 +103,7 @@ if ($notebooks.Count -gt 0) {
                     }
                 }
 
-                Write-Host "Script build successfuly! `n" -ForegroundColor Green
+                Write-Host "Script build successfully! `n" -ForegroundColor Green
             }
             catch {
                 $msg = ($_.exception.InnerException ?? $_.exception).Message
