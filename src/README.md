@@ -16,7 +16,7 @@ It's recommended to create novel *Jupyter Notebook* using the **[ipynb-generator
     -IPynbType "<Protocols|Statics|Reports>" `
     # Meaningfull and unique name - PascalCase - of the Protocols, Statics or Reports workflow. A `pl_Process` prefix will be appended to the Notebooks to follow the naming conventions of `Azure Data Factory` in regards of the Pipelines.
     -IPynbName "<process-name>" `
-    # Indicates how many JSON-objects will be create based on the datasets. 
+    # Indicates how many JSON-objects will be create based on the datasets.
     # Depending on the requirements, multiple JSON outputs can be generated from a singular source document, for example, RIVM, CBS and/or Nivel.
     -OutputLayers @(
         @{
