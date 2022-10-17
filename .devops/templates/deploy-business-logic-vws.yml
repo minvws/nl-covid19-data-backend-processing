@@ -47,15 +47,17 @@ jobs:
               displayName: 'Task 2: Deploy MSSQL update scripts'
               inputs:
                 azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
-                targetType: 'inline'
-                script: |
+                ScriptType: InlineScript
+                Inline: |
                   & "./.devops/scripts/release-script.ps1" `
                       -Server "$(AZURE_SQL_SERVER_NAME)" `
                       -Database "$(AZURE_SQL_DATABASE_NAME)" `
                       -SourceDirectory "./src" `
                       -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
                       -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
-                failOnStderr: true
+                FailOnStandardError: true
+                azurePowerShellVersion: LatestVersion
+                pwsh: true
                 workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
                 
             # Post Deploy
