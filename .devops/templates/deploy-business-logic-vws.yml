@@ -42,22 +42,18 @@ jobs:
                 enableTelemetry: true
         
             # Execute Scripts
-
-            - task: AzurePowerShell@5
+            - task: PowerShell@2
               displayName: 'Task 2: Deploy MSSQL update scripts'
               inputs:
-                azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
-                ScriptType: InlineScript
-                Inline: |
+                targetType: 'inline'
+                script: |
                   & "./.devops/scripts/release-script.ps1" `
-                      -Server "$(AZURE_SQL_SERVER_NAME)" `
-                      -Database "$(AZURE_SQL_DATABASE_NAME)" `
-                      -SourceDirectory "./src" `
-                      -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
-                      -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
-                FailOnStandardError: true
-                azurePowerShellVersion: LatestVersion
-                pwsh: true
+                                        -Server "$(AZURE_SQL_SERVER_NAME)" `
+                                        -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                                        -SourceDirectory "./src" `
+                                        -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
+                                        -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
+                failOnStderr: true
                 workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
                 
             # Post Deploy
