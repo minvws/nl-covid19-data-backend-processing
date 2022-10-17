@@ -48,11 +48,11 @@ jobs:
                 targetType: 'inline'
                 script: |
                   & "./.devops/scripts/release-script.ps1" `
-                                        -Server "$(AZURE_SQL_SERVER_NAME)" `
-                                        -Database "$(AZURE_SQL_DATABASE_NAME)" `
-                                        -SourceDirectory "./src" `
-                                        -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
-                                        -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
+                      -Server "$(AZURE_SQL_SERVER_NAME)" `
+                      -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                      -SourceDirectory "./src" `
+                      -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
+                      -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
                 failOnStderr: true
                 workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
                 
