@@ -12,7 +12,7 @@ resources:
             - release/*
             - develop*
 
-pool: Self-Hosted
+pool: dockeragent
 
 variables:
   SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
