@@ -10,7 +10,7 @@ Param (
 . "./.devops/scripts/helpers/helper-scripts.ps1"
 
 ### MIGRATING/DEPLOYING MSSQL ARTIFACT(S)....
-Write-Host "Start migration:" -ForegroundColor Green
+Write-Host "Start migrationation:" -ForegroundColor Green
 
 try {
     $hashTable = @{}
