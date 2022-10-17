@@ -43,17 +43,18 @@ jobs:
         
             # Execute Scripts
 
-            - task: PowerShell@2
+            - task: AzurePowerShell@5
               displayName: 'Task 2: Deploy MSSQL update scripts'
               inputs:
+                azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
                 targetType: 'inline'
                 script: |
                   & "./.devops/scripts/release-script.ps1" `
-                                        -Server "$(AZURE_SQL_SERVER_NAME)" `
-                                        -Database "$(AZURE_SQL_DATABASE_NAME)" `
-                                        -SourceDirectory "./src" `
-                                        -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
-                                        -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
+                      -Server "$(AZURE_SQL_SERVER_NAME)" `
+                      -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                      -SourceDirectory "./src" `
+                      -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
+                      -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
                 failOnStderr: true
                 workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
                 
