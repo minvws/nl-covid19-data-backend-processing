@@ -44,6 +44,7 @@ jobs:
             # Execute Scripts
 
             - task: PowerShell@2
+              displayName: 'Task 2: Deploy MSSQL update scripts'
               inputs:
                 targetType: 'inline'
                 script: |
