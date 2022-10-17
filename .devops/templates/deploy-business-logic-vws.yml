@@ -12,7 +12,7 @@ parameters:
 
 jobs:
   - deployment: ${{ parameters.ENVIRONMENT }}
-    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic-Vws
+    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
     variables:
       - group: "business-logic-${{ parameters.environment }}-vws-vg"
     strategy:
