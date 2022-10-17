@@ -10,14 +10,13 @@ Param (
 . "./.devops/scripts/helpers/helper-scripts.ps1"
 
 ### MIGRATING/DEPLOYING MSSQL ARTIFACT(S)....
-Write-Host "Start migrationation:" -ForegroundColor Green
+Write-Host "Start migration:" -ForegroundColor Green
 
 try {
     $hashTable = @{}
     $scripts = $((Get-ChildItem -Path $SourceDirectory -Filter "*.sql") -Split ' ') | 
     ForEach-Object {
         $script = Split-Path -Path $_ -Leaf
-        Write-Host "path is: [$script]"
         $hashTable.Add([int]([regex]::Match($script, '\d+').Value), $_)
     };
 
