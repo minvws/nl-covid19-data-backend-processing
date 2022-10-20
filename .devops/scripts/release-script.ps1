@@ -17,6 +17,7 @@ try {
     $scripts = $((Get-ChildItem -Path $SourceDirectory -Filter "*.sql") -Split ' ') | 
     ForEach-Object {
         $script = Split-Path -Path $_ -Leaf
+        Write-Host "The path of script added is [$script]"
         $hashTable.Add([int]([regex]::Match($script, '\d+').Value), $_)
     };
 

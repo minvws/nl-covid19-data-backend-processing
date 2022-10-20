@@ -1,0 +1,54 @@
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: Build
+      source: 'nl-cdb-be-business-logic - CI'
+      trigger: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
+        branches:
+          include:
+            - main
+            - master
+            - release/*
+            - develop*
+
+pool: dockeragent
+
+variables:
+  SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
+  WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/drop'
+
+stages:
+  - stage: Development
+    variables:
+      ENVIRONMENT: Development
+    jobs:
+    - template: templates/deploy-business-logic-vws.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+
+  - stage: Acceptance
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
+    dependsOn: [ Development ]
+    variables:
+      ENVIRONMENT: Acceptance
+    jobs:
+    - template: templates/deploy-business-logic-vws.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+
+  - stage: Production
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
+    dependsOn: [ Acceptance ]
+    variables:
+      ENVIRONMENT: Production
+    jobs:
+    - template: templates/deploy-business-logic-vws.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
