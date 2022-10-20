@@ -62,7 +62,7 @@ jobs:
                 targetType: 'inline'
                 script: |
                   whoami
-                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse
+                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse -Force
               displayName: "Task 3: Post Deploy"
               condition: always()
 
