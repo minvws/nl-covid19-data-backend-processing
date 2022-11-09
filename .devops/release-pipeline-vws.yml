@@ -7,8 +7,6 @@ resources:
       trigger: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
         branches:
           include:
-            - main
-            - master
             - release/*
 
 pool: dockeragent
