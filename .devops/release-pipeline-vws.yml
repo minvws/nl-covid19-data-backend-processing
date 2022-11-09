@@ -10,7 +10,6 @@ resources:
             - main
             - master
             - release/*
-            - develop*
 
 pool: dockeragent
 
