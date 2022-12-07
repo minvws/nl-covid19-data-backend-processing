@@ -12,9 +12,10 @@ Set-Location $backendDirectory
 
 Write-Host "Fetching docker environment variables from minikube..."  -ForegroundColor Yellow
 
-& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+#& minikube -p minikube docker-env --shell powershell | Invoke-Expression
 
-$sqlHost = ([System.Uri]$Env:DOCKER_HOST).Host
+#$sqlHost = ([System.Uri]$Env:DOCKER_HOST).Host
+$sqlHost = $(Set-LocalIPAddress)
 
 Write-Host "Docker SQL host ip address: [$sqlHost]`n" -ForegroundColor Green
 Write-Host "Starting build script...`n"  -ForegroundColor Yellow
