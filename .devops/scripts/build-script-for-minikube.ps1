@@ -1,10 +1,8 @@
 ﻿Param (
-    [String]$tempDirectory = "C:\Users\beek\.temp",
-    [String]$backendDirectory = "C:\Users\beek\source\repos\CDB\nl-cdb-be-business-logic",
-    [String]$datatinoDirectory = "C:\Users\beek\source\repos\CDB\nl-cdb-be-apis"
+    [String]$tempDirectory = "C:\Projects\CoronaDashboard\Temp\Downloads\",
+    [String]$backendDirectory = "C:\Projects\CoronaDashboard\nl-covid19-data-backend-processing",
+    [String]$datatinoDirectory = "C:\Projects\CoronaDashboard\Datatino"
 )
-
-. "./.devops/scripts/helpers/helper-scripts.ps1"
 
 $dockerServerName = "local-mssql"
 
