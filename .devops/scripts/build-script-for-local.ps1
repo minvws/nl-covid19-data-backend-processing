@@ -1,8 +1,10 @@
 ﻿Param (
-    [String]$tempDirectory = "C:\Projects\CoronaDashboard\Temp\Downloads\",
-    [String]$backendDirectory = "C:\Projects\CoronaDashboard\nl-covid19-data-backend-processing",
-    [String]$datatinoDirectory = "C:\Projects\CoronaDashboard\Datatino"
+    [String]$tempDirectory = "C:\Users\beek\.temp",
+    [String]$backendDirectory = "C:\Users\beek\source\repos\CDB\nl-cdb-be-business-logic",
+    [String]$datatinoDirectory = "C:\Users\beek\source\repos\CDB\nl-cdb-be-apis"
 )
+
+. "./.devops/scripts/helpers/helper-scripts.ps1"
 
 $dockerServerName = "local-mssql"
 
@@ -10,9 +12,10 @@ Set-Location $backendDirectory
 
 Write-Host "Fetching docker environment variables from minikube..."  -ForegroundColor Yellow
 
-& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+#& minikube -p minikube docker-env --shell powershell | Invoke-Expression
 
-$sqlHost = ([System.Uri]$Env:DOCKER_HOST).Host
+#$sqlHost = ([System.Uri]$Env:DOCKER_HOST).Host
+$sqlHost = $(Set-LocalIPAddress)
 
 Write-Host "Docker SQL host ip address: [$sqlHost]`n" -ForegroundColor Green
 Write-Host "Starting build script...`n"  -ForegroundColor Yellow
