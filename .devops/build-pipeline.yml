@@ -1,16 +1,4 @@
-trigger: 
-  branches:
-    include:
-      - main
-      - master
-      - release/*
-      - develop*
-  paths:
-    include:
-      - "src/"
-    exclude:
-      - "**/*.md"
-      - "**/*.ps1"
+trigger: none
       
 resources:
   repositories: 
