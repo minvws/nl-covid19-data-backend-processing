@@ -37,6 +37,11 @@ stages:
               mv ./nl-cdb-be-apis ./__nl-cdb-be-apis 
               dir $(Build.SourcesDirectory)
             displayName: "Task 1: Set Checkouts"
+          
+          - task: UseDotNet@2
+            displayName: 'Task 3: Install .NET 5.0 SDK'
+            inputs:
+              version: '5.0.x'
 
           - task: PowerShell@2
             displayName: "Task 2: Build MSSQL Artifacts"
