@@ -39,12 +39,12 @@ stages:
             displayName: "Task 1: Set Checkouts"
 
           - task: UseDotNet@2
-            displayName: 'Task 3: Install .NET 5.0 SDK'
+            displayName: 'Task 2: Install .NET 5.0 SDK'
             inputs:
               version: '5.0.x'
           
           - task: PowerShell@2
-            displayName: "Task 2: Build MSSQL Artifacts"
+            displayName: "Task 3: Build MSSQL Artifacts"
             inputs:
               filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
               arguments: > 
@@ -56,7 +56,7 @@ stages:
               workingDirectory: $(WORKING_DIRECTORY)
 
           - task: CopyFiles@2
-            displayName: "Task 3: Copy MSSQL Database Update Scripts"
+            displayName: "Task 4: Copy MSSQL Database Update Scripts"
             inputs:
               SourceFolder: '$(WORKING_DIRECTORY)'
               Contents: '**/*.sql'
@@ -64,7 +64,7 @@ stages:
               OverWrite: true
 
           - task: CopyFiles@2
-            displayName: "Task 4: Copy Powershell Release Scripts"
+            displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
               SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
               Contents: "**/*.ps1"
@@ -72,7 +72,7 @@ stages:
               OverWrite: true
 
           - task: PublishBuildArtifacts@1
-            displayName: "Task 5: Publish Artifacts"
+            displayName: "Task 6: Publish Artifacts"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "drop"
