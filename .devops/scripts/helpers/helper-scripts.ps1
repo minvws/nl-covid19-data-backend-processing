@@ -123,7 +123,7 @@ function Install-MssqlContainer {
 
             '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
 
-            $(dotnet tool install --global dotnet-ef)
+            $(dotnet tool install --global --version 5.0 dotnet-ef)
             $(dotnet ef migrations add SecondVersion-1.0.1)
             $(dotnet ef database update)
 
