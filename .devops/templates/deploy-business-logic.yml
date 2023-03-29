@@ -12,9 +12,9 @@ parameters:
 
 jobs:
   - deployment: ${{ parameters.ENVIRONMENT }}
-    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
+    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic-Vws
     variables:
-      - group: "business-logic-${{ parameters.environment }}-vg"
+      - group: "business-logic-${{ parameters.environment }}-vws-vg"
     strategy:
       runOnce:
         deploy:
@@ -42,28 +42,25 @@ jobs:
                 enableTelemetry: true
         
             # Execute Scripts
-            - task: AzurePowerShell@5
+            - task: PowerShell@2
               displayName: 'Task 2: Deploy MSSQL Update Scripts'
               inputs:
-                azureSubscription: '${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}'
-                ScriptType: 'InlineScript'
-                Inline: |
+                targetType: 'inline'
+                script: |
                   & "./.devops/scripts/release-script.ps1" `
                       -Server "$(AZURE_SQL_SERVER_NAME)" `
                       -Database "$(AZURE_SQL_DATABASE_NAME)" `
                       -SourceDirectory "./src" `
                       -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" `
                       -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"
-                FailOnStandardError: true
-                azurePowerShellVersion: 'LatestVersion'
-                pwsh: true
-                workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
+                failOnStderr: true
+                workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
                 
             # Post Deploy
             - task: PowerShell@2
               inputs: 
                 targetType: 'inline'
                 script: |
-                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse
+                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse -Force
               displayName: "Task 3: Post Deploy"
               condition: always()
