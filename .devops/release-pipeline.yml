@@ -12,10 +12,10 @@ resources:
             - release/*
             - develop*
 
-pool: Self-Hosted
+pool: dockeragent
 
 variables:
-  SERVICE_PRINCIPAL_NAME: 'AzureRM-TF-Connection'
+  SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
   WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/drop'
 
 stages:
