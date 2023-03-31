@@ -11,6 +11,8 @@ Param (
 ### LOAD EXTERNAL SCRIPT(S).....
 . "./.devops/scripts/helpers/helper-scripts.ps1"
 
+Write-Host "loaded helper scripts"
+
 ### SET VARIABLE(S).....
 $databaseName = "dashboard-db"
 $serverName = "local-mssql"
@@ -22,6 +24,8 @@ if (($null -eq $ModifiedFiles) -or ($($ModifiedFiles | Where-Object { $_.Trim() 
 } else {
     $files = $ModifiedFiles
 }
+
+Write-Host "gotten modified notebooks"
 
 $notebooks = $files | Where-Object { ($_.Endswith(".ipynb")) -and (Test-Path -LiteralPath $_) -and (-not [System.IO.Path]::GetFileName($_).StartsWith("__")) }
 
@@ -35,6 +39,8 @@ foreach ($notebook in $notebooks) {
         $deps += $notebook
     }
 }
+
+Write-Host "gotten deps for notebooks"
 
 $notebooks = $($deps | Select-Object -Unique | ForEach-Object { return $(Get-ChildItem -Path $_).FullName } | Select-Object -Unique) 
 
