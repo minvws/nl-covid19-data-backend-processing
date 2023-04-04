@@ -100,6 +100,7 @@ function Install-MssqlContainer {
                     -Query "IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = '$DatabaseName') BEGIN CREATE DATABASE [$DatabaseName] END;" `
                     -Username "sa" `
                     -Password $password `
+                    -EncryptConnection false `
             } `
                 -RetryCount 10
 
