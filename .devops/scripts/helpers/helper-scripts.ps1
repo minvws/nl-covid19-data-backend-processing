@@ -5,7 +5,7 @@ $moduleList | ForEach-Object {
     $modules = Get-InstalledModule | Where-Object { $_.Name -eq $module }
     if ($modules.Count -eq 0) {
         Write-Host "Installing module $($module)....." -ForegroundColor Yellow
-        Install-Module -Name $module -AllowClobber -Confirm:$False -Force
+        Install-Module -Name $module -RequiredVersion 21.1.18256 -AllowClobber -Confirm:$False -Force
     }
 }
 
