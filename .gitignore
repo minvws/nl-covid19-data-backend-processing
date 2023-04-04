@@ -6,6 +6,7 @@ local.settings.json
 
 # configuration files
 *flyway.conf
+/*flyway*
 
 # User-specific files
 *.suo
@@ -164,6 +165,7 @@ PublishScripts/
 **/packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
+!**/.github/packages/*
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
 # NuGet v3's project.json files produces more ignoreable files
@@ -269,3 +271,13 @@ __pycache__/
 
 # OSX file
 .DS_Store
+
+# Other
+/*.ipynb
+/*.sql
+.vscode/
+!.github/**
+./*.ps1
+/orchestrator
+!/src/*/*.ps1
+*.bak
