@@ -5,7 +5,7 @@ $moduleList | ForEach-Object {
     $modules = Get-InstalledModule | Where-Object { $_.Name -eq $module }
     if ($modules.Count -eq 0) {
         Write-Host "Installing module $($module)....." -ForegroundColor Yellow
-        Install-Module -Name $module -AllowClobber -Confirm:$False -Force
+        Install-Module -Name $module -RequiredVersion 21.1.18256 -AllowClobber -Confirm:$False -Force
     }
 }
 
@@ -123,6 +123,7 @@ function Install-MssqlContainer {
 
             '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
 
+            # Install Datatino configuration tables into container
             $(dotnet tool install --global --version 5.0 dotnet-ef)
             $(dotnet ef migrations add SecondVersion-1.0.1)
             $(dotnet ef database update)
