@@ -121,7 +121,7 @@ function Install-MssqlContainer {
 
             Set-Location "../$($devOpsDirectory)/src/Datatino.Model" -ErrorAction Stop
 
-            '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};User ID=sa;Password=${password}" + '" }' | Out-File ".database"
+            '{ "DatabaseConnectionString": "' + "Data Source=$Hostname,${ServerPort};Initial Catalog=${DatabaseName};TrustServerCertificate=true;Encrypt=false;User ID=sa;Password=${password}" + '" }' | Out-File ".database"
 
             # Install Datatino configuration tables into container
             $(dotnet tool install --global --version 6.0 dotnet-ef)
