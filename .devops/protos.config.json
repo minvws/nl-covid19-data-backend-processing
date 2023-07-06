@@ -1,0 +1,20 @@
+{
+    "exclude": true,
+    "protos": [
+        {
+            "name": "GM",
+            "config": ["vaccine_coverage_per_age_group"]
+        },
+        {
+            "name": "GM0014",
+            "config": ["sewer"]
+        },
+        {
+            "name": "GM0299"
+        },
+        {
+            "name": "GM0297",
+            "config":[]
+        }
+    ]
+}
