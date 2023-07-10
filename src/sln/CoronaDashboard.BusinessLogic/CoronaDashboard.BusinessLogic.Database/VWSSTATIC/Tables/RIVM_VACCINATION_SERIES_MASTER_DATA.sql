@@ -1,0 +1,13 @@
+﻿CREATE TABLE [VWSSTATIC].[RIVM_VACCINATION_SERIES_MASTER_DATA] (
+    [ID]                 BIGINT        IDENTITY (1, 1) NOT NULL,
+    [VERSION]            INT           NULL,
+    [VACCINATION_KEY]    VARCHAR (100) NULL,
+    [SERIES_START_DATE]  DATETIME      NULL,
+    [SERIES_END_DATE]    DATETIME      NULL,
+    [LABEL_NL]           VARCHAR (100) NULL,
+    [LABEL_EN]           VARCHAR (100) NULL,
+    [SORT_ORDER]         INT           NULL,
+    [DATE_LAST_INSERTED] DATETIME      DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

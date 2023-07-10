@@ -1,0 +1,16 @@
+﻿CREATE   PROCEDURE DATATINO_ORCHESTRATOR.UPSERT_WORKFLOW_HISTORY (
+    @id BIGINT,
+    @status VARCHAR(5),
+    @last_run DATETIME2,
+    @next_run DATETIME2
+) AS
+    UPDATE [DATATINO_ORCHESTRATOR].[WORKFLOWS]
+    SET [LAST_RUN] = @last_run,
+        [NEXT_RUN] = @next_run
+    WHERE ID = @id
+
+    DECLARE @workflow_name varchar(200) = ( SELECT [WORKFLOW_NAME] FROM DATATINO_ORCHESTRATOR.WORKFLOWS WHERE [ID] = @id)
+    DECLARE @status_id int = ( SELECT CASE WHEN UPPER(@status) = 'TRUE' THEN 1 ELSE 0 END)
+    INSERT INTO [DATATINO_ORCHESTRATOR].[H_WORKFLOWS]
+    ([IDENTIFIER], [WORKFLOW_NAME], [LAST_RUN], [STATUS])
+    VALUES(@id, @workflow_name, @last_run, @status_id)

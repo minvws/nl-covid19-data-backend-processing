@@ -1,0 +1,22 @@
+﻿CREATE TABLE [VWSINTER].[ECDC_VARIANTS] (
+    [ID]                        INT            DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSINTER_ECDC_VARIANTS]) NOT NULL,
+    [COUNTRY]                   VARCHAR (100)  NULL,
+    [COUNTRY_CODE]              VARCHAR (100)  NULL,
+    [YEAR_WEEK]                 VARCHAR (100)  NULL,
+    [SOURCE]                    VARCHAR (100)  NULL,
+    [NEW_CASES]                 INT            NULL,
+    [NUMBER_SEQUENCED]          INT            NULL,
+    [PERCENT_CASES_SEQUENCED]   DECIMAL (8, 3) NULL,
+    [VALID_DENOMINATOR]         BIT            NULL,
+    [VARIANT]                   VARCHAR (100)  NULL,
+    [NUMBER_DETECTIONS_VARIANT] INT            NULL,
+    [PERCENT_VARIANT]           DECIMAL (8, 3) NULL,
+    [DATE_LAST_INSERTED]        DATETIME       DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_INTER_ECDC_VARIANTS]
+    ON [VWSINTER].[ECDC_VARIANTS]([DATE_LAST_INSERTED] ASC);
+

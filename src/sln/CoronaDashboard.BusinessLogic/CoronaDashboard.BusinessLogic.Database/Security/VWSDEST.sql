@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [VWSDEST]
+    AUTHORIZATION [dbo];
+

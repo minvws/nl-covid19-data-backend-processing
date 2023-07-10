@@ -1,0 +1,12 @@
+﻿-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+CREATE   VIEW VWSDEST.V_POSITIVE_TESTED_PEOPLE AS
+SELECT 
+    [DATE_OF_REPORT_UNIX] AS DATE_UNIX,
+    DBO.NO_NEGATIVE_NUMBER_I([INFECTED_DAILY_TOTAL]) AS INFECTED_DAILY_TOTAL,
+    dbo.CONVERT_DATETIME_TO_UNIX(DATE_LAST_INSERTED) AS DATE_OF_INSERTION_UNIX
+FROM VWSDEST.POSITIVE_TESTED_PEOPLE
+WHERE DATE_OF_REPORT >=  '2020-03-02 00:00:00.000'
+AND DATE_LAST_INSERTED = (SELECT max(DATE_LAST_INSERTED) 
+                            FROM VWSDEST.POSITIVE_TESTED_PEOPLE)
