@@ -11,15 +11,7 @@ param (
     [String]$sourceDirectory = $env:PWD ?? $(Get-Location)
 )
 
-$moduleList = @("SqlServer")
-$moduleList | ForEach-Object {
-    $module = $_
-    $modules = Get-InstalledModule | Where-Object { $_.Name -eq $module }
-    if ($modules.Count -eq 0) {
-        Write-Host "Installing module $($module)....." -ForegroundColor Yellow
-        Install-Module -Name $module -RequiredVersion 22.1.1 -AllowClobber -Confirm:$False -Force
-    }
-}
+. "./.devops/scripts/helpers/helper-scripts.ps1"
 
 $protosConfigPath = "$sourceDirectory\$protosConfigPath"
 
