@@ -1,20 +1,5440 @@
 {
-    "exclude": true,
-    "protos": [
-        {
-            "name": "GM",
-            "config": ["vaccine_coverage_per_age_group"]
-        },
-        {
-            "name": "GM0014",
-            "config": ["sewer"]
-        },
-        {
-            "name": "GM0299"
-        },
-        {
-            "name": "GM0297",
-            "config":[]
-        }
-    ]
+  "protos": [
+    {
+      "NAME": "NL",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "NL|NL|NL|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR NL"
+    },
+    {
+      "NAME": "VR01",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR01|VR01|VR01|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR01"
+    },
+    {
+      "NAME": "VR02",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR02|VR02|VR02|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR02"
+    },
+    {
+      "NAME": "VR03",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR03|VR03|VR03|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR03"
+    },
+    {
+      "NAME": "VR04",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR04|VR04|VR04|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR04"
+    },
+    {
+      "NAME": "VR05",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR05|VR05|VR05|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR05"
+    },
+    {
+      "NAME": "VR06",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR06|VR06|VR06|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR06"
+    },
+    {
+      "NAME": "VR07",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR07|VR07|VR07|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR07"
+    },
+    {
+      "NAME": "VR08",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR08|VR08|VR08|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR08"
+    },
+    {
+      "NAME": "VR09",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR09|VR09|VR09|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR09"
+    },
+    {
+      "NAME": "VR10",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR10|VR10|VR10|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR10"
+    },
+    {
+      "NAME": "VR11",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR11|VR11|VR11|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR11"
+    },
+    {
+      "NAME": "VR12",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR12|VR12|VR12|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR12"
+    },
+    {
+      "NAME": "VR13",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR13|VR13|VR13|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR13"
+    },
+    {
+      "NAME": "VR14",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR14|VR14|VR14|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR14"
+    },
+    {
+      "NAME": "VR15",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR15|VR15|VR15|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR15"
+    },
+    {
+      "NAME": "VR16",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR16|VR16|VR16|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR16"
+    },
+    {
+      "NAME": "VR17",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR17|VR17|VR17|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR17"
+    },
+    {
+      "NAME": "VR18",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR18|VR18|VR18|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR18"
+    },
+    {
+      "NAME": "VR19",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR19|VR19|VR19|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR19"
+    },
+    {
+      "NAME": "VR20",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR20|VR20|VR20|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR20"
+    },
+    {
+      "NAME": "VR21",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR21|VR21|VR21|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR21"
+    },
+    {
+      "NAME": "VR22",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR22|VR22|VR22|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR22"
+    },
+    {
+      "NAME": "VR23",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR23|VR23|VR23|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR23"
+    },
+    {
+      "NAME": "VR24",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR24|VR24|VR24|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR24"
+    },
+    {
+      "NAME": "VR25",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR25|VR25|VR25|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR VR25"
+    },
+    {
+      "NAME": "VR_COLLECTION",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "VR_COLLECTION|VR_COLLECTION|VR_COLLECTION|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR VR_COLLECTION"
+    },
+    {
+      "NAME": "GM0014",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0014|GM0014|GM0014|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0014"
+    },
+    {
+      "NAME": "GM0034",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0034|GM0034|GM0034|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0034"
+    },
+    {
+      "NAME": "GM0037",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0037|GM0037|GM0037|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0037"
+    },
+    {
+      "NAME": "GM0047",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0047|GM0047|GM0047|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0047"
+    },
+    {
+      "NAME": "GM0050",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0050|GM0050|GM0050|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0050"
+    },
+    {
+      "NAME": "GM0059",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0059|GM0059|GM0059|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0059"
+    },
+    {
+      "NAME": "GM0060",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0060|GM0060|GM0060|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0060"
+    },
+    {
+      "NAME": "GM0072",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0072|GM0072|GM0072|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0072"
+    },
+    {
+      "NAME": "GM0074",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0074|GM0074|GM0074|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0074"
+    },
+    {
+      "NAME": "GM0080",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0080|GM0080|GM0080|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0080"
+    },
+    {
+      "NAME": "GM0085",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0085|GM0085|GM0085|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0085"
+    },
+    {
+      "NAME": "GM0086",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0086|GM0086|GM0086|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0086"
+    },
+    {
+      "NAME": "GM0088",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0088|GM0088|GM0088|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0088"
+    },
+    {
+      "NAME": "GM0090",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0090|GM0090|GM0090|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0090"
+    },
+    {
+      "NAME": "GM0093",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0093|GM0093|GM0093|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0093"
+    },
+    {
+      "NAME": "GM0096",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0096|GM0096|GM0096|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0096"
+    },
+    {
+      "NAME": "GM0098",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0098|GM0098|GM0098|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0098"
+    },
+    {
+      "NAME": "GM0106",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0106|GM0106|GM0106|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0106"
+    },
+    {
+      "NAME": "GM0109",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0109|GM0109|GM0109|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0109"
+    },
+    {
+      "NAME": "GM0114",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0114|GM0114|GM0114|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0114"
+    },
+    {
+      "NAME": "GM0118",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0118|GM0118|GM0118|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0118"
+    },
+    {
+      "NAME": "GM0119",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0119|GM0119|GM0119|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0119"
+    },
+    {
+      "NAME": "GM0141",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0141|GM0141|GM0141|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0141"
+    },
+    {
+      "NAME": "GM0147",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0147|GM0147|GM0147|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0147"
+    },
+    {
+      "NAME": "GM0148",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0148|GM0148|GM0148|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0148"
+    },
+    {
+      "NAME": "GM0150",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0150|GM0150|GM0150|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0150"
+    },
+    {
+      "NAME": "GM0153",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0153|GM0153|GM0153|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0153"
+    },
+    {
+      "NAME": "GM0158",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0158|GM0158|GM0158|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0158"
+    },
+    {
+      "NAME": "GM0160",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0160|GM0160|GM0160|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0160"
+    },
+    {
+      "NAME": "GM0163",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0163|GM0163|GM0163|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0163"
+    },
+    {
+      "NAME": "GM0164",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0164|GM0164|GM0164|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0164"
+    },
+    {
+      "NAME": "GM0166",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0166|GM0166|GM0166|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0166"
+    },
+    {
+      "NAME": "GM0168",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0168|GM0168|GM0168|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0168"
+    },
+    {
+      "NAME": "GM0171",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0171|GM0171|GM0171|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0171"
+    },
+    {
+      "NAME": "GM0173",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0173|GM0173|GM0173|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0173"
+    },
+    {
+      "NAME": "GM0175",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0175|GM0175|GM0175|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0175"
+    },
+    {
+      "NAME": "GM0177",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0177|GM0177|GM0177|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0177"
+    },
+    {
+      "NAME": "GM0180",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0180|GM0180|GM0180|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0180"
+    },
+    {
+      "NAME": "GM0183",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0183|GM0183|GM0183|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0183"
+    },
+    {
+      "NAME": "GM0184",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0184|GM0184|GM0184|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0184"
+    },
+    {
+      "NAME": "GM0189",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0189|GM0189|GM0189|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0189"
+    },
+    {
+      "NAME": "GM0193",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0193|GM0193|GM0193|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0193"
+    },
+    {
+      "NAME": "GM0197",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0197|GM0197|GM0197|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0197"
+    },
+    {
+      "NAME": "GM0200",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0200|GM0200|GM0200|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0200"
+    },
+    {
+      "NAME": "GM0202",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0202|GM0202|GM0202|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0202"
+    },
+    {
+      "NAME": "GM0203",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0203|GM0203|GM0203|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0203"
+    },
+    {
+      "NAME": "GM0209",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0209|GM0209|GM0209|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0209"
+    },
+    {
+      "NAME": "GM0213",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0213|GM0213|GM0213|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0213"
+    },
+    {
+      "NAME": "GM0214",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0214|GM0214|GM0214|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0214"
+    },
+    {
+      "NAME": "GM0216",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0216|GM0216|GM0216|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0216"
+    },
+    {
+      "NAME": "GM0221",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0221|GM0221|GM0221|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0221"
+    },
+    {
+      "NAME": "GM0222",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0222|GM0222|GM0222|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0222"
+    },
+    {
+      "NAME": "GM0225",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0225|GM0225|GM0225|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0225"
+    },
+    {
+      "NAME": "GM0226",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0226|GM0226|GM0226|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0226"
+    },
+    {
+      "NAME": "GM0228",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0228|GM0228|GM0228|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0228"
+    },
+    {
+      "NAME": "GM0230",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0230|GM0230|GM0230|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0230"
+    },
+    {
+      "NAME": "GM0232",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0232|GM0232|GM0232|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0232"
+    },
+    {
+      "NAME": "GM0233",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0233|GM0233|GM0233|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0233"
+    },
+    {
+      "NAME": "GM0243",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0243|GM0243|GM0243|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0243"
+    },
+    {
+      "NAME": "GM0244",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0244|GM0244|GM0244|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0244"
+    },
+    {
+      "NAME": "GM0246",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0246|GM0246|GM0246|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0246"
+    },
+    {
+      "NAME": "GM0252",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0252|GM0252|GM0252|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0252"
+    },
+    {
+      "NAME": "GM0262",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0262|GM0262|GM0262|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0262"
+    },
+    {
+      "NAME": "GM0263",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0263|GM0263|GM0263|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0263"
+    },
+    {
+      "NAME": "GM0267",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0267|GM0267|GM0267|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0267"
+    },
+    {
+      "NAME": "GM0268",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0268|GM0268|GM0268|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0268"
+    },
+    {
+      "NAME": "GM0269",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0269|GM0269|GM0269|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0269"
+    },
+    {
+      "NAME": "GM0273",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0273|GM0273|GM0273|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0273"
+    },
+    {
+      "NAME": "GM0274",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0274|GM0274|GM0274|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0274"
+    },
+    {
+      "NAME": "GM0275",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0275|GM0275|GM0275|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0275"
+    },
+    {
+      "NAME": "GM0277",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0277|GM0277|GM0277|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0277"
+    },
+    {
+      "NAME": "GM0279",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0279|GM0279|GM0279|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0279"
+    },
+    {
+      "NAME": "GM0281",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0281|GM0281|GM0281|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0281"
+    },
+    {
+      "NAME": "GM0285",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0285|GM0285|GM0285|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0285"
+    },
+    {
+      "NAME": "GM0289",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0289|GM0289|GM0289|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0289"
+    },
+    {
+      "NAME": "GM0293",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0293|GM0293|GM0293|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0293"
+    },
+    {
+      "NAME": "GM0294",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0294|GM0294|GM0294|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0294"
+    },
+    {
+      "NAME": "GM0296",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0296|GM0296|GM0296|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0296"
+    },
+    {
+      "NAME": "GM0297",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0297|GM0297|GM0297|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0297"
+    },
+    {
+      "NAME": "GM0299",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0299|GM0299|GM0299|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0299"
+    },
+    {
+      "NAME": "GM0301",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0301|GM0301|GM0301|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0301"
+    },
+    {
+      "NAME": "GM0302",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0302|GM0302|GM0302|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0302"
+    },
+    {
+      "NAME": "GM0303",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0303|GM0303|GM0303|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0303"
+    },
+    {
+      "NAME": "GM0307",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0307|GM0307|GM0307|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0307"
+    },
+    {
+      "NAME": "GM0308",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0308|GM0308|GM0308|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0308"
+    },
+    {
+      "NAME": "GM0310",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0310|GM0310|GM0310|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0310"
+    },
+    {
+      "NAME": "GM0312",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0312|GM0312|GM0312|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0312"
+    },
+    {
+      "NAME": "GM0313",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0313|GM0313|GM0313|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0313"
+    },
+    {
+      "NAME": "GM0317",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0317|GM0317|GM0317|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0317"
+    },
+    {
+      "NAME": "GM0321",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0321|GM0321|GM0321|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0321"
+    },
+    {
+      "NAME": "GM0327",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0327|GM0327|GM0327|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0327"
+    },
+    {
+      "NAME": "GM0331",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0331|GM0331|GM0331|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0331"
+    },
+    {
+      "NAME": "GM0335",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0335|GM0335|GM0335|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0335"
+    },
+    {
+      "NAME": "GM0339",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0339|GM0339|GM0339|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0339"
+    },
+    {
+      "NAME": "GM0340",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0340|GM0340|GM0340|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0340"
+    },
+    {
+      "NAME": "GM0342",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0342|GM0342|GM0342|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0342"
+    },
+    {
+      "NAME": "GM0344",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0344|GM0344|GM0344|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0344"
+    },
+    {
+      "NAME": "GM0345",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0345|GM0345|GM0345|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0345"
+    },
+    {
+      "NAME": "GM0351",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0351|GM0351|GM0351|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0351"
+    },
+    {
+      "NAME": "GM0352",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0352|GM0352|GM0352|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0352"
+    },
+    {
+      "NAME": "GM0353",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0353|GM0353|GM0353|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0353"
+    },
+    {
+      "NAME": "GM0355",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0355|GM0355|GM0355|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0355"
+    },
+    {
+      "NAME": "GM0356",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0356|GM0356|GM0356|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0356"
+    },
+    {
+      "NAME": "GM0358",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0358|GM0358|GM0358|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0358"
+    },
+    {
+      "NAME": "GM0361",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0361|GM0361|GM0361|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0361"
+    },
+    {
+      "NAME": "GM0362",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0362|GM0362|GM0362|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0362"
+    },
+    {
+      "NAME": "GM0363",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0363|GM0363|GM0363|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0363"
+    },
+    {
+      "NAME": "GM0370",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0370|GM0370|GM0370|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0370"
+    },
+    {
+      "NAME": "GM0373",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0373|GM0373|GM0373|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0373"
+    },
+    {
+      "NAME": "GM0375",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0375|GM0375|GM0375|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0375"
+    },
+    {
+      "NAME": "GM0376",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0376|GM0376|GM0376|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0376"
+    },
+    {
+      "NAME": "GM0377",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0377|GM0377|GM0377|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0377"
+    },
+    {
+      "NAME": "GM0383",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0383|GM0383|GM0383|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0383"
+    },
+    {
+      "NAME": "GM0384",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0384|GM0384|GM0384|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0384"
+    },
+    {
+      "NAME": "GM0385",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0385|GM0385|GM0385|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0385"
+    },
+    {
+      "NAME": "GM0388",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0388|GM0388|GM0388|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0388"
+    },
+    {
+      "NAME": "GM0392",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0392|GM0392|GM0392|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0392"
+    },
+    {
+      "NAME": "GM0394",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0394|GM0394|GM0394|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0394"
+    },
+    {
+      "NAME": "GM0396",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0396|GM0396|GM0396|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0396"
+    },
+    {
+      "NAME": "GM0397",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0397|GM0397|GM0397|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0397"
+    },
+    {
+      "NAME": "GM0398",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0398|GM0398|GM0398|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0398"
+    },
+    {
+      "NAME": "GM0399",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0399|GM0399|GM0399|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0399"
+    },
+    {
+      "NAME": "GM0400",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0400|GM0400|GM0400|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0400"
+    },
+    {
+      "NAME": "GM0402",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0402|GM0402|GM0402|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0402"
+    },
+    {
+      "NAME": "GM0405",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0405|GM0405|GM0405|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0405"
+    },
+    {
+      "NAME": "GM0406",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0406|GM0406|GM0406|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0406"
+    },
+    {
+      "NAME": "GM0415",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0415|GM0415|GM0415|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0415"
+    },
+    {
+      "NAME": "GM0416",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0416|GM0416|GM0416|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0416"
+    },
+    {
+      "NAME": "GM0417",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0417|GM0417|GM0417|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0417"
+    },
+    {
+      "NAME": "GM0420",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0420|GM0420|GM0420|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0420"
+    },
+    {
+      "NAME": "GM0431",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0431|GM0431|GM0431|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0431"
+    },
+    {
+      "NAME": "GM0432",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0432|GM0432|GM0432|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0432"
+    },
+    {
+      "NAME": "GM0437",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0437|GM0437|GM0437|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0437"
+    },
+    {
+      "NAME": "GM0439",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0439|GM0439|GM0439|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0439"
+    },
+    {
+      "NAME": "GM0441",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0441|GM0441|GM0441|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0441"
+    },
+    {
+      "NAME": "GM0448",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0448|GM0448|GM0448|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0448"
+    },
+    {
+      "NAME": "GM0450",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0450|GM0450|GM0450|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0450"
+    },
+    {
+      "NAME": "GM0451",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0451|GM0451|GM0451|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0451"
+    },
+    {
+      "NAME": "GM0453",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0453|GM0453|GM0453|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0453"
+    },
+    {
+      "NAME": "GM0457",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0457|GM0457|GM0457|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0457"
+    },
+    {
+      "NAME": "GM0473",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0473|GM0473|GM0473|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0473"
+    },
+    {
+      "NAME": "GM0479",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0479|GM0479|GM0479|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0479"
+    },
+    {
+      "NAME": "GM0482",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0482|GM0482|GM0482|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0482"
+    },
+    {
+      "NAME": "GM0484",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0484|GM0484|GM0484|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0484"
+    },
+    {
+      "NAME": "GM0489",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0489|GM0489|GM0489|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0489"
+    },
+    {
+      "NAME": "GM0498",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0498|GM0498|GM0498|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0498"
+    },
+    {
+      "NAME": "GM0502",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0502|GM0502|GM0502|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0502"
+    },
+    {
+      "NAME": "GM0503",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0503|GM0503|GM0503|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0503"
+    },
+    {
+      "NAME": "GM0505",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0505|GM0505|GM0505|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0505"
+    },
+    {
+      "NAME": "GM0512",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0512|GM0512|GM0512|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0512"
+    },
+    {
+      "NAME": "GM0513",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0513|GM0513|GM0513|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0513"
+    },
+    {
+      "NAME": "GM0518",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0518|GM0518|GM0518|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0518"
+    },
+    {
+      "NAME": "GM0523",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0523|GM0523|GM0523|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0523"
+    },
+    {
+      "NAME": "GM0531",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0531|GM0531|GM0531|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0531"
+    },
+    {
+      "NAME": "GM0532",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0532|GM0532|GM0532|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0532"
+    },
+    {
+      "NAME": "GM0534",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0534|GM0534|GM0534|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0534"
+    },
+    {
+      "NAME": "GM0537",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0537|GM0537|GM0537|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0537"
+    },
+    {
+      "NAME": "GM0542",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0542|GM0542|GM0542|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0542"
+    },
+    {
+      "NAME": "GM0546",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0546|GM0546|GM0546|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0546"
+    },
+    {
+      "NAME": "GM0547",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0547|GM0547|GM0547|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0547"
+    },
+    {
+      "NAME": "GM0553",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0553|GM0553|GM0553|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0553"
+    },
+    {
+      "NAME": "GM0556",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0556|GM0556|GM0556|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0556"
+    },
+    {
+      "NAME": "GM0569",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0569|GM0569|GM0569|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0569"
+    },
+    {
+      "NAME": "GM0575",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0575|GM0575|GM0575|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0575"
+    },
+    {
+      "NAME": "GM0579",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0579|GM0579|GM0579|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0579"
+    },
+    {
+      "NAME": "GM0589",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0589|GM0589|GM0589|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0589"
+    },
+    {
+      "NAME": "GM0590",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0590|GM0590|GM0590|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0590"
+    },
+    {
+      "NAME": "GM0597",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0597|GM0597|GM0597|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0597"
+    },
+    {
+      "NAME": "GM0599",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0599|GM0599|GM0599|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0599"
+    },
+    {
+      "NAME": "GM0603",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0603|GM0603|GM0603|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0603"
+    },
+    {
+      "NAME": "GM0606",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0606|GM0606|GM0606|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0606"
+    },
+    {
+      "NAME": "GM0610",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0610|GM0610|GM0610|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0610"
+    },
+    {
+      "NAME": "GM0613",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0613|GM0613|GM0613|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0613"
+    },
+    {
+      "NAME": "GM0622",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0622|GM0622|GM0622|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0622"
+    },
+    {
+      "NAME": "GM0626",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0626|GM0626|GM0626|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0626"
+    },
+    {
+      "NAME": "GM0627",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0627|GM0627|GM0627|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0627"
+    },
+    {
+      "NAME": "GM0629",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0629|GM0629|GM0629|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0629"
+    },
+    {
+      "NAME": "GM0632",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0632|GM0632|GM0632|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0632"
+    },
+    {
+      "NAME": "GM0637",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0637|GM0637|GM0637|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0637"
+    },
+    {
+      "NAME": "GM0638",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0638|GM0638|GM0638|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0638"
+    },
+    {
+      "NAME": "GM0642",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0642|GM0642|GM0642|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0642"
+    },
+    {
+      "NAME": "GM0654",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0654|GM0654|GM0654|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0654"
+    },
+    {
+      "NAME": "GM0664",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0664|GM0664|GM0664|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0664"
+    },
+    {
+      "NAME": "GM0668",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0668|GM0668|GM0668|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0668"
+    },
+    {
+      "NAME": "GM0677",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0677|GM0677|GM0677|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0677"
+    },
+    {
+      "NAME": "GM0678",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0678|GM0678|GM0678|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0678"
+    },
+    {
+      "NAME": "GM0687",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0687|GM0687|GM0687|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0687"
+    },
+    {
+      "NAME": "GM0703",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0703|GM0703|GM0703|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0703"
+    },
+    {
+      "NAME": "GM0715",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0715|GM0715|GM0715|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0715"
+    },
+    {
+      "NAME": "GM0716",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0716|GM0716|GM0716|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0716"
+    },
+    {
+      "NAME": "GM0717",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0717|GM0717|GM0717|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0717"
+    },
+    {
+      "NAME": "GM0718",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0718|GM0718|GM0718|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0718"
+    },
+    {
+      "NAME": "GM0736",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0736|GM0736|GM0736|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0736"
+    },
+    {
+      "NAME": "GM0737",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0737|GM0737|GM0737|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0737"
+    },
+    {
+      "NAME": "GM0743",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0743|GM0743|GM0743|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0743"
+    },
+    {
+      "NAME": "GM0744",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0744|GM0744|GM0744|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0744"
+    },
+    {
+      "NAME": "GM0748",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0748|GM0748|GM0748|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0748"
+    },
+    {
+      "NAME": "GM0753",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0753|GM0753|GM0753|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0753"
+    },
+    {
+      "NAME": "GM0755",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0755|GM0755|GM0755|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0755"
+    },
+    {
+      "NAME": "GM0756",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0756|GM0756|GM0756|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0756"
+    },
+    {
+      "NAME": "GM0757",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0757|GM0757|GM0757|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0757"
+    },
+    {
+      "NAME": "GM0758",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0758|GM0758|GM0758|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0758"
+    },
+    {
+      "NAME": "GM0762",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0762|GM0762|GM0762|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0762"
+    },
+    {
+      "NAME": "GM0765",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0765|GM0765|GM0765|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0765"
+    },
+    {
+      "NAME": "GM0766",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0766|GM0766|GM0766|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0766"
+    },
+    {
+      "NAME": "GM0770",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0770|GM0770|GM0770|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0770"
+    },
+    {
+      "NAME": "GM0772",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0772|GM0772|GM0772|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0772"
+    },
+    {
+      "NAME": "GM0777",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0777|GM0777|GM0777|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0777"
+    },
+    {
+      "NAME": "GM0779",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0779|GM0779|GM0779|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0779"
+    },
+    {
+      "NAME": "GM0784",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0784|GM0784|GM0784|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0784"
+    },
+    {
+      "NAME": "GM0785",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0785|GM0785|GM0785|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0785"
+    },
+    {
+      "NAME": "GM0786",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0786|GM0786|GM0786|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0786"
+    },
+    {
+      "NAME": "GM0794",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0794|GM0794|GM0794|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0794"
+    },
+    {
+      "NAME": "GM0796",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0796|GM0796|GM0796|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0796"
+    },
+    {
+      "NAME": "GM0797",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0797|GM0797|GM0797|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0797"
+    },
+    {
+      "NAME": "GM0798",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0798|GM0798|GM0798|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0798"
+    },
+    {
+      "NAME": "GM0809",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0809|GM0809|GM0809|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0809"
+    },
+    {
+      "NAME": "GM0815",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0815|GM0815|GM0815|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0815"
+    },
+    {
+      "NAME": "GM0820",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0820|GM0820|GM0820|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0820"
+    },
+    {
+      "NAME": "GM0823",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0823|GM0823|GM0823|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0823"
+    },
+    {
+      "NAME": "GM0824",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0824|GM0824|GM0824|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0824"
+    },
+    {
+      "NAME": "GM0826",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0826|GM0826|GM0826|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0826"
+    },
+    {
+      "NAME": "GM0828",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0828|GM0828|GM0828|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0828"
+    },
+    {
+      "NAME": "GM0840",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0840|GM0840|GM0840|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0840"
+    },
+    {
+      "NAME": "GM0845",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0845|GM0845|GM0845|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0845"
+    },
+    {
+      "NAME": "GM0847",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0847|GM0847|GM0847|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0847"
+    },
+    {
+      "NAME": "GM0848",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0848|GM0848|GM0848|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0848"
+    },
+    {
+      "NAME": "GM0851",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0851|GM0851|GM0851|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0851"
+    },
+    {
+      "NAME": "GM0852",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0852|GM0852|GM0852|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0852"
+    },
+    {
+      "NAME": "GM0855",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0855|GM0855|GM0855|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0855"
+    },
+    {
+      "NAME": "GM0856",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0856|GM0856|GM0856|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0856"
+    },
+    {
+      "NAME": "GM0858",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0858|GM0858|GM0858|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0858"
+    },
+    {
+      "NAME": "GM0861",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0861|GM0861|GM0861|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0861"
+    },
+    {
+      "NAME": "GM0865",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0865|GM0865|GM0865|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0865"
+    },
+    {
+      "NAME": "GM0866",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0866|GM0866|GM0866|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0866"
+    },
+    {
+      "NAME": "GM0867",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0867|GM0867|GM0867|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0867"
+    },
+    {
+      "NAME": "GM0873",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0873|GM0873|GM0873|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0873"
+    },
+    {
+      "NAME": "GM0879",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0879|GM0879|GM0879|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0879"
+    },
+    {
+      "NAME": "GM0880",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0880|GM0880|GM0880|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0880"
+    },
+    {
+      "NAME": "GM0882",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0882|GM0882|GM0882|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0882"
+    },
+    {
+      "NAME": "GM0888",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0888|GM0888|GM0888|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0888"
+    },
+    {
+      "NAME": "GM0889",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0889|GM0889|GM0889|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0889"
+    },
+    {
+      "NAME": "GM0893",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0893|GM0893|GM0893|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0893"
+    },
+    {
+      "NAME": "GM0899",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0899|GM0899|GM0899|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0899"
+    },
+    {
+      "NAME": "GM0907",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0907|GM0907|GM0907|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0907"
+    },
+    {
+      "NAME": "GM0917",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0917|GM0917|GM0917|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0917"
+    },
+    {
+      "NAME": "GM0928",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0928|GM0928|GM0928|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0928"
+    },
+    {
+      "NAME": "GM0935",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0935|GM0935|GM0935|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0935"
+    },
+    {
+      "NAME": "GM0938",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0938|GM0938|GM0938|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0938"
+    },
+    {
+      "NAME": "GM0944",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0944|GM0944|GM0944|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0944"
+    },
+    {
+      "NAME": "GM0946",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0946|GM0946|GM0946|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0946"
+    },
+    {
+      "NAME": "GM0957",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0957|GM0957|GM0957|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0957"
+    },
+    {
+      "NAME": "GM0965",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0965|GM0965|GM0965|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0965"
+    },
+    {
+      "NAME": "GM0971",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0971|GM0971|GM0971|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0971"
+    },
+    {
+      "NAME": "GM0981",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0981|GM0981|GM0981|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0981"
+    },
+    {
+      "NAME": "GM0983",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0983|GM0983|GM0983|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0983"
+    },
+    {
+      "NAME": "GM0984",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0984|GM0984|GM0984|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0984"
+    },
+    {
+      "NAME": "GM0986",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0986|GM0986|GM0986|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0986"
+    },
+    {
+      "NAME": "GM0988",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0988|GM0988|GM0988|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0988"
+    },
+    {
+      "NAME": "GM0994",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0994|GM0994|GM0994|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0994"
+    },
+    {
+      "NAME": "GM0995",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0995|GM0995|GM0995|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM0995"
+    },
+    {
+      "NAME": "GM1507",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1507|GM1507|GM1507|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1507"
+    },
+    {
+      "NAME": "GM1509",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1509|GM1509|GM1509|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1509"
+    },
+    {
+      "NAME": "GM1525",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1525|GM1525|GM1525|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1525"
+    },
+    {
+      "NAME": "GM1581",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1581|GM1581|GM1581|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1581"
+    },
+    {
+      "NAME": "GM1586",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1586|GM1586|GM1586|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1586"
+    },
+    {
+      "NAME": "GM1598",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1598|GM1598|GM1598|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1598"
+    },
+    {
+      "NAME": "GM1621",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1621|GM1621|GM1621|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1621"
+    },
+    {
+      "NAME": "GM1640",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1640|GM1640|GM1640|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1640"
+    },
+    {
+      "NAME": "GM1641",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1641|GM1641|GM1641|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1641"
+    },
+    {
+      "NAME": "GM1652",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1652|GM1652|GM1652|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1652"
+    },
+    {
+      "NAME": "GM1655",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1655|GM1655|GM1655|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1655"
+    },
+    {
+      "NAME": "GM1658",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1658|GM1658|GM1658|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1658"
+    },
+    {
+      "NAME": "GM1659",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1659|GM1659|GM1659|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1659"
+    },
+    {
+      "NAME": "GM1667",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1667|GM1667|GM1667|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1667"
+    },
+    {
+      "NAME": "GM1669",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1669|GM1669|GM1669|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1669"
+    },
+    {
+      "NAME": "GM1674",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1674|GM1674|GM1674|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1674"
+    },
+    {
+      "NAME": "GM1676",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1676|GM1676|GM1676|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1676"
+    },
+    {
+      "NAME": "GM1680",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1680|GM1680|GM1680|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1680"
+    },
+    {
+      "NAME": "GM1681",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1681|GM1681|GM1681|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1681"
+    },
+    {
+      "NAME": "GM1684",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1684|GM1684|GM1684|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM1684"
+    },
+    {
+      "NAME": "GM1685",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1685|GM1685|GM1685|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM1685"
+    },
+    {
+      "NAME": "GM1690",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1690|GM1690|GM1690|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1690"
+    },
+    {
+      "NAME": "GM1695",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1695|GM1695|GM1695|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1695"
+    },
+    {
+      "NAME": "GM1696",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1696|GM1696|GM1696|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1696"
+    },
+    {
+      "NAME": "GM1699",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1699|GM1699|GM1699|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1699"
+    },
+    {
+      "NAME": "GM1700",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1700|GM1700|GM1700|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1700"
+    },
+    {
+      "NAME": "GM1701",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1701|GM1701|GM1701|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1701"
+    },
+    {
+      "NAME": "GM1702",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1702|GM1702|GM1702|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM1702"
+    },
+    {
+      "NAME": "GM1705",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1705|GM1705|GM1705|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1705"
+    },
+    {
+      "NAME": "GM1706",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1706|GM1706|GM1706|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1706"
+    },
+    {
+      "NAME": "GM1708",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1708|GM1708|GM1708|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1708"
+    },
+    {
+      "NAME": "GM1709",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1709|GM1709|GM1709|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1709"
+    },
+    {
+      "NAME": "GM1711",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1711|GM1711|GM1711|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1711"
+    },
+    {
+      "NAME": "GM1714",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1714|GM1714|GM1714|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1714"
+    },
+    {
+      "NAME": "GM1719",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1719|GM1719|GM1719|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1719"
+    },
+    {
+      "NAME": "GM1721",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1721|GM1721|GM1721|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1721"
+    },
+    {
+      "NAME": "GM1723",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1723|GM1723|GM1723|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1723"
+    },
+    {
+      "NAME": "GM1724",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1724|GM1724|GM1724|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1724"
+    },
+    {
+      "NAME": "GM1728",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1728|GM1728|GM1728|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1728"
+    },
+    {
+      "NAME": "GM1729",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1729|GM1729|GM1729|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1729"
+    },
+    {
+      "NAME": "GM1730",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1730|GM1730|GM1730|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1730"
+    },
+    {
+      "NAME": "GM1731",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1731|GM1731|GM1731|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1731"
+    },
+    {
+      "NAME": "GM1734",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1734|GM1734|GM1734|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1734"
+    },
+    {
+      "NAME": "GM1735",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1735|GM1735|GM1735|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1735"
+    },
+    {
+      "NAME": "GM1740",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1740|GM1740|GM1740|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1740"
+    },
+    {
+      "NAME": "GM1742",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1742|GM1742|GM1742|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1742"
+    },
+    {
+      "NAME": "GM1771",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1771|GM1771|GM1771|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1771"
+    },
+    {
+      "NAME": "GM1773",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1773|GM1773|GM1773|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1773"
+    },
+    {
+      "NAME": "GM1774",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1774|GM1774|GM1774|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1774"
+    },
+    {
+      "NAME": "GM1783",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1783|GM1783|GM1783|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1783"
+    },
+    {
+      "NAME": "GM1842",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1842|GM1842|GM1842|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1842"
+    },
+    {
+      "NAME": "GM1859",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1859|GM1859|GM1859|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1859"
+    },
+    {
+      "NAME": "GM1876",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1876|GM1876|GM1876|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1876"
+    },
+    {
+      "NAME": "GM1883",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1883|GM1883|GM1883|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1883"
+    },
+    {
+      "NAME": "GM1884",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1884|GM1884|GM1884|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1884"
+    },
+    {
+      "NAME": "GM1891",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1891|GM1891|GM1891|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1891"
+    },
+    {
+      "NAME": "GM1892",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1892|GM1892|GM1892|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1892"
+    },
+    {
+      "NAME": "GM1894",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1894|GM1894|GM1894|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1894"
+    },
+    {
+      "NAME": "GM1895",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1895|GM1895|GM1895|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1895"
+    },
+    {
+      "NAME": "GM1896",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1896|GM1896|GM1896|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1896"
+    },
+    {
+      "NAME": "GM1900",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1900|GM1900|GM1900|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1900"
+    },
+    {
+      "NAME": "GM1901",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1901|GM1901|GM1901|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1901"
+    },
+    {
+      "NAME": "GM1903",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1903|GM1903|GM1903|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1903"
+    },
+    {
+      "NAME": "GM1904",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1904|GM1904|GM1904|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1904"
+    },
+    {
+      "NAME": "GM1911",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1911|GM1911|GM1911|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1911"
+    },
+    {
+      "NAME": "GM1916",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1916|GM1916|GM1916|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1916"
+    },
+    {
+      "NAME": "GM1924",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1924|GM1924|GM1924|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1924"
+    },
+    {
+      "NAME": "GM1926",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1926|GM1926|GM1926|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1926"
+    },
+    {
+      "NAME": "GM1930",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1930|GM1930|GM1930|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1930"
+    },
+    {
+      "NAME": "GM1931",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1931|GM1931|GM1931|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1931"
+    },
+    {
+      "NAME": "GM1940",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1940|GM1940|GM1940|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1940"
+    },
+    {
+      "NAME": "GM1942",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1942|GM1942|GM1942|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1942"
+    },
+    {
+      "NAME": "GM1945",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1945|GM1945|GM1945|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1945"
+    },
+    {
+      "NAME": "GM1948",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1948|GM1948|GM1948|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1948"
+    },
+    {
+      "NAME": "GM1949",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1949|GM1949|GM1949|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1949"
+    },
+    {
+      "NAME": "GM1950",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1950|GM1950|GM1950|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1950"
+    },
+    {
+      "NAME": "GM1952",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1952|GM1952|GM1952|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1952"
+    },
+    {
+      "NAME": "GM1954",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1954|GM1954|GM1954|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1954"
+    },
+    {
+      "NAME": "GM1955",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1955|GM1955|GM1955|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1955"
+    },
+    {
+      "NAME": "GM1959",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1959|GM1959|GM1959|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1959"
+    },
+    {
+      "NAME": "GM1960",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1960|GM1960|GM1960|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1960"
+    },
+    {
+      "NAME": "GM1961",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1961|GM1961|GM1961|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1961"
+    },
+    {
+      "NAME": "GM1963",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1963|GM1963|GM1963|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1963"
+    },
+    {
+      "NAME": "GM1966",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1966|GM1966|GM1966|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1966"
+    },
+    {
+      "NAME": "GM1969",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1969|GM1969|GM1969|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1969"
+    },
+    {
+      "NAME": "GM1970",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1970|GM1970|GM1970|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1970"
+    },
+    {
+      "NAME": "GM1978",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1978|GM1978|GM1978|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1978"
+    },
+    {
+      "NAME": "GM1979",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1979|GM1979|GM1979|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1979"
+    },
+    {
+      "NAME": "GM1982",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1982|GM1982|GM1982|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1982"
+    },
+    {
+      "NAME": "GM1991",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1991|GM1991|GM1991|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1991"
+    },
+    {
+      "NAME": "GM1980",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1980|GM1980|GM1980|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1980"
+    },
+    {
+      "NAME": "GM1992",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM1992|GM1992|GM1992|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM1992"
+    },
+    {
+      "NAME": "GM0501",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0501|GM0501|GM0501|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0501"
+    },
+    {
+      "NAME": "GM0530",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0530|GM0530|GM0530|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0530"
+    },
+    {
+      "NAME": "GM0614",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM0614|GM0614|GM0614|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR GM0614"
+    },
+    {
+      "NAME": "GM_COLLECTION",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "GM_COLLECTION|GM_COLLECTION|GM_COLLECTION|=GETDATE()",
+      "ACTIVE": 1,
+      "DESCRIPTION": "PROTO FILE FOR GM_COLLECTION"
+    },
+    {
+      "NAME": "IN_AUT",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_AUT|AUT|IN_AUT|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_AUT"
+    },
+    {
+      "NAME": "IN_BEL",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_BEL|BEL|IN_BEL|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_BEL"
+    },
+    {
+      "NAME": "IN_BGR",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_BGR|BGR|IN_BGR|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_BGR"
+    },
+    {
+      "NAME": "IN_CHE",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_CHE|CHE|IN_CHE|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_CHE"
+    },
+    {
+      "NAME": "IN_CYP",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_CYP|CYP|IN_CYP|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_CYP"
+    },
+    {
+      "NAME": "IN_CZE",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_CZE|CZE|IN_CZE|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_CZE"
+    },
+    {
+      "NAME": "IN_DEU",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_DEU|DEU|IN_DEU|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_DEU"
+    },
+    {
+      "NAME": "IN_GBR",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_GBR|GBR|IN_GBR|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_GBR"
+    },
+    {
+      "NAME": "IN_MLT",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_MLT|MLT|IN_MLT|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_MLT"
+    },
+    {
+      "NAME": "IN_DNK",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_DNK|DNK|IN_DNK|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_DNK"
+    },
+    {
+      "NAME": "IN_ESP",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_ESP|ESP|IN_ESP|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_ESP"
+    },
+    {
+      "NAME": "IN_EST",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_EST|EST|IN_EST|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_EST"
+    },
+    {
+      "NAME": "IN_FIN",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_FIN|FIN|IN_FIN|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_FIN"
+    },
+    {
+      "NAME": "IN_FRA",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_FRA|FRA|IN_FRA|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_FRA"
+    },
+    {
+      "NAME": "IN_HRV",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_HRV|HRV|IN_HRV|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_HRV"
+    },
+    {
+      "NAME": "IN_GRC",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_GRC|GRC|IN_GRC|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_GRC"
+    },
+    {
+      "NAME": "IN_HUN",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_HUN|HUN|IN_HUN|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_HUN"
+    },
+    {
+      "NAME": "IN_IRL",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_IRL|IRL|IN_IRL|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_IRL"
+    },
+    {
+      "NAME": "IN_ISL",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_ISL|ISL|IN_ISL|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_ISL"
+    },
+    {
+      "NAME": "IN_ITA",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_ITA|ITA|IN_ITA|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_ITA"
+    },
+    {
+      "NAME": "IN_LIE",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_LIE|LIE|IN_LIE|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_LIE"
+    },
+    {
+      "NAME": "IN_LTU",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_LTU|LTU|IN_LTU|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_LTU"
+    },
+    {
+      "NAME": "IN_LUX",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_LUX|LUX|IN_LUX|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_LUX"
+    },
+    {
+      "NAME": "IN_LVA",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_LVA|LVA|IN_LVA|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_LVA"
+    },
+    {
+      "NAME": "IN_NLD",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_NLD|NLD|IN_NLD|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_NLD"
+    },
+    {
+      "NAME": "IN_NOR",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_NOR|NOR|IN_NOR|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_NOR"
+    },
+    {
+      "NAME": "IN_POL",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_POL|POL|IN_POL|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_POL"
+    },
+    {
+      "NAME": "IN_PRT",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_PRT|PRT|IN_PRT|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_PRT"
+    },
+    {
+      "NAME": "IN_ROU",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_ROU|ROU|IN_ROU|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_ROU"
+    },
+    {
+      "NAME": "IN_SVK",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_SVK|SVK|IN_SVK|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_SVK"
+    },
+    {
+      "NAME": "IN_SVN",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_SVN|SVN|IN_SVN|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_SVN"
+    },
+    {
+      "NAME": "IN_SWE",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_SWE|SWE|IN_SWE|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_SWE"
+    },
+    {
+      "NAME": "IN_COLLECTION",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "IN_COLLECTION|IN_COLLECTION|IN_COLLECTION|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR IN_COLLECTION"
+    },
+    {
+      "NAME": "RANGES",
+      "HEADER_NAMES": "name|code|proto_name|last_generated",
+      "HEADER_VALUES": "ranges|ra|RANGES|=GETDATE()",
+      "ACTIVE": 0,
+      "DESCRIPTION": "PROTO FILE FOR RANGES"
+    }
+  ],
+  "configurations": [
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP|PERCENTAGE|PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_coverage",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM FOR booster_coverage"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP|PERCENTAGE|PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "booster_coverage_archived_20220904",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "COVID_DAILY|COVID_DAILY_MOVING_AVERAGE|COVID_TOTAL|DATE_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_rivm",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY FOR deceased_rivm"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "COVID_DAILY|COVID_DAILY_MOVING_AVERAGE|COVID_TOTAL|DATE_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_rivm_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/deceased_rivm__covid_daily",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM FOR difference/deceased_rivm__covid_daily"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/deceased_rivm__covid_daily_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/sewer__average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY FOR difference/sewer__average"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/tested_overall__infected_moving_average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL FOR difference/tested_overall__infected_moving_average"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/tested_overall__infected_per_100k_moving_average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE FOR difference/tested_overall__infected_per_100k_moving_average"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|ADMISSIONS_ON_DATE_OF_ADMISSION_MOVING_AVERAGE|ADMISSIONS_ON_DATE_OF_ADMISSION_MOVING_AVERAGE_ROUNDED|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|AVERAGE|TOTAL_NUMBER_OF_SAMPLES|SAMPLED_INSTALLATION_COUNT|TOTAL_INSTALLATION_COUNT|DATA_IS_OUTDATED|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY FOR sewer"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|AVERAGE|TOTAL_NUMBER_OF_SAMPLES|SAMPLED_INSTALLATION_COUNT|TOTAL_INSTALLATION_COUNT|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY FOR sewer"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL",
+      "CONSTRAINED": 1,
+      "GROUPED": 1,
+      "COLUMNS": "DATE_UNIX|RNA_NORMALIZED|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer_per_installation",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL FOR sewer_per_installation"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_INHABITANTS_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "POPULATION_COUNT",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "static_values",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_INHABITANTS_PER_MUNICIPALITY FOR static_values"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|INFECTED|INFECTED_PER_100K|INFECTED_PER_100K_MOVING_AVERAGE|INFECTED_MOVING_AVERAGE_ROUNDED|INFECTED_MOVING_AVERAGE|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "tested_overall",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY FOR tested_overall"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP_RANGE|BIRTHYEAR_RANGE|FULLY_VACCINATED_PERCENTAGE|HAS_ONE_SHOT_PERCENTAGE|FULLY_VACCINATED_PERCENTAGE_LABEL|HAS_ONE_SHOT_PERCENTAGE_LABEL|BOOSTER_SHOT_PERCENTAGE|BOOSTER_SHOT_PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|VACCINATION_TYPE|BIRTHYEAR_RANGE_12_PLUS|BIRTHYEAR_RANGE_18_PLUS|BIRTHYEAR_RANGE_60_PLUS|VACCINATED_PERCENTAGE_12_PLUS|VACCINATED_PERCENTAGE_12_PLUS_LABEL|VACCINATED_PERCENTAGE_18_PLUS|VACCINATED_PERCENTAGE_18_PLUS_LABEL|VACCINATED_PERCENTAGE_60_PLUS|VACCINATED_PERCENTAGE_60_PLUS_LABEL|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP_RANGE|BIRTHYEAR_RANGE|FULLY_VACCINATED_PERCENTAGE|HAS_ONE_SHOT_PERCENTAGE|FULLY_VACCINATED_PERCENTAGE_LABEL|HAS_ONE_SHOT_PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
+    },
+    {
+      "protoTag": "GM",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP_RANGE|BIRTHYEAR_RANGE|FULLY_VACCINATED_PERCENTAGE|FULLY_VACCINATED_PERCENTAGE_LABEL|BOOSTER_SHOT_PERCENTAGE|BOOSTER_SHOT_PERCENTAGE_LABEL|HAS_ONE_SHOT_PERCENTAGE|HAS_ONE_SHOT_PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
+    },
+    {
+      "protoTag": "GM_COLLECTION",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "GM_COLLECTION",
+      "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "GM_COLLECTION",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES FOR sewer"
+    },
+    {
+      "protoTag": "GM_COLLECTION",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|GMCODE|VACCINATION_TYPE|BIRTHYEAR_RANGE_12_PLUS|BIRTHYEAR_RANGE_18_PLUS|BIRTHYEAR_RANGE_60_PLUS|VACCINATED_PERCENTAGE_12_PLUS|VACCINATED_PERCENTAGE_12_PLUS_LABEL|VACCINATED_PERCENTAGE_18_PLUS|VACCINATED_PERCENTAGE_18_PLUS_LABEL|VACCINATED_PERCENTAGE_60_PLUS|VACCINATED_PERCENTAGE_60_PLUS_LABEL|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_annotations",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL FOR behavior_annotations"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "16_24|25_39|40_54|55_69|70_plus",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_per_age_group/posttest_isolation_compliance",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/posttest_isolation_compliance"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "16_24|25_39|40_54|55_69|70_plus",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_per_age_group/posttest_isolation_support",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/posttest_isolation_support"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "16_24|25_39|40_54|55_69|70_plus",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_per_age_group/selftest_visit_compliance",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/selftest_visit_compliance"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "16_24|25_39|40_54|55_69|70_plus",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_per_age_group/selftest_visit_support",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/selftest_visit_support"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_coverage",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL FOR booster_coverage"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "booster_coverage_archived_20220904",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_shot_administered",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL FOR booster_shot_administered"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "booster_shot_administered_archived_20220904",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904 FOR booster_shot_administered_archived_20220904"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_shot_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL FOR booster_shot_per_age_group"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_shot_planned",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL FOR booster_shot_planned"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_CORONAMELDER_DOWNLOAD",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "corona_melder_app_download",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CORONAMELDER_DOWNLOAD FOR corona_melder_app_download"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_CORONAMELDER_WARNING",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "corona_melder_app_warning",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CORONAMELDER_WARNING FOR corona_melder_app_warning"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_rivm_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_rivm_per_age_group_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231 FOR deceased_rivm_per_age_group_archived_20221231"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/deceased_rivm__covid_daily_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/disability_care__infected_locations_total_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126 FOR difference/disability_care__infected_locations_total_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/disability_care__newly_infected_people_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126 FOR difference/disability_care__newly_infected_people_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/elderly_at_home__positive_tested_daily_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126 FOR difference/elderly_at_home__positive_tested_daily_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/hospital_lcps__beds_occupied_covid",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS FOR difference/hospital_lcps__beds_occupied_covid"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_HOSPITAL_BEDS_OCCUPIED__COVID_OCCUPIED",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "difference/hospital_lcps__beds_occupied_covid_2022",
+      "DESCRIPTION": "View Configuration for difference/hospital_lcps__beds_occupied_covid"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/intensive_care_lcps__beds_occupied_covid",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS FOR difference/intensive_care_lcps__beds_occupied_covid"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BEDS_OCCUPIED__COVID_OCCUPIED",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "difference/intensive_care_lcps__beds_occupied_covid_2022",
+      "DESCRIPTION": "View Configuration for difference/intensive_care_lcps__beds_occupied_covid"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/nursing_home__deceased_daily_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126 FOR difference/nursing_home__deceased_daily_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/nursing_home__newly_infected_people_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126 FOR difference/nursing_home__newly_infected_people_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "NEW_DATE_UNIX|OLD_DATE_UNIX|OLD_VALUE|DIFFERENCE",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/vulnerable_hospital_admissions",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME FOR difference/vulnerable_hospital_admissions"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/vulnerable_nursing_home__infected_locations_total",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL FOR difference/vulnerable_nursing_home__infected_locations_total"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "NEW_DATE_UNIX|OLD_DATE_UNIX|OLD_VALUE|DIFFERENCE",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/vulnerable_tested_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR difference/vulnerable_tested_per_age_group"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "disability_care_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126 FOR disability_care_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "elderly_at_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_G_NUMBER_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "g_number",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_G_NUMBER_NL FOR g_number"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_HOSPITAL_BED_LCPS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_lcps",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_BED_LCPS FOR hospital_lcps"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_NON_IC_BED_OCCUPANCY",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_lcps_2022",
+      "DESCRIPTION": "View Configuration for hospital_lcps"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_INTENSIVE_CARE_BED_LCPS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "intensive_care_lcps",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_INTENSIVE_CARE_BED_LCPS FOR intensive_care_lcps"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_IC_BED_OCCUPANCY",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "intensive_care_lcps_2022",
+      "DESCRIPTION": "View Configuration for intensive_care_lcps"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VARIANT_CODE|OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "named_difference/variants__percentage",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR FOR named_difference/variants__percentage"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "nursing_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "repeating_shot_administered",
+      "DESCRIPTION": "VIEW CONFIGURATION FOR VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RISK_LEVEL_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "risk_level",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RISK_LEVEL_NL FOR risk_level"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "self_test_overall",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL FOR self_test_overall"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|DATE_END_UNIX|DATE_START_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_administered_last_timeframe",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL FOR vaccine_administered_last_timeframe"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VACCINE_TYPE_NAME|VACCINE_TYPE_VALUE",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_administered_last_timeframe/vaccine_types",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL FOR vaccine_administered_last_timeframe/vaccine_types"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|DATE_END_UNIX|DATE_START_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "vaccine_administered_last_week",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL FOR vaccine_administered_last_week"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VACCINE_TYPE_NAME|VACCINE_TYPE_VALUE",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "vaccine_administered_last_week/vaccine_types",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL FOR vaccine_administered_last_week/vaccine_types"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|DATE_END_UNIX|DATE_START_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_campaigns",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SERIES_NL FOR vaccine_campaigns"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VACCINE_CAMPAIGN_ORDER|VACCINE_CAMPAIGN_NAME_NL|VACCINE_CAMPAIGN_NAME_EN|VACCINE_ADMINISTERED_TOTAL|VACCINE_ADMINISTERED_LAST_TIMEFRAME",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_campaigns/vaccine_campaigns",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SERIES_NL FOR vaccine_campaigns/vaccine_campaigns"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|DATE_END_UNIX|DATE_START_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_campaigns_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908 FOR vaccine_campaigns_archived_20220908"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VACCINE_CAMPAIGN_ORDER|VACCINE_CAMPAIGN_NAME_NL|VACCINE_CAMPAIGN_NAME_EN|VACCINE_ADMINISTERED_TOTAL|VACCINE_ADMINISTERED_LAST_WEEK",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_campaigns_archived_20220908/vaccine_campaigns",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908 FOR vaccine_campaigns_archived_20220908/vaccine_campaigns_archived_20220908"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_estimated_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_estimated_archived_20220908"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_estimated_autumn_2022",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL FOR vaccine_coverage_per_age_group_estimated_autumn_2022"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_estimated_fully_vaccinated",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL FOR vaccine_coverage_per_age_group_estimated_fully_vaccinated"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "vaccine_planned",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL FOR vaccine_planned"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_planned_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908 FOR vaccine_planned_archived_20220908"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_RIVM_MUTATIONS_TABULAR",
+      "CONSTRAINED": 0,
+      "GROUPED": 1,
+      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|DATE_OF_REPORT_UNIX|ORDER|IS_VARIANT_OF_CONCERN|HAS_HISTORICAL_SIGNIFICANCE|SAMPLE_SIZE|OCCURRENCE|PERCENTAGE|DATE_OF_INSERTION_UNIX|LABEL_EN|LABEL_NL",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "variants",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_MUTATIONS_TABULAR FOR variants"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "ADMISSIONS_AGE_70_PLUS|DATE_START_UNIX|DATE_END_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vulnerable_hospital_admissions",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME FOR vulnerable_hospital_admissions"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_NURSING_HOMES_NATIONAL",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|INFECTED_LOCATIONS_TOTAL|NEWLY_INFECTED_LOCATIONS|INFECTED_LOCATIONS_PERCENTAGE|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vulnerable_nursing_home",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOMES_NATIONAL FOR vulnerable_nursing_home"
+    },
+    {
+      "protoTag": "NL",
+      "ViewName": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "INFECTED_AGE_70_PLUS|DATE_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vulnerable_tested_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR vulnerable_tested_per_age_group"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_archived_20221019",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019 FOR behavior_archived_20221019"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP|PERCENTAGE|PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "booster_coverage",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR FOR booster_coverage"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP|PERCENTAGE|PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "booster_coverage_archived_20220904",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_CBS_DECEASED_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "REGISTERED|EXPECTED|EXPECTED_MIN|EXPECTED_MAX|DATE_START_UNIX|DATE_END_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_cbs",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CBS_DECEASED_VR FOR deceased_cbs"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "deceased_rivm_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/deceased_rivm__covid_daily_archived_20221231",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/disability_care__infected_locations_total_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126 FOR difference/disability_care__infected_locations_total_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/disability_care__newly_infected_people_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126 FOR difference/disability_care__newly_infected_people_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/elderly_at_home__positive_tested_daily_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126 FOR difference/elderly_at_home__positive_tested_daily_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/nursing_home__deceased_daily_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126 FOR difference/nursing_home__deceased_daily_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/nursing_home__newly_infected_people_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126 FOR difference/nursing_home__newly_infected_people_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/vulnerable_nursing_home__infected_locations_total",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION FOR difference/vulnerable_nursing_home__infected_locations_total"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "disability_care_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126 FOR disability_care_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "elderly_at_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_G_NUMBER_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "G_NUMBER|DATE_UNIX|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "g_number",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_G_NUMBER_VR FOR g_number"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|ADMISSIONS_ON_DATE_OF_ADMISSION_MOVING_AVERAGE|ADMISSIONS_ON_DATE_OF_ADMISSION_MOVING_AVERAGE_ROUNDED|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|ADMISSIONS_PER_1M|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice_sum",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE FOR hospital_nice_sum"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "nursing_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_REGION",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|AVERAGE|DATA_IS_OUTDATED|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_PER_REGION FOR sewer"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|VACCINATION_TYPE|BIRTHYEAR_RANGE_12_PLUS|BIRTHYEAR_RANGE_18_PLUS|BIRTHYEAR_RANGE_60_PLUS|VACCINATED_PERCENTAGE_12_PLUS|VACCINATED_PERCENTAGE_12_PLUS_LABEL|VACCINATED_PERCENTAGE_18_PLUS|VACCINATED_PERCENTAGE_18_PLUS_LABEL|VACCINATED_PERCENTAGE_60_PLUS|VACCINATED_PERCENTAGE_60_PLUS_LABEL|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP_RANGE|BIRTHYEAR_RANGE|FULLY_VACCINATED_PERCENTAGE|HAS_ONE_SHOT_PERCENTAGE|FULLY_VACCINATED_PERCENTAGE_LABEL|HAS_ONE_SHOT_PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "AGE_GROUP_RANGE|BIRTHYEAR_RANGE|FULLY_VACCINATED_PERCENTAGE|FULLY_VACCINATED_PERCENTAGE_LABEL|BOOSTER_SHOT_PERCENTAGE|BOOSTER_SHOT_PERCENTAGE_LABEL|HAS_ONE_SHOT_PERCENTAGE|HAS_ONE_SHOT_PERCENTAGE_LABEL|DATE_OF_INSERTION_UNIX|DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 2,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group_archived_20220908",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
+    },
+    {
+      "protoTag": "VR",
+      "ViewName": "VWSDEST.V_NURSING_HOMES_PER_REGION",
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|INFECTED_LOCATIONS_TOTAL|NEWLY_INFECTED_LOCATIONS|INFECTED_LOCATIONS_PERCENTAGE|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vulnerable_nursing_home",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOMES_PER_REGION FOR vulnerable_nursing_home"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "behavior_archived_20221019",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019 FOR behavior_archived_20221019"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "disability_care_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126 FOR disability_care_archived_20230126"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "elderly_at_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "nursing_home_archived_20230126",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_REGIONS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "sewer",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_SEWER_MEASUREMENTS_REGIONS FOR sewer"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|VRCODE|VACCINATION_TYPE|BIRTHYEAR_RANGE_12_PLUS|BIRTHYEAR_RANGE_18_PLUS|BIRTHYEAR_RANGE_60_PLUS|VACCINATED_PERCENTAGE_12_PLUS|VACCINATED_PERCENTAGE_12_PLUS_LABEL|VACCINATED_PERCENTAGE_18_PLUS|VACCINATED_PERCENTAGE_18_PLUS_LABEL|VACCINATED_PERCENTAGE_60_PLUS|VACCINATED_PERCENTAGE_60_PLUS_LABEL|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vaccine_coverage_per_age_group",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR FOR vaccine_coverage_per_age_group"
+    },
+    {
+      "protoTag": "VR_COLLECTION",
+      "ViewName": "VWSDEST.V_NURSING_HOME_REGIONS",
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "VRCODE|DATE_UNIX|INFECTED_LOCATIONS_TOTAL|NEWLY_INFECTED_LOCATIONS|INFECTED_LOCATIONS_PERCENTAGE|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "vulnerable_nursing_home",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOME_REGIONS FOR vulnerable_nursing_home"
+    }
+  ],
+  "views": [
+    {
+      "constraintTag": null,
+      "NAME": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_CORONAMELDER_DOWNLOAD",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_CORONAMELDER_WARNING",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_HOSPITAL_BEDS_OCCUPIED__COVID_OCCUPIED",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BEDS_OCCUPIED__COVID_OCCUPIED",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_G_NUMBER_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_HOSPITAL_BED_LCPS",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_IC_BED_OCCUPANCY",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_INTENSIVE_CARE_BED_LCPS",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED",
+      "LAST_UPDATE_NAME": "DATE_OF_INSERTION_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NON_IC_BED_OCCUPANCY",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NURSING_HOME_REGIONS",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NURSING_HOMES_NATIONAL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RISK_LEVEL_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
+      "LAST_UPDATE_NAME": "DATE_END_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_MUTATIONS_TABULAR",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": "VARIANT_CODE",
+      "GROUPED_LAST_UPDATE_NAME": "DATE_START_UNIX"
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_REGIONS",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": null,
+      "NAME": "VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL",
+      "LAST_UPDATE_NAME": "date_of_report_unix",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_INHABITANTS_PER_MUNICIPALITY",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "GM",
+      "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": "GMCODE",
+      "GROUPED_KEY_NAME": "RWZI_AWZI_NAME",
+      "GROUPED_LAST_UPDATE_NAME": "DATE_UNIX"
+    },
+    {
+      "constraintTag": "posttest_isolation_compliance",
+      "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "LAST_UPDATE_NAME": "date_start_unix",
+      "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "posttest_isolation_support",
+      "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "LAST_UPDATE_NAME": "date_start_unix",
+      "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "selftest_visit_compliance",
+      "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "LAST_UPDATE_NAME": "date_start_unix",
+      "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "selftest_visit_support",
+      "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
+      "LAST_UPDATE_NAME": "date_start_unix",
+      "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_CBS_DECEASED_VR",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_G_NUMBER_VR",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_NURSING_HOMES_PER_REGION",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    },
+    {
+      "constraintTag": "VR",
+      "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_REGION",
+      "LAST_UPDATE_NAME": "DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": "VRCODE",
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null
+    }
+  ]
 }
