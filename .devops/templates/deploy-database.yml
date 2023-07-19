@@ -21,18 +21,30 @@ jobs:
           steps:
           
             - checkout: none
-
-            - task: SqlAzureDacpacDeployment@1
-              displayName: 'Task 1: Azure SQL DacpacTask'
+            - task: Bash@3
               inputs:
-                azureSubscription: ${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}
-                ServerName: '$(AZURE_SQL_SERVER_NAME)'
-                DatabaseName: '$(AZURE_SQL_DATABASE_NAME)'
-                SqlUsername: '$(AZURE_SQL_DATABASE_LOGIN_USERNAME)'
-                SqlPassword: '$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)'
-                DeploymentAction: DeployReport
-                DacpacFile: '${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac'
-                AdditionalArguments: '/p:BlockOnPossibleDataLoss=false /p:GenerateSmartDefaults=true /p:TreatVerificationErrorsAsWarnings=true'
+                targetType: 'inline'
+                script: |
+                  cd ~
+                  wget https://aka.ms/sqlpackage-linux -O ~/sqlpackage.zip
+                  mkdir sqlpackage
+                  unzip ~/sqlpackage.zip -d ~/sqlpackage 
+                  echo "export PATH=\"\$PATH:$HOME/sqlpackage\"" >> ~/.bashrc
+                  chmod a+x ~/sqlpackage/sqlpackage
+                  source ~/.bashrc
+                  sqlpackage
+
+          #  - task: SqlAzureDacpacDeployment@1
+          #    displayName: 'Task 1: Azure SQL DacpacTask'
+          #    inputs:
+          #      azureSubscription: ${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}
+          #      ServerName: '$(AZURE_SQL_SERVER_NAME)'
+          #      DatabaseName: '$(AZURE_SQL_DATABASE_NAME)'
+          #      SqlUsername: '$(AZURE_SQL_DATABASE_LOGIN_USERNAME)'
+          #      SqlPassword: '$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)'
+          #      DeploymentAction: DeployReport
+          #      DacpacFile: '${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac'
+          #      AdditionalArguments: '/p:BlockOnPossibleDataLoss=false /p:GenerateSmartDefaults=true /p:TreatVerificationErrorsAsWarnings=true'
                 
             # Post Deploy
             - task: PowerShell@2
@@ -42,3 +54,5 @@ jobs:
                   Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse -Force
               displayName: "Task 2: Post Deploy"
               condition: always()
+
+
