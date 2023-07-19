@@ -26,6 +26,7 @@ jobs:
                 targetType: 'inline'
                 script: |
                   cd ~
+                  apt-get install -y unzip
                   wget https://aka.ms/sqlpackage-linux -O ~/sqlpackage.zip
                   mkdir sqlpackage
                   unzip ~/sqlpackage.zip -d ~/sqlpackage 
