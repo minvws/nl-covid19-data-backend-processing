@@ -28,7 +28,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/src/sln/CoronaDashboard.BusinessLogic/'
-    Contents: '**\CoronaDashboard.BusinessLogic.Database.dacpac'
+    Contents: '**\*.dacpac'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
