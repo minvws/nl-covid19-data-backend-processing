@@ -28,7 +28,30 @@ jobs:
                 scriptLocation: 'inlineScript'
                 inlineScript: |
                   echo "$PWD"
-                  cd ../../../..
+                  for entry in /azp/*
+                  do
+                    echo "$entry"
+                  done
+                  for entry in /azp/_work/*
+                  do
+                    echo "$entry"
+                  done
+                  for entry in /azp/_work/2/*
+                  do
+                    echo "$entry"
+                  done
+                  for entry in /azp/_work/2/Build/*
+                  do
+                    echo "$entry"
+                  done
+                  for entry in /azp/_work/2/Build/business-logic-database/*
+                  do
+                    echo "$entry"
+                  done
+                  for entry in /azp/_work/2/Build/business-logic-database/CoronaDashboard.BusinessLogic.Database/*
+                  do
+                    echo "$entry"
+                  done
                   sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)"
                 addSpnToEnvironment: true
           #  - task: SqlAzureDacpacDeployment@1
