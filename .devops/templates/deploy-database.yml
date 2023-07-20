@@ -40,15 +40,15 @@ jobs:
                   do
                     echo "$entry"
                   done
-                  for entry in /azp/_work/2/Build/*
+                  for entry in /azp/_work/2/b/*
                   do
                     echo "$entry"
                   done
-                  for entry in /azp/_work/2/Build/business-logic-database/*
+                  for entry in /azp/_work/2/b/business-logic-database/*
                   do
                     echo "$entry"
                   done
-                  for entry in /azp/_work/2/Build/business-logic-database/CoronaDashboard.BusinessLogic.Database/*
+                  for entry in /azp/_work/2/b/business-logic-database/CoronaDashboard.BusinessLogic.Database/*
                   do
                     echo "$entry"
                   done

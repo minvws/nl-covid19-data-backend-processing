@@ -22,7 +22,7 @@ pool: dockeragent
 
 variables:
   SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
-  WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/business-logic-database'
+  WORKING_DIRECTORY: '$(Pipeline.Workspace)/b/business-logic-database'
   
 stages:
   - stage: Development
