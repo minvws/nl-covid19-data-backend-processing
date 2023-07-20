@@ -22,6 +22,7 @@ jobs:
           
             - checkout: none
             - task: AzureCLI@2
+              displayName: "Task 1: Deploy dacpac"
               inputs:
                 azureSubscription: '[AzureDevOps]-ServiceConnection'
                 scriptType: 'bash'
@@ -29,18 +30,7 @@ jobs:
                 inlineScript: |
                   sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)"
                 addSpnToEnvironment: true
-          #  - task: SqlAzureDacpacDeployment@1
-          #    displayName: 'Task 1: Azure SQL DacpacTask'
-          #    inputs:
-          #      azureSubscription: ${{ parameters.AZURE_RM_SERVICE_PRINCIPAL_NAME }}
-          #      ServerName: '$(AZURE_SQL_SERVER_NAME)'
-          #      DatabaseName: '$(AZURE_SQL_DATABASE_NAME)'
-          #      SqlUsername: '$(AZURE_SQL_DATABASE_LOGIN_USERNAME)'
-          #      SqlPassword: '$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)'
-          #      DeploymentAction: DeployReport
-          #      DacpacFile: '${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac'
-          #      AdditionalArguments: '/p:BlockOnPossibleDataLoss=false /p:GenerateSmartDefaults=true /p:TreatVerificationErrorsAsWarnings=true'
-                
+
             # Post Deploy
             - task: PowerShell@2
               inputs: 
