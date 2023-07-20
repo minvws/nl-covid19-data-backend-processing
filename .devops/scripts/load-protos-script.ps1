@@ -57,12 +57,12 @@ function ImportProtos {
                     -replace '''''','NULL'
             }) -join ','
         } elseif ($null -eq $view.constraintTag) {
-            $res = "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" `
-                -f $view.constraintTag, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
-                -replace '''''','NULL'
-        } else {
             $res = "(NULL,'{0}','{1}','{2}','{3}','{4}','{5}')" `
                 -f $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
+                -replace '''''','NULL'
+        } else {
+            $res = "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" `
+                -f $view.constraintTag, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
                 -replace '''''','NULL'
         }
         $query = -join ($query, $prefix, $res, ';')
