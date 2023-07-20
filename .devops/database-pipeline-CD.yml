@@ -17,6 +17,7 @@ resources:
             - master
             - release/*
             - develop/*
+            - topic/COR-1207_Database_project
 
 pool: dockeragent
 
