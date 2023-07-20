@@ -4,7 +4,7 @@
  -- Main select and insert into statement. Filtered values on max datelastinserted.
  -- Move nursery intake data from staging to intermediate table. 
  
- -- Zet de Date_Last_Inserted in een variabele
+ -- Zet de Date_Last_Inserted in een variabele.
  DECLARE @DateTimeNow AS DateTime = GETDATE()
  
  INSERT INTO VWSINTER.RIVM_NURSING_HOMES_COMBINED
@@ -58,7 +58,7 @@
          ISNULL(TOTAL_INFECTED_LOCATIONS_REPORTED,0) AS [TOTAL_INFECTED_LOCATIONS_REPORTED],
          @DateTimeNow as [DATE_LAST_INSERTED]
      FROM VWSSTATIC.RIVM_NURSING_HOMES_COMBINED
-         WHERE CAST(DATE_LAST_INSERTED as DATE) = (SELECT MAX(CAST(DATE_LAST_INSERTED as DATE)) FROM VWSSTATIC.RIVM_NURSING_HOMES_COMBINED)
+         WHERE DATE_LAST_INSERTED  = (SELECT MAX(DATE_LAST_INSERTED) FROM VWSSTATIC.RIVM_NURSING_HOMES_COMBINED)
  
  
  

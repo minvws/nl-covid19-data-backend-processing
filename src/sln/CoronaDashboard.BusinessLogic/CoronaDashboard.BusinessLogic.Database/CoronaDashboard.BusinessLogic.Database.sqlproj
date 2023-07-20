@@ -1521,6 +1521,20 @@
     <Build Include="DATATINO\Sequences\SEQ_H_PROCESSES.sql" />
     <Build Include="DATATINO\Sequences\SEQ_EXECUTABLE_TYPES.sql" />
     <Build Include="DATATINO\Sequences\SEQ_CONFIG_VERSION.sql" />
+    <Build Include="VWSSTATIC\Tables\MUNICIPALITY_RWZI_COUPLING.sql" />
+    <Build Include="VWSSTAGE\Tables\RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023.sql" />
+    <Build Include="VWSSTAGE\Tables\MUNICIPALITY_RWZI_COUPLING.sql" />
+    <Build Include="VWSINTER\Tables\RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023.sql" />
+    <Build Include="VWSDEST\Tables\RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023.sql" />
+    <Build Include="VWSDEST\Views\V_SEWER_MEASUREMENTS_PER_RWZI_2023.sql" />
+    <Build Include="VWSDEST\Views\V_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023.sql" />
+    <Build Include="VWSDEST\Views\V_INTENSIVE_CARE_BED_LCPS_API_2023.sql" />
+    <Build Include="VWSDEST\Views\V_HOSPITAL_BED_LCPS_API_2023.sql" />
+    <Build Include="VWSDEST\Views\V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS_API_2023.sql" />
+    <Build Include="VWSDEST\Views\V_DIFFERENCE_HOSPITAL_BED_LCPS_API_2023.sql" />
+    <Build Include="dbo\Stored Procedures\SP_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023_STAGE_TO_INTER.sql" />
+    <Build Include="dbo\Stored Procedures\SP_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023_INTER_TO_DEST.sql" />
+    <Build Include="dbo\Stored Procedures\SP_MUNICIPALITY_RWZI_COUPLING_STAGE_TO_STATIC.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">

@@ -4,35 +4,52 @@
  CREATE   PROCEDURE [DBO].[SP_CBS_DECEASED_PER_WEEK]
  AS
  BEGIN
-     -- JUST BECAUSE WE CAN'T DO A WHERE BEFORE JOIN. THIS BASE TABLE TO SELECT THE LAST AND THAN A JOIN
-     WITH BASE_CTE AS (
+     -- last inserted
+     WITH CTE1 AS (
          SELECT 
-             * 
+             [YEAR],
+             [WEEK],
+             [DECEASED_ACTUAL]
          FROM [VWSINTER].[CBS_DECEASED_PER_WEEK]
          WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSINTER].[CBS_DECEASED_PER_WEEK])
      ),
-     SECOND_CTE AS(
-     SELECT
-         [DBO].[CONVERT_ISO_WEEK_TO_DATETIME](T1.[YEAR], T1.[WEEK]) AS [WEEK_START],
-         [DBO].[WEEK_END]([DBO].[CONVERT_ISO_WEEK_TO_DATETIME](T1.[YEAR], T1.[WEEK])) AS [WEEK_END],
-         [DBO].[CONVERT_WEEKNUMBER_TO_UNIX](T1.[YEAR], T1.[WEEK]) AS [WEEK_START_UNIX],
-         [DBO].[CONVERT_DATETIME_TO_UNIX]([DBO].[WEEK_END]([DBO].[CONVERT_ISO_WEEK_TO_DATETIME](T1.[YEAR], T1.[WEEK]))) AS [WEEK_END_UNIX],
-         CASE WHEN T1.[WEEK] = 0 THEN T1.[YEAR] - 1 ELSE T1.[YEAR] END AS [YEAR],
-         CASE WHEN T1.[WEEK] = 0 THEN 53 ELSE T1.[WEEK] END AS [WEEK],
-         T1.[DECEASED_ACTUAL]
-     FROM BASE_CTE AS T1
-     ),
-     THIRD_CTE AS (
+     -- correct week 0's
+     CTE2 AS (
          SELECT 
-             [WEEK_START], 
-             [WEEK_END], 
-             [WEEK_START_UNIX], 
-             [WEEK_END_UNIX], 
-             [YEAR], 
-             [WEEK], 
+             CASE WHEN [WEEK] = 0 THEN [YEAR] - 1 ELSE [YEAR] END AS [YEAR],
+             CASE WHEN [WEEK] = 0 THEN (SELECT MAX([WEEK]) FROM CTE1 a WHERE a.[YEAR] = b.[YEAR] - 1) ELSE [WEEK] END AS [WEEK],
+             [DECEASED_ACTUAL]
+         FROM CTE1 b
+     ),
+     -- filter on 2020 and later
+     CTE3 AS (
+         SELECT
+             [YEAR],
+             [WEEK],
+             [DECEASED_ACTUAL]
+         FROM CTE2
+         WHERE [YEAR] >= 2020
+     ),
+     -- sum for every week per year
+     CTE4 AS (
+         SELECT 
+             [YEAR],
+             [WEEK],
              SUM([DECEASED_ACTUAL]) AS [DECEASED_ACTUAL]
-         FROM SECOND_CTE
-         GROUP BY [WEEK_START], [WEEK_END], [WEEK_START_UNIX], [WEEK_END_UNIX], [YEAR], [WEEK]
+         FROM CTE3
+         GROUP BY [YEAR], [WEEK]
+     ),
+     -- extra fields (unix)
+     CTE5 AS (
+         SELECT
+             [DBO].[CONVERT_ISO_WEEK_TO_DATETIME]([YEAR], [WEEK]) AS [WEEK_START],
+             [DBO].[WEEK_END]([DBO].[CONVERT_ISO_WEEK_TO_DATETIME]([YEAR], [WEEK])) AS [WEEK_END],
+             [DBO].[CONVERT_WEEKNUMBER_TO_UNIX]([YEAR], [WEEK]) AS [WEEK_START_UNIX],
+             [DBO].[CONVERT_DATETIME_TO_UNIX]([DBO].[WEEK_END]([DBO].[CONVERT_ISO_WEEK_TO_DATETIME]([YEAR], [WEEK]))) AS [WEEK_END_UNIX],
+             [YEAR],
+             [WEEK],
+             [DECEASED_ACTUAL]
+         FROM CTE4
      )
      INSERT INTO [VWSDEST].[CBS_DECEASED_PER_WEEK] (
          [WEEK_START],
@@ -57,10 +74,14 @@
          T2.[DECEASED_FORECAST],
          T2.[DECEASED_FORECAST_HIGH],
          T2.[DECEASED_FORECAST_LOW]
-     FROM THIRD_CTE AS T1
+     FROM CTE5 AS T1
      LEFT JOIN (
          SELECT 
-             * 
+             [DECEASED_FORECAST],
+             [DECEASED_FORECAST_HIGH],
+             [DECEASED_FORECAST_LOW],
+             [YEAR],
+             [WEEK]
          FROM [VWSINTER].[CBS_DECEASED_PER_WEEK_FORECAST]
          WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSINTER].[CBS_DECEASED_PER_WEEK_FORECAST])
      ) AS T2

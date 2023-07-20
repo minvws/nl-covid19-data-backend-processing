@@ -17,4 +17,5 @@
          [OVERLEDENEN_1]
      FROM [VWSSTAGE].[CBS_DECEASED_PER_WEEK]
      WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSSTAGE].[CBS_DECEASED_PER_WEEK])
+     AND [PERIODEN] LIKE '[0-9][0-9][0-9][0-9][W,X][0-9][0-9][0-9]' -- 4 numbers and then W or X and then 3 numbers
  END;
