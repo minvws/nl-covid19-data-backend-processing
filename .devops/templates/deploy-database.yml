@@ -21,20 +21,15 @@ jobs:
           steps:
           
             - checkout: none
-            - task: Bash@3
+            - task: AzureCLI@2
               inputs:
-                targetType: 'inline'
-                script: |
-                  cd ~
-                  apt-get update && apt-get install -y unzip
-                  wget https://aka.ms/sqlpackage-linux -O ~/sqlpackage.zip
-                  mkdir sqlpackage
-                  unzip ~/sqlpackage.zip -d ~/sqlpackage 
-                  echo "export PATH=\"\$PATH:$HOME/sqlpackage\"" >> ~/.bashrc
-                  chmod a+x ~/sqlpackage/sqlpackage
-                  source ~/.bashrc
-                  sqlpackage
-
+                azureSubscription: '[AzureDevOps]-ServiceConnection'
+                scriptType: 'ps'
+                scriptLocation: 'inlineScript'
+                inlineScript: |
+                  write-host "Trying to deploy dacpac
+                  sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }} /CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)"
+                addSpnToEnvironment: true
           #  - task: SqlAzureDacpacDeployment@1
           #    displayName: 'Task 1: Azure SQL DacpacTask'
           #    inputs:
