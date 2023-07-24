@@ -2930,6 +2930,7 @@
   "configurations": [
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -2943,6 +2944,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -2956,6 +2958,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -2969,6 +2972,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -2982,6 +2986,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -2995,6 +3000,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3008,6 +3014,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3021,6 +3028,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3034,6 +3042,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3047,6 +3056,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3060,6 +3070,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3073,6 +3084,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3086,6 +3098,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3099,6 +3112,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3112,6 +3126,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3125,6 +3140,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL",
       "CONSTRAINED": 1,
       "GROUPED": 1,
@@ -3138,6 +3154,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_INHABITANTS_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3151,6 +3168,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3164,6 +3182,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3177,6 +3196,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3190,6 +3210,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3203,6 +3224,7 @@
     },
     {
       "protoTag": "GM",
+      "constraintValue": "GM",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3216,6 +3238,7 @@
     },
     {
       "protoTag": "GM_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3229,6 +3252,7 @@
     },
     {
       "protoTag": "GM_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3242,6 +3266,7 @@
     },
     {
       "protoTag": "GM_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3255,6 +3280,7 @@
     },
     {
       "protoTag": "GM_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3268,6 +3294,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3281,6 +3308,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": "posttest_isolation_compliance",
       "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3294,6 +3322,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": "posttest_isolation_support",
       "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3307,6 +3336,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": "selftest_visit_compliance",
       "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3320,6 +3350,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": "selftest_visit_support",
       "ViewName": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -3333,6 +3364,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3346,6 +3378,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3359,6 +3392,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3372,6 +3406,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3385,6 +3420,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3398,6 +3434,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3411,6 +3448,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_CORONAMELDER_DOWNLOAD",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3424,6 +3462,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_CORONAMELDER_WARNING",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3437,6 +3476,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3450,6 +3490,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3463,6 +3504,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3476,6 +3518,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3489,6 +3532,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3502,6 +3546,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3515,6 +3560,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3528,6 +3574,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_HOSPITAL_BEDS_OCCUPIED__COVID_OCCUPIED",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3541,6 +3588,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3554,6 +3602,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3567,6 +3616,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BEDS_OCCUPIED__COVID_OCCUPIED",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3580,6 +3630,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3593,6 +3644,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3606,6 +3658,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3619,6 +3672,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3632,6 +3686,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3645,6 +3700,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3658,6 +3714,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3671,6 +3728,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_G_NUMBER_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3684,6 +3742,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_HOSPITAL_BED_LCPS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3697,6 +3756,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NON_IC_BED_OCCUPANCY",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3710,6 +3770,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3723,6 +3784,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_INTENSIVE_CARE_BED_LCPS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3736,6 +3798,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_IC_BED_OCCUPANCY",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3749,6 +3812,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3762,6 +3826,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3775,6 +3840,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3788,6 +3854,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RISK_LEVEL_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3801,6 +3868,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3814,6 +3882,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3827,6 +3896,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3840,6 +3910,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3853,6 +3924,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3866,6 +3938,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3879,6 +3952,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3892,6 +3966,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3905,6 +3980,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3918,6 +3994,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3931,6 +4008,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3944,6 +4022,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3957,6 +4036,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3970,6 +4050,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3983,6 +4064,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -3996,6 +4078,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4009,6 +4092,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4022,6 +4106,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_RIVM_MUTATIONS_TABULAR",
       "CONSTRAINED": 0,
       "GROUPED": 1,
@@ -4035,6 +4120,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4048,6 +4134,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NURSING_HOMES_NATIONAL",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4061,6 +4148,7 @@
     },
     {
       "protoTag": "NL",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4074,6 +4162,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4087,6 +4176,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4100,6 +4190,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4113,6 +4204,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_CBS_DECEASED_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4126,6 +4218,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4139,6 +4232,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4152,6 +4246,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4165,6 +4260,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4178,6 +4274,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4191,6 +4288,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4204,6 +4302,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4217,6 +4316,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4230,6 +4330,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4243,6 +4344,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4256,6 +4358,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4269,6 +4372,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_G_NUMBER_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4282,6 +4386,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4295,6 +4400,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4308,6 +4414,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4321,6 +4428,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4334,6 +4442,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_PER_REGION",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4347,6 +4456,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4360,6 +4470,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4373,6 +4484,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4386,6 +4498,7 @@
     },
     {
       "protoTag": "VR",
+      "constraintValue": "VR",
       "ViewName": "VWSDEST.V_NURSING_HOMES_PER_REGION",
       "CONSTRAINED": 1,
       "GROUPED": 0,
@@ -4399,6 +4512,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4412,6 +4526,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4425,6 +4540,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4438,6 +4554,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4451,6 +4568,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4464,6 +4582,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4477,6 +4596,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_SEWER_MEASUREMENTS_REGIONS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4490,6 +4610,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4503,6 +4624,7 @@
     },
     {
       "protoTag": "VR_COLLECTION",
+      "constraintValue": null,
       "ViewName": "VWSDEST.V_NURSING_HOME_REGIONS",
       "CONSTRAINED": 0,
       "GROUPED": 0,
@@ -4517,7 +4639,7 @@
   ],
   "views": [
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4526,7 +4648,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908 FOR vaccine_campaigns_archived_20220908/vaccine_campaigns_archived_20220908"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4535,7 +4657,7 @@
       "DESCRIPTION": "VIEW: VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_ARCHIVED_20220908 FOR vaccine_planned_archived_20220908/vaccine_planned_archived_20220908"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4544,7 +4666,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_REGIONS_ARCHIVED_20221019 FOR behavior_archived_20221019"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4553,7 +4675,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4562,7 +4684,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4571,7 +4693,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR FOR vaccine_coverage_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_CORONAMELDER_DOWNLOAD",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4580,7 +4702,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CORONAMELDER_DOWNLOAD FOR corona_melder_app_download"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_CORONAMELDER_WARNING",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4589,7 +4711,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CORONAMELDER_WARNING FOR corona_melder_app_warning"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4598,7 +4720,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231 FOR deceased_rivm_per_age_group_archived_20221231"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4607,7 +4729,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_HOSPITAL_BED_LCPS FOR difference/hospital_lcps__beds_occupied_covid"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_HOSPITAL_BEDS_OCCUPIED__COVID_OCCUPIED",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4616,7 +4738,7 @@
       "DESCRIPTION": "View Configuration for VWSDEST.V_DIFFERENCE_HOSPITAL_BEDS_OCCUPIED__COVID_OCCUPIED"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4625,7 +4747,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4634,7 +4756,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BED_LCPS FOR difference/intensive_care_lcps__beds_occupied_covid"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BEDS_OCCUPIED__COVID_OCCUPIED",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4643,7 +4765,7 @@
       "DESCRIPTION": "View Configuration for VWSDEST.V_DIFFERENCE_INTENSIVE_CARE_BEDS_OCCUPIED__COVID_OCCUPIED"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4652,7 +4774,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_ARCHIVED_20230126 FOR difference/nursing_home__deceased_daily_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4661,7 +4783,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL FOR difference/vulnerable_nursing_home__infected_locations_total"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4670,7 +4792,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_ARCHIVED_20230126 FOR difference/nursing_home__newly_infected_people_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4679,7 +4801,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_NL_ARCHIVED_20230126 FOR difference/disability_care__infected_locations_total_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4688,7 +4810,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126 FOR difference/disability_care__newly_infected_people_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4697,7 +4819,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_NL_ARCHIVED_20230126 FOR difference/elderly_at_home__positive_tested_daily_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4706,7 +4828,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME FOR difference/vulnerable_hospital_admissions"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4715,7 +4837,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_MUTATIONS__PERCENTAGE_TABULAR FOR named_difference/variants__percentage"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4724,7 +4846,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR difference/vulnerable_tested_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4733,7 +4855,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4742,7 +4864,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126 FOR disability_care_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4751,7 +4873,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126 FOR disability_care_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4760,7 +4882,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4769,7 +4891,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_G_NUMBER_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4778,7 +4900,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_G_NUMBER_NL FOR g_number"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4787,7 +4909,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSION_70_PLUS_OVER_TIME FOR vulnerable_hospital_admissions"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4796,7 +4918,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE FOR hospital_nice"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4805,7 +4927,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_NL_NICE FOR hospital_nice"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4814,7 +4936,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_LAST_NICE FOR hospital_nice"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_HOSPITAL_BED_LCPS",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4823,7 +4945,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_BED_LCPS FOR hospital_lcps"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_IC_BED_OCCUPANCY",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4832,7 +4954,7 @@
       "DESCRIPTION": "View Configuration for VWSDEST.V_IC_BED_OCCUPANCY"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_INTENSIVE_CARE_BED_LCPS",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4841,7 +4963,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_INTENSIVE_CARE_BED_LCPS FOR intensive_care_lcps"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED",
       "LAST_UPDATE_NAME": "DATE_OF_INSERTION_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4850,7 +4972,7 @@
       "DESCRIPTION": "VIEW OF V_MANUAL_REPEATING_SHOTS_ADMINISTERED"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4859,7 +4981,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION FOR hospital_nice_choropleth"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4868,7 +4990,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR_COLLECTION FOR hospital_nice_choropleth"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NON_IC_BED_OCCUPANCY",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4877,7 +4999,7 @@
       "DESCRIPTION": "View Configuration for VWSDEST.V_NON_IC_BED_OCCUPANCY"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NURSING_HOME_REGIONS",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4886,7 +5008,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOME_REGIONS FOR vulnerable_nursing_home"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4895,7 +5017,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOME_REGIONS_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NURSING_HOMES_NATIONAL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4904,7 +5026,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOMES_NATIONAL FOR vulnerable_nursing_home"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4913,7 +5035,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOMES_NATIONAL_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4922,7 +5044,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR vulnerable_tested_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RISK_LEVEL_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4931,7 +5053,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RISK_LEVEL_NL FOR risk_level"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4940,7 +5062,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL FOR booster_coverage"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4949,7 +5071,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4958,7 +5080,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP FOR vaccine_coverage_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4967,7 +5089,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4976,7 +5098,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
       "LAST_UPDATE_NAME": "DATE_END_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4985,7 +5107,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL FOR self_test_overall"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_MUTATIONS_TABULAR",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -4994,7 +5116,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_MUTATIONS_TABULAR FOR variants"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATION_SERIES_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5003,7 +5125,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_SERIES_NL FOR vaccine_campaigns/vaccine_campaigns"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5012,7 +5134,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL FOR vaccine_coverage_per_age_group_estimated_fully_vaccinated"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5021,7 +5143,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_estimated_archived_20220908"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5030,7 +5152,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL FOR vaccine_coverage_per_age_group_estimated_autumn_2022"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5039,7 +5161,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATION_SHOTS_PLANNED_NL FOR vaccine_planned"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5048,7 +5170,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL FOR booster_shot_administered"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5057,7 +5179,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904 FOR booster_shot_administered_archived_20220904"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5066,7 +5188,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PER_AGE_GROUP_NL FOR booster_shot_per_age_group"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5075,7 +5197,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_PLANNED_NL FOR booster_shot_planned"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5084,7 +5206,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL FOR vaccine_administered_last_timeframe/vaccine_types"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5093,7 +5215,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL FOR vaccine_administered_last_week/vaccine_types"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5102,7 +5224,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_SEWER_MEASUREMENTS_MUNICIPALITIES FOR sewer"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_REGIONS",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -5111,7 +5233,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_SEWER_MEASUREMENTS_REGIONS FOR sewer"
     },
     {
-      "constraintTag": null,
+      "constraintValue": null,
       "NAME": "VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL",
       "LAST_UPDATE_NAME": "date_of_report_unix",
       "CONSTRAINT_KEY_NAME": null,
@@ -5120,7 +5242,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_VWS_BEHAVIOR_ANNOTATIONS_NL FOR behavior_annotations"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5129,7 +5251,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5138,7 +5260,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5147,7 +5269,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5156,7 +5278,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5165,7 +5287,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_INCREASE FOR difference/tested_overall__infected_per_100k_moving_average"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5174,7 +5296,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_POSITIVE_TESTED_PEOPLE__INFECTED_DAILY_TOTAL FOR difference/tested_overall__infected_moving_average"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5183,7 +5305,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_SEWER__AVERAGE_PER_MUNICIPALITY FOR difference/sewer__average"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5192,7 +5314,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM FOR difference/deceased_rivm__covid_daily"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5201,7 +5323,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5210,7 +5332,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE FOR hospital_nice"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_INHABITANTS_PER_MUNICIPALITY",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5219,7 +5341,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_INHABITANTS_PER_MUNICIPALITY FOR static_values"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5228,7 +5350,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5237,7 +5359,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY FOR tested_overall"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5246,7 +5368,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY FOR deceased_rivm"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5255,7 +5377,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5264,7 +5386,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM FOR booster_coverage"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5273,7 +5395,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5282,7 +5404,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_SEWER_MEASUREMENTS_PER_MUNICIPALITY FOR sewer"
     },
     {
-      "constraintTag": "GM",
+      "constraintValue": "GM",
       "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": "GMCODE",
@@ -5291,7 +5413,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_SEWER_MEASUREMENTS_PER_RWZI_MINIMAL FOR sewer_per_installation"
     },
     {
-      "constraintTag": "posttest_isolation_compliance",
+      "constraintValue": "posttest_isolation_compliance",
       "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "LAST_UPDATE_NAME": "date_start_unix",
       "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
@@ -5300,7 +5422,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/posttest_isolation_compliance"
     },
     {
-      "constraintTag": "posttest_isolation_support",
+      "constraintValue": "posttest_isolation_support",
       "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "LAST_UPDATE_NAME": "date_start_unix",
       "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
@@ -5309,7 +5431,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/posttest_isolation_support"
     },
     {
-      "constraintTag": "selftest_visit_compliance",
+      "constraintValue": "selftest_visit_compliance",
       "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "LAST_UPDATE_NAME": "date_start_unix",
       "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
@@ -5318,7 +5440,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/selftest_visit_compliance"
     },
     {
-      "constraintTag": "selftest_visit_support",
+      "constraintValue": "selftest_visit_support",
       "NAME": "VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP",
       "LAST_UPDATE_NAME": "date_start_unix",
       "CONSTRAINT_KEY_NAME": "CONSTRAINT_KEY",
@@ -5327,7 +5449,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP FOR behavior_per_age_group/selftest_visit_support"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5336,7 +5458,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_BEHAVIOR_PER_REGION_ARCHIVED_20221019 FOR behavior_archived_20221019"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_CBS_DECEASED_VR",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5345,7 +5467,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CBS_DECEASED_VR FOR deceased_cbs"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5354,7 +5476,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR FOR vaccine_coverage_per_age_group"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5363,7 +5485,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5372,7 +5494,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_VR_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5381,7 +5503,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5390,7 +5512,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__DECEASED_DAILY_PER_REGION_ARCHIVED_20230126 FOR difference/nursing_home__deceased_daily_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5399,7 +5521,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__INFECTED_LOCATIONS_TOTAL_PER_REGION FOR difference/vulnerable_nursing_home__infected_locations_total"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5408,7 +5530,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCE_NURSING_HOME__NEWLY_INFECTED_PEOPLE_PER_REGION_ARCHIVED_20230126 FOR difference/nursing_home__newly_infected_people_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5417,7 +5539,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_DISABILITY__INFECTED_LOCATIONS_TOTAL_VR_ARCHIVED_20230126 FOR difference/disability_care__infected_locations_total_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5426,7 +5548,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_VR_ARCHIVED_20230126 FOR difference/disability_care__newly_infected_people_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5435,7 +5557,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_ELDERLY_AT_HOME__POSITIVE_TESTED_DAILY_VR_ARCHIVED_20230126 FOR difference/elderly_at_home__positive_tested_daily_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5444,7 +5566,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_VR_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5453,7 +5575,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_DISABILITY_VR_ARCHIVED_20230126 FOR disability_care_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5462,7 +5584,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_ELDERLY_AT_HOME_VR_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_G_NUMBER_VR",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5471,7 +5593,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_G_NUMBER_VR FOR g_number"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5480,7 +5602,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_NICE FOR hospital_nice"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE",
       "LAST_UPDATE_NAME": "DATE_START_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5489,7 +5611,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_HOSPITAL_ADMISSIONS_VR_REL_NICE FOR hospital_nice_sum"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5498,7 +5620,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_VR FOR hospital_nice_choropleth"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_NURSING_HOMES_PER_REGION",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5507,7 +5629,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOMES_PER_REGION FOR vulnerable_nursing_home"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5516,7 +5638,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_NURSING_HOMES_PER_REGION_ARCHIVED_20230126 FOR nursing_home_archived_20230126"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5525,7 +5647,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_DECEASED_DAILY_REGIONAL_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5534,7 +5656,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR FOR booster_coverage"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",
@@ -5543,7 +5665,7 @@
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_VR_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
     },
     {
-      "constraintTag": "VR",
+      "constraintValue": "VR",
       "NAME": "VWSDEST.V_SEWER_MEASUREMENTS_PER_REGION",
       "LAST_UPDATE_NAME": "DATE_UNIX",
       "CONSTRAINT_KEY_NAME": "VRCODE",

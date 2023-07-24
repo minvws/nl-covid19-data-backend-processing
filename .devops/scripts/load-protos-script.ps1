@@ -46,26 +46,68 @@ function ImportProtos {
             CONSTRAINT_KEY_NAME, GROUPED_KEY_NAME, 
             GROUPED_LAST_UPDATE_NAME, DESCRIPTION) VALUES ")
         [string]$res = $null
-        if($view.constraintTag -eq "GM") {
+        if($view.constraintValue -eq "GM") {
             $res = ($GMs | ForEach-Object {"('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
                     $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
                     -replace '''''','NULL'
             }) -join ','
-        } elseif ($view.constraintTag -eq "VR") {
+        } elseif ($view.constraintValue -eq "VR") {
             $res = ($VRs | ForEach-Object {"('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
                     $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
                     -replace '''''','NULL'
             }) -join ','
-        } elseif ($null -eq $view.constraintTag) {
+        } elseif ($null -eq $view.constraintValue) {
             $res = "(NULL,'{0}','{1}','{2}','{3}','{4}','{5}')" `
                 -f $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
                 -replace '''''','NULL'
         } else {
             $res = "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" `
-                -f $view.constraintTag, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
+                -f $view.constraintValue, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
                 -replace '''''','NULL'
         }
         $query = -join ($query, $prefix, $res, ';')
+    }
+    executeSql $query
+
+    Write-Host "Importing CONFIGURATIONS table" 
+    [string]$query = $null
+    foreach ($config in $protosConfig.configurations) {
+        $prefix = ("INSERT INTO [DATATINO_PROTO_1].[CONFIGURATIONS] (
+            PROTO_ID, 
+            VIEW_ID, 
+            CONSTRAINED, 
+            GROUPED,
+            COLUMNS, 
+            MAPPING, 
+            LAYOUT_TYPE_ID, 
+            MOCK_ID, 
+            ACTIVE, 
+            NAME, 
+            DESCRIPTION
+        ) VALUES ")
+        [string]$res = $null
+        if($config.protoTag -eq "GM") {
+            $res = ($GMs | ForEach-Object {"({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
+                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
+            }) -join ','
+        } elseif ($config.protoTag -eq "VR") {
+            $res = ($VRs | ForEach-Object {"({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
+                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
+            }) -join ','
+        }  else {
+            $res = "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($config.protoTag)')", `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($config.constraintValue)')", `
+                $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
+                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
+        }
+        $query = -join ($query, $prefix, $res, '; ')
     }
     executeSql $query
 }
@@ -87,7 +129,7 @@ function ExportProtos {
     Write-Host "Loaded $($protosConfig.protos.Count) rows from database"
 
     Write-Host "Exporting views"
-    $query = ("SELECT case when [CONSTRAINT_VALUE] like 'VR__' then 'VR' when [CONSTRAINT_VALUE] like 'GM____' then 'GM' else [CONSTRAINT_VALUE] end as constraintTag
+    $query = ("SELECT case when [CONSTRAINT_VALUE] like 'VR__' then 'VR' when [CONSTRAINT_VALUE] like 'GM____' then 'GM' else [CONSTRAINT_VALUE] end as constraintValue
             ,[NAME]
             ,[LAST_UPDATE_NAME]
             ,[CONSTRAINT_KEY_NAME]
@@ -102,7 +144,7 @@ function ExportProtos {
             ,[GROUPED_LAST_UPDATE_NAME]
             ,[NAME]
             ,[DESCRIPTION]
-        order by constraintTag, [NAME];")
+        order by constraintValue, [NAME];")
     $res = executeSql $query | ConvertFrom-Json
     foreach ($item in $res) {
         $protosConfig.views.Add(($item | Select-Object -Property $item.Table.Columns.Split(' ')))
@@ -111,6 +153,7 @@ function ExportProtos {
     
     Write-Host "Exporting configurations"
     $query = ("SELECT case when p.Name like 'VR__' then 'VR'  when p.Name like 'GM____' then 'GM'  else p.Name end   as protoTag
+            ,case when v.[CONSTRAINT_VALUE] like 'VR__' then 'VR' when v.[CONSTRAINT_VALUE] like 'GM____' then 'GM' else v.[CONSTRAINT_VALUE] end as constraintValue
             ,v.Name as ViewName
             ,c.[CONSTRAINED]
             ,c.[GROUPED]
@@ -134,6 +177,7 @@ function ExportProtos {
             ,c.[ACTIVE]
             ,c.[NAME]
             ,c.[DESCRIPTION]
+            ,case when v.[CONSTRAINT_VALUE] like 'VR__' then 'VR' when v.[CONSTRAINT_VALUE] like 'GM____' then 'GM' else v.CONSTRAINT_VALUE end
             ,case when p.Name like 'VR__' then 'VR'  when p.Name like 'GM____' then 'GM'  else p.Name end 
             ,v.[NAME]
         order by protoTag, c.Name;")
