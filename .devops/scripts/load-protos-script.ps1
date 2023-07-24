@@ -8,7 +8,9 @@ param (
     [string]$databaseName = "dashboard-db",
     [string]$serverName = "local-mssql",
     [string]$protosConfigPath = ".devops\protos.config.json",
-    [String]$sourceDirectory = $env:PWD ?? $(Get-Location)
+    [String]$sourceDirectory = $env:PWD ?? $(Get-Location),
+    [String]$username = 'sa',
+    [securestring]$password = (ConvertTo-SecureString (docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
 )
 
 . "./.devops/scripts/helpers/helper-scripts.ps1"
@@ -206,8 +208,8 @@ function executeSql {
         -ServerInstance "$hostName,$port" `
         -Database $databaseName `
         -Query $query `
-        -Username "sa" `
-        -Password "$(docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD')" | ConvertTo-Json -WarningAction SilentlyContinue
+        -Username $username `
+        -Password (ConvertFrom-SecureString $password -AsPlainText) | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
 switch ($command) {
