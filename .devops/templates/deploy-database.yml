@@ -28,7 +28,7 @@ jobs:
                 scriptType: 'bash'
                 scriptLocation: 'inlineScript'
                 inlineScript: |
-                  sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)"
+                  sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" /TargetTimeout:3600 /p:CommandTimeout=3600 /p:LongRunningCommandTimeout=3600 /dsp:Actions.sql /drp:Actions.xml
                 addSpnToEnvironment: true
 
             # Post Deploy

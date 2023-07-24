@@ -114,6 +114,8 @@
     <Folder Include="DATATINO_PROTO\Sequences\" />
     <Folder Include="DATATINO_ORCHESTRATOR\Sequences\" />
     <Folder Include="DATATINO\Sequences\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\ADF_ARCHIVED_AUDIT.sql" />
@@ -1535,6 +1537,8 @@
     <Build Include="dbo\Stored Procedures\SP_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023_STAGE_TO_INTER.sql" />
     <Build Include="dbo\Stored Procedures\SP_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023_INTER_TO_DEST.sql" />
     <Build Include="dbo\Stored Procedures\SP_MUNICIPALITY_RWZI_COUPLING_STAGE_TO_STATIC.sql" />
+    <None Include="Scripts\PostDeployment\PostDeploy_0001.sql" />
+    <Build Include="dbo\Tables\DACPAC_VERSION_HISTORY.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
@@ -1542,5 +1546,14 @@
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CoronaDashboard.BusinessLogic.Database.refactorlog" />
   </ItemGroup>
 </Project>
