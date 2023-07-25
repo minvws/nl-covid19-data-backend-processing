@@ -17,6 +17,8 @@ param (
 
 $protosConfigPath = "$sourceDirectory\$protosConfigPath"
 
+# Set the password as a securestring variable. 
+# (Don't know how this fits in Azure pipelines, but makes it easier to run on the VM)
 [securestring]$password = $null
 if ($pass) {
     $password = Read-Host 'Enter password: ' -AsSecureString
@@ -25,6 +27,8 @@ else {
     $password = (ConvertTo-SecureString (docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
 }
 
+# This will import the protos.config.json file into the database
+# In order to execute function: "<filename>.ps1 import"
 function ImportProtos {
     Write-Host "Start importing DATATINO_PROTO_1 tables"
     $protosConfig = Get-Content -Path $protosConfigPath | ConvertFrom-Json -WarningAction SilentlyContinue
@@ -127,6 +131,8 @@ function ImportProtos {
     executeSql $query
 }
 
+# This will generate and export a protos.config.json file from the database
+# In order to execute function: "<filename>.ps1 export"
 function ExportProtos {
     Write-Host "Start exporting DATATINO_PROTO_1 tables"
     $protosConfig = [PSCustomObject]@{
@@ -227,6 +233,7 @@ function executeSql {
         -Password (ConvertFrom-SecureString $password -AsPlainText) | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
+# Determines which function to execute
 switch ($command) {
     "export" { Measure-Command { ExportProtos } }
     "import" { Measure-Command { ImportProtos } }
