@@ -102,7 +102,7 @@ function ImportProtos {
         if ($config.protoTag -eq "GM") {
             $res = ($GMs | ForEach-Object { "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
                         "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
-                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)' AND GROUPED_KEY_NAME = '$($config.GROUPED_KEY_NAME)')", `
                         $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
                         -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
                 }) -join ','
@@ -110,7 +110,7 @@ function ImportProtos {
         elseif ($config.protoTag -eq "VR") {
             $res = ($VRs | ForEach-Object { "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
                         "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
-                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)' AND GROUPED_KEY_NAME = '$($config.GROUPED_KEY_NAME)')", `
                         $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
                         -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
                 }) -join ','
@@ -118,7 +118,7 @@ function ImportProtos {
         else {
             $res = "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
                 "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($config.protoTag)')", `
-                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($config.constraintValue)')", `
+                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($config.constraintValue)' AND GROUPED_KEY_NAME = '$($CONFIG.GROUPED_KEY_NAME)')", `
                 $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
                 -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
         }
@@ -168,7 +168,8 @@ function ExportProtos {
     Write-Host "Exporting configurations"
     $query = ("SELECT case when p.Name like 'VR__' then 'VR'  when p.Name like 'GM____' then 'GM'  else p.Name end   as protoTag
             ,case when v.[CONSTRAINT_VALUE] like 'VR__' then 'VR' when v.[CONSTRAINT_VALUE] like 'GM____' then 'GM' else v.[CONSTRAINT_VALUE] end as constraintValue
-            ,v.Name as ViewName
+            ,v.Name as viewName
+            ,v.[GROUPED_KEY_NAME] 
             ,c.[CONSTRAINED]
             ,c.[GROUPED]
             ,c.[COLUMNS]
@@ -183,6 +184,7 @@ function ExportProtos {
         inner join [DATATINO_PROTO_1].[VIEWS] v on c.VIEW_ID = v.Id
         group by 
             c.[CONSTRAINED]
+            ,v.[GROUPED_KEY_NAME] 
             ,c.[GROUPED]
             ,c.[COLUMNS]
             ,c.[MAPPING]
