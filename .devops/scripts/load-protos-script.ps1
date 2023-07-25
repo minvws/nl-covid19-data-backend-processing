@@ -10,12 +10,20 @@ param (
     [string]$protosConfigPath = ".devops\protos.config.json",
     [String]$sourceDirectory = $env:PWD ?? $(Get-Location),
     [String]$username = 'sa',
-    [securestring]$password = (ConvertTo-SecureString (docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
+    [switch]$pass
 )
 
 . "./.devops/scripts/helpers/helper-scripts.ps1"
 
 $protosConfigPath = "$sourceDirectory\$protosConfigPath"
+
+[securestring]$password = $null
+if ($pass) {
+    $password = Read-Host 'Enter password: ' -AsSecureString
+}
+else {
+    $password = (ConvertTo-SecureString (docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
+}
 
 function ImportProtos {
     Write-Host "Start importing DATATINO_PROTO_1 tables"
@@ -38,7 +46,7 @@ function ImportProtos {
     foreach ($proto in $protosConfig.protos) {
         $query += "('{0}','{1}','{2}',{3},'{4}')," -f $proto.NAME, $proto.HEADER_NAMES, $proto.HEADER_VALUES, $proto.ACTIVE, $proto.DESCRIPTION
     }
-    executeSql $query.Substring(0, $query.Length-1)
+    executeSql $query.Substring(0, $query.Length - 1)
 
     Write-Host "Importing VIEWS table" 
     [string]$query = $null
@@ -48,24 +56,27 @@ function ImportProtos {
             CONSTRAINT_KEY_NAME, GROUPED_KEY_NAME, 
             GROUPED_LAST_UPDATE_NAME, DESCRIPTION) VALUES ")
         [string]$res = $null
-        if($view.constraintValue -eq "GM") {
-            $res = ($GMs | ForEach-Object {"('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
-                    $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
-                    -replace '''''','NULL'
-            }) -join ','
-        } elseif ($view.constraintValue -eq "VR") {
-            $res = ($VRs | ForEach-Object {"('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
-                    $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
-                    -replace '''''','NULL'
-            }) -join ','
-        } elseif ($null -eq $view.constraintValue) {
+        if ($view.constraintValue -eq "GM") {
+            $res = ($GMs | ForEach-Object { "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
+                        $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
+                        -replace '''''', 'NULL'
+                }) -join ','
+        }
+        elseif ($view.constraintValue -eq "VR") {
+            $res = ($VRs | ForEach-Object { "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
+                        $_.NAME, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
+                        -replace '''''', 'NULL'
+                }) -join ','
+        }
+        elseif ($null -eq $view.constraintValue) {
             $res = "(NULL,'{0}','{1}','{2}','{3}','{4}','{5}')" `
                 -f $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
-                -replace '''''','NULL'
-        } else {
+                -replace '''''', 'NULL'
+        }
+        else {
             $res = "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" `
                 -f $view.constraintValue, $view.NAME, $view.LAST_UPDATE_NAME, $view.CONSTRAINT_KEY_NAME, $view.GROUPED_KEY_NAME, $view.GROUPED_LAST_UPDATE_NAME, $view.DESCRIPTION `
-                -replace '''''','NULL'
+                -replace '''''', 'NULL'
         }
         $query = -join ($query, $prefix, $res, ';')
     }
@@ -88,26 +99,28 @@ function ImportProtos {
             DESCRIPTION
         ) VALUES ")
         [string]$res = $null
-        if($config.protoTag -eq "GM") {
-            $res = ($GMs | ForEach-Object {"({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
-                "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
-                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
-                $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
-                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
-            }) -join ','
-        } elseif ($config.protoTag -eq "VR") {
-            $res = ($VRs | ForEach-Object {"({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
-                "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
-                "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
-                $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
-                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
-            }) -join ','
-        }  else {
+        if ($config.protoTag -eq "GM") {
+            $res = ($GMs | ForEach-Object { "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                        $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
+                        -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
+                }) -join ','
+        }
+        elseif ($config.protoTag -eq "VR") {
+            $res = ($VRs | ForEach-Object { "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($_.NAME)')", `
+                        "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($_.NAME)')", `
+                        $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
+                        -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
+                }) -join ','
+        }
+        else {
             $res = "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
                 "(SELECT ID FROM [DATATINO_PROTO_1].[PROTOS] WHERE NAME = '$($config.protoTag)')", `
                 "(SELECT ID FROM [DATATINO_PROTO_1].[VIEWS] WHERE NAME = '$($config.ViewName)' AND CONSTRAINT_VALUE = '$($config.constraintValue)')", `
                 $config.CONSTRAINED, $config.GROUPED, $config.COLUMNS, $config.MAPPING, $config.LAYOUT_TYPE_ID, $config.MOCK_ID, $config.ACTIVE, $config.NAME, $config.DESCRIPTION `
-                -replace '''''','NULL' -replace ',,',',NULL,' -replace '= NULL', 'IS NULL'
+                -replace '''''', 'NULL' -replace ',,', ',NULL,' -replace '= NULL', 'IS NULL'
         }
         $query = -join ($query, $prefix, $res, '; ')
     }
@@ -137,7 +150,7 @@ function ExportProtos {
             ,[CONSTRAINT_KEY_NAME]
             ,[GROUPED_KEY_NAME]
             ,[GROUPED_LAST_UPDATE_NAME]
-            ,[DESCRIPTION]
+            ,MIN([DESCRIPTION])
         FROM [DATATINO_PROTO_1].[VIEWS]
         group by [LAST_UPDATE_NAME]
             ,[CONSTRAINT_KEY_NAME]
@@ -145,7 +158,6 @@ function ExportProtos {
             ,[GROUPED_KEY_NAME]
             ,[GROUPED_LAST_UPDATE_NAME]
             ,[NAME]
-            ,[DESCRIPTION]
         order by constraintValue, [NAME];")
     $res = executeSql $query | ConvertFrom-Json
     foreach ($item in $res) {
@@ -208,11 +220,12 @@ function executeSql {
         -ServerInstance "$hostName,$port" `
         -Database $databaseName `
         -Query $query `
+        -ErrorAction Stop `
         -Username $username `
         -Password (ConvertFrom-SecureString $password -AsPlainText) | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
 switch ($command) {
-    "export" { Measure-Command{ ExportProtos} }
-    "import" { Measure-Command{ ImportProtos } }
+    "export" { Measure-Command { ExportProtos } }
+    "import" { Measure-Command { ImportProtos } }
 }
