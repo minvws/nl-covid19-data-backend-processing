@@ -6,7 +6,6 @@ param (
         Where-Object { $_.AddressFamily -eq "InterNetwork" } |  
         Select-Object IPAddressToString)[0].IPAddressToString,
     [string]$databaseName = "dashboard-db",
-    [string]$serverName = "local-mssql",
     [string]$protosConfigPath = ".devops\protos.config.json",
     [String]$sourceDirectory = $env:PWD ?? $(Get-Location),
     [String]$username = 'sa',
@@ -24,7 +23,7 @@ if ($pass) {
     $password = Read-Host 'Enter password: ' -AsSecureString
 }
 else {
-    $password = (ConvertTo-SecureString (docker exec $serverName /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
+    $password = (ConvertTo-SecureString (docker exec 'local-mssql' /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
 }
 
 # This will import the protos.config.json file into the database
