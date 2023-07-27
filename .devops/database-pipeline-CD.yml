@@ -48,14 +48,14 @@ stages:
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
         WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
-#  - stage: Production
-#    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
-#    dependsOn: [ Acceptance ]
-#    variables:
-#      ENVIRONMENT: Production
-#    jobs:
-#    - template: templates/deploy-database.yml
-#      parameters:
-#        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
-#        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
-#        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+  - stage: Production
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
+    dependsOn: [ Acceptance ]
+    variables:
+      ENVIRONMENT: Production
+    jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
