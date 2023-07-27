@@ -1,0 +1,64 @@
+﻿-- 1) CREATE STORED PROCEDURE(S): INTERMEDIATE TO DESTINATION.....
+ CREATE   PROCEDURE [dbo].[SP_INSERT_OL_RIVM_REPEATING_SHOTS_ADMINISTERED_N]
+ AS
+ BEGIN
+ WITH CTE AS (
+         SELECT 
+ 			[ID],
+             [DATE_OF_REPORT],
+ 			[DATE_OF_STATISTICS],
+             [CAMPAIGN],
+             [TOTAL_VACCINATED]
+         FROM [VWSINTER].[RIVM_VACCINATION_CAMPAIGNS_NL]
+         WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSINTER].[RIVM_VACCINATION_CAMPAIGNS_NL])
+     ),
+ 	CTE_7DAYS AS (
+ 		SELECT 
+ 			r.Id, 
+ 			v.total_vaccinated
+         FROM CTE r
+ 		LEFT JOIN CTE v 
+ 			ON r.CAMPAIGN = v.CAMPAIGN 
+ 			AND v.DATE_OF_STATISTICS > dateadd(day, -7,  [dbo].[WEEK_START_ISO](r.[DATE_OF_STATISTICS])) --Week before most recent sunday
+ 			AND v.DATE_OF_STATISTICS <= [dbo].[WEEK_START_ISO](r.[DATE_OF_STATISTICS]) --Most recent sunday
+ 	),
+ 	CTE_7DAYS_SUM AS (
+ 		SELECT Id AS Id, sum(total_vaccinated) AS SUM_VACCINATED
+ 		FROM CTE_7DAYS
+ 		group by Id
+ 	),
+ 	CTE_ALLDAYS AS (
+ 		SELECT 
+ 			r.Id, 
+ 			v.total_vaccinated
+         FROM CTE r
+ 		LEFT JOIN CTE v 
+ 			ON r.CAMPAIGN = v.CAMPAIGN 
+ 			AND v.DATE_OF_STATISTICS <= [dbo].[WEEK_START_ISO](r.[DATE_OF_STATISTICS]) --Most recent sunday
+ 	),
+ 	CTE_ALLDAYS_SUM AS (
+ 		SELECT Id AS Id, sum(total_vaccinated) AS SUM_VACCINATED
+ 		FROM CTE_ALLDAYS
+ 		group by Id
+ 	)
+     INSERT INTO [VWSDEST].[RIVM_VACCINATION_CAMPAIGNS_NL] (
+             [DATE_OF_REPORT],
+ 			[DATE_OF_STATISTICS],
+             [CAMPAIGN],
+             [TOTAL_VACCINATED],
+             [TOTAL_VACCINATED_7DAYS],
+             [CUMSUM_TOTAL_VACCINATED]
+     )
+     SELECT
+         c.[DATE_OF_REPORT],
+         c.[DATE_OF_STATISTICS],
+ 		c.[CAMPAIGN],
+         c.[TOTAL_VACCINATED],
+ 		c7.SUM_VACCINATED AS TOTAL_VACCINATED_7DAYS,
+ 		ca.SUM_VACCINATED AS CUMSUM_TOTAL_VACCINATED
+     FROM CTE c
+ 	INNER JOIN CTE_7DAYS_SUM c7 ON c.ID = c7.Id
+ 	INNER JOIN CTE_ALLDAYS_SUM ca ON c.Id = ca.Id
+ 	
+ 
+ END;

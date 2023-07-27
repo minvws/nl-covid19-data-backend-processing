@@ -1,0 +1,4 @@
+﻿-- View aanmaken die data ophaalt en die als bron kan dienen voor generatie van Protos
+ CREATE   View VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908
+ AS
+ SELECT * FROM VWSARCHIVE.RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908

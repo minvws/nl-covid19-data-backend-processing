@@ -1,0 +1,8 @@
+﻿CREATE TABLE [VWSSTATIC].[NURSING_HOME_LOCATIONS_PER_REGION] (
+    [VRCODE]                        VARCHAR (50)  NOT NULL,
+    [VRNAAM]                        VARCHAR (100) NOT NULL,
+    [VERPLEEGHUIZEN]                FLOAT (53)    NOT NULL,
+    [GEHANDICAPTENZORGINSTELLINGEN] FLOAT (53)    NOT NULL,
+    [DATE_LAST_INSERTED]            DATETIME      DEFAULT (getdate()) NULL
+);
+

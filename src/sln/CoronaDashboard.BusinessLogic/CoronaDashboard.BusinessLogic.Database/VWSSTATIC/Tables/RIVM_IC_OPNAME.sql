@@ -1,0 +1,10 @@
+﻿CREATE TABLE [VWSSTATIC].[RIVM_IC_OPNAME] (
+    [ID]                        INT           IDENTITY (1, 1) NOT NULL,
+    [VERSION]                   VARCHAR (100) NULL,
+    [DATE_OF_REPORT]            VARCHAR (100) NULL,
+    [DATE_OF_STATISTICS]        VARCHAR (100) NULL,
+    [IC_ADMISSION_NOTIFICATION] VARCHAR (100) NULL,
+    [IC_ADMISSION]              VARCHAR (100) NULL,
+    [DATE_LAST_INSERTED]        DATETIME      DEFAULT (getdate()) NULL
+);
+
