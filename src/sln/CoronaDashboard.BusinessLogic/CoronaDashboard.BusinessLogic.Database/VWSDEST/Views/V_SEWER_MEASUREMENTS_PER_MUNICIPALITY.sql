@@ -1,0 +1,32 @@
+﻿CREATE   VIEW [VWSDEST].[V_SEWER_MEASUREMENTS_PER_MUNICIPALITY] AS
+ 
+ WITH Sel As (
+     SELECT
+         dbo.CONVERT_DATETIME_TO_UNIX(dbo.WEEK_START(dbo.CONVERT_UNIX_TO_DATETIME(WEEK_UNIX))) AS DATE_START_UNIX
+     ,   dbo.CONVERT_DATETIME_TO_UNIX(dbo.WEEK_END(dbo.CONVERT_UNIX_TO_DATETIME(WEEK_UNIX))) AS DATE_END_UNIX
+     ,   CASE WHEN dbo.WEEK_START(dbo.CONVERT_UNIX_TO_DATETIME(WEEK_UNIX)) < dateadd(day, -14, dbo.WEEK_START(DATE_LAST_INSERTED)) THEN 'true' ELSE 'false' END AS data_is_outdated
+     ,   GMCODE
+     ,   CAST(ROUND(AVERAGE_RNA_FLOW_PER_100000,0) as INT) AS AVERAGE
+     ,   NUMBER_OF_MEASUREMENTS AS TOTAL_NUMBER_OF_SAMPLES
+     ,   NUMBER_OF_LOCATIONS AS SAMPLED_INSTALLATION_COUNT
+     ,   TOTAL_LOCATIONS AS TOTAL_INSTALLATION_COUNT
+     ,   dbo.CONVERT_DATETIME_TO_UNIX(DATE_LAST_INSERTED) AS DATE_OF_INSERTION_UNIX
+     ,   Date_Last_Inserted
+ FROM VWSDEST.SEWER_MEASUREMENTS_PER_MUNICIPALITY 
+ WHERE  DatePart(WeekDay,Date_Last_Inserted) IN(3, 4, 6) -- First filter on only Wednesdays
+ -- week_unix is on monday. We can only publish the data of that week after tuesday of next week.
+ AND GETDATE() > dateadd(day, 8,dateadd(S, WEEK_UNIX, '1970-01-01'))
+ AND dateadd(S, WEEK_UNIX, '1970-01-01') > '2020-01-01'
+ )
+ SELECT Date_Start_Unix
+      , Date_End_Unix
+      , data_is_outdated
+      , GMCode
+      , AVERAGE 
+      , TOTAL_NUMBER_OF_SAMPLES 
+      , SAMPLED_INSTALLATION_COUNT 
+      , TOTAL_INSTALLATION_COUNT 
+      , DATE_OF_INSERTION_UNIX 
+ FROM Sel
+ -- Then filter on newest dataset
+ WHERE DATE_LAST_INSERTED = (SELECT MAX(DATE_LAST_INSERTED) FROM Sel)

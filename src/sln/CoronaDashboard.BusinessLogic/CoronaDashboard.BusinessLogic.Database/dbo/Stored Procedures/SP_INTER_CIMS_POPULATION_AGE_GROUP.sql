@@ -1,0 +1,16 @@
+﻿-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+CREATE   PROCEDURE [dbo].[SP_INTER_CIMS_POPULATION_AGE_GROUP]
+AS
+BEGIN
+INSERT INTO [VWSINTER].[CIMS_POPULATION_AGE_GROUP] (
+[BIRTH_COHORT],
+[POPULATION]
+)
+SELECT
+[BIRTH_COHORT]  AS [BIRTH_COHORT],
+[BEVOLKING] AS [POPULATION]
+FROM [VWSSTAGE].[CIMS_POPULATION_AGE_GROUP]
+WHERE DATE_LAST_INSERTED = (SELECT MAX(DATE_LAST_INSERTED) FROM VWSSTAGE.CIMS_POPULATION_AGE_GROUP)
+END

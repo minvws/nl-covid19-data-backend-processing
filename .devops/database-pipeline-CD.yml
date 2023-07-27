@@ -1,0 +1,61 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: Build
+      source: 'nl-cdb-be-database-CI'
+      trigger: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-business-logic - CI' completes
+        branches:
+          include:
+            - main
+            - master
+            - release/*
+            - develop/*
+            - topic/COR-1207_Database_project
+
+pool: dockeragent
+
+variables:
+  SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
+  WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/business-logic-database'
+  
+stages:
+  - stage: Development
+    variables:
+      ENVIRONMENT: Development
+    jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+
+  - stage: Acceptance
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
+    dependsOn: [ Development ]
+    variables:
+      ENVIRONMENT: Acceptance
+    jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+
+  - stage: Production
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
+    dependsOn: [ Acceptance ]
+    variables:
+      ENVIRONMENT: Production
+    jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)

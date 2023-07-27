@@ -1,0 +1,5 @@
+﻿CREATE SEQUENCE [dbo].[SEQ_VWSDEST_OIWD_International_Data]
+    AS BIGINT
+    START WITH 1
+    INCREMENT BY 1;
+

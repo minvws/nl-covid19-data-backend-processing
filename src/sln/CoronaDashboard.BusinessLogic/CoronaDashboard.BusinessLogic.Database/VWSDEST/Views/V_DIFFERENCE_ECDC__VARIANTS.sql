@@ -1,0 +1,26 @@
+﻿-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport. 
+-- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
+
+CREATE   VIEW VWSDEST.V_DIFFERENCE_ECDC__VARIANTS AS 
+
+  WITH BASE_CTE AS 
+(
+    SELECT [DATE_START_UNIX]
+      ,LAG(DATE_START_UNIX,1) OVER (PARTITION BY [COUNTRY_CODE],[NAME] ORDER BY DATE_START_UNIX) AS OLD_DATE_UNIX
+      ,[PERCENTAGE] AS NEW_VALUE
+      ,[NAME]
+      ,[COUNTRY_CODE]
+      ,LAG([PERCENTAGE],1) OVER (PARTITION BY [COUNTRY_CODE],[NAME] ORDER BY DATE_START_UNIX) AS OLD_VALUE
+      ,ROW_NUMBER() OVER (PARTITION BY [COUNTRY_CODE],[NAME] ORDER BY DATE_START_UNIX DESC) AS RANK_DATE
+    FROM [VWSDEST].[V_ECDC_VARIANTS]
+)
+SELECT  
+     [NAME]
+    ,[COUNTRY_CODE]
+    ,OLD_VALUE
+    -- ,NEW_VALUE
+    ,ROUND(NEW_VALUE - OLD_VALUE,1) AS [DIFFERENCE]
+    ,DATE_START_UNIX AS [NEW_DATE_UNIX]
+    ,OLD_DATE_UNIX as [OLD_DATE_UNIX]
+FROM BASE_CTE
+  WHERE RANK_DATE = 1 --Only the most recent record

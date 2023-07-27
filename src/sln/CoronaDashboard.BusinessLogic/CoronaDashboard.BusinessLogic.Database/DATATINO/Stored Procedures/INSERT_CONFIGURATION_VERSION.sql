@@ -1,0 +1,9 @@
+﻿CREATE   PROCEDURE DATATINO.INSERT_CONFIGURATION_VERSION (
+    @version DECIMAL(16,2),
+    @updatedBy VARCHAR(100),
+    @updatedAt DATETIME2,
+    @description VARCHAR(200) NULL
+) AS
+    INSERT INTO [DATATINO].[CONFIGURATION_VERSION]
+    ([VERSION], [UPDATED_BY], [UPDATED_AT], [DESCRIPTION])
+    VALUES(CONVERT(DECIMAl(16,2),@version), @updatedBy, @updatedAt, @description)
