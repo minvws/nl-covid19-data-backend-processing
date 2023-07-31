@@ -1,0 +1,9 @@
+﻿CREATE TABLE [VWSSTAGE].[INHABITANTS_PER_SAFETY_REGION] (
+    [ID]                 INT           IDENTITY (1, 1) NOT NULL,
+    [DATE_LAST_INSERTED] DATETIME      DEFAULT (getdate()) NULL,
+    [VR_CODE]            VARCHAR (100) NULL,
+    [VR_NAME]            VARCHAR (100) NULL,
+    [INHABITANTS]        INT           NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

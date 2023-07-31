@@ -1,0 +1,27 @@
+﻿CREATE TABLE [VWSDEST].[ECDC_CASES] (
+    [ID]                        INT             DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSDEST_ECDC_CASES]) NOT NULL,
+    [COUNTRY]                   VARCHAR (100)   NULL,
+    [COUNTRY_CODE]              VARCHAR (100)   NULL,
+    [CONTINENT]                 VARCHAR (100)   NULL,
+    [POPULATION]                BIGINT          NULL,
+    [INDICATOR]                 VARCHAR (100)   NULL,
+    [YEAR_WEEK]                 VARCHAR (100)   NULL,
+    [WEEK_START]                DATE            NULL,
+    [WEEK_END]                  DATE            NULL,
+    [RATE_14_DAY]               FLOAT (53)      NULL,
+    [CUMULATIVE_COUNT]          BIGINT          NULL,
+    [SOURCE]                    VARCHAR (100)   NULL,
+    [INFECTED_TOTAL]            INT             NULL,
+    [INFECTED_TOTAL_AVERAGE]    DECIMAL (19, 3) NULL,
+    [INFECTED_PER_100K]         DECIMAL (19, 3) NULL,
+    [INFECTED_PER_100K_AVERAGE] DECIMAL (19, 3) NULL,
+    [DATE_LAST_INSERTED]        DATETIME        DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_DEST_ECDC_CASES]
+    ON [VWSDEST].[ECDC_CASES]([DATE_LAST_INSERTED] ASC)
+    INCLUDE([COUNTRY], [COUNTRY_CODE], [CONTINENT], [POPULATION], [INDICATOR], [YEAR_WEEK], [WEEK_START], [WEEK_END], [RATE_14_DAY], [CUMULATIVE_COUNT], [SOURCE], [INFECTED_TOTAL], [INFECTED_TOTAL_AVERAGE], [INFECTED_PER_100K], [INFECTED_PER_100K_AVERAGE]);
+

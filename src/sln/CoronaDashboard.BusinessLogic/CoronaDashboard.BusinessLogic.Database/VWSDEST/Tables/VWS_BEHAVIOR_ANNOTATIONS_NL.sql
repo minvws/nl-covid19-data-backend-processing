@@ -1,0 +1,24 @@
+﻿CREATE TABLE [VWSDEST].[VWS_BEHAVIOR_ANNOTATIONS_NL] (
+    [ID]                           INT           IDENTITY (1, 1) NOT NULL,
+    [DATE_LAST_INSERTED]           DATETIME      DEFAULT (getdate()) NOT NULL,
+    [VERSION]                      INT           NULL,
+    [DATE_OF_REPORT]               DATETIME      NULL,
+    [DATE_OF_CHANGE]               DATETIME      NULL,
+    [FIRST_WAVE]                   INT           NULL,
+    [DATE_OF_FIRST_MEASUREMENT]    DATETIME      NOT NULL,
+    [MEASUREMENT_DURATION_IN_DAYS] INT           NOT NULL,
+    [INDICATOR]                    VARCHAR (100) NOT NULL,
+    [STATUS]                       VARCHAR (100) NULL,
+    [MESSAGE_RIVM]                 VARCHAR (255) NULL,
+    [MESSAGE_TITLE_NL]             VARCHAR (255) NOT NULL,
+    [MESSAGE_TEXT_NL]              VARCHAR (255) NOT NULL,
+    [MESSAGE_TITLE_EN]             VARCHAR (255) NOT NULL,
+    [MESSAGE_TEXT_EN]              VARCHAR (255) NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [NCIX_DLI_VWS_BEHAVIOR_ANNOTATIONS_NL]
+    ON [VWSDEST].[VWS_BEHAVIOR_ANNOTATIONS_NL]([DATE_LAST_INSERTED] ASC);
+

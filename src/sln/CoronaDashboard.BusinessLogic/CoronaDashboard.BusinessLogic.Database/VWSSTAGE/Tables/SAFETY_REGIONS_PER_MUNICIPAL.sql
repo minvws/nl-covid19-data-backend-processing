@@ -1,0 +1,10 @@
+﻿CREATE TABLE [VWSSTAGE].[SAFETY_REGIONS_PER_MUNICIPAL] (
+    [ID]                 INT           IDENTITY (1, 1) NOT NULL,
+    [DATE_LAST_INSERTED] DATETIME      DEFAULT (getdate()) NULL,
+    [GM_CODE]            VARCHAR (100) NULL,
+    [GM_NAME]            VARCHAR (100) NULL,
+    [VR_CODE]            VARCHAR (100) NULL,
+    [VR_NAME]            VARCHAR (100) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

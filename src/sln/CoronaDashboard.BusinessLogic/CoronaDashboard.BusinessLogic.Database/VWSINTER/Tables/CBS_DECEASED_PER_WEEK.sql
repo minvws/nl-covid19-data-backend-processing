@@ -1,0 +1,9 @@
+﻿CREATE TABLE [VWSINTER].[CBS_DECEASED_PER_WEEK] (
+    [ID]                 INT      DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSINTER_CBS_DECEASED_PER_WEEK]) NOT NULL,
+    [YEAR]               INT      NULL,
+    [WEEK]               INT      NULL,
+    [DECEASED_ACTUAL]    INT      NULL,
+    [DATE_LAST_INSERTED] DATETIME DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

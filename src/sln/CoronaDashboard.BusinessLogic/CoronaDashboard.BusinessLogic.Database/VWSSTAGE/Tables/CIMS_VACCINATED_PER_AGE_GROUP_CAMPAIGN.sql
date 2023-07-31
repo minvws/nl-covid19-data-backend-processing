@@ -1,0 +1,16 @@
+﻿CREATE TABLE [VWSSTAGE].[CIMS_VACCINATED_PER_AGE_GROUP_CAMPAIGN] (
+    [ID]                            BIGINT        IDENTITY (1, 1) NOT NULL,
+    [VERSION]                       VARCHAR (100) NULL,
+    [DATE_OF_REPORT]                VARCHAR (100) NULL,
+    [DATE_OF_STATISTICS_WEEK_START] VARCHAR (100) NULL,
+    [DATE_OF_STATISTICS_WEEK_END]   VARCHAR (100) NULL,
+    [BIRTH_COHORT]                  VARCHAR (100) NULL,
+    [AGE_GROUP]                     VARCHAR (100) NULL,
+    [POPULATION_AGE_GROUP]          VARCHAR (100) NULL,
+    [VACCINATION_CAMPAIGN]          VARCHAR (100) NULL,
+    [RECEIVED]                      VARCHAR (100) NULL,
+    [COVERAGE]                      VARCHAR (100) NULL,
+    [DATE_LAST_INSERTED]            DATETIME      DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
