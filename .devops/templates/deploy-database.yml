@@ -19,7 +19,8 @@ jobs:
       runOnce:
         deploy:
           steps:
-          
+            - download: current
+              artifact: business-logic-database
             - checkout: none
             - task: AzureCLI@2
               displayName: "Task 1: Deploy dacpac"
