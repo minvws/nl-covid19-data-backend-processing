@@ -1539,6 +1539,12 @@
     <Build Include="dbo\Stored Procedures\SP_MUNICIPALITY_RWZI_COUPLING_STAGE_TO_STATIC.sql" />
     <None Include="Scripts\PostDeployment\PostDeploy_0001.sql" />
     <Build Include="dbo\Tables\DACPAC_VERSION_HISTORY.sql" />
+    <Build Include="VWSSTAGE\Tables\RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="VWSINTER\Tables\RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="VWSDEST\Tables\RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="VWSDEST\Views\V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
