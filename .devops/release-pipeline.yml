@@ -11,18 +11,32 @@ resources:
             - master
             - release/*
             - develop*
-
+    - pipeline: Build
+      source: 'nl-cdb-be-database-CI'
+      trigger: # Run 'nl-cdb-be-business-logic - CD' pipeline when any run of 'nl-cdb-be-database-CI' completes
+        branches:
+          include:
+            - main
+            - master
+            - release/*
+            - develop*
 pool: dockeragent
 
 variables:
   SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
   WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/drop'
+  WORKING_DIRECTORY_DATABASE: '$(Pipeline.Workspace)/Build/business-logic-database'
 
 stages:
   - stage: Development
     variables:
       ENVIRONMENT: Development
     jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
     - template: templates/deploy-business-logic.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
@@ -35,6 +49,11 @@ stages:
     variables:
       ENVIRONMENT: Acceptance
     jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
     - template: templates/deploy-business-logic.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
@@ -47,6 +66,11 @@ stages:
     variables:
       ENVIRONMENT: Production
     jobs:
+    - template: templates/deploy-database.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
     - template: templates/deploy-business-logic.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 

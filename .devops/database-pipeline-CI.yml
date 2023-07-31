@@ -9,7 +9,6 @@ trigger:
   include:
     - develop/*
     - release/*
-    - topic/COR-1207_Database_project
  paths:
    include:
     - "src/sln/CoronaDashboard.BusinessLogic/*"
