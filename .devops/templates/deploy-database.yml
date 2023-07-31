@@ -11,7 +11,7 @@ parameters:
     required: true
 
 jobs:
-  - deployment: ${{ parameters.ENVIRONMENT }}
+  - deployment: ${{ parameters.ENVIRONMENT }}-database
     environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
     variables:
       - group: "business-logic-${{ parameters.environment }}-vg"
