@@ -19,7 +19,7 @@ jobs:
       runOnce:
         deploy:
           steps:
-            - download: current
+            - download: nl-cdb-be-database-CI
               artifact: business-logic-database
             - checkout: none
             - task: AzureCLI@2
