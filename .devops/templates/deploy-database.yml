@@ -11,7 +11,7 @@ parameters:
     required: true
 
 jobs:
-  - deployment: ${{ parameters.ENVIRONMENT }}
+  - deployment: ${{ parameters.ENVIRONMENT }}_database
     environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
     variables:
       - group: "business-logic-${{ parameters.environment }}-vg"
@@ -19,7 +19,6 @@ jobs:
       runOnce:
         deploy:
           steps:
-          
             - checkout: none
             - task: AzureCLI@2
               displayName: "Task 1: Deploy dacpac"
