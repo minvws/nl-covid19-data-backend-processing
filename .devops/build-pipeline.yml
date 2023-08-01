@@ -24,7 +24,7 @@ variables:
 stages:
   - stage: Build
     jobs:
-      - job: "Build dacpac"
+      - job: "Build_dacpac"
         pool:
           vmImage: windows-2022
         steps:
@@ -46,7 +46,7 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'business-logic-database'
               publishLocation: 'Container'          
-      - job: "Build Business Logic"
+      - job: "Build_Business_Logic"
         pool:
           vmImage: ubuntu-20.04
         steps:
