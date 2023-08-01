@@ -19,7 +19,7 @@ resources:
       name: "Corona Dashboard/nl-cdb-be-apis"
 
 pool:
-  vmImage: windows-2022
+  vmImage: ubuntu-20.04
 
 variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
