@@ -18,16 +18,37 @@ resources:
       type: git
       name: "Corona Dashboard/nl-cdb-be-apis"
 
-pool:
-  vmImage: ubuntu-20.04
-
 variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
 stages:
   - stage: Build
     jobs:
-      - job: "Build"
+      - job: "Build dacpac"
+        pool:
+          vmImage: windows-2022
+        steps:
+          - task: VSBuild@1
+            inputs:
+              solution: '**\*.sln'
+              platform: 'Any CPU'
+              configuration: 'Release'
+              clean: true
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/src/sln/CoronaDashboard.BusinessLogic/'
+              Contents: '**\*.dacpac'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'business-logic-database'
+              publishLocation: 'Container'          
+      - job: "Build Business Logic"
+        pool:
+          vmImage: ubuntu-20.04
         steps:
 
           - checkout: self
