@@ -1,0 +1,14 @@
+﻿
+CREATE   PROCEDURE [DATATINO_ORCHESTRATOR].[UPDATE_WORKFLOW_HISTORY] (
+    @id BIGINT,
+    @status INT,
+    @scheduled_run INT
+) AS
+    DECLARE @workflow_name VARCHAR(MAX) = (SELECT WORKFLOW_NAME FROM DATATINO_ORCHESTRATOR.WORKFLOWS WHERE ID = @id)
+
+    INSERT DATATINO_ORCHESTRATOR.H_WORKFLOWS (IDENTIFIER, WORKFLOW_NAME, LAST_RUN, STATUS) VALUES (
+        @id,
+        @workflow_name,
+        GETDATE(),
+        
+        @scheduled_run);

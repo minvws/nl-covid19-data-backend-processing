@@ -1,0 +1,42 @@
+# Required Azure Pipelines Tasks: https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens
+
+parameters:
+  ENVIRONMENT:
+    required: true
+    description: "Available values: 'development', 'acceptance', 'production'"
+  AZURE_RM_SERVICE_PRINCIPAL_NAME:
+    required: true
+    description: "Name of the Azure Service Prinicpal"
+  WORKING_DIRECTORY:
+    required: true
+
+jobs:
+  - deployment: ${{ parameters.ENVIRONMENT }}_database
+    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
+    variables:
+      - group: "business-logic-${{ parameters.environment }}-vg"
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: none
+            - task: AzureCLI@2
+              displayName: "Task 1: Deploy dacpac"
+              inputs:
+                azureSubscription: '[AzureDevOps]-ServiceConnection'
+                scriptType: 'bash'
+                scriptLocation: 'inlineScript'
+                inlineScript: |
+                  sqlpackage /Action:Publish /SourceFile:"${{ parameters.WORKING_DIRECTORY }}/CoronaDashboard.BusinessLogic.Database/bin/Release/CoronaDashboard.BusinessLogic.Database.dacpac" /TargetDatabaseName:"$(AZURE_SQL_DATABASE_NAME)" /TargetServerName:"$(AZURE_SQL_SERVER_NAME)" /TargetUser:"$(AZURE_SQL_DATABASE_LOGIN_USERNAME)"  /TargetPassword:"$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" /TargetTimeout:3600 /p:CommandTimeout=3600 /p:LongRunningCommandTimeout=3600 /dsp:Actions.sql /drp:Actions.xml
+                addSpnToEnvironment: true
+
+            # Post Deploy
+            - task: PowerShell@2
+              inputs: 
+                targetType: 'inline'
+                script: |
+                  Remove-Item "${{ parameters.WORKING_DIRECTORY }}" -Recurse -Force
+              displayName: "Task 2: Post Deploy"
+              condition: always()
+
+

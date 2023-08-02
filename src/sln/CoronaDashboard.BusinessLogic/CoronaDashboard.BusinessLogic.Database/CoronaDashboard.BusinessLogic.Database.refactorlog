@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f666ee7a-49ad-49df-aeb3-4d7c564a6abe" ChangeDateTime="07/20/2023 13:47:01">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ff84666e-14c6-41b2-9692-f2c81ebb3021" ChangeDateTime="07/20/2023 13:47:05">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[Version]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VERSION" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2ee9e9ff-e06c-47ea-a668-df61279aa89d" ChangeDateTime="07/20/2023 13:47:09">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DESCRIPTION" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4449e1fd-8fc4-4cf6-ad8d-a8b944499498" ChangeDateTime="07/20/2023 13:47:18">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[InstalledTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="INSTALLED_TIME" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2c312d79-4b34-4dc7-846a-c5935f32974a" ChangeDateTime="07/20/2023 13:51:23">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[VERSION]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DEPLOYMENT_VERSION" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="824f303d-2d03-4fee-bd6a-6964a6be4986" ChangeDateTime="07/20/2023 13:54:39">
+    <Property Name="ElementName" Value="[dbo].[DACPAC_VERSION_HISTORY].[DESCRIPTION]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DACPAC_VERSION_HISTORY]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DEPLOYMENT_DESCRIPTION" />
+  </Operation>
+</Operations>

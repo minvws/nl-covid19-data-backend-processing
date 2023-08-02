@@ -1,0 +1,38 @@
+﻿/****** Script for SelectTopNRows command from SSMS  ******/
+CREATE    VIEW [METADATA_TEST] AS
+
+SELECT t1.[PROTO_ID]
+	  ,t4.PROTO_NAME
+      ,t1.[ITEM_NAME]
+      ,t1.[VIEW_ID]
+	  ,  REPLACE( 
+				REPLACE ( 
+					REPLACE(t2.[VIEW_NAME], ']', '') 
+					, '[', '')  
+		, 'VWSDEST.', '') as VIEW_NAME
+	  ,t3.VIEW_SCHEMA
+	  ,t3.COLUMN_NAME
+  FROM [DATATINO_PROTO].[PROTO_CONFIGURATIONS] t1
+  LEFT JOIN [DATATINO_PROTO].[PROTOS] t4 on 
+  t1.PROTO_ID = t4.ID
+  LEFT JOIN [DATATINO_PROTO].[VIEWS]  t2 on 
+  t1.VIEW_ID = t2.ID
+  LEFT JOIN INFORMATION_SCHEMA.VIEW_COLUMN_USAGE t3 on
+  REPLACE( 
+				REPLACE ( 
+					REPLACE(t2.[VIEW_NAME], ']', '') 
+					, '[', '')  
+		, 'VWSDEST.', '') = t3.VIEW_NAME
+WHERE VIEW_SCHEMA in ('VWSDEST') 
+AND COLUMN_NAME not in ('DATE_OF_REPORT', 'DATE_LAST_INSERTED', 'DATE_OF_REPORT_UNIX', 'WEEK_START', 'WEEK_END', 'DATE_OF_STATISTICS')
+
+
+--select * from [METADATA_TEST]
+--
+--
+--
+--
+--  select * FROM [DATATINO_PROTO].[PROTO_CONFIGURATIONS]
+--  select * from [DATATINO_PROTO].[VIEWS] 
+--  select * FROM INFORMATION_SCHEMA.VIEW_COLUMN_USAGE
+--  select * from [DATATINO_PROTO].[PROTOS] 

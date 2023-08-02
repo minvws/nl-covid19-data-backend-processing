@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [VWSMISC]
+    AUTHORIZATION [dbo];
+
