@@ -13,6 +13,8 @@ parameters:
 jobs:
   - deployment: ${{ parameters.ENVIRONMENT }}
     environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
+    workspace:
+      clean: all
     variables:
       - group: "business-logic-${{ parameters.environment }}-vg"
     strategy:
