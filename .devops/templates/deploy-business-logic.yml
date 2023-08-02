@@ -28,8 +28,8 @@ jobs:
             - task: replacetokens@5
               displayName: 'Task 1: Replace Environment Tokens'
               inputs:
-                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}/src
-                targetFiles: '**/*.sql'
+                rootDirectory: ${{ parameters.WORKING_DIRECTORY }}
+                targetFiles: 'src/*.sql'
                 encoding: 'auto'
                 tokenPattern: 'custom'
                 tokenPrefix: '#{'
