@@ -12,7 +12,6 @@ resources:
             - release/*
             - develop*
 pool: dockeragent
-
 variables:
   SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
   WORKING_DIRECTORY: '$(Pipeline.Workspace)/Build/drop'

@@ -80,7 +80,7 @@ stages:
             displayName: "Task 4: Copy MSSQL Database Update Scripts"
             inputs:
               SourceFolder: '$(WORKING_DIRECTORY)'
-              Contents: '**/*.sql'
+              Contents: '*.sql'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
               OverWrite: true
 
