@@ -155,7 +155,7 @@ function ExportProtos {
             ,[CONSTRAINT_KEY_NAME]
             ,[GROUPED_KEY_NAME]
             ,[GROUPED_LAST_UPDATE_NAME]
-            ,MIN([DESCRIPTION])
+            ,MIN([DESCRIPTION]) as [DESCRIPTION]
         FROM [DATATINO_PROTO_1].[VIEWS]
         group by [LAST_UPDATE_NAME]
             ,[CONSTRAINT_KEY_NAME]
@@ -183,7 +183,7 @@ function ExportProtos {
             ,c.[MOCK_ID]
             ,c.[ACTIVE]
             ,c.[NAME]
-            ,c.[DESCRIPTION]
+            ,MIN(c.[DESCRIPTION]) as [DESCRIPTION]
         FROM [DATATINO_PROTO_1].[CONFIGURATIONS] c
         inner join [DATATINO_PROTO_1].[PROTOS] p on c.PROTO_ID = p.id and p.name not like 'IN_%'
         inner join [DATATINO_PROTO_1].[VIEWS] v on c.VIEW_ID = v.Id
@@ -197,7 +197,6 @@ function ExportProtos {
             ,c.[MOCK_ID]
             ,c.[ACTIVE]
             ,c.[NAME]
-            ,c.[DESCRIPTION]
             ,case when v.[CONSTRAINT_VALUE] like 'VR__' then 'VR' when v.[CONSTRAINT_VALUE] like 'GM____' then 'GM' else v.CONSTRAINT_VALUE end
             ,case when p.Name like 'VR__' then 'VR'  when p.Name like 'GM____' then 'GM'  else p.Name end 
             ,v.[NAME]

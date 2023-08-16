@@ -3096,6 +3096,21 @@
     {
       "protoTag": "GM",
       "constraintValue": "GM",
+      "viewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
+      "GROUPED_KEY_NAME": null,
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
+    },
+    {
+      "protoTag": "GM",
+      "constraintValue": "GM",
       "viewName": "VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023",
       "GROUPED_KEY_NAME": null,
       "CONSTRAINED": 1,
@@ -7450,6 +7465,15 @@
       "GROUPED_KEY_NAME": "VARIANT_CODE",
       "GROUPED_LAST_UPDATE_NAME": "DATE_START_UNIX",
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_MUTATIONS_TABULAR FOR variants"
+    },
+    {
+      "constraintValue": null,
+      "NAME": "VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023",
+      "LAST_UPDATE_NAME": "DATE_START_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null,
+      "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023 FOR sewer"
     },
     {
       "constraintValue": null,
