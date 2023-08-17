@@ -1,38 +1,44 @@
 param (
     [parameter(Mandatory = $true)]
     [string]$command,
-    [int]$port = 14331,
-    [string]$hostName = ([System.Net.DNS]::GetHostAddresses((hostname)) |
-        Where-Object { $_.AddressFamily -eq "InterNetwork" } |  
-        Select-Object IPAddressToString)[0].IPAddressToString,
-    [string]$databaseName = "dashboard-db",
+    [int]$port,
+    [string]$serverName = "(localdb)\MSSQLLocalDB",
+    [string]$databaseName = "CoronaDashboard.BusinessLogic.Database",
     [string]$protosConfigPath = ".devops\protos.config.json",
     [String]$sourceDirectory = $env:PWD ?? $(Get-Location),
-    [String]$username = 'sa',
+    [String]$username,
     [switch]$pass
 )
 
+# Load helper script
 . "./.devops/scripts/helpers/helper-scripts.ps1"
 
-$protosConfigPath = "$sourceDirectory\$protosConfigPath"
+### Set variables
+# Path to protos.config.json file
+$protosConfigPath = Join-Path -Path $sourceDirectory -ChildPath $protosConfigPath
+
+# Additional parameters which are be added to the invoke-sql command.
+[hashtable]$additionalParams = @{ }
 
 # Set the password as a securestring variable. 
-# (Don't know how this fits in Azure pipelines, but makes it easier to run on the VM)
-[securestring]$password = $null
 if ($pass) {
     $password = Read-Host 'Enter password: ' -AsSecureString
-}
-else {
-    $password = (ConvertTo-SecureString (docker exec 'local-mssql' /bin/bash -c 'echo $MSSQL_SA_PASSWORD') -AsPlainText -Force)
+    $additionalParams["password"] = ConvertFrom-SecureString $password -AsPlainText
 }
 
+# Add username to additional params if it exists.
+if($username) {
+    $additionalParams["username"] = $username
+}
+
+### Function definitions
 # This will import the protos.config.json file into the database
 # In order to execute function: "<filename>.ps1 import"
 function ImportProtos {
     Write-Host "Start importing DATATINO_PROTO_1 tables"
     $protosConfig = Get-Content -Path $protosConfigPath | ConvertFrom-Json -WarningAction SilentlyContinue
-    $GMs = $protosConfig.protos | Where-Object NAME -Like "GM[0-9]*"
-    $VRs = $protosConfig.protos | Where-Object NAME -Like "VR[0-9]*"
+    $GMs = $protosConfig.protos | Where-Object NAME -Like "GM[0-9]*" # Selects all muncipalities from the protos list
+    $VRs = $protosConfig.protos | Where-Object NAME -Like "VR[0-9]*" # Selects all safety regions from the protos list
 
     Write-Host "Truncating tables"
     ("DELETE FROM [DATATINO_PROTO_1].[CONFIGURATIONS];
@@ -139,7 +145,7 @@ function ExportProtos {
         configurations = New-Object System.Collections.Generic.List[PSCustomObject]
         views          = New-Object System.Collections.Generic.List[PSCustomObject]
     }
-    
+    # Start exporting protos
     Write-Host "Exporting protos"
     $query = "select NAME, HEADER_NAMES, HEADER_VALUES, ACTIVE, DESCRIPTION from [dashboard-db].[DATATINO_PROTO_1].PROTOS;"
     $res = executeSql $query | ConvertFrom-Json
@@ -148,6 +154,7 @@ function ExportProtos {
     }
     Write-Host "Loaded $($protosConfig.protos.Count) rows from database"
 
+    # Start exporting views
     Write-Host "Exporting views"
     $query = ("SELECT case when [CONSTRAINT_VALUE] like 'VR__' then 'VR' when [CONSTRAINT_VALUE] like 'GM____' then 'GM' else [CONSTRAINT_VALUE] end as constraintValue
             ,[NAME]
@@ -170,6 +177,7 @@ function ExportProtos {
     }
     Write-Host "Loaded $($protosConfig.views.Count) rows from database"
     
+    # Start exporting configurations
     Write-Host "Exporting configurations"
     $query = ("SELECT case when p.Name like 'VR__' then 'VR'  when p.Name like 'GM____' then 'GM'  else p.Name end   as protoTag
             ,case when v.[CONSTRAINT_VALUE] like 'VR__' then 'VR' when v.[CONSTRAINT_VALUE] like 'GM____' then 'GM' else v.[CONSTRAINT_VALUE] end as constraintValue
@@ -212,6 +220,7 @@ function ExportProtos {
     Write-Host "Finished exporting protos configurations"
 }
 
+# Helper function used to execute queries
 function executeSql {
     param (
         [Parameter(
@@ -222,16 +231,14 @@ function executeSql {
         [string] $query
     )
 
-    return Invoke-Sqlcmd `
-        -ServerInstance "$hostName,$port" `
+    return Invoke-Sqlcmd @additionalParams `
+        -ServerInstance ($port ? "$serverName,$port" : $serverName)`
         -Database $databaseName `
         -Query $query `
-        -ErrorAction Stop `
-        -Username $username `
-        -Password (ConvertFrom-SecureString $password -AsPlainText) | ConvertTo-Json -WarningAction SilentlyContinue
+        -ErrorAction Stop | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
-# Determines which function to execute
+### Determines which function to execute
 switch ($command) {
     "export" { Measure-Command { ExportProtos } }
     "import" { Measure-Command { ImportProtos } }
