@@ -1,0 +1,35 @@
+﻿-- 1) CREATE STORED PROCEDURE(S).....
+ CREATE   PROCEDURE [dbo].[SP_RIVM_COVID_19_NATIONAL_STATIC_TO_INTER] (
+      @date_of_insertion DATETIME = GETDATE
+  )
+  AS
+  BEGIN
+      INSERT INTO [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL] (
+          [DATE_FILE],
+          [DATE_STATISTICS],
+          [DATE_STATISTICS_TYPE],
+          [AGEGROUP],
+          [SEX],
+          [PROVINCE],
+          [HOSPITAL_ADMISSION],
+          [DECEASED],
+          [WEEK_OF_DEATH],
+          [MUNICIPAL_HEALTH_SERVICE],
+          [DATE_LAST_INSERTED]
+      )
+      SELECT
+          [dbo].[TRY_CONVERT_TO_DATETIME]([DATE_FILE]),
+          [dbo].[TRY_CONVERT_TO_DATETIME]([DATE_STATISTICS]),
+          TRIM([DATE_STATISTICS_TYPE]),
+          TRIM([AGEGROUP]),
+          TRIM([SEX]),
+          TRIM([PROVINCE]),
+          TRIM([HOSPITAL_ADMISSION]),
+          TRIM([DECEASED]),
+          TRIM([WEEK_OF_DEATH]),
+          TRIM([MUNICIPAL_HEALTH_SERVICE]),
+          @date_of_insertion
+      FROM
+          [VWSSTATIC].[RIVM_COVID_19_CASE_NATIONAL] WITH(NOLOCK)
+      WHERE [DATE_LAST_INSERTED] = (SELECT MAX([DATE_LAST_INSERTED]) FROM [VWSSTATIC].[RIVM_COVID_19_CASE_NATIONAL] WITH(NOLOCK))
+  END;

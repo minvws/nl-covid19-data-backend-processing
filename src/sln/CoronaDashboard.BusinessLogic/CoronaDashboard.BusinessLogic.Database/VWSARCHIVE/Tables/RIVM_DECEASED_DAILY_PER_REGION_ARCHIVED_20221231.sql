@@ -1,0 +1,14 @@
+﻿CREATE TABLE [VWSARCHIVE].[RIVM_DECEASED_DAILY_PER_REGION_ARCHIVED_20221231] (
+    [ID]                  INT             NOT NULL,
+    [DATE_OF_REPORT]      DATETIME        NULL,
+    [DATE_OF_REPORT_UNIX] BIGINT          NULL,
+    [DECEASED_ACTUAL]     INT             NULL,
+    [DECEASED_CUMULATIVE] INT             NULL,
+    [VRCODE]              VARCHAR (5)     NULL,
+    [DATE_LAST_INSERTED]  DATETIME        DEFAULT (getdate()) NULL,
+    [WEEK_START]          DATETIME        NULL,
+    [DECEASED_7D_AVG]     DECIMAL (16, 2) NULL,
+    [WEEK_START_LAG]      DATETIME        NULL,
+    [DECEASED_7D_AVG_LAG] DECIMAL (16, 2) NULL
+);
+

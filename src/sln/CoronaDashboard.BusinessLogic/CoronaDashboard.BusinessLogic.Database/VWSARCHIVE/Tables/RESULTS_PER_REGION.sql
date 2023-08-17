@@ -1,0 +1,19 @@
+﻿CREATE TABLE [VWSARCHIVE].[RESULTS_PER_REGION] (
+    [ID]                                 INT             DEFAULT (NEXT VALUE FOR [dbo].[SEQ_VWSARCHIVE_RESULTS_PER_REGION]) NOT NULL,
+    [DATE_OF_REPORT]                     DATETIME        NULL,
+    [DATE_OF_REPORT_UNIX]                BIGINT          NULL,
+    [VRCODE]                             VARCHAR (100)   NULL,
+    [TOTAL_REPORTED_INCREASE_PER_REGION] INT             NULL,
+    [INFECTED_TOTAL_COUNTS_PER_REGION]   DECIMAL (16, 1) NULL,
+    [HOSPITAL_TOTAL_COUNTS_PER_REGION]   DECIMAL (16, 1) NULL,
+    [INFECTED_INCREASE_PER_REGION]       DECIMAL (16, 1) NULL,
+    [HOSPITAL_INCREASE_PER_REGION]       DECIMAL (16, 1) NULL,
+    [INFECTED_MOVING_AVG_PER_REGION]     DECIMAL (16, 1) NULL,
+    [HOSPITAL_MOVING_AVG_PER_REGION]     DECIMAL (16, 1) NULL,
+    [DATE_LAST_INSERTED]                 DATETIME        NULL,
+    [DECEASED]                           INT             NULL,
+    [ACTIVE_CLUSTERS]                    INT             NULL,
+    [CLUSTER_AVERAGE]                    DECIMAL (16, 1) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

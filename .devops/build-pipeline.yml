@@ -18,16 +18,37 @@ resources:
       type: git
       name: "Corona Dashboard/nl-cdb-be-apis"
 
-pool:
-  vmImage: ubuntu-20.04
-
 variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
 stages:
   - stage: Build
     jobs:
-      - job: "Build"
+      - job: "Build_dacpac"
+        pool:
+          vmImage: windows-2022
+        steps:
+          - task: VSBuild@1
+            inputs:
+              solution: '**\*.sln'
+              platform: 'Any CPU'
+              configuration: 'Release'
+              clean: true
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/src/sln/CoronaDashboard.BusinessLogic/'
+              Contents: '**\*.dacpac'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'business-logic-database'
+              publishLocation: 'Container'          
+      - job: "Build_Business_Logic"
+        pool:
+          vmImage: ubuntu-20.04
         steps:
 
           - checkout: self
@@ -39,9 +60,9 @@ stages:
             displayName: "Task 1: Set Checkouts"
 
           - task: UseDotNet@2
-            displayName: 'Task 2: Install .NET 5.0 SDK'
+            displayName: 'Task 2: Install .NET 6.0 SDK'
             inputs:
-              version: '5.0.x'
+              version: '6.0.x'
 
           - task: PowerShell@2
             displayName: "Task 3: Build MSSQL Artifacts"
@@ -59,7 +80,7 @@ stages:
             displayName: "Task 4: Copy MSSQL Database Update Scripts"
             inputs:
               SourceFolder: '$(WORKING_DIRECTORY)'
-              Contents: '**/*.sql'
+              Contents: '*.sql'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
               OverWrite: true
 
