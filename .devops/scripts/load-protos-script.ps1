@@ -232,14 +232,14 @@ function executeSql {
     )
 
     return Invoke-Sqlcmd @additionalParams `
-        -ServerInstance ($port ? "$serverName,$port" : $serverName)`
+        -ServerInstance ($port ? "$serverName,$port" : $serverName) `
         -Database $databaseName `
         -Query $query `
         -ErrorAction Stop | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
 # Restores CONFIGURATION, VIEW and PROTOS table to archived tables.
-function restoreFromArchive () {
+function restoreFromArchive {
     $query = ("DELETE FROM [DATATINO_PROTO_1].[CONFIGURATIONS];
     DELETE FROM [DATATINO_PROTO_1].[PROTOS]; 
     DELETE FROM [DATATINO_PROTO_1].[VIEWS];
@@ -259,7 +259,7 @@ function restoreFromArchive () {
     select * from DATATINO_PROTO_1.CONFIGURATIONS_ARCHIVE
     SET IDENTITY_INSERT DATATINO_PROTO_1.CONFIGURATIONS OFF;")
     
-    Write-Host (executeSql $query)
+    executeSql $query
 }
 
 try {
