@@ -13,6 +13,10 @@ Param (
 Write-Host "Start migration:" -ForegroundColor Green
 
 try {
+    if(-not (Test-Path $SourceDirectory)){
+        Write-Host "Could not find directory $SourceDirectory , assuming no changes to pybooks and skipping further action." -ForegroundColor DarkYellow
+        return
+    }
     $hashTable = @{}
     $scripts = $((Get-ChildItem -Path $SourceDirectory -Filter "*.sql") -Split ' ') | 
     ForEach-Object {
