@@ -238,8 +238,39 @@ function executeSql {
         -ErrorAction Stop | ConvertTo-Json -WarningAction SilentlyContinue
 }
 
-### Determines which function to execute
-switch ($command) {
-    "export" { Measure-Command { ExportProtos } }
-    "import" { Measure-Command { ImportProtos } }
+# Restores CONFIGURATION, VIEW and PROTOS table to archived tables.
+function restoreFromArchive () {
+    $query = ("DELETE FROM [DATATINO_PROTO_1].[CONFIGURATIONS];
+    DELETE FROM [DATATINO_PROTO_1].[PROTOS]; 
+    DELETE FROM [DATATINO_PROTO_1].[VIEWS];
+    
+    SET IDENTITY_INSERT DATATINO_PROTO_1.VIEWS ON
+    insert into DATATINO_PROTO_1.VIEWS (ID, LAST_UPDATE_NAME, CONSTRAINT_KEY_NAME, CONSTRAINT_VALUE, GROUPED_KEY_NAME, GROUPED_LAST_UPDATE_NAME, NAME, DESCRIPTION)
+    select * from DATATINO_PROTO_1.VIEWS_ARCHIVE
+    SET IDENTITY_INSERT DATATINO_PROTO_1.VIEWS OFF;
+    
+    SET IDENTITY_INSERT DATATINO_PROTO_1.PROTOS ON
+    insert into DATATINO_PROTO_1.PROTOS (ID, HEADER_NAMES, HEADER_VALUES, ACTIVE, NAME, DESCRIPTION)
+    select * from DATATINO_PROTO_1.PROTOS_ARCHIVE
+    SET IDENTITY_INSERT DATATINO_PROTO_1.PROTOS OFF;
+    
+    SET IDENTITY_INSERT DATATINO_PROTO_1.CONFIGURATIONS ON
+    insert into DATATINO_PROTO_1.CONFIGURATIONS (ID, PROTO_ID, VIEW_ID, CONSTRAINED, GROUPED, COLUMNS, MAPPING, LAYOUT_TYPE_ID, MOCK_ID, ACTIVE, NAME, DESCRIPTION)
+    select * from DATATINO_PROTO_1.CONFIGURATIONS_ARCHIVE
+    SET IDENTITY_INSERT DATATINO_PROTO_1.CONFIGURATIONS OFF;")
+    
+    Write-Host (executeSql $query)
+}
+
+try {
+    ### Determines which function to execute
+    switch ($command) {
+        "export" { Measure-Command { ExportProtos } }
+        "import" { Measure-Command { ImportProtos } }
+        "restore" { Measure-Command { restoreFromArchive } }
+    }
+}
+catch {
+    Write-Host $_ -ForegroundColor Red
+    exit 1
 }
