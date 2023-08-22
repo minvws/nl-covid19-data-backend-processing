@@ -2657,7 +2657,7 @@
       "NAME": "VR_COLLECTION",
       "HEADER_NAMES": "name|code|proto_name|last_generated",
       "HEADER_VALUES": "VR_COLLECTION|VR_COLLECTION|VR_COLLECTION|=GETDATE()",
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "DESCRIPTION": "PROTO FILE FOR VR_COLLECTION"
     },
     {
@@ -2954,7 +2954,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "booster_coverage_archived_20220904",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_COVERAGE_GM_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
     },
@@ -2984,7 +2984,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "deceased_rivm_archived_20221231",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_PER_MUNICIPALITY_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
     },
@@ -3014,7 +3014,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/deceased_rivm__covid_daily_archived_20221231",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_GM_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
     },
@@ -3059,7 +3059,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_overall__infected_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_overall__infected_moving_average"
     },
@@ -3074,7 +3074,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_overall__infected_per_100k_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_overall__infected_per_100k_moving_average"
     },
@@ -3102,7 +3102,7 @@
       "GROUPED": 0,
       "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
       "MAPPING": "=LOWER()",
-      "LAYOUT_TYPE_ID": 1,
+      "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
       "ACTIVE": 0,
       "NAME": "hospital_nice_choropleth",
@@ -3179,7 +3179,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_overall",
       "DESCRIPTION": "View Configuration for tested_overall"
     },
@@ -3209,7 +3209,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_archived",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
     },
@@ -3224,7 +3224,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_archived_20220908",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
     },
@@ -3254,7 +3254,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "hospital_nice",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE FOR hospital_nice"
     },
@@ -3299,7 +3299,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_overall",
       "DESCRIPTION": "View Configuration for tested_overall"
     },
@@ -3689,7 +3689,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "booster_coverage_archived_20220904",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_BOOSTER_SHOT_COVERAGES_NL_ARCHIVED_20220904 FOR booster_coverage_archived_20220904"
     },
@@ -3719,7 +3719,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "booster_shot_administered_archived_20220904",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATIONS_BOOSTER_SHOTS_ADMINISTERED_NL_ARCHIVED_20220904 FOR booster_shot_administered_archived_20220904"
     },
@@ -3749,7 +3749,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "corona_melder_app_download",
       "DESCRIPTION": "View Configuration for corona_melder_app_download"
     },
@@ -3764,7 +3764,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "corona_melder_app_warning",
       "DESCRIPTION": "View Configuration for corona_melder_app_warning"
     },
@@ -3809,7 +3809,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "deceased_rivm_archived_20221231",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_DECEASED_DAILY_NATIONAL_ARCHIVED_20221231 FOR deceased_rivm_archived_20221231"
     },
@@ -3839,7 +3839,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "deceased_rivm_per_age_group_archived_20221231",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DECEASED_PER_AGE_GROUP_ARCHIVED_20221231 FOR deceased_rivm_per_age_group_archived_20221231"
     },
@@ -3884,7 +3884,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/deceased_rivm__covid_daily_archived_20221231",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_RIVM__DECEASED_DAILY_NL_ARCHIVED_20221231 FOR difference/deceased_rivm__covid_daily_archived_20221231"
     },
@@ -4214,7 +4214,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_ggd__infected_percentage_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_ggd__infected_percentage_moving_average"
     },
@@ -4229,7 +4229,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_ggd__tested_total_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_ggd__tested_total_moving_average"
     },
@@ -4244,7 +4244,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_overall__infected_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_overall__infected_moving_average"
     },
@@ -4259,7 +4259,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/tested_overall__infected_per_100k_moving_average",
       "DESCRIPTION": "View Configuration for difference/tested_overall__infected_per_100k_moving_average"
     },
@@ -4304,7 +4304,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/vulnerable_tested_per_age_group",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCES_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR difference/vulnerable_tested_per_age_group"
     },
@@ -4334,7 +4334,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "disability_care_archived_20230126",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DISABILITY_NATIONAL_ARCHIVED_20230126 FOR disability_care_archived_20230126"
     },
@@ -4379,7 +4379,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "elderly_at_home_archived_20230126",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_ELDERLY_AT_HOME_NATIONAL_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
     },
@@ -4394,7 +4394,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "g_number",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_G_NUMBER_NL FOR g_number"
     },
@@ -4506,6 +4506,21 @@
     {
       "protoTag": "NL",
       "constraintValue": null,
+      "viewName": "VWSDEST.V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY",
+      "GROUPED_KEY_NAME": null,
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_OF_INSERTION_UNIX|DATE_OF_REPORT_UNIX|DATE_START_UNIX|DATE_END_UNIX|PERCENTAGE_0_24|PERCENTAGE_25_39|PERCENTAGE_40_49|PERCENTAGE_50_59|PERCENTAGE_60_69|PERCENTAGE_70_PLUS|PERCENTAGE_AVERAGE",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "infectionradar_symptoms_trend_per_age_group_weekly",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY FOR infectionradar_symptoms_trend_per_age_group_weekly"
+    },
+    {
+      "protoTag": "NL",
+      "constraintValue": null,
       "viewName": "VWSDEST.V_INFECTIOUS_PEOPLE",
       "GROUPED_KEY_NAME": null,
       "CONSTRAINED": 0,
@@ -4514,7 +4529,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "infectious_people",
       "DESCRIPTION": "View Configuration for infectious_people"
     },
@@ -4694,7 +4709,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "repeating_shot_administered",
       "DESCRIPTION": "VIEW CONFIGURATION FOR VWSDEST.V_MANUAL_REPEATING_SHOTS_ADMINISTERED"
     },
@@ -4814,7 +4829,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_ggd",
       "DESCRIPTION": "View Configuration for tested_ggd"
     },
@@ -4829,7 +4844,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_ggd_archived",
       "DESCRIPTION": "View Configuration for ggd tested people NL"
     },
@@ -4844,7 +4859,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_overall",
       "DESCRIPTION": "View Configuration for tested_overall"
     },
@@ -4859,7 +4874,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "tested_per_age_group",
       "DESCRIPTION": "View Configuration for tested_per_age_group"
     },
@@ -5159,7 +5174,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_campaigns_archived_20220908",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908 FOR vaccine_campaigns_archived_20220908"
     },
@@ -5174,7 +5189,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_campaigns_archived_20220908/vaccine_campaigns",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_CAMPAIGNS_NL_ARCHIVED_20220908 FOR vaccine_campaigns_archived_20220908/vaccine_campaigns_archived_20220908"
     },
@@ -5189,7 +5204,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage",
       "DESCRIPTION": "View Configuration for vaccine_coverage"
     },
@@ -5219,7 +5234,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_archived",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVE FOR vaccine_coverage_per_age_group_archived"
     },
@@ -5234,7 +5249,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_archived_20220908",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_archived_20220908"
     },
@@ -5249,7 +5264,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_estimated_archived_20220908",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL_ARCHIVED_20220908 FOR vaccine_coverage_per_age_group_estimated_archived_20220908"
     },
@@ -5309,7 +5324,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_delivery_estimate",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_VWS_VACCINE_DELIVERIES_EST FOR vaccine_delivery_estimate"
     },
@@ -5339,7 +5354,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_delivery_per_supplier",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_VWS_VACCINE_DELIVERIES_WEEKLY FOR vaccine_delivery_per_supplier"
     },
@@ -5369,7 +5384,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_planned_archived_20220908",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSARCHIVE.V_RIVM_VACCINATION_SHOTS_PLANNED_NL_ARCHIVED_20220908 FOR vaccine_planned_archived_20220908"
     },
@@ -5384,7 +5399,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_stock",
       "DESCRIPTION": "View Configuration for vaccine_stock"
     },
@@ -5414,7 +5429,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_vaccinated_or_support",
       "DESCRIPTION": "View Configuration for vaccine_vaccinated_or_support"
     },
@@ -5474,7 +5489,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vulnerable_tested_per_age_group",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_POSITIVE_TESTED_PEOPLE_70_PLUS_OVER_TIME FOR vulnerable_tested_per_age_group"
     },
@@ -6299,7 +6314,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "disability_care_archived_20230126",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DISABILITY_REGIONS_ARCHIVED_20230126 FOR disability_care_archived_20230126"
     },
@@ -6329,7 +6344,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "elderly_at_home_archived_20230126",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_ELDERLY_AT_HOME_REGIONS_ARCHIVED_20230126 FOR elderly_at_home_archived_20230126"
     },
@@ -6479,7 +6494,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vulnerable_nursing_home",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOME_REGIONS FOR vulnerable_nursing_home"
     }
@@ -7432,6 +7447,15 @@
     },
     {
       "constraintValue": null,
+      "NAME": "VWSDEST.V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY",
+      "LAST_UPDATE_NAME": "DATE_END_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null,
+      "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY FOR infectionradar_symptoms_trend_per_age_group_weekly"
+    },
+    {
+      "constraintValue": null,
       "NAME": "VWSDEST.V_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
       "LAST_UPDATE_NAME": "DATE_END_UNIX",
       "CONSTRAINT_KEY_NAME": null,
@@ -7465,15 +7489,6 @@
       "GROUPED_KEY_NAME": "VARIANT_CODE",
       "GROUPED_LAST_UPDATE_NAME": "DATE_START_UNIX",
       "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_MUTATIONS_TABULAR FOR variants"
-    },
-    {
-      "constraintValue": null,
-      "NAME": "VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023",
-      "LAST_UPDATE_NAME": "DATE_START_UNIX",
-      "CONSTRAINT_KEY_NAME": null,
-      "GROUPED_KEY_NAME": null,
-      "GROUPED_LAST_UPDATE_NAME": null,
-      "DESCRIPTION": "VIEW: VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023 FOR sewer"
     },
     {
       "constraintValue": null,
