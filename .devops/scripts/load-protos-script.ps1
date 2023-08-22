@@ -20,8 +20,13 @@ $protosConfigPath = Join-Path -Path $sourceDirectory -ChildPath $protosConfigPat
 # Additional parameters which are be added to the invoke-sql command.
 [hashtable]$additionalParams = @{ }
 
-# Set the password as a securestring variable. 
-if ($pass) {
+# If run from pipeline password is an environment variable
+if($password) {
+    $additionalParams["password"] = $password
+}
+# Asks user for a password input, if this script is run from powershell
+elseif ($pass) {
+    # Set the password as a securestring variable. 
     $password = Read-Host 'Enter password: ' -AsSecureString
     $additionalParams["password"] = ConvertFrom-SecureString $password -AsPlainText
 }
