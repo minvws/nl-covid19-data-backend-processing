@@ -152,7 +152,7 @@ function ExportProtos {
     }
     # Start exporting protos
     Write-Host "Exporting protos"
-    $query = "select NAME, HEADER_NAMES, HEADER_VALUES, ACTIVE, DESCRIPTION from [dashboard-db].[DATATINO_PROTO_1].PROTOS;"
+    $query = "select NAME, HEADER_NAMES, HEADER_VALUES, ACTIVE, DESCRIPTION from [DATATINO_PROTO_1].PROTOS;"
     $res = executeSql $query | ConvertFrom-Json
     foreach ($item in $res) {
         $protosConfig.protos.Add(($item | Select-Object -Property $item.Table.Columns.Split(' ')))
