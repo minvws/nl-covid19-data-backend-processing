@@ -267,12 +267,28 @@ function restoreFromArchive {
     executeSql $query
 }
 
+# Create archive tables from the original (Throws an error if they already exist)
+function backupFromOriginal {
+    $query = ("
+    select * into DATATINO_PROTO_1.CONFIGURATIONS_ARCHIVE from DATATINO_PROTO_1.CONFIGURATIONS
+    select * into DATATINO_PROTO_1.VIEWS_ARCHIVE from DATATINO_PROTO_1.VIEWS
+    select * into DATATINO_PROTO_1.PROTOS_ARCHIVE from DATATINO_PROTO_1.PROTOS
+    ")
+
+    executeSql $query
+}
+
 try {
     ### Determines which function to execute
     switch ($command) {
-        "export" { Measure-Command { ExportProtos } }
-        "import" { Measure-Command { ImportProtos } }
-        "restore" { Measure-Command { restoreFromArchive } }
+        "export" { Measure-Command { ExportProtos }; break }
+        "import" { Measure-Command { ImportProtos }; break }
+        "restore" { Measure-Command { restoreFromArchive }; break }
+        "backup" { Measure-Command { backupFromOriginal }; break }
+        default { 
+            Write-Host "The specified command does not exist" -ForegroundColor Red
+            exit 1
+        }
     }
 }
 catch {
