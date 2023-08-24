@@ -18,16 +18,6 @@ resources:
       type: git
       name: "Corona Dashboard/nl-cdb-be-apis"
 
-parameters:
-  ENVIRONMENT:
-    required: true
-    description: "Available values: 'development', 'acceptance', 'production'"
-  AZURE_RM_SERVICE_PRINCIPAL_NAME:
-    required: true
-    description: "Name of the Azure Service Prinicpal"
-  WORKING_DIRECTORY:
-    required: true
-
 variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
@@ -56,20 +46,6 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'business-logic-database'
               publishLocation: 'Container'
-      - job: "Load_protos_config"
-        variables:
-          - group: "business-logic-${{ parameters.environment }}-vg"
-        pool:
-          vmImage: vmImage: ubuntu-20.04
-        steps:
-          - checkout: self
-          - task: PowerShell@2
-            inputs:
-              targetType: inline
-              script: '$(Build.ArtifactStagingDirectory)\.devops\scripts\load-protos-script.ps1 import'
-            env:
-              username: $(AZURE_SQL_DATABASE_LOGIN_USERNAME)
-              password: $(AZURE_SQL_DATABASE_LOGIN_PASSWORD)
       - job: "Build_Business_Logic"
         pool:
           vmImage: ubuntu-20.04
