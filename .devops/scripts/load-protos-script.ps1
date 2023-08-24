@@ -56,19 +56,19 @@ function ImportProtos {
     DBCC CHECKIDENT ('[DATATINO_PROTO_1].[VIEWS]', RESEED, 0);") | executeSql -ErrorAction Stop
 
     Write-Host "Importing PROTOS table"
-    $query = "insert into [DATATINO_PROTO_1].[PROTOS] (NAME, HEADER_NAMES, HEADER_VALUES, ACTIVE, DESCRIPTION) values "
-    foreach ($proto in $protosConfig.protos) {
-        $query += "('{0}','{1}','{2}',{3},'{4}')," -f $proto.NAME, $proto.HEADER_NAMES, $proto.HEADER_VALUES, $proto.ACTIVE, $proto.DESCRIPTION
-    }
-    executeSql $query.Substring(0, $query.Length - 1)
+    [string]$prefix = "INSERT INTO [DATATINO_PROTO_1].[PROTOS] (NAME, HEADER_NAMES, HEADER_VALUES, ACTIVE, DESCRIPTION) VALUES "
+    [string]$query = ($protosConfig.protos | ForEach-Object {
+        "('{0}','{1}','{2}',{3},'{4}')" -f $_.NAME, $_.HEADER_NAMES, $_.HEADER_VALUES, $_.ACTIVE, $_.DESCRIPTION
+    }) -join ','
+    executeSql (-join ($prefix, $query, ';'))
 
     Write-Host "Importing VIEWS table" 
     [string]$query = $null
+    [string]$prefix = ("INSERT INTO [DATATINO_PROTO_1].[VIEWS] 
+        (CONSTRAINT_VALUE, NAME, LAST_UPDATE_NAME, 
+        CONSTRAINT_KEY_NAME, GROUPED_KEY_NAME, 
+        GROUPED_LAST_UPDATE_NAME, DESCRIPTION) VALUES ")
     foreach ($view in $protosConfig.views) {
-        $prefix = ("INSERT INTO [DATATINO_PROTO_1].[VIEWS] 
-            (CONSTRAINT_VALUE, NAME, LAST_UPDATE_NAME, 
-            CONSTRAINT_KEY_NAME, GROUPED_KEY_NAME, 
-            GROUPED_LAST_UPDATE_NAME, DESCRIPTION) VALUES ")
         [string]$res = $null
         if ($view.constraintValue -eq "GM") {
             $res = ($GMs | ForEach-Object { "('{0}','{1}','{2}','{3}','{4}','{5}','{6}')" -f `
@@ -98,20 +98,20 @@ function ImportProtos {
 
     Write-Host "Importing CONFIGURATIONS table" 
     [string]$query = $null
+    [string]$prefix = ("INSERT INTO [DATATINO_PROTO_1].[CONFIGURATIONS] (
+        PROTO_ID, 
+        VIEW_ID, 
+        CONSTRAINED, 
+        GROUPED,
+        COLUMNS, 
+        MAPPING, 
+        LAYOUT_TYPE_ID, 
+        MOCK_ID, 
+        ACTIVE, 
+        NAME, 
+        DESCRIPTION
+    ) VALUES ")
     foreach ($config in $protosConfig.configurations) {
-        $prefix = ("INSERT INTO [DATATINO_PROTO_1].[CONFIGURATIONS] (
-            PROTO_ID, 
-            VIEW_ID, 
-            CONSTRAINED, 
-            GROUPED,
-            COLUMNS, 
-            MAPPING, 
-            LAYOUT_TYPE_ID, 
-            MOCK_ID, 
-            ACTIVE, 
-            NAME, 
-            DESCRIPTION
-        ) VALUES ")
         [string]$res = $null
         if ($config.protoTag -eq "GM") {
             $res = ($GMs | ForEach-Object { "({0},{1},{2},{3},'{4}','{5}',{6},{7},{8},'{9}','{10}')" -f `
