@@ -5,9 +5,9 @@ param (
     [string]$serverName = "(localdb)\MSSQLLocalDB",
     [string]$databaseName = "CoronaDashboard.BusinessLogic.Database",
     [string]$protosConfigPath = ".devops\protos.config.json",
-    [String]$sourceDirectory = $env:PWD ?? $(Get-Location),
-    [String]$username,
-    [switch]$pass
+    [string]$sourceDirectory = $env:PWD ?? $(Get-Location),
+    [string]$username,
+    [securestring]$password
 )
 
 # Load helper script
@@ -20,14 +20,8 @@ $protosConfigPath = Join-Path -Path $sourceDirectory -ChildPath $protosConfigPat
 # Additional parameters which are be added to the invoke-sql command.
 [hashtable]$additionalParams = @{ }
 
-# If run from pipeline password is an environment variable
+# Add password to additional params if it exists.
 if($password) {
-    $additionalParams["password"] = $password
-}
-# Asks user for a password input, if this script is run from powershell
-elseif ($pass) {
-    # Set the password as a securestring variable. 
-    $password = Read-Host 'Enter password: ' -AsSecureString
     $additionalParams["password"] = ConvertFrom-SecureString $password -AsPlainText
 }
 

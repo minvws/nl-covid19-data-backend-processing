@@ -25,9 +25,11 @@ jobs:
           - task: PowerShell@2
             inputs:
               targetType: inline
-              script: '$(Build.ArtifactStagingDirectory)\.devops\scripts\load-protos-script.ps1 import'
-            env:
-              username: $(AZURE_SQL_DATABASE_LOGIN_USERNAME)
-              password: $(AZURE_SQL_DATABASE_LOGIN_PASSWORD)
+              script: |
+                & "./.devops/scripts/load-protos-script.ps1" import `
+                -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
+                -Password ("$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsSecureString)
+            failOnStderr: true
+            workingDirectory: '${{ parameters.WORKING_DIRECTORY }}'
 
 
