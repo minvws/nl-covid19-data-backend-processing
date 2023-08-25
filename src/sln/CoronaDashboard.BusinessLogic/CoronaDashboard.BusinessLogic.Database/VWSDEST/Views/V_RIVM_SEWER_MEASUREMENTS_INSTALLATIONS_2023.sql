@@ -29,35 +29,36 @@ CREATE   VIEW [VWSDEST].[V_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023] AS
         SELECT
             [GMCODE],
             MAX(DATE_START_UNIX) AS [DATE_START_UNIX],
-            MAX(DATE_END_UNIX) AS [DATE_END_UNIX]
+            MAX(DATE_END_UNIX) AS [DATE_END_UNIX],
+			MAX(DATE_OF_INSERTION_UNIX) AS [DATE_OF_INSERTION_UNIX]
         FROM [VWSDEST].[V_RIVM_SEWER_MEASUREMENTS_GM_2023] -- get latest value from other view
         GROUP BY [GMCODE]
     ),
-    SEWER_MEASUREMENTS_WEEK_MUNICIPALITY AS (
+	SEWER_MEASUREMENTS_WEEK_MUNICIPALITY AS (
         SELECT 
             smm.[ID],
             smm.[DATE_OF_REPORT],
             smm.[DATE_MEASUREMENT],
-            smm.[RWZI_CODE], smm.[GMCODE],
-            smm.[DATE_LAST_INSERTED],
+            smm.[RWZI_CODE], lmwpm.[GMCODE],
+            lmwpm.[DATE_OF_INSERTION_UNIX],
             lmwpm.[DATE_START_UNIX],
             lmwpm.[DATE_END_UNIX]
-        FROM SEWER_MEASUREMENTS_MUNICIPALITY smm
-        JOIN LATEST_MEASUREMENT_WEEK_PER_MUNICIPALITY lmwpm
+        FROM LATEST_MEASUREMENT_WEEK_PER_MUNICIPALITY lmwpm
+		LEFT JOIN SEWER_MEASUREMENTS_MUNICIPALITY smm
         ON smm.[GMCODE] = lmwpm.[GMCODE]
-        WHERE smm.[DATE_MEASUREMENT] >= dbo.CONVERT_UNIX_TO_DATETIME(lmwpm.[DATE_START_UNIX])
+        AND smm.[DATE_MEASUREMENT] >= dbo.CONVERT_UNIX_TO_DATETIME(lmwpm.[DATE_START_UNIX])
         AND smm.[DATE_MEASUREMENT] <= dbo.CONVERT_UNIX_TO_DATETIME(lmwpm.[DATE_END_UNIX])
     ),
-    GMCODE_SAMPLES AS (
+	GMCODE_SAMPLES AS (
         SELECT
             [GMCODE],
             COUNT([ID]) AS [TOTAL_NUMBER_OF_SAMPLES],
             COUNT(DISTINCT [RWZI_CODE]) AS [SAMPLED_INSTALLATION_COUNT],
             [DATE_START_UNIX],
             [DATE_END_UNIX],
-            [DATE_LAST_INSERTED]
+            [DATE_OF_INSERTION_UNIX]
         FROM SEWER_MEASUREMENTS_WEEK_MUNICIPALITY
-        GROUP BY [GMCODE], [DATE_START_UNIX], [DATE_END_UNIX], [DATE_LAST_INSERTED]
+        GROUP BY [GMCODE], [DATE_START_UNIX], [DATE_END_UNIX], [DATE_OF_INSERTION_UNIX]
     )
     SELECT
         gs.[GMCODE]                                                                     AS [GMCODE],
@@ -66,7 +67,7 @@ CREATE   VIEW [VWSDEST].[V_RIVM_SEWER_MEASUREMENTS_INSTALLATIONS_2023] AS
         tic.[TOTAL_INSTALLATION_COUNT]                                                  AS [TOTAL_INSTALLATION_COUNT],
         gs.[DATE_START_UNIX]                                                            AS [DATE_START_UNIX],
         gs.[DATE_END_UNIX]                                                              AS [DATE_END_UNIX], 
-        dbo.CONVERT_DATETIME_TO_UNIX(gs.[DATE_LAST_INSERTED])                           AS [DATE_OF_INSERTION_UNIX]
+        gs.[DATE_OF_INSERTION_UNIX] 						                            AS [DATE_OF_INSERTION_UNIX]
     FROM GMCODE_SAMPLES gs
     JOIN TOTAL_INSTALLATION_COUNT tic
     ON gs.[GMCODE] = tic.[GMCODE]
