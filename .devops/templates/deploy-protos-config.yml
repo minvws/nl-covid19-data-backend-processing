@@ -27,12 +27,12 @@ jobs:
               targetType: inline
               script: |
                 write-host $PSVersionTable 
-                ./.devops/scripts/load-protos-script.ps1 import `
-                -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
-                -Server "$(AZURE_SQL_SERVER_NAME)" `
-                -Database "$(AZURE_SQL_DATABASE_NAME)" `
-                -SourceDirectory "./src" `
-                -Password ("$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsSecureString)
+                # ./.devops/scripts/load-protos-script.ps1 import `
+                # -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
+                # -Server "$(AZURE_SQL_SERVER_NAME)" `
+                # -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                # -SourceDirectory "./src" `
+                # -Password ("$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsSecureString)
 
 
 
