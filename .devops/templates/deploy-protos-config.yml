@@ -31,7 +31,7 @@ jobs:
                 -Server "$(AZURE_SQL_SERVER_NAME)" `
                 -Database "$(AZURE_SQL_DATABASE_NAME)" `
                 -SourceDirectory "./src" `
-                -Password ("$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsSecureString)
+                -Password "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)"
 
 
 
