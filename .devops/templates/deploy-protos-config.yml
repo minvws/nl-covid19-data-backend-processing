@@ -26,7 +26,7 @@ jobs:
             inputs:
               targetType: inline
               script: |
-                & "./.devops/scripts/load-protos-script.ps1" import `
+                ./.devops/scripts/load-protos-script.ps1 import `
                 -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
                 -Server "$(AZURE_SQL_SERVER_NAME)" `
                 -Database "$(AZURE_SQL_DATABASE_NAME)" `
