@@ -32,6 +32,11 @@ stages:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
         WORKING_DIRECTORY: $(WORKING_DIRECTORY)
+    - template: templates/deploy-protos-config.yml
+      parameters:
+        ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
+        AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
+        WORKING_DIRECTORY: $(WORKING_DIRECTORY)
 
   - stage: Acceptance
     condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/heads/release')) # to be changed to refs/heads/master
