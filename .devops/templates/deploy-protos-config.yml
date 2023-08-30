@@ -17,6 +17,7 @@ jobs:
       clean: all
     variables:
       - group: "business-logic-${{ parameters.environment }}-vg"
+    dependsOn: ${{ parameters.ENVIRONMENT }}
     strategy:
       runOnce:
         deploy:
