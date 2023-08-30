@@ -720,7 +720,6 @@
     <Build Include="VWSDEST\Views\V_NICE_HOSPITAL_CHOROPLETH_VR.sql" />
     <Build Include="VWSDEST\Views\V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION.sql" />
     <Build Include="VWSDEST\Views\V_NICE_HOSPITAL_CHOROPLETH_GM.sql" />
-    <Build Include="VWSDEST\Views\V_NICE_HOSPITAL_GM_COLLECTION.sql" />
     <Build Include="VWSDEST\Views\V_MATCH_MUNICIPALITY_SAFETY_REGION.sql" />
     <Build Include="VWSDEST\Views\V_MANUAL_REPEATING_SHOTS_ADMINISTERED.sql" />
     <Build Include="VWSDEST\Views\V_MANUAL_BOOSTER_SHOT_PLANNED.sql" />
