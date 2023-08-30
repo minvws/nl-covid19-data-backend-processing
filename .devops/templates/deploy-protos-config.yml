@@ -30,7 +30,7 @@ jobs:
                 -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
                 -Server "$(AZURE_SQL_SERVER_NAME)" `
                 -Database "$(AZURE_SQL_DATABASE_NAME)" `
-                -SourceDirectory "${{parameters.WORKING_DIRECTORY}}" `
+                -SourceDirectory "$(Pipeline.Workspace)" `
                 -Password (ConvertTo-SecureString "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsPlainText)
 
 
