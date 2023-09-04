@@ -1094,7 +1094,7 @@
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_VACCINATION_SHOT_COVERAGES_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_VACCINATION_SERIES_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_REPEATING_SHOTS_ADMINISTERED_N.sql" />
-    <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_INFECTIE_RADAR_TREND_PER_LEEFTIJD.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_DAILY.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_BOOSTER_SHOT_COVERAGES_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_VACCINE_ADMINISTERED_LAST_WEEK_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_VACCINATION_SERIES_NL.sql" />
@@ -1102,7 +1102,7 @@
     <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_VACCINATION_COVERAGES_PER_CAMPAIGN_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_VACCINATION_COVERAGES_NL.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_VACCINATION_CAMPAIGNS_NL.sql" />
-    <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_INFECTIE_RADAR_TREND_PER_LEEFTIJD.sql" />
+    <Build Include="dbo\Stored Procedures\SP_INSERT_IL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_DAILY.sql" />
     <Build Include="dbo\Stored Procedures\SP_INHABITANTS_PER_REGION_STATIC.sql" />
     <Build Include="dbo\Stored Procedures\SP_INHABITANTS_PER_MUNICIPALITY_STAGE_TO_STATIC.sql" />
     <Build Include="dbo\Stored Procedures\SP_INHABITANTS_PER_AGEGROUP.sql" />
@@ -1545,6 +1545,7 @@
     <Build Include="VWSDEST\Tables\RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
     <Build Include="VWSDEST\Views\V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="VWSREPORT\Views\V_RIVM_INFECTIE_RADAR_TREND_PER_LEEFTIJD_WEEKLY.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
