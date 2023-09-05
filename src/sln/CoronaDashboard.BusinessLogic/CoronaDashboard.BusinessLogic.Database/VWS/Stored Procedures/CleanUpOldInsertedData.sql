@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[CleanUpData]
+﻿CREATE PROCEDURE [dbo].[CleanUpOldInsertedData]
     @maxHistory int = 10
 AS
 	declare @schemaName varchar(100);

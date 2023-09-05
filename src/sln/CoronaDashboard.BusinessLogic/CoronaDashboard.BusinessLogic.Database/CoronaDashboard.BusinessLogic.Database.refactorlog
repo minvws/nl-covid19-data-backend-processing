@@ -42,4 +42,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DEPLOYMENT_DESCRIPTION" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5d622c69-ee55-4b02-8996-64749ec554df" ChangeDateTime="09/05/2023 11:38:32">
+    <Property Name="ElementName" Value="[dbo].[CleanUpData]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[CleanUpOldInsertedData]" />
+  </Operation>
 </Operations>
