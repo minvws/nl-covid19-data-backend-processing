@@ -116,6 +116,7 @@
     <Folder Include="DATATINO\Sequences\" />
     <Folder Include="Scripts" />
     <Folder Include="Scripts\PostDeployment" />
+    <Folder Include="VWS\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\ADF_ARCHIVED_AUDIT.sql" />
@@ -1545,6 +1546,7 @@
     <Build Include="VWSDEST\Tables\RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
     <Build Include="dbo\Stored Procedures\SP_INSERT_OL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
     <Build Include="VWSDEST\Views\V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
+    <Build Include="VWS\Stored Procedures\CleanUpData.sql" />
     <Build Include="VWSREPORT\Views\V_RIVM_INFECTIE_RADAR_TREND_PER_LEEFTIJD_WEEKLY.sql" />
   </ItemGroup>
   <ItemGroup>
