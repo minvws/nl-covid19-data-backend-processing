@@ -37,8 +37,14 @@ AS
 				) 
 				delete from [',@schemaName,'].[',@tableName,']
 				where date_last_inserted not in (select date_last_inserted from cte)'); 	
+
+			print concat(format (getdate(),'yyyy-mm-dd hh:MM:ss') , ' | Removing entries from [',@schemaName,'].[',@tableName,']...');
+			print @sqlString
 			
 			execute sp_executesql @sqlString 
+
+			print concat(format (getdate(),'yyyy-mm-dd hh:MM:ss') , ' | Done removing entries from [',@schemaName,'].[',@tableName,']');
+
 			fetch next from cur
 			into @schemaName, @tableName
 		end;
