@@ -65,18 +65,18 @@
               JOIN [VWSINTER].[RIVM_MUTATIONS] AS M ON R.ID = M.ID
  
          INSERT [VWSDEST].[RIVM_MUTATIONS]
-                 ([DATE_OF_REPORT], [DATE_OF_STATISTICS_WEEK_START], [VARIANT_CODE], [VARIANT_NAME], [SORT_ORDER], [IS_VARIANT_OF_CONCERN], [SAMPLE_SIZE], [VARIANT_CASES], [VARIANT_PERCENTAGE], [HAS_HISTORICAL_SIGNIFICANCE], [DATE_LAST_INSERTED])
+                 ([DATE_OF_REPORT], [DATE_OF_STATISTICS_WEEK_START], [VARIANT_CODE], [VARIANT_NAME], [SORT_ORDER], [SAMPLE_SIZE], [VARIANT_CASES], [VARIANT_PERCENTAGE], [DATE_LAST_INSERTED])
              SELECT
                  M.DATE_OF_REPORT,
                  M.DATE_OF_STATISTICS_WEEK_START,
                  M.VARIANT_CODE, 
                  M.VARIANT_NAME,
                  V.[SORT_ORDER],
-                 'true' AS IS_VARIANT_OF_CONCERN,
+                 --'true' AS IS_VARIANT_OF_CONCERN,
                  M.SAMPLE_SIZE,
                  R.VarCases as VARIANT_CASES,
                  ROUND(CAST(VarCases * 100 AS NUMERIC(16,3)) / @SAMPLE_SIZE, 1) AS VARIANT_PERCENTAGE,
-                 IIF(M.[VARIANT_CODE] IN ('B.1.1.7','B.1.351','P.1','B.1.617.2'), 'true', 'false') AS [HAS_HISTORICAL_SIGNIFICANCE],
+                 --IIF(M.[VARIANT_CODE] IN ('B.1.1.7','B.1.351','P.1','B.1.617.2'), 'true', 'false') AS [HAS_HISTORICAL_SIGNIFICANCE],
                  @InsertedDatedThisRun
              FROM
                  @RecalcResult AS R
@@ -90,35 +90,19 @@
              SELECT
                  @DateOfReport AS DATE_OF_REPORT,
                  @dateOfStatsStart AS [DATE_OF_STATISTICS_WEEK_START],
-                 'other_table'                            AS [VARIANT_CODE],
-                 'other_table'                      AS [VARIANT_NAME],
-                 0                                       AS [SORT_ORDER],
-                 'true'                                  AS [IS_VARIANT_OF_CONCERN],
+                 V.Variant_code                            AS [VARIANT_CODE],
+                 V.Variant_code                      AS [VARIANT_NAME],
+                 V.[SORT_ORDER],
+                 --'true'                                  AS [IS_VARIANT_OF_CONCERN],
                  @SAMPLE_SIZE                             AS [SAMPLE_SIZE],
                  @SAMPLE_SIZE - @TOT_VARIANT_CASES        AS [VARIANT_CASES],
                  ROUND((CAST((@SAMPLE_SIZE - @TOT_VARIANT_CASES) AS FLOAT)*100) /@SAMPLE_SIZE, 1) AS [VARIANT_PERCENTAGE],
-                 'false'                                  AS [HAS_HISTORICAL_SIGNIFICANCE],
+                 --'false'                                  AS [HAS_HISTORICAL_SIGNIFICANCE],
                  @InsertedDatedThisRun                    AS [DATE_LAST_INSERTED]
-             
-             UNION ALL
- 
-                 SELECT
-                 @DateOfReport AS DATE_OF_REPORT,
-                 @dateOfStatsStart AS [DATE_OF_STATISTICS_WEEK_START],
-                 'other_graph'                            AS [VARIANT_CODE],
-                 'other_graph'                      AS [VARIANT_NAME],
-                 99                                       AS [SORT_ORDER],
-                 'false'                                  AS [IS_VARIANT_OF_CONCERN],
-                 @SAMPLE_SIZE                             AS [SAMPLE_SIZE],
-                 @SAMPLE_SIZE - @TOT_VARIANT_CASES        AS [VARIANT_CASES],
-                 ROUND((CAST((@SAMPLE_SIZE - @TOT_VARIANT_CASES) AS FLOAT)*100) /@SAMPLE_SIZE, 1) AS [VARIANT_PERCENTAGE],
-                 'false'                                  AS [HAS_HISTORICAL_SIGNIFICANCE],
-                 @InsertedDatedThisRun                    AS [DATE_LAST_INSERTED]
- 
-             --FROM 
-             --    (VALUES
-             --        ('other_table'),
-             --        ('other_graph') ) as T(VarName);
+             FROM VWSSTATIC.MASTERDATA_VARIANTS AS V
+             WHERE DATE_LAST_INSERTED = @lastDateMasterDataVars
+             AND V.Variant_code = 'other_variants'
+             AND V.Shows_on_vws_dashboard = 1
  
          DROP TABLE IF EXISTS ##VARIANT_CASES_SET;
  
