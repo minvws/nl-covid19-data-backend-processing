@@ -6,9 +6,7 @@
             [DATE_OF_REPORT],
             [DATE_OF_STATISTICS],
             [VACCINE_SERIE_EN],
-            [TOTAL_VACCINATED],
-            [TOTAL_VACCINATED_7DAYS],
-            [CUMSUM_TOTAL_VACCINATED]
+            [TOTAL_VACCINATED]
      )
      SELECT
         [DATE_OF_REPORT],
