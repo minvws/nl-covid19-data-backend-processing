@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[CleanUpOldInsertedData]
     @maxHistory int = 10
 AS
-	declare @schemaName varchar(100);
-	declare @tableName varchar(100);
-	declare @sqlString NVARCHAR(500);
+	declare @schemaName varchar(200);
+	declare @tableName varchar(200);
+	declare @sqlString NVARCHAR(MAX);
 
 	declare cur cursor for
 		select 
@@ -27,23 +27,30 @@ AS
 
 	while @@FETCH_STATUS = 0
 		begin
-			set @sqlString =  concat(
-				'with cte as (
-			
-					select distinct top ', @maxHistory, ' DATE_LAST_INSERTED 
+			set @sqlString =  concat('
+				declare @batchSize int = 1000000
+				declare @currentBatch int = 0
+				
+				while 1 = 1
+				begin
+					set @currentBatch = @currentBatch + 1
+					print concat(format (getdate(),''yyyy-MM-dd hh:mm:ss'') , '' | Deleting batch '', @currentBatch, '' of max '', @batchSize, '' rows'');
+					RAISERROR( ''...'',0,1) WITH NOWAIT
+					delete top (@batchSize) 
 					from [',@schemaName,'].[',@tableName,']
-					order by DATE_LAST_INSERTED desc
-			
-				) 
-				delete from [',@schemaName,'].[',@tableName,']
-				where date_last_inserted not in (select date_last_inserted from cte)'); 	
-
-			print concat(format (getdate(),'yyyy-mm-dd hh:MM:ss') , ' | Removing entries from [',@schemaName,'].[',@tableName,']...');
-			print @sqlString
-			
+					where DATE_LAST_INSERTED not in (
+						select distinct top ', @maxHistory, ' DATE_LAST_INSERTED 
+						from [',@schemaName,'].[',@tableName,']
+						order by DATE_LAST_INSERTED desc);
+					if @@rowcount < @batchSize break
+				end
+				'); 	
+			print '------------------------------------------'
+			print concat(format (getdate(),'yyyy-MM-dd hh:mm:ss') , ' | Removing entries from [',@schemaName,'].[',@tableName,']');
+			RAISERROR( '...',0,1) WITH NOWAIT
 			execute sp_executesql @sqlString 
 
-			print concat(format (getdate(),'yyyy-mm-dd hh:MM:ss') , ' | Done removing entries from [',@schemaName,'].[',@tableName,']');
+			print concat(format (getdate(),'yyyy-MM-dd hh:mm:ss') , ' | Done removing entries from [',@schemaName,'].[',@tableName,']');
 
 			fetch next from cur
 			into @schemaName, @tableName
