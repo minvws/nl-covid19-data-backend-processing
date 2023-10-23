@@ -1,5 +1,5 @@
 Param(
-    [String]$ExportLocation = ".devops\configs\workflows",
+    [String]$ExportLocation = ".devops\configs\dataflows",
     [String]$DatabaseName = "vwscdb-we-acc-mssql-database",
     [String]$DatabaseServer = "vwscdb-we-acc-mssql-server.database.windows.net,1433",
     [String]$DatabaseUser = "dbAdmin",
@@ -354,7 +354,7 @@ try {
     
     Truncate-Tables $connection
 
-    (Get-ChildItem "$ExportLocation\Workflows").FullName | % {
+    (Get-ChildItem "$ExportLocation\workflows").FullName | % {
         $workflowConfigLocation = $_
 
         Write-Host "Reading file $workflowConfigLocation ..."
