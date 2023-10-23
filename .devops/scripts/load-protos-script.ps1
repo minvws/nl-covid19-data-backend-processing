@@ -4,7 +4,7 @@ param (
     [int]$port,
     [string]$serverName = "(localdb)\MSSQLLocalDB",
     [string]$databaseName = "CoronaDashboard.BusinessLogic.Database",
-    [string]$protosConfigPath = ".devops\protos.config.json",
+    [string]$protosConfigPath = ".devops\configs\protos\protos.config.json",
     [string]$sourceDirectory = $env:PWD ?? $(Get-Location),
     [string]$username,
     [securestring]$password
