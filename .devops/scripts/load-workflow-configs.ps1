@@ -3,9 +3,8 @@ Param(
     [String]$DatabaseName = "vwscdb-we-acc-mssql-database",
     [String]$DatabaseServer = "vwscdb-we-acc-mssql-server.database.windows.net,1433",
     [String]$DatabaseUser = "dbAdmin",
-    [String]$DatabasePassword = ""
+    [securestring]$DatabasePassword = ""
 )
-
 
 Function Insert-GlobalDependency($connection, $dependencyConfig)
 {
@@ -348,8 +347,9 @@ Function Truncate-Tables($connection)
 
 try {
 
+    $dbPassword = ConvertFrom-SecureString $DatabasePassword -AsPlainText
     $connection = New-Object System.Data.SqlClient.SqlConnection
-    $connection.ConnectionString = "server=$DatabaseServer;database=$DatabaseName;User=$DatabaseUser;Password=$DatabasePassword"
+    $connection.ConnectionString = "server=$DatabaseServer;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
     $connection.Open()
     
     Truncate-Tables $connection
