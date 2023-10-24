@@ -37,11 +37,10 @@ jobs:
             inputs:
               targetType: inline
               script: |
-                ./.devops/scripts/load-workflow-configs.ps1 import `
+                ./.devops/scripts/load-workflow-configs.ps1 `
                 -DatabaseUser "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
                 -DatabaseServer "$(AZURE_SQL_SERVER_NAME)" `
                 -DatabaseName "$(AZURE_SQL_DATABASE_NAME)" `
-                -SourceDirectory "$(Build.SourcesDirectory)" `
                 -DatabasePassword (ConvertTo-SecureString "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsPlainText)
 
 
