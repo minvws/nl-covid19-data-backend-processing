@@ -38,6 +38,7 @@ Function Insert-GlobalDependency($connection, $dependencyConfig)
 
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
 
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@workflowDataflowId', [Data.SQLDBType]::Int, 0))).Value = $workflowConfig.DATAFLOW_ID
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@name', [Data.SQLDBType]::NVarChar, 200))).Value = $dependencyConfig.NAME
@@ -85,6 +86,7 @@ Function Upsert-Dataflow($connection, $dataflowId, $dataflowName, $dataflowDescr
 
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowId', [Data.SQLDBType]::Int, 0))).Value = $dataflowId
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowName', [Data.SQLDBType]::NVarChar, 200))).Value = $dataflowName
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowType', [Data.SQLDBType]::NVarChar, 200))).Value = $dataflowType
@@ -129,6 +131,7 @@ Function Upsert-DataflowWorkflow($connection, $workflowConfig)
 
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowId', [Data.SQLDBType]::Int, 0))).Value = $workflowConfig.DATAFLOW_ID
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowName', [Data.SQLDBType]::NVarChar, 200))).Value = $workflowConfig.NAME
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowDescription', [Data.SQLDBType]::NVarChar, 4000))).Value = $workflowConfig.DESCRIPTION
@@ -164,6 +167,7 @@ Function Insert-Workflow($connection, $workflowConfig)
 
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@dataflowId', [Data.SQLDBType]::Int, 0))).Value = $workflowConfig.DATAFLOW_ID
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@schedule', [Data.SQLDBType]::NVarChar, 100))).Value = $workflowConfig.SCHEDULE
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@active', [Data.SQLDBType]::Int, 0))).Value = $workflowConfig.ACTIVE
@@ -204,6 +208,7 @@ Function Insert-Dependency($connection, $workflowConfig, $dependencyConfig)
 
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
 
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@workflowDataflowId', [Data.SQLDBType]::Int, 0))).Value = $workflowConfig.DATAFLOW_ID
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@name', [Data.SQLDBType]::NVarChar, 200))).Value = $dependencyConfig.NAME
@@ -269,6 +274,7 @@ Function Insert-Process($connection, $workflowConfig, $processConfig)
     "
     $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
     $command.CommandText = $query
+    $command.Transaction = $Transaction
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@sourceType', [Data.SQLDBType]::NVarChar, 200))).Value = $processConfig.SOURCE_TYPE
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@sourceLocationType', [Data.SQLDBType]::NVarChar, 200))).Value = $processConfig.SOURCE_LOCATION_TYPE
     $command.Parameters.Add((New-Object Data.SqlClient.SqlParameter('@sourceDelimiterType', [Data.SQLDBType]::NVarChar, 200))).Value = $processConfig.SOURCE_DELIMITER_TYPE
@@ -339,6 +345,7 @@ Function Truncate-Tables($connection)
 
         $command = New-Object Data.SQLClient.SQLCommand($null, $connection)
         $command.CommandText = $query
+        $command.Transaction = $Transaction
         $command.ExecuteNonQuery() | Out-Null
         $command.Dispose()
     }
@@ -346,15 +353,16 @@ Function Truncate-Tables($connection)
 }
 
 try {
-
-    $dbPassword = ConvertFrom-SecureString $DatabasePassword -AsPlainText
+	$dbPassword = ConvertFrom-SecureString $DatabasePassword -AsPlainText
     $connection = New-Object System.Data.SqlClient.SqlConnection
     $connection.ConnectionString = "server=$DatabaseServer;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
     $connection.Open()
+
+    $Transaction = $connection.BeginTransaction()
     
     Truncate-Tables $connection
 
-    (Get-ChildItem "$ExportLocation\workflows").FullName | % {
+    (Get-ChildItem "$ExportLocation\Workflows").FullName | % {
         $workflowConfigLocation = $_
 
         Write-Host "Reading file $workflowConfigLocation ..."
@@ -366,10 +374,11 @@ try {
     $globalDependencies = Get-Content "$ExportLocation\ExternalDependencies.config.json" | ConvertFrom-Json
     Import-GlobalDependencies $connection $globalDependencies
 
-
+    $Transaction.Commit()
 
 } catch {
     Write-Host "Error: $_"
+    $Transaction.Rollback()
 } finally {
     $connection.Close()
     $connection.Dispose()
