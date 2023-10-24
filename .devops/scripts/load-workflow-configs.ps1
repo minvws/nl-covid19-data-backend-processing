@@ -1,8 +1,9 @@
 Param(
-    [String]$ExportLocation = ".devops\configs\dataflows",
+    [String]$ImportLocation = ".devops\configs\dataflows",
     [String]$DatabaseName = "vwscdb-we-acc-mssql-database",
-    [String]$DatabaseServer = "vwscdb-we-acc-mssql-server.database.windows.net,1433",
+    [String]$DatabaseServer = "vwscdb-we-acc-mssql-server.database.windows.net",
     [String]$DatabaseUser = "dbAdmin",
+    [int]$DatabasePort = 1433,
     [securestring]$DatabasePassword = ""
 )
 
@@ -355,14 +356,14 @@ Function Truncate-Tables($connection)
 try {
 	$dbPassword = ConvertFrom-SecureString $DatabasePassword -AsPlainText
     $connection = New-Object System.Data.SqlClient.SqlConnection
-    $connection.ConnectionString = "server=$DatabaseServer;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
+    $connection.ConnectionString = "server=$DatabaseServer,$DatabasePort;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
     $connection.Open()
 
     $Transaction = $connection.BeginTransaction()
     
     Truncate-Tables $connection
 
-    (Get-ChildItem "$ExportLocation\workflows").FullName | % {
+    (Get-ChildItem "$ImportLocation\workflows").FullName | % {
         $workflowConfigLocation = $_
 
         Write-Host "Reading file $workflowConfigLocation ..."
@@ -371,7 +372,7 @@ try {
         Import-Workflow $connection $workflowConfig
     }
 
-    $globalDependencies = Get-Content "$ExportLocation\ExternalDependencies.config.json" | ConvertFrom-Json
+    $globalDependencies = Get-Content "$ImportLocation\ExternalDependencies.config.json" | ConvertFrom-Json
     Import-GlobalDependencies $connection $globalDependencies
 
     $Transaction.Commit()
