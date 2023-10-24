@@ -27,7 +27,7 @@ stages:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
         WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
-    - template: templates/deploy-business-logic.yml
+    - template: templates/deploy-configs.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
@@ -44,7 +44,7 @@ stages:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
         WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
-    - template: templates/deploy-business-logic.yml
+    - template: templates/deploy-configs.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
@@ -61,7 +61,7 @@ stages:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)
         WORKING_DIRECTORY: $(WORKING_DIRECTORY_DATABASE)
-    - template: templates/deploy-business-logic.yml
+    - template: templates/deploy-configs.yml
       parameters:
         ENVIRONMENT: ${{ variables.ENVIRONMENT }} 
         AZURE_RM_SERVICE_PRINCIPAL_NAME: $(SERVICE_PRINCIPAL_NAME)

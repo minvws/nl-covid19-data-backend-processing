@@ -1,0 +1,49 @@
+# Required Azure Pipelines Tasks: https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens
+
+parameters:
+  ENVIRONMENT:
+    required: true
+    description: "Available values: 'development', 'acceptance', 'production'"
+  AZURE_RM_SERVICE_PRINCIPAL_NAME:
+    required: true
+    description: "Name of the Azure Service Prinicpal"
+  WORKING_DIRECTORY:
+    required: true
+
+jobs:
+  - deployment: ${{ parameters.ENVIRONMENT }}_config
+    environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
+    workspace:
+      clean: all
+    variables:
+      - group: "business-logic-${{ parameters.environment }}-vg"
+    dependsOn: ${{ parameters.ENVIRONMENT }}_database
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                ./.devops/scripts/load-protos-script.ps1 import `
+                -Username "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
+                -Server "$(AZURE_SQL_SERVER_NAME)" `
+                -Database "$(AZURE_SQL_DATABASE_NAME)" `
+                -SourceDirectory "$(Build.SourcesDirectory)" `
+                -Password (ConvertTo-SecureString "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsPlainText)
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: |
+                ./.devops/scripts/load-workflow-configs.ps1 import `
+                -DatabaseUser "$(AZURE_SQL_DATABASE_LOGIN_USERNAME)" `
+                -DatabaseServer "$(AZURE_SQL_SERVER_NAME)" `
+                -DatabaseName "$(AZURE_SQL_DATABASE_NAME)" `
+                -SourceDirectory "$(Build.SourcesDirectory)" `
+                -DatabasePassword (ConvertTo-SecureString "$(AZURE_SQL_DATABASE_LOGIN_PASSWORD)" -AsPlainText)
+
+
+
+
