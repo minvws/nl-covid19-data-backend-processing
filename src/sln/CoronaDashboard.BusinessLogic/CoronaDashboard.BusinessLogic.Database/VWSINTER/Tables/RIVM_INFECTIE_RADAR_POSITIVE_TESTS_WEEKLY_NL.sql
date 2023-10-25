@@ -5,6 +5,7 @@
     [DATE_OF_REPORT]                  DATETIME        NULL,
     [DATE_OF_STATISTICS]              DATETIME        NULL,
     [N_PARTICIPANTS_TOTAL]            INT             NULL,
+    [N_PARTICIPANTS_TOTAL_UNFILTERED] INT             NULL,
     [N_WITH_SYMPTOMS]                 INT             NULL,
     [N_WITH_SHARED_COVID_TEST_RESULT] INT             NULL,
     [N_TESTED_POSITIVE]               INT             NULL,
