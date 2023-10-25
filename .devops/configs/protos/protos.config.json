@@ -6482,6 +6482,21 @@
       "ACTIVE": 0,
       "NAME": "vulnerable_nursing_home",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NURSING_HOME_REGIONS FOR vulnerable_nursing_home"
+    },
+    {
+      "protoTag": "NL",
+      "constraintValue": null,
+      "viewName": "VWSDEST.V_DIFFERENCE_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
+      "GROUPED_KEY_NAME": null,
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "OLD_VALUE|DIFFERENCE|OLD_DATE_UNIX|NEW_DATE_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 3,
+      "MOCK_ID": null,
+      "ACTIVE": 1,
+      "NAME": "difference/self_test_overall",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL FOR difference/self_test_overall"
     }
   ],
   "views": [
@@ -9499,6 +9514,15 @@
       "GROUPED_KEY_NAME": null,
       "GROUPED_LAST_UPDATE_NAME": null,
       "DESCRIPTION": "View Configuration for VWSDEST.V_BEHAVIOR_NATIONAL_BY_AGE_GROUP"
+    },
+    {
+      "constraintValue": null,
+      "NAME": "VWSDEST.V_DIFFERENCE_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL",
+      "LAST_UPDATE_NAME": "NEW_DATE_UNIX",
+      "CONSTRAINT_KEY_NAME": null,
+      "GROUPED_KEY_NAME": null,
+      "GROUPED_LAST_UPDATE_NAME": null,
+      "DESCRIPTION": "View Configuration for VWSDEST.V_DIFFERENCE_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL"
     }
   ]
 }
