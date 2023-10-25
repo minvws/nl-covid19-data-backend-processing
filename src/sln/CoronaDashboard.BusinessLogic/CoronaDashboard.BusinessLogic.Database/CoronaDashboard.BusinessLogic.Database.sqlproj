@@ -1548,6 +1548,7 @@
     <Build Include="VWSDEST\Views\V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY.sql" />
     <Build Include="VWS\Stored Procedures\CleanUpOldInsertedData.sql" />
     <Build Include="VWSREPORT\Views\V_RIVM_INFECTIE_RADAR_TREND_PER_LEEFTIJD_WEEKLY.sql" />
+    <Build Include="VWSDEST\Views\V_DIFFERENCE_RIVM_INFECTIE_RADAR_POSITIVE_TESTS_WEEKLY_NL.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
