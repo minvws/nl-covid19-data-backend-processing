@@ -3029,7 +3029,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_GM FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
@@ -3092,6 +3092,21 @@
       "ACTIVE": 1,
       "NAME": "hospital_nice",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE FOR hospital_nice"
+    },
+    {
+      "protoTag": "GM",
+      "constraintValue": "GM",
+      "viewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
+      "GROUPED_KEY_NAME": null,
+      "CONSTRAINED": 1,
+      "GROUPED": 0,
+      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 1,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice_choropleth",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
     },
     {
       "protoTag": "GM",
@@ -3194,7 +3209,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
     },
@@ -3242,6 +3257,21 @@
       "ACTIVE": 0,
       "NAME": "deceased_cbs",
       "DESCRIPTION": "View Configuration for deceased_cbs"
+    },
+    {
+      "protoTag": "GM_COLLECTION",
+      "constraintValue": null,
+      "viewName": "VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE",
+      "GROUPED_KEY_NAME": null,
+      "CONSTRAINED": 0,
+      "GROUPED": 0,
+      "COLUMNS": "*",
+      "MAPPING": "=LOWER()",
+      "LAYOUT_TYPE_ID": 4,
+      "MOCK_ID": null,
+      "ACTIVE": 0,
+      "NAME": "hospital_nice",
+      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_LAST_NICE FOR hospital_nice"
     },
     {
       "protoTag": "GM_COLLECTION",
@@ -3299,7 +3329,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_CIMS_VACCINATED_PER_AGE_GROUP_GM FOR vaccine_coverage_per_age_group"
     },
@@ -4499,7 +4529,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 0,
+      "ACTIVE": 1,
       "NAME": "infectionradar_symptoms_trend_per_age_group_weekly",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY FOR infectionradar_symptoms_trend_per_age_group_weekly"
     },
@@ -4874,7 +4904,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_VWS_VACCINE_ADMINISTERED FOR vaccine_administered"
     },
@@ -4904,7 +4934,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_doctors",
       "DESCRIPTION": "View Configuration for vaccine_administered_doctors"
     },
@@ -4934,7 +4964,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_ggd",
       "DESCRIPTION": "View Configuration for vaccine_administered_ggd"
     },
@@ -4949,7 +4979,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_ggd_ghor",
       "DESCRIPTION": "View Configuration for vaccine_administered_ggd_ghor"
     },
@@ -4979,7 +5009,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_hospitals_and_care_institutions",
       "DESCRIPTION": "View Configuration for vaccine_administered_hospitals_and_care_institutions"
     },
@@ -5069,7 +5099,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_planned",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_VWS_VACCINE_ADMINISTERED_PLANNED_TEMP FOR vaccine_administered_planned"
     },
@@ -5099,7 +5129,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_total",
       "DESCRIPTION": "View Configuration for vaccine_administered_total"
     },
@@ -5204,7 +5234,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 2,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_CIMS_VACCINATED_PER_AGE_GROUP FOR vaccine_coverage_per_age_group"
     },
@@ -5264,7 +5294,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_estimated_autumn_2022",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL FOR vaccine_coverage_per_age_group_estimated_autumn_2022"
     },
@@ -5279,7 +5309,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_coverage_per_age_group_estimated_fully_vaccinated",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SHOT_COVERAGES_NL FOR vaccine_coverage_per_age_group_estimated_fully_vaccinated"
     },
@@ -5425,7 +5455,7 @@
       "GROUPED_KEY_NAME": "VARIANT_CODE",
       "CONSTRAINED": 0,
       "GROUPED": 1,
-      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|DATE_OF_REPORT_UNIX|ORDER|IS_VARIANT_OF_CONCERN|HAS_HISTORICAL_SIGNIFICANCE|SAMPLE_SIZE|OCCURRENCE|PERCENTAGE|DATE_OF_INSERTION_UNIX|LABEL_EN|LABEL_NL",
+      "COLUMNS": "DATE_START_UNIX|DATE_END_UNIX|DATE_OF_REPORT_UNIX|ORDER|SAMPLE_SIZE|OCCURRENCE|PERCENTAGE|DATE_OF_INSERTION_UNIX|LABEL_EN|LABEL_NL",
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
