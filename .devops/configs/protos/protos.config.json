@@ -3111,21 +3111,6 @@
     {
       "protoTag": "GM",
       "constraintValue": "GM",
-      "viewName": "VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM",
-      "GROUPED_KEY_NAME": null,
-      "CONSTRAINED": 1,
-      "GROUPED": 0,
-      "COLUMNS": "DATE_UNIX|ADMISSIONS_ON_DATE_OF_REPORTING|ADMISSIONS_ON_DATE_OF_ADMISSION|DATE_OF_INSERTION_UNIX",
-      "MAPPING": "=LOWER()",
-      "LAYOUT_TYPE_ID": 2,
-      "MOCK_ID": null,
-      "ACTIVE": 0,
-      "NAME": "hospital_nice_choropleth",
-      "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM FOR hospital_nice_choropleth"
-    },
-    {
-      "protoTag": "GM",
-      "constraintValue": "GM",
       "viewName": "VWSDEST.V_RIVM_SEWER_MEASUREMENTS_GM_2023",
       "GROUPED_KEY_NAME": null,
       "CONSTRAINED": 1,
