@@ -1,5 +1,5 @@
 ﻿-- Copyright (c) 2020 De Staat der Nederlanden, Ministerie van   Volksgezondheid, Welzijn en Sport.
- -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordination for more information.
+ -- Licensed under the EUROPEAN UNION PUBLIC LICENCE v. 1.2 - see https://github.com/minvws/nl-contact-tracing-app-coordinationfor more information.
  CREATE   VIEW [VWSDEST].[V_DIFFERENCES_DISABILITY__NEWLY_INFECTED_PEOPLE_NL_ARCHIVED_20230126] AS
  
  WITH LAST_DATE_OF_REPORT AS (
