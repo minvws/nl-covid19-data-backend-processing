@@ -12,7 +12,7 @@
       "HEADER_NAMES": "name|code|proto_name|last_generated",
       "HEADER_VALUES": "VR01|VR01|VR01|=GETDATE()",
       "ACTIVE": 0,
-      "DESCRIPTION": "PROTO FILE FOR VR01"
+      "DESCRIPTION": "PROTO FILE FOR VR0123"
     },
     {
       "NAME": "VR02",
