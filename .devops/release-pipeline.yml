@@ -10,7 +10,7 @@ resources:
             - main
             - master
             - release/*
-            - develop*
+            - develop/*
 pool: dockeragent
 variables:
   SERVICE_PRINCIPAL_NAME: '[AzureDevOps]-ServiceConnection'
