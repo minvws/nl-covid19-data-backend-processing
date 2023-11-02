@@ -12,6 +12,7 @@ parameters:
 
 jobs:
   - deployment: ${{ parameters.ENVIRONMENT }}
+    dependsOn: ${{ parameters.ENVIRONMENT }}_database
     environment: ${{ parameters.ENVIRONMENT }}-BusinessLogic
     workspace:
       clean: all

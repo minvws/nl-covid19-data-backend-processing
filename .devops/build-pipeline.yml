@@ -7,7 +7,8 @@ trigger:
       - develop*
   paths:
     include:
-      - "src/"
+      - "src/sln/"
+      - ".devops/configs/"
     exclude:
       - "**/*.md"
       - "**/*.ps1"
@@ -40,12 +41,12 @@ stages:
               SourceFolder: '$(Build.SourcesDirectory)/src/sln/CoronaDashboard.BusinessLogic/'
               Contents: '**\*.dacpac'
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
+              
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'business-logic-database'
-              publishLocation: 'Container'          
+              publishLocation: 'Container'
       - job: "Build_Business_Logic"
         pool:
           vmImage: ubuntu-20.04
