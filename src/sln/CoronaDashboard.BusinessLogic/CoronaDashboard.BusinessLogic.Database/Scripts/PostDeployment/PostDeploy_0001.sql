@@ -74,9 +74,9 @@ if not exists (select * from  DACPAC_VERSION_HISTORY where DEPLOYMENT_VERSION = 
 				begin
 					print 'Inserting [LOCATION_TYPES]'
 					insert into [DATATINO_ORCHESTRATOR_1].[LOCATION_TYPES] ([ID], [DESCRIPTION], [NAME]) values 			
-						(0, 'Not Applicable', 'N/A'),
-						(1, 'A source file that can be found by going to the specified URL in the source. File needs to be reachable by means of the URL', 'Web'),
-						(2, 'A source file that can be found in an Azure Storage Account (Blob)', 'AzureBlob')						
+						(1, 'Not Applicable', 'N/A'),
+						(2, 'A source file that can be found by going to the specified URL in the source. File needs to be reachable by means of the URL', 'Web'),
+						(3, 'A source file that can be found in an Azure Storage Account (Blob)', 'AzureBlob')						
 				end
 
 			SET IDENTITY_INSERT [DATATINO_ORCHESTRATOR_1].[LOCATION_TYPES] OFF
