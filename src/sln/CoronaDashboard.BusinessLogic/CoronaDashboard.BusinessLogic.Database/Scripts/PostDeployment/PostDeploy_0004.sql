@@ -13,6 +13,7 @@ if not exists (select * from  DACPAC_VERSION_HISTORY where DEPLOYMENT_VERSION = 
 
 			------- Non boiler plate actions:
 
+            DELETE FROM [VWSSTATIC].[HOLIDAYS_NL]
             INSERT INTO [VWSSTATIC].[HOLIDAYS_NL]
             VALUES
                 ('2022-04-17','Eerste paasdag','Eerste paasdag'),
