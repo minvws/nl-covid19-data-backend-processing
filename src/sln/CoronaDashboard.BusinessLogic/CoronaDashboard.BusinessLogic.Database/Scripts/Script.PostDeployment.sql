@@ -15,5 +15,6 @@ print 'Running PostDeployment scripts...';
 :r .\PostDeployment\PostDeploy_0002.sql
 :r .\PostDeployment\PostDeploy_0003.sql
 :r .\PostDeployment\PostDeploy_0004.sql
+:r .\PostDeployment\PostDeploy_0005.sql
 
 print 'Done running PostDeployment.';
