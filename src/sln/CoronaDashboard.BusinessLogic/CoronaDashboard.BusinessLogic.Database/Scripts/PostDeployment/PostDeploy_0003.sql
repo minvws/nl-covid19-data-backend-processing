@@ -1,6 +1,6 @@
 ﻿
-declare @version0003 int = 2;
-declare @description0003 nvarchar(max) = 'Static ADF file configurations';
+declare @version0003 int = 3;
+declare @description0003 nvarchar(max) = 'Age group mappings';
 
 
 if not exists (select * from  DACPAC_VERSION_HISTORY where DEPLOYMENT_VERSION = @version0003 and DEPLOYMENT_TYPE = 'Post')
