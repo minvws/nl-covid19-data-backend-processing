@@ -1553,6 +1553,7 @@
     <Build Include="dbo\Stored Procedures\Add_Static_ADF_File.sql" />
     <None Include="Scripts\PostDeployment\PostDeploy_0003.sql" />
     <None Include="Scripts\PostDeployment\PostDeploy_0004.sql" />
+    <None Include="Scripts\PostDeployment\PostDeploy_0005.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
