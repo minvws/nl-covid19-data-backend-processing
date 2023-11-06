@@ -4064,7 +4064,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/infectious_people__estimate",
       "DESCRIPTION": "View Configuration for difference/infectious_people__estimate"
     },
