@@ -4109,7 +4109,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/intensive_care_nice__admissions_on_date_of_reporting_moving_average",
       "DESCRIPTION": "View Configuration for difference/intensive_care_nice__admissions_on_date_of_reporting_moving_average"
     },
