@@ -1554,6 +1554,7 @@
     <None Include="Scripts\PostDeployment\PostDeploy_0003.sql" />
     <None Include="Scripts\PostDeployment\PostDeploy_0004.sql" />
     <None Include="Scripts\PostDeployment\PostDeploy_0005.sql" />
+    <None Include="Scripts\PostDeployment\PostDeploy_0006.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\160\SqlSchemas\master.dacpac">
