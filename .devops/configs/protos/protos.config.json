@@ -4049,7 +4049,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_NL FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
@@ -4064,7 +4064,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/infectious_people__estimate",
       "DESCRIPTION": "View Configuration for difference/infectious_people__estimate"
     },
@@ -4109,7 +4109,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/intensive_care_nice__admissions_on_date_of_reporting_moving_average",
       "DESCRIPTION": "View Configuration for difference/intensive_care_nice__admissions_on_date_of_reporting_moving_average"
     },
@@ -5744,7 +5744,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "difference/hospital_nice__admissions_on_date_of_reporting_moving_average",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_DIFFERENCE_INTAKE_HOSPITAL_REPORTED_VR FOR difference/hospital_nice__admissions_on_date_of_reporting_moving_average"
     },
