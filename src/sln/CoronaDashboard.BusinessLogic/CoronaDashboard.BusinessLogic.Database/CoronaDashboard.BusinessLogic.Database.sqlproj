@@ -603,7 +603,6 @@
     <Build Include="VWSREPORT\Views\V_PBI_BASE.sql" />
     <Build Include="VWSREPORT\Views\V_PBI_ANNOTATIONS.sql" />
     <Build Include="VWSREPORT\Views\V_LCPS_API_LNAZ_HOSPITAL_BED_OCCUPANCY_2023.sql" />
-    <Build Include="VWSREPORT\Views\V_LCPS_API_HOSPITAL_BED_LCPS_2023.sql" />
     <Build Include="VWSREPORT\Views\V_DateLineage_nodes.sql" />
     <Build Include="VWSREPORT\Views\V_DateLineage_edges.sql" />
     <Build Include="VWSREPORT\Views\V_COMPLETE_SECURITY_REGION.sql" />
