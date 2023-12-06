@@ -23,6 +23,18 @@ variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
 stages:
+  - stage: Copy to Github
+    jobs:
+      - job: "Copy_to_Github"
+        pool:
+          vmImage: windows-2022
+        steps:
+        - bash: |
+            git push --prune https://$(GITHUB_PAT)@github.com/minvws/nl-covid19-data-backend-processing \
+                +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+          displayName: 'Copy to Github'
+          condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
   - stage: Build
     jobs:
       - job: "Build_dacpac"
