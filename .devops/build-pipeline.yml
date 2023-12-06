@@ -33,7 +33,6 @@ stages:
             git push --prune https://$(GITHUB_PAT)@github.com/minvws/nl-covid19-data-backend-processing \
                 +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
           displayName: 'Copy to Github'
-          condition: eq(variables['Build.SourceBranch'], 'refs/heads/feature/sync-github')
 
   - stage: Build
     jobs:
