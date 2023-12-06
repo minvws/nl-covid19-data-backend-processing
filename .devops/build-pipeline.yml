@@ -23,7 +23,7 @@ variables:
   WORKING_DIRECTORY: $(Build.SourcesDirectory)/$(Build.Repository.Name)
 
 stages:
-  - stage: Copy to Github
+  - stage: Copy_to_Github
     jobs:
       - job: "Copy_to_Github"
         pool:
