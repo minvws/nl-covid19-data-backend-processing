@@ -5009,7 +5009,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_last_timeframe",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL FOR vaccine_administered_last_timeframe"
     },
@@ -5024,7 +5024,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_administered_last_timeframe/vaccine_types",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINE_ADMINISTERED_LAST_TIMEFRAME_NL FOR vaccine_administered_last_timeframe/vaccine_types"
     },
@@ -5144,7 +5144,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 3,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_campaigns",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SERIES_NL FOR vaccine_campaigns"
     },
@@ -5159,7 +5159,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "vaccine_campaigns/vaccine_campaigns",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_RIVM_VACCINATION_SERIES_NL FOR vaccine_campaigns/vaccine_campaigns"
     },
