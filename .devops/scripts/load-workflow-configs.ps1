@@ -3,7 +3,7 @@ Param(
     [String]$DatabaseName = "vwscdb-we-acc-mssql-database",
     [String]$DatabaseServer = "vwscdb-we-acc-mssql-server.database.windows.net",
     [String]$DatabaseUser = "dbAdmin",
-    [int]$DatabasePort = 1433,
+    [int]$DatabasePort,
     [securestring]$DatabasePassword = ""
 )
 
@@ -356,7 +356,9 @@ Function Truncate-Tables($connection)
 try {
 	$dbPassword = ConvertFrom-SecureString $DatabasePassword -AsPlainText
     $connection = New-Object System.Data.SqlClient.SqlConnection
-    $connection.ConnectionString = "server=$DatabaseServer,$DatabasePort;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
+    $server =  ($DatabasePort ? "$DatabaseServer,$DatabasePort" : $DatabaseServer)
+
+    $connection.ConnectionString = "server=$server;database=$DatabaseName;User=$DatabaseUser;Password=$dbPassword"
     $connection.Open()
 
     $Transaction = $connection.BeginTransaction()
