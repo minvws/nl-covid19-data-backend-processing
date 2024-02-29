@@ -3089,7 +3089,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 1,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "hospital_nice",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_HOSPITAL_ADMISSIONS_GM_NICE FOR hospital_nice"
     },
@@ -3269,7 +3269,7 @@
       "MAPPING": "=LOWER()",
       "LAYOUT_TYPE_ID": 4,
       "MOCK_ID": null,
-      "ACTIVE": 1,
+      "ACTIVE": 0,
       "NAME": "hospital_nice_choropleth",
       "DESCRIPTION": "VIEW CONFIGURATION: VWSDEST.V_NICE_HOSPITAL_CHOROPLETH_GM_COLLECTION FOR hospital_nice_choropleth"
     },
