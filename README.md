@@ -6,15 +6,6 @@ The **[Corona Dashboard](https://coronadashboard.rijksoverheid.nl)** provides in
 
 It was taken off the air on 2024-04-02 and now redirects to the RIVM website containing information about Corona.
 
-## **TABLE OF CONTENTS**
-
----
-
-1. **[Getting Started](#getting-started)**
-2. **[Development Process](#development-process)**
-3. **[Contributions](#contributions)**
-4. **[Disclaimers](#disclaimers)**
-
 ## **Getting Started**
 
 ---
