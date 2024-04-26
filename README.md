@@ -4,7 +4,7 @@
 
 The **[Corona Dashboard](https://coronadashboard.rijksoverheid.nl)** provides information on the breakout and prevalence of the *Coronavirus* in The Netherlands. It combines measured and modelled indicators from various sources to give a broad perspective on the subject. See **[documentation](docs/)** for more information. 
 
-It was taken off the air on 2024-04-02.
+It was taken off the air on 2024-04-02 and now redirects to the RIVM website containing information about Corona.
 
 ## **TABLE OF CONTENTS**
 
@@ -114,16 +114,3 @@ The core team aims to define and calculate various related indicators which are 
 Supplementary information regarding the dashboard can be 
 found **[here](https://coronadashboard.rijksoverheid.nl/verantwoording)**.
 
-## **CONTRIBUTIONS**
-
----
-
-The core team works directly from this open-source repository. If you want to make a contribution we recommend opening an issue first in order to avoid the situation where we already have your contribution staged or can't use your contribution due to certain causes.
-
-## **DISCLAIMERS**
-
----
-
-One can get in touch with the development team by joining the **[CODE For NL Slack](https://doemee.codefor.nl)**, channel: ***#coronadashboard***. Tamas Erkelens (from the Municipality of Amsterdam) is the main contact person for of the team. 
-
-<a style="color:red">**NOTE!**</a> This is not the same development team that created the *NL Coronavirus Notification App*.
