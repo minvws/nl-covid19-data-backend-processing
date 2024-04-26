@@ -64,7 +64,6 @@ stages:
         steps:
 
           - checkout: self
-          - checkout: nl-cdb-be-apis
 
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
