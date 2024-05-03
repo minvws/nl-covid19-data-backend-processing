@@ -1,0 +1,300 @@
+{
+	"name": "pl_ProcessGenericFilesToStatic",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy configured file to blob",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromHTTP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DocumentName": {
+							"value": "@pipeline().parameters.DocumentName",
+							"type": "Expression"
+						},
+						"BaseUrl": {
+							"value": "@pipeline().parameters.BaseUrl",
+							"type": "Expression"
+						},
+						"RelativeUrl": "N/A",
+						"DestinationFolderPath": {
+							"value": "@variables('BlobLocation')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Switch based on file extension",
+				"type": "Switch",
+				"dependsOn": [
+					{
+						"activity": "Copy configured file to blob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toLower(last(array(split(pipeline().parameters.DocumentName, '.'))))",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "json",
+							"activities": [
+								{
+									"name": "Copy contents of file to static table - json",
+									"description": "Insert into VWSSTATIC",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATE_LAST_INSERTED",
+													"value": {
+														"value": "@pipeline().parameters.LastDateInserted",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": false,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "JsonReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"value": "@json(string(pipeline().parameters.Mapping))",
+											"type": "Expression"
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_json",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": "@pipeline().parameters.DocumentName",
+												"FolderName": {
+													"value": "@variables('BlobLocation')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@pipeline().parameters.TableName",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@pipeline().parameters.TableSchema",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Copy contents of file to static table - csv",
+							"description": "Insert into VWSSTATIC",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "DATE_LAST_INSERTED",
+											"value": {
+												"value": "@pipeline().parameters.LastDateInserted",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"value": "@json(string(pipeline().parameters.Mapping))",
+									"type": "Expression"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_abs_delimited_text",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@pipeline().parameters.DocumentName",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@variables('BlobLocation')",
+											"type": "Expression"
+										},
+										"ColumnDelimiter": ";",
+										"QuoteCharacter": "@{concat('')}",
+										"EscapeCharacter": "\\"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_asqldb",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@pipeline().parameters.TableName",
+											"type": "Expression"
+										},
+										"TableSchema": {
+											"value": "@pipeline().parameters.TableSchema",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DocumentName": {
+				"type": "string",
+				"defaultValue": "COVID-19_reproductiegetal.json"
+			},
+			"BaseUrl": {
+				"type": "string",
+				"defaultValue": "https://data.rivm.nl/data/vws/covid-19/"
+			},
+			"TableName": {
+				"type": "string",
+				"defaultValue": "RIVM_REPRODUCTION_NUMBER"
+			},
+			"TableSchema": {
+				"type": "string",
+				"defaultValue": "VWSSTATIC"
+			},
+			"Mapping": {
+				"type": "string",
+				"defaultValue": {
+					"type": "TabularTranslator",
+					"mappings": [
+						{
+							"source": {
+								"name": "Date"
+							},
+							"sink": {
+								"name": "DATE"
+							}
+						},
+						{
+							"source": {
+								"name": "Rt_low"
+							},
+							"sink": {
+								"name": "RT_LOW"
+							}
+						},
+						{
+							"source": {
+								"name": "Rt_avg"
+							},
+							"sink": {
+								"name": "RT_AVG"
+							}
+						},
+						{
+							"source": {
+								"name": "Rt_up"
+							},
+							"sink": {
+								"name": "RT_UP"
+							}
+						},
+						{
+							"source": {
+								"name": "population"
+							},
+							"sink": {
+								"name": "POPULATION"
+							}
+						}
+					]
+				}
+			},
+			"LastDateInserted": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"BlobLocation": {
+				"type": "String",
+				"defaultValue": "factory/sourcesStatic"
+			}
+		},
+		"folder": {
+			"name": "Statics"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,130 @@
+{
+	"name": "pl_RunGenericPipelineForAll",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup static files to process",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set DateLastInserted var",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "3.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_asqldb",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "V_STATIC_FILES",
+							"TableSchema": "dbo"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Call Process Generic Files To Static",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup static files to process",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup static files to process').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "pl_ProcessGenericFilesToStatic",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_ProcessGenericFilesToStatic",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"DocumentName": {
+										"value": "@item().DocumentName",
+										"type": "Expression"
+									},
+									"BaseUrl": {
+										"value": "@item().BaseUrl",
+										"type": "Expression"
+									},
+									"TableName": {
+										"value": "@item().TableName",
+										"type": "Expression"
+									},
+									"TableSchema": {
+										"value": "@item().TableSchema",
+										"type": "Expression"
+									},
+									"Mapping": {
+										"value": "@item().Mapping",
+										"type": "Expression"
+									},
+									"LastDateInserted": {
+										"value": "@variables('DateLastInserted')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set DateLastInserted var",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DateLastInserted",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"DateLastInserted": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Statics"
+		},
+		"annotations": []
+	}
+}

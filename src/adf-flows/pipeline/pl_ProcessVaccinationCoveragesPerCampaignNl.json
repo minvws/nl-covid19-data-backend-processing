@@ -1,0 +1,434 @@
+{
+	"name": "pl_ProcessVaccinationCoveragesPerCampaignNl",
+	"properties": {
+		"activities": [
+			{
+				"name": "intermediate",
+				"description": "Vaccination Coverages Per Campaign",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "switch_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_INSERT_IL_RIVM_VACCINATION_COVERAGES_PER_CAMPAIGN_NL]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "switch_type",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toLower(last(array(split(pipeline().parameters.TriggerFileName, '.'))))",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "csv",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - csv",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "DATE_LAST_INSERTED",
+													"value": {
+														"value": "@pipeline().TriggerTime",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 16,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "Date_of_report",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_OF_REPORT"
+													}
+												},
+												{
+													"source": {
+														"name": "Date_of_statistics",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_OF_STATISTICS",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Birth_year",
+														"type": "String"
+													},
+													"sink": {
+														"name": "BIRTH_YEAR"
+													}
+												},
+												{
+													"source": {
+														"name": "Vaccination_campaign",
+														"type": "String"
+													},
+													"sink": {
+														"name": "VACCINATION_CAMPAIGN"
+													}
+												},
+												{
+													"source": {
+														"name": "Percentage_coverage",
+														"type": "String"
+													},
+													"sink": {
+														"name": "PERCENTAGE_COVERAGE"
+													}
+												},
+												{
+													"source": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "DateTime"
+													}
+												},
+												{
+													"source": {
+														"name": "Version",
+														"type": "String"
+													},
+													"sink": {
+														"name": "VERSION"
+													}
+												},
+												{
+													"source": {
+														"name": "Age_group",
+														"type": "String"
+													},
+													"sink": {
+														"name": "AGEGROUP"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "@{concat('')}",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"value": "gz",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - gz",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 32
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text_compressed",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "\"",
+												"CompressionType": "gzip",
+												"CompressionLevel": "Optimal",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "del_from_abs",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "switch_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_abs_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.TriggerFileName",
+								"type": "Expression"
+							},
+							"FolderName": {
+								"value": "@pipeline().parameters.TriggerFolderPath",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "vaccination_shot_coverages",
+				"description": "Vaccination Shot Coverages",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "intermediate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_INSERT_OL_RIVM_VACCINATION_SHOT_COVERAGES_PER_CAMPAIGN_NL]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "pl_CopyFromDatabaseToArchive",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "vaccination_shot_coverages",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromDatabaseToArchive",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"SourceTableName": {
+							"value": "@variables('databaseTableName')",
+							"type": "Expression"
+						},
+						"DestinationFileName": {
+							"value": "@pipeline().parameters.TriggerFileName",
+							"type": "Expression"
+						},
+						"DeleteAfterCompletion": false,
+						"DestinationFolderPath": "archive/protocols",
+						"SourceTableSchema": {
+							"value": "@variables('databaseTableSchema')",
+							"type": "Expression"
+						},
+						"DateOfReportColumnName": "DATE_OF_REPORT"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"TriggerFileName": {
+				"type": "string",
+				"defaultValue": "VWS_COVID-19_campagne_vaccinatiegraad_NL.csv"
+			},
+			"TriggerFolderPath": {
+				"type": "string",
+				"defaultValue": "factory/sources"
+			}
+		},
+		"variables": {
+			"databaseTableName": {
+				"type": "String",
+				"defaultValue": "RIVM_VACCINATION_COVERAGES_PER_CAMPAIGN_NL"
+			},
+			"databaseTableSchema": {
+				"type": "String",
+				"defaultValue": "VWSSTAGE"
+			}
+		},
+		"folder": {
+			"name": "Protocols"
+		},
+		"annotations": [
+			"Vaccinatiegraad per campagne",
+			"Protocols",
+			"RIVM"
+		],
+		"lastPublishTime": "2022-06-29T06:50:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

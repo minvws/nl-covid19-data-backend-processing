@@ -1,0 +1,193 @@
+{
+	"name": "pl_ProcessOrchestrator",
+	"properties": {
+		"activities": [
+			{
+				"name": "pl_CopyFromHTTP",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromHTTP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ProcessCaseNational",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_CopyFromHTTP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ProcessCaseNational",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ProcessNumberMunicipality",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_CopyFromHTTP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ProcessNumberMunicipality",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_TriggerDatatino_Protos",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_ProcessCaseNational",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "pl_ProcessNumberMunicipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "pl_ProcessVaccinationCoveragesPerCampaignNl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "pl_ProcessVaccineAdministeredLastWeekNl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "pl_ProcessVaccinationPlannedNl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_TriggerDatatino",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"OverrideDownTime": false
+					}
+				}
+			},
+			{
+				"name": "pl_TriggerReleasePipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_TriggerDatatino_Protos",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_TriggerReleasePipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"OverrideDataFlowDowntime": false
+					}
+				}
+			},
+			{
+				"name": "pl_ProcessVaccinationCoveragesPerCampaignNl",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_CopyFromHTTP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ProcessVaccinationCoveragesPerCampaignNl",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ProcessVaccineAdministeredLastWeekNl",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_CopyFromHTTP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ProcessVaccineAdministeredLastWeekNl",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ProcessVaccinationPlannedNl",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_CopyFromHTTP",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ProcessVaccinationPlannedNl",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T09:56:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
