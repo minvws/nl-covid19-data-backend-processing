@@ -15,7 +15,7 @@ The CoronaDashboard aggregates data from various sources into a single database,
 * Intermediate, basic type conversions applied on the raw data
 * Destination, data has been processed into a form that is ready for consumption
 
-All calculations and data-manipulations (usually constrained to *one* specific workflow) are described as stored procedures in **Microsoft SQL** (i.e., MSSQL) scripts. An orchestrator is in charge of running the correct stored procedures based on the configuration tables located in the DATATINO_ORCHESTRATOR_1 schema.
+All calculations and data-manipulations (usually constrained to *one* specific workflow) are described as stored procedures in **Microsoft SQL** (i.e., MSSQL) scripts. An orchestrator is in charge of running the correct stored procedures based on the configuration tables located in the DATATINO_ORCHESTRATOR_1 schema. For some exceptional flows, Azure Data Factory is used as an orchestrator instead (see the ./src/adf-flows/pipeline directory for the definitions of the pipelines to understand which stored procedures belong together).
 
 The configuration tables located in the DATATINO_PROTO_1 schema can be used to map the views from the VWSDEST schema into separate json files that are ready for consumption by a frontend. 
 
@@ -23,8 +23,10 @@ The configuration tables located in the DATATINO_PROTO_1 schema can be used to m
 
 A **[Microsoft SQL Server 2019](https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2019)** is used to ingest and digest the various sources. **Container images** - using **[Docker](https://docs.docker.com/engine/install/)**, **[minikube](https://minikube.sigs.k8s.io/docs/start/)**, **[Podman](https://podman.io/getting-started/)** or Docker runtimes that support **[Docker CLI](https://community.chocolatey.org/packages/docker-cli)**) can be used used when on-premise or cloud solution are not available during development (**[Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)**). It is also possible to run a local version of MSSQL for development purposes.
 
-Deploy the SQL project in /src/sln/CoronaDashboard.BusinessLogic/CoronaDashboard.BusinessLogic.Database to the created database before filling the configuration tables from the PowerShell scripts.
-
+* Deploy the SQL project in ./src/sln/CoronaDashboard.BusinessLogic/CoronaDashboard.BusinessLogic.Database to the created database. 
+* Then fill the configuration tables via the PowerShell load-protos-script.ps1 and load-workflow-configs.ps1 scripts located in ./.devops/scripts directory. 
+  * The scripts make use of the configurations as stored in .json files in the ./.devops/configs directory.
+* All input source files as of the archiving of the application have been provided in the ./src/input-sources directory in a zip-file named ArchivingCDBsources.7z.
 ### **Troubleshooting**
 
 ---
