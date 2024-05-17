@@ -1,0 +1,605 @@
+{
+	"name": "pl_CopyFromHTTP",
+	"properties": {
+		"activities": [
+			{
+				"name": "is_holiday",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "set_is_holiday",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "is_auth_endpoint",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@variables('isHoliday')",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "switch_auth_type",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@variables('authenticationType')",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "Anonymous",
+										"activities": [
+											{
+												"name": "http_to_abs - anonymous",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 5,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "BinarySource",
+														"storeSettings": {
+															"type": "HttpReadSettings",
+															"requestMethod": "GET"
+														},
+														"formatSettings": {
+															"type": "BinaryReadSettings"
+														}
+													},
+													"sink": {
+														"type": "BinarySink",
+														"storeSettings": {
+															"type": "AzureBlobStorageWriteSettings"
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "ls_abs",
+															"type": "LinkedServiceReference"
+														},
+														"path": "factory/sources/staging",
+														"enableCompression": true
+													},
+													"parallelCopies": 32,
+													"dataIntegrationUnits": 32
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_http_no_auth_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"HttpServerBaseUrl": {
+																"value": "@pipeline().parameters.BaseUrl",
+																"type": "Expression"
+															},
+															"HttpServerRelativeUrl": {
+																"value": "@if(\n    contains(pipeline().parameters.RelativeUrl, 'N/A'),\n    pipeline().parameters.DocumentName,\n    pipeline().parameters.RelativeUrl\n)",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_abs_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@pipeline().parameters.DocumentName",
+																"type": "Expression"
+															},
+															"FolderName": {
+																"value": "@pipeline().parameters.DestinationFolderPath",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											},
+											{
+												"name": "throw_exception - anonymous",
+												"type": "Fail",
+												"dependsOn": [
+													{
+														"activity": "http_to_abs - anonymous",
+														"dependencyConditions": [
+															"Failed"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"message": {
+														"value": "@concat('Failed to copy data \"', pipeline().parameters.DocumentName,'\". Reason: ', \nactivity('http_to_abs - anonymous').output.errors[0].Message)",
+														"type": "Expression"
+													},
+													"errorCode": "400"
+												}
+											}
+										]
+									},
+									{
+										"value": "Basic",
+										"activities": [
+											{
+												"name": "http_to_abs - basic",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 5,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "BinarySource",
+														"storeSettings": {
+															"type": "HttpReadSettings",
+															"requestMethod": "GET"
+														},
+														"formatSettings": {
+															"type": "BinaryReadSettings"
+														}
+													},
+													"sink": {
+														"type": "BinarySink",
+														"storeSettings": {
+															"type": "AzureBlobStorageWriteSettings"
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "ls_abs",
+															"type": "LinkedServiceReference"
+														},
+														"path": "factory/sources/staging",
+														"enableCompression": true
+													},
+													"parallelCopies": 32,
+													"dataIntegrationUnits": 32
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_http_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"HttpServerBaseUrl": {
+																"value": "@pipeline().parameters.BaseUrl",
+																"type": "Expression"
+															},
+															"AuthHeaderSecretName": {
+																"value": "@if(\n    and(\n        startswith(pipeline().parameters.BaseUrl, 'https://'), \n        contains(pipeline().parameters.BaseUrl, 'data.rivm.nl/')\n    ),\n    'RIVM-Credentials',\n    'N/A'\n)",
+																"type": "Expression"
+															},
+															"HttpServerRelativeUrl": {
+																"value": "@if(\n    contains(pipeline().parameters.RelativeUrl, 'N/A'),\n    pipeline().parameters.DocumentName,\n    pipeline().parameters.RelativeUrl\n)",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_abs_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@pipeline().parameters.DocumentName",
+																"type": "Expression"
+															},
+															"FolderName": {
+																"value": "@pipeline().parameters.DestinationFolderPath",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											},
+											{
+												"name": "throw_exception - basic",
+												"type": "Fail",
+												"dependsOn": [
+													{
+														"activity": "http_to_abs - basic",
+														"dependencyConditions": [
+															"Failed"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"message": {
+														"value": "@concat('Failed to copy data \"', pipeline().parameters.DocumentName, '\". Reason: ', \nactivity('http_to_abs - basic').output.errors[0].Message)",
+														"type": "Expression"
+													},
+													"errorCode": "400"
+												}
+											}
+										]
+									},
+									{
+										"value": "LCPS",
+										"activities": [
+											{
+												"name": "http_to_abs - LCPS",
+												"type": "Copy",
+												"dependsOn": [
+													{
+														"activity": "Set API key variable",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													},
+													{
+														"activity": "Set Auth variable_",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"timeout": "7.00:00:00",
+													"retry": 5,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "BinarySource",
+														"storeSettings": {
+															"type": "HttpReadSettings",
+															"requestMethod": "GET",
+															"additionalHeaders": {
+																"value": "@{concat('Ocp-Apim-Subscription-Key: ',variables('API key'))}\n@{concat('Authorization: ',variables('LCPS Auth'))}",
+																"type": "Expression"
+															},
+															"requestTimeout": ""
+														},
+														"formatSettings": {
+															"type": "BinaryReadSettings"
+														}
+													},
+													"sink": {
+														"type": "BinarySink",
+														"storeSettings": {
+															"type": "AzureBlobStorageWriteSettings"
+														}
+													},
+													"enableStaging": true,
+													"stagingSettings": {
+														"linkedServiceName": {
+															"referenceName": "ls_abs",
+															"type": "LinkedServiceReference"
+														},
+														"path": "factory/sources/staging",
+														"enableCompression": true
+													},
+													"parallelCopies": 32,
+													"dataIntegrationUnits": 32
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_http_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"HttpServerBaseUrl": {
+																"value": "@pipeline().parameters.BaseUrl",
+																"type": "Expression"
+															},
+															"AuthHeaderSecretName": "LCPS-Credentials",
+															"HttpServerRelativeUrl": {
+																"value": "@if(\n    contains(pipeline().parameters.RelativeUrl, 'N/A'),\n    pipeline().parameters.DocumentName,\n    pipeline().parameters.RelativeUrl\n)",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_abs_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@pipeline().parameters.DocumentName",
+																"type": "Expression"
+															},
+															"FolderName": {
+																"value": "@pipeline().parameters.DestinationFolderPath",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											},
+											{
+												"name": "throw_exception - basic_copy1",
+												"type": "Fail",
+												"dependsOn": [
+													{
+														"activity": "http_to_abs - LCPS",
+														"dependencyConditions": [
+															"Failed"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"message": {
+														"value": "@concat('Failed to copy data \"', pipeline().parameters.DocumentName, '\". Reason: ', \nactivity('http_to_abs - LCPS').output.errors[0].Message)",
+														"type": "Expression"
+													},
+													"errorCode": "400"
+												}
+											},
+											{
+												"name": "Retrieve API key from KeyVault",
+												"type": "WebActivity",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": true,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"url": {
+														"value": "@concat(pipeline().parameters.KvURL4CopyFromHTTP,'secrets/Ocp-Apim-Subscription-Key/?api-version=7.0') ",
+														"type": "Expression"
+													},
+													"connectVia": {
+														"referenceName": "AutoResolveIntegrationRuntime",
+														"type": "IntegrationRuntimeReference"
+													},
+													"method": "GET",
+													"authentication": {
+														"type": "MSI",
+														"resource": "https://vault.azure.net"
+													}
+												}
+											},
+											{
+												"name": "Set API key variable",
+												"type": "SetVariable",
+												"dependsOn": [
+													{
+														"activity": "Retrieve API key from KeyVault",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "API key",
+													"value": {
+														"value": "@activity('Retrieve API key from KeyVault').output.value",
+														"type": "Expression"
+													}
+												}
+											},
+											{
+												"name": "Set Auth variable_",
+												"type": "SetVariable",
+												"dependsOn": [
+													{
+														"activity": "Retrieve Auth bearer from refresh",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "LCPS Auth",
+													"value": {
+														"value": "@concat('Bearer ', activity('Retrieve Auth bearer from refresh').output.access_token)",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "set_is_holiday",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get_is_holiday",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "isHoliday",
+					"value": {
+						"value": "@bool(activity('get_is_holiday').output.firstRow.IsHoliday)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get_is_holiday",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SP_CHECK_IS_HOLIDAYS_NL]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_asqldb",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "VWSSTATIC",
+							"TableSchema": "HOLIDAYS_NL"
+						}
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "is_auth_endpoint",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "is_LCPS_endpoint",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(\n    startswith(pipeline().parameters.BaseUrl, 'https://'), \n    contains(pipeline().parameters.BaseUrl, 'data.rivm.nl/')\n)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "set_authentication_type",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "authenticationType",
+								"value": "Basic"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "is_LCPS_endpoint",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(\n    startswith(pipeline().parameters.BaseUrl, 'https://'), \n    contains(pipeline().parameters.BaseUrl, 'datafeed.lcps.nu')\n)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "set_authentication_type_copy1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "authenticationType",
+								"value": "LCPS"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DocumentName": {
+				"type": "string",
+				"defaultValue": "COVID-19_casus_landelijk.csv"
+			},
+			"BaseUrl": {
+				"type": "string",
+				"defaultValue": "https://data.rivm.nl/data/vws/covid-19/"
+			},
+			"RelativeUrl": {
+				"type": "string",
+				"defaultValue": "N/A"
+			},
+			"ClientId": {
+				"type": "string",
+				"defaultValue": "RIVM"
+			},
+			"DestinationFolderPath": {
+				"type": "string",
+				"defaultValue": "factory/sources"
+			}
+		},
+		"variables": {
+			"isHoliday": {
+				"type": "Boolean",
+				"defaultValue": false
+			},
+			"authenticationType": {
+				"type": "String",
+				"defaultValue": "Anonymous"
+			},
+			"API key": {
+				"type": "String"
+			},
+			"LCPS Auth": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Utils"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T10:26:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

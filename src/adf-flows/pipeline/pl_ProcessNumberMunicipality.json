@@ -1,0 +1,822 @@
+{
+	"name": "pl_ProcessNumberMunicipality",
+	"properties": {
+		"activities": [
+			{
+				"name": "number_municipality",
+				"description": "Insert Into VWSINTER",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "set_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RIVM_COVID_19_MUNICIPALITY_INTER]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_per_municipality",
+				"description": "Positive Tested People Per Municipality",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "hospital_admission_per_municipality",
+				"description": "Hospital Admissions Per Municipality",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_HOSPITAL_ADMISSIONS_PER_MUNICIPALITY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "hospital_admissions",
+				"description": "Hospital Admissions",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_HOSPITAL_ADMISSIONS]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_weekly",
+				"description": "Positive Tested People Weekly",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_WEEKLY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people",
+				"description": "Positive Tested People",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "results_per_safety_region",
+				"description": "Results Per Safety Region",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RESULTS_PER_REGION]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "deceased_daily_per_municipality",
+				"description": "Deceased Daily Per Municipality",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RIVM_DECEASED_DAILY_PER_MUNICIPALITY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "deceased_daily_per_safety_region",
+				"description": "Deceased Daily Per Safety Region",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RIVM_DECEASED_DAILY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "deceased_per_week",
+				"description": "Deceased Per Week",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "number_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RIVM_DECEASED_PER_WEEK]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "set_type",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toLower(last(array(split(pipeline().parameters.TriggerFileName, '.'))))",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "csv",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - csv",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "DATE_LAST_INSERTED",
+													"value": {
+														"value": "@pipeline().TriggerTime",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 16,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "Date_of_report",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_OF_REPORT",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Date_of_publication",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_OF_PUBLICATION",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Municipality_code",
+														"type": "String"
+													},
+													"sink": {
+														"name": "MUNICIPALITY_CODE",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Municipality_name",
+														"type": "String"
+													},
+													"sink": {
+														"name": "MUNICIPALITY_NAME",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Province",
+														"type": "String"
+													},
+													"sink": {
+														"name": "PROVINCE",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Security_region_code",
+														"type": "String"
+													},
+													"sink": {
+														"name": "SECURITY_REGION_CODE",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Security_region_name",
+														"type": "String"
+													},
+													"sink": {
+														"name": "SECURITY_REGION_NAME",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Municipal_health_service",
+														"type": "String"
+													},
+													"sink": {
+														"name": "MUNICIPAL_HEALTH_SERVICE",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "ROAZ_region",
+														"type": "String"
+													},
+													"sink": {
+														"name": "ROAZ_REGION",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Total_reported",
+														"type": "String"
+													},
+													"sink": {
+														"name": "TOTAL_REPORTED",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "Deceased",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DECEASED",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "DateTime"
+													}
+												},
+												{
+													"source": {
+														"name": "Version",
+														"type": "String"
+													},
+													"sink": {
+														"name": "VERSION",
+														"type": "String"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "@{concat('')}",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"value": "gz",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - gz",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 32
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text_compressed",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "\"",
+												"CompressionType": "gzip",
+												"CompressionLevel": "Optimal",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "hospital_admission_per_municipality_base",
+				"description": "Hospital Admissions Per Municipality",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "hospital_admission_per_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "hospital_admissions",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_HOSPITAL_ADMISSIONS_PER_MUNICIPALITY_BASE]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_infected_daily_increase_base",
+				"description": "Positive Tested People",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "positive_tested_people_per_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_INFECTED_DAILY_INCREASE_BASE]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_per_municipality_base",
+				"description": "Positive Tested People",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "positive_tested_people_per_municipality",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_PER_MUNICIPALITY_BASE]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "del_from_abs",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "set_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_abs_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.TriggerFileName",
+								"type": "Expression"
+							},
+							"FolderName": {
+								"value": "@pipeline().parameters.TriggerFolderPath",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "pl_CopyFromDatabaseToArchive",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "hospital_admission_per_municipality_base",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "positive_tested_people_per_municipality_base",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "positive_tested_people_infected_daily_increase_base",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromDatabaseToArchive",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"SourceTableName": {
+							"value": "@variables('databaseTableName')",
+							"type": "Expression"
+						},
+						"DestinationFileName": {
+							"value": "@pipeline().parameters.TriggerFileName",
+							"type": "Expression"
+						},
+						"DeleteAfterCompletion": false,
+						"DestinationFolderPath": "archive/protocols",
+						"SourceTableSchema": {
+							"value": "@variables('databaseTableSchema')",
+							"type": "Expression"
+						},
+						"DateOfReportColumnName": "DATE_OF_REPORT"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"TriggerFileName": {
+				"type": "string",
+				"defaultValue": "COVID-19_aantallen_gemeente_per_dag.csv"
+			},
+			"TriggerFolderPath": {
+				"type": "string",
+				"defaultValue": "factory/sources"
+			}
+		},
+		"variables": {
+			"databaseTableName": {
+				"type": "String",
+				"defaultValue": "RIVM_COVID_19_NUMBER_MUNICIPALITY"
+			},
+			"databaseTableSchema": {
+				"type": "String",
+				"defaultValue": "VWSSTAGE"
+			}
+		},
+		"folder": {
+			"name": "Protocols"
+		},
+		"annotations": [
+			"Positief geteste mensen per gemeentes",
+			"Ziekenhuisopnames",
+			"Ziekenhuisopnames per gemeentes",
+			"Wekelijkse positief geteste mensen",
+			"Positief geteste mensen",
+			"Resultaat per veiligheidsregio",
+			"Dagelijkse sterfte per gemeente",
+			"Dagelijkse sterfte per veiligheidsregio",
+			"Wekelijkse sterfte"
+		],
+		"lastPublishTime": "2022-06-08T11:44:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
