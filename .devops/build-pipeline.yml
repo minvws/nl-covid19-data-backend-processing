@@ -73,7 +73,7 @@ stages:
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
-              SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
+              SourceFolder: "$(Build.SourcesDirectory)/.devops/scripts"
               Contents: "**/*.ps1"
               TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/scripts"
               OverWrite: true
@@ -81,7 +81,7 @@ stages:
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
-              SourceFolder: "$(WORKING_DIRECTORY)/.devops/configs"
+              SourceFolder: "$(Build.SourcesDirectory)/.devops/configs"
               Contents: "**/*.json"
               TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/configs"
               OverWrite: true
