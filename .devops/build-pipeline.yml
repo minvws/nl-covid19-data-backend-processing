@@ -69,7 +69,7 @@ stages:
               targetType: 'inline'
               script: |
                 Get-Location
-                Get-ChildItem -Recurse
+                (Get-ChildItem -Recurse).Fullname
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
