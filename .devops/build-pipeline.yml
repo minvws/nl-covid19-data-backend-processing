@@ -68,7 +68,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                Set-Location $(WORKING_DIRECTORY)
+                Get-Location
                 Get-ChildItem -Recurse
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
