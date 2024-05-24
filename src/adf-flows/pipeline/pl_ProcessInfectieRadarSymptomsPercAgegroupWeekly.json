@@ -1,0 +1,418 @@
+{
+	"name": "pl_ProcessInfectieRadarSymptomsPercAgegroupWeekly",
+	"properties": {
+		"activities": [
+			{
+				"name": "intermediate",
+				"description": "Vaccinations of last week",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "switch_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_INSERT_IL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "switch_type",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toLower(last(array(split(pipeline().parameters.TriggerFileName, '.'))))",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "csv",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - csv",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "DATE_LAST_INSERTED",
+													"value": {
+														"value": "@pipeline().TriggerTime",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 16,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "Version"
+													},
+													"sink": {
+														"name": "VERSION"
+													}
+												},
+												{
+													"source": {
+														"name": "Date_of_report"
+													},
+													"sink": {
+														"name": "DATE_OF_REPORT"
+													}
+												},
+												{
+													"source": {
+														"name": "Date_of_statistics_week_end"
+													},
+													"sink": {
+														"name": "DATE_OF_STATISTICS_WEEK_END"
+													}
+												},
+												{
+													"source": {
+														"name": "Age_groups"
+													},
+													"sink": {
+														"name": "AGE_GROUPS"
+													}
+												},
+												{
+													"source": {
+														"name": "N_participants"
+													},
+													"sink": {
+														"name": "N_PARTICIPANTS"
+													}
+												},
+												{
+													"source": {
+														"name": "Perc_ari_symptoms"
+													},
+													"sink": {
+														"name": "PERC_COVID_SYMPTOMS"
+													}
+												},
+												{
+													"source": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "String"
+													},
+													"sink": {
+														"name": "DATE_LAST_INSERTED",
+														"type": "DateTime"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "@{concat('')}",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"value": "gz",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - gz",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 32
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text_compressed",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "\"",
+												"CompressionType": "gzip",
+												"CompressionLevel": "Optimal",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "del_from_abs",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "switch_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_abs_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.TriggerFileName",
+								"type": "Expression"
+							},
+							"FolderName": {
+								"value": "@pipeline().parameters.TriggerFolderPath",
+								"type": "Expression"
+							}
+						}
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "destination",
+				"description": "Vaccines of last week",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "intermediate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_INSERT_OL_RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "pl_CopyFromDatabaseToArchive",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "destination",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromDatabaseToArchive",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"SourceTableName": {
+							"value": "@variables('databaseTableName')",
+							"type": "Expression"
+						},
+						"DestinationFileName": {
+							"value": "@pipeline().parameters.TriggerFileName",
+							"type": "Expression"
+						},
+						"DeleteAfterCompletion": false,
+						"DestinationFolderPath": "archive/protocols",
+						"SourceTableSchema": {
+							"value": "@variables('databaseTableSchema')",
+							"type": "Expression"
+						},
+						"DateOfReportColumnName": "DATE_OF_REPORT"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"TriggerFileName": {
+				"type": "string",
+				"defaultValue": "VWS_ARI_infectieradar_trend_per_leeftijd_weekly.csv"
+			},
+			"TriggerFolderPath": {
+				"type": "string",
+				"defaultValue": "factory/sources"
+			}
+		},
+		"variables": {
+			"databaseTableName": {
+				"type": "String",
+				"defaultValue": "RIVM_INFECTIE_RADAR_PERCENTAGE_PER_AGEGROUP_WEEKLY"
+			},
+			"databaseTableSchema": {
+				"type": "String",
+				"defaultValue": "VWSSTAGE"
+			}
+		},
+		"folder": {
+			"name": "Protocols"
+		},
+		"annotations": [
+			"Infectie radar Covid symptoms percentage per agegroup weekly",
+			"Protocols",
+			"RIVM"
+		],
+		"lastPublishTime": "2022-06-29T06:50:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

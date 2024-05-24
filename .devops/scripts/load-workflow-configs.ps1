@@ -365,7 +365,7 @@ try {
     
     Truncate-Tables $connection
 
-    (Get-ChildItem "$ImportLocation\workflows").FullName | % {
+    (Get-ChildItem "$ImportLocation\workflows").FullName | ForEach-Object {
         $workflowConfigLocation = $_
 
         Write-Host "Reading file $workflowConfigLocation ..."

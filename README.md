@@ -2,40 +2,31 @@
 
 ---
 
-[![Build Status](https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_apis/build/status/business-logic/nl-cdb-be-business-logic%20-%20CI?repoName=nl-cdb-be-business-logic&label=Build)](https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_build/latest?definitionId=9&repoName=nl-cdb-be-business-logic) [![Release Status](https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_apis/build/status/business-logic/nl-cdb-be-business-logic%20-%20CD?repoName=nl-cdb-be-business-logic&label=Releases)](https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_build/latest?definitionId=10&repoName=nl-cdb-be-business-logic)
-
-
 The **[Corona Dashboard](https://coronadashboard.rijksoverheid.nl)** provides information on the breakout and prevalence of the *Coronavirus* in The Netherlands. It combines measured and modelled indicators from various sources to give a broad perspective on the subject. See **[documentation](docs/)** for more information. 
 
-## **TABLE OF CONTENTS**
-
----
-
-1. **[Getting Started](#getting-started)**
-2. **[Development Process](#development-process)**
-3. **[Contributions](#contributions)**
-4. **[Disclaimers](#disclaimers)**
+It was taken off the air on 2024-04-02 and now redirects to the RIVM website containing information about Corona.
 
 ## **Getting Started**
 
 ---
 
-All calculations and data-manipulations (usually constrained to *one* specific workflow) are described in **Microsoft SQL** (i.e., MSSQL) scripts. By using ***Jupyter Notebooks*** - with a SQL kernel - the MSSQL logic can be grouped into a singular *Notebooks​* (i.e., `*.ipynb`) containing the complete code and (optional) documentation for *one* workflow.
+The CoronaDashboard aggregates data from various sources into a single database, which it then provides to a frontend solution. This aggregation happens in three stages: 
+* Staging, the raw data from the source
+* Intermediate, basic type conversions applied on the raw data
+* Destination, data has been processed into a form that is ready for consumption
+
+All calculations and data-manipulations (usually constrained to *one* specific workflow) are described as stored procedures in **Microsoft SQL** (i.e., MSSQL) scripts. An orchestrator is in charge of running the correct stored procedures based on the configuration tables located in the DATATINO_ORCHESTRATOR_1 schema. For some exceptional flows, Azure Data Factory is used as an orchestrator instead (see the ./src/adf-flows/pipeline directory for the definitions of the pipelines to understand which stored procedures belong together).
+
+The configuration tables located in the DATATINO_PROTO_1 schema can be used to map the views from the VWSDEST schema into separate json files that are ready for consumption by a frontend. 
 
 ### **Relational Databases**
 
-A **[Microsoft SQL Server 2019](https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2019)** is used to ingest and digest the various sources. **Container images** - using **[Docker](https://docs.docker.com/engine/install/)**, **[minikube](https://minikube.sigs.k8s.io/docs/start/)**, **[Podman](https://podman.io/getting-started/)** or Docker runtimes that support **[Docker CLI](https://community.chocolatey.org/packages/docker-cli)**) can be used used when on-premise or cloud solution are not available during development (**[Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)**). 
+A **[Microsoft SQL Server 2019](https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2019)** is used to ingest and digest the various sources. **Container images** - using **[Docker](https://docs.docker.com/engine/install/)**, **[minikube](https://minikube.sigs.k8s.io/docs/start/)**, **[Podman](https://podman.io/getting-started/)** or Docker runtimes that support **[Docker CLI](https://community.chocolatey.org/packages/docker-cli)**) can be used used when on-premise or cloud solution are not available during development (**[Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)**). It is also possible to run a local version of MSSQL for development purposes.
 
-By running the following command at the root of the project:
-
-> Powershell
-
-```powershell
-clear && . "./.devops/scripts/build-script.ps1" && rm -r *.sql
-```
-
-a containerized MSSQL server with a database is created when the script is initialized for the first time, which sequentially will be populated with all **[Business Logic](./src/)** from scratch. For more information see **[Build Script](./.devops/scripts/build-script.ps1)**.
-
+* Deploy the SQL project in ./src/sln/CoronaDashboard.BusinessLogic/CoronaDashboard.BusinessLogic.Database to the created database. 
+* Then fill the configuration tables via the PowerShell load-protos-script.ps1 and load-workflow-configs.ps1 scripts located in ./.devops/scripts directory. 
+  * The scripts make use of the configurations as stored in .json files in the ./.devops/configs directory.
+* All input source files as of the archiving of the application have been provided in the ./src/input-sources directory in a zip-file named ArchivingCDBsources.7z.
 ### **Troubleshooting**
 
 ---
@@ -43,11 +34,8 @@ a containerized MSSQL server with a database is created when the script is initi
 |Name|Description|Why?|
 |--|--|--|
 |`PowerShell 7+`|Install the latest version of **[PowerShell](https://www.delftstack.com/howto/powershell/update-windows-powershell/)**.|Older version of PowerShell do not support chained commands (i.e., `&&`) and Null coalescing operators (i.e., `??`). 
-|`Peronal Access Token`|You might be promted to use a Personal Access Token (PAT), with a **Repository (read) scope**. This token is valid for a limited period and is used only the creation of the MSSQL container. **[Learn more](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows)**|During the creating of the MSSQL container it requires additional database artifacts (e.g. `Schema`, `Stored Procedures` and `Views`) that must be pre-created on to the database. The PAT allows the build script to get these artifacts from (yet) **[Datatino](https://dev.azure.com/VWSCoronaDashboard/Corona%20Dashboard/_git/nl-cdb-be-apis)**.|
-|`minikube`|After installing and configuring `minikube`, run the following command to locally build the solution: `clear && . ./.devops/scripts/build-script-for-minikube.ps1 && rm -r *.sql`.|When running into build issue on a Windows machine, an workaround with **[minikube](https://minikube.sigs.k8s.io/docs/start/)** can be used. |
-|`Local database` |The build of the solution can be performed using `clear && ./.devops/scripts/build-script.ps1 -Hostname '<ip-address>' -Port '<port-number>' && rm -r *.sql`.|If an **Container engine** is not available (with `Docker CLI`) on the hosting machine, use an existing MSSQL database.|
 
-**<font color="red">NOTE!</font>** Every time the code has been modified, run the `Build Script` to locally build (i.e., execute) and validate the MSSQL scripts.
+**<font color="red">NOTE!</font>** Every time the code has been modified, publish the changes to your local database.
 
 ### **Extract Load Transform**
 
@@ -119,16 +107,3 @@ The core team aims to define and calculate various related indicators which are 
 Supplementary information regarding the dashboard can be 
 found **[here](https://coronadashboard.rijksoverheid.nl/verantwoording)**.
 
-## **CONTRIBUTIONS**
-
----
-
-The core team works directly from this open-source repository. If you want to make a contribution we recommend opening an issue first in order to avoid the situation where we already have your contribution staged or can't use your contribution due to certain causes.
-
-## **DISCLAIMERS**
-
----
-
-One can get in touch with the development team by joining the **[CODE For NL Slack](https://doemee.codefor.nl)**, channel: ***#coronadashboard***. Tamas Erkelens (from the Municipality of Amsterdam) is the main contact person for of the team. 
-
-<a style="color:red">**NOTE!**</a> This is not the same development team that created the *NL Coronavirus Notification App*.

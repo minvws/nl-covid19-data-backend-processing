@@ -1,0 +1,513 @@
+{
+	"name": "pl_CopyFromDatabaseToArchive",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_list",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat(\n'SELECT DISTINCT ',\n    '[DATE_LAST_INSERTED] ',\n'FROM  ',\npipeline().parameters.SourceTableSchema, '.', pipeline().parameters.SourceTableName, ' WITH(NOLOCK) ',\n'ORDER BY [DATE_LAST_INSERTED] ASC'\n)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_asqldb",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": {
+								"value": "@pipeline().parameters.SourceTableName",
+								"type": "Expression"
+							},
+							"TableSchema": {
+								"value": "@pipeline().parameters.SourceTableSchema",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "iterate_list",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "get_list",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get_list').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "asqldb_to_archive",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat(\n    'DECLARE @columns VARCHAR(MAX); ',\n    'SELECT ',\n    '@columns = ISNULL(@columns + '','','''') + QUOTENAME(column_name) ',\n    'FROM INFORMATION_SCHEMA.COLUMNS ',\n    'WHERE (TABLE_NAME = ''',\n    pipeline().parameters.SourceTableName,\n    ''' AND TABLE_SCHEMA = ''',\n    pipeline().parameters.SourceTableSchema,\n    ''') AND UPPER(COLUMN_NAME) != ''ID'' ORDER BY ORDINAL_POSITION;',\n    'EXEC (''SELECT '' + @columns + '' FROM ', \n    pipeline().parameters.SourceTableSchema,\n    '.',\n    pipeline().parameters.SourceTableName,\n    '  WITH(NOLOCK) ',\n    'WHERE [DATE_LAST_INSERTED] = ''''', item().DATE_LAST_INSERTED,''''''')'\n)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"parallelCopies": 16,
+								"logSettings": {
+									"enableCopyActivityLog": true,
+									"copyActivityLogSettings": {
+										"logLevel": "Info",
+										"enableReliableLogging": false
+									},
+									"logLocationSettings": {
+										"linkedServiceName": {
+											"referenceName": "ls_abs",
+											"type": "LinkedServiceReference"
+										},
+										"path": "logs"
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_asqldb",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@pipeline().parameters.SourceTableName",
+											"type": "Expression"
+										},
+										"TableSchema": {
+											"value": "@pipeline().parameters.SourceTableSchema",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_abs_delimited_text_compressed",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@concat(\n    pipeline().parameters.DestinationFileName, \n    '/',\n    pipeline().parameters.DestinationFileName, \n    '_',     \n    item().DATE_LAST_INSERTED,\n    '.',\n    last(array(split(pipeline().parameters.DestinationFileName, '.'))),\n    '.gz'\n)",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@pipeline().parameters.DestinationFolderPath",
+											"type": "Expression"
+										},
+										"ColumnDelimiter": ";",
+										"QuoteCharacter": "\"",
+										"CompressionType": "gzip",
+										"CompressionLevel": "Optimal"
+									}
+								}
+							]
+						},
+						{
+							"name": "del_after_completion",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "get_date_of_report",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@pipeline().parameters.DeleteAfterCompletion",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "del_from_asqldb",
+										"type": "Lookup",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureSqlSource",
+												"sqlReaderQuery": {
+													"value": "@concat(\n'DELETE ',\n'FROM  ',\npipeline().parameters.SourceTableSchema, '.', pipeline().parameters.SourceTableName,\n' WHERE [DATE_LAST_INSERTED] = ''', item().DATE_LAST_INSERTED , '''; SELECT @@ROWCOUNT;'\n)",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "ds_asqldb",
+												"type": "DatasetReference",
+												"parameters": {
+													"TableName": {
+														"value": "@pipeline().parameters.SourceTableName",
+														"type": "Expression"
+													},
+													"TableSchema": {
+														"value": "@pipeline().parameters.SourceTableSchema",
+														"type": "Expression"
+													}
+												}
+											},
+											"firstRowOnly": false
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "get_filename",
+							"type": "GetMetadata",
+							"dependsOn": [
+								{
+									"activity": "asqldb_to_archive",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "ds_abs_binary",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": "*.txt",
+										"FolderName": {
+											"value": "@activity('asqldb_to_archive').output.logFilePath",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"childItems"
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							}
+						},
+						{
+							"name": "to_asqldb_audit",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "get_filename",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "get_date_of_report",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "RowsCopied",
+											"value": {
+												"value": "@activity('asqldb_to_archive').output.rowsCopied",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "RowsRead",
+											"value": {
+												"value": "@activity('asqldb_to_archive').output.rowsRead",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "TableName",
+											"value": {
+												"value": "@pipeline().parameters.SourceTableName",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "DateLastInserted",
+											"value": {
+												"value": "@item().DATE_LAST_INSERTED",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "OperationItemFilePath",
+											"value": {
+												"value": "@pipeline().parameters.DestinationFolderPath",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "TableSchema",
+											"value": {
+												"value": "@pipeline().parameters.SourceTableSchema",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "DateOfReport",
+											"value": {
+												"value": "@activity('get_date_of_report').output.value[0].DATE_OF_REPORT",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_abs_delimited_text",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@activity('get_filename').output.childItems[0].name",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@activity('asqldb_to_archive').output.logFilePath",
+											"type": "Expression"
+										},
+										"ColumnDelimiter": ",",
+										"QuoteCharacter": "@{concat('')}",
+										"EscapeCharacter": "\\"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_asqldb",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": "ADF_ARCHIVED_AUDIT",
+										"TableSchema": "DBO"
+									}
+								}
+							]
+						},
+						{
+							"name": "del_from_abs - logs",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "to_asqldb_audit",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "ds_abs_binary",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@activity('get_filename').output.childItems[0].name",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@activity('asqldb_to_archive').output.logFilePath",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							}
+						},
+						{
+							"name": "get_date_of_report",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "asqldb_to_archive",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat(\n'SELECT DISTINCT ',\n    '', if(equals(pipeline().parameters.DateOfReportColumnName,'N\\A'),\n        '''Not Applicable''',\n        if(equals(pipeline().parameters.DateOfReportColumnName,'N/A'),\n            '''Not Applicable''',\n            concat('[', pipeline().parameters.DateOfReportColumnName, ']')\n        )\n    ),' AS [DATE_OF_REPORT]',\n'FROM  ',\npipeline().parameters.SourceTableSchema, '.', pipeline().parameters.SourceTableName, ' WITH(NOLOCK) ',\n'WHERE [DATE_LAST_INSERTED] = ''', item().DATE_LAST_INSERTED ,''''\n)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "ds_asqldb",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@pipeline().parameters.SourceTableName",
+											"type": "Expression"
+										},
+										"TableSchema": {
+											"value": "@pipeline().parameters.SourceTableSchema",
+											"type": "Expression"
+										}
+									}
+								},
+								"firstRowOnly": false
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"SourceTableName": {
+				"type": "string",
+				"defaultValue": "RIVM_COVID_19_NUMBER_MUNICIPALITY"
+			},
+			"DestinationFileName": {
+				"type": "string",
+				"defaultValue": "COVID-19_aantallen_gemeente_per_dag.csv"
+			},
+			"DeleteAfterCompletion": {
+				"type": "bool",
+				"defaultValue": false
+			},
+			"DestinationFolderPath": {
+				"type": "string",
+				"defaultValue": "archive/protocols"
+			},
+			"SourceTableSchema": {
+				"type": "string",
+				"defaultValue": "VWSSTAGE"
+			},
+			"DateOfReportColumnName": {
+				"type": "string",
+				"defaultValue": "DATE_OF_REPORT"
+			}
+		},
+		"folder": {
+			"name": "Utils"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T10:26:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

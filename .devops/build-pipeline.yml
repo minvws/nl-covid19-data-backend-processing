@@ -64,44 +64,20 @@ stages:
         steps:
 
           - checkout: self
-          - checkout: nl-cdb-be-apis
-
-          - script: | 
-              mv ./nl-cdb-be-apis ./__nl-cdb-be-apis 
-              dir $(Build.SourcesDirectory)
-            displayName: "Task 1: Set Checkouts"
-
-          - task: UseDotNet@2
-            displayName: 'Task 2: Install .NET 6.0 SDK'
-            inputs:
-              version: '6.0.x'
-
-          - task: PowerShell@2
-            displayName: "Task 3: Build MSSQL Artifacts"
-            inputs:
-              filePath: "$(WORKING_DIRECTORY)/.devops/scripts/build-script.ps1"
-              arguments: > 
-                -SourceDirectory "./src" 
-                -ModifiedFiles $(git diff-tree --no-commit-id --name-only -r $(Build.SourceVersion)^..$(Build.SourceVersion))
-                -DatatinoDevOpsGitRefUrl "../nl-cdb-be-apis"
-              failOnStderr: true
-              pwsh: true
-              workingDirectory: $(WORKING_DIRECTORY)
-
           - task: CopyFiles@2
-            displayName: "Task 4: Copy MSSQL Database Update Scripts"
+            displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
-              SourceFolder: '$(WORKING_DIRECTORY)'
-              Contents: '*.sql'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
+              SourceFolder: "$(Build.SourcesDirectory)/.devops/scripts"
+              Contents: "**/*.ps1"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/scripts"
               OverWrite: true
 
           - task: CopyFiles@2
             displayName: "Task 5: Copy Powershell Release Scripts"
             inputs:
-              SourceFolder: "$(WORKING_DIRECTORY)/.devops/scripts"
-              Contents: "**/*.ps1"
-              TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/scripts"
+              SourceFolder: "$(Build.SourcesDirectory)/.devops/configs"
+              Contents: "**/*.json"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/.devops/configs"
               OverWrite: true
 
           - task: PublishBuildArtifacts@1

@@ -1,0 +1,80 @@
+{
+	"name": "pl_TriggerRollbackPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "pl_TriggerDatatino_Status",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_TriggerDatatino_Pipeline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_TriggerDatatino",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Identity": {
+							"value": "@variables('pipelineBuildDefinitionId')",
+							"type": "Expression"
+						},
+						"TriggerType": "Status",
+						"OverrideDownTime": {
+							"value": "@pipeline().parameters.OverrideDataFlowDowntime",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "pl_TriggerDatatino_Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_TriggerDatatino",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Identity": {
+							"value": "@variables('pipelineBuildDefinitionId')",
+							"type": "Expression"
+						},
+						"TriggerType": "Pipeline",
+						"OverrideDownTime": {
+							"value": "@pipeline().parameters.OverrideDataFlowDowntime",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"OverrideDataFlowDowntime": {
+				"type": "bool",
+				"defaultValue": true
+			}
+		},
+		"variables": {
+			"pipelineBuildDefinitionId": {
+				"type": "String",
+				"defaultValue": "@{pipeline().globalParameters.DevOpsRollbackPipelineDefinitionId}"
+			}
+		},
+		"folder": {
+			"name": "Utils/DevOps"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T09:56:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
