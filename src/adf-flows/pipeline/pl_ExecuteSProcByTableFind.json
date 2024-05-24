@@ -1,0 +1,117 @@
+{
+	"name": "pl_ExecuteSProcByTableFind",
+	"properties": {
+		"activities": [
+			{
+				"name": "lookup_table",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT COUNT([name]) AS COUNT FROM sys.tables WHERE [object_id] = OBJECT_ID(''',pipeline().parameters.DatabaseTableSchema,'.',pipeline().parameters.DatabaseTableName,''')')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_asqldb",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "tables",
+							"TableSchema": "sys"
+						}
+					}
+				}
+			},
+			{
+				"name": "has_table",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "lookup_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(activity('lookup_table').output.firstRow.COUNT, 0)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "static",
+							"description": "",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": {
+									"value": "@pipeline().parameters.TrueStatementSProc",
+									"type": "Expression"
+								},
+								"storedProcedureParameters": {
+									"date_of_insertion": {
+										"value": {
+											"value": "@pipeline().parameters.TriggerTime",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_asqldb",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DatabaseTableName": {
+				"type": "string",
+				"defaultValue": "RIVM_COVID_19_CASE_NATIONAL"
+			},
+			"DatabaseTableSchema": {
+				"type": "string",
+				"defaultValue": "VWSSTATIC"
+			},
+			"TrueStatementSProc": {
+				"type": "string",
+				"defaultValue": "[dbo].[SP_RIVM_COVID_19_NATIONAL_STATIC_TO_INTER]"
+			},
+			"TriggerTime": {
+				"type": "string",
+				"defaultValue": "@{pipeline().TriggerTime}"
+			}
+		},
+		"folder": {
+			"name": "Utils"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T10:26:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,725 @@
+{
+	"name": "pl_ProcessCaseNational",
+	"properties": {
+		"activities": [
+			{
+				"name": "age_group_totals",
+				"description": "Age Group Total",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "update_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_RIVM_AGEGROUP_TOTALS]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_per_age_group",
+				"description": "Positive Tested People Per Age Group",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "update_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_PER_AGE_GROUP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_per_age_group_over_time",
+				"description": "Positive Tested People Per Age Group Over Time",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "update_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_PER_AGE_GROUP_OVER_TIME]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "deceased_per_age_group",
+				"description": "Decease People Per Age Group",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "update_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_DECEASED_PER_AGE_GROUP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "positive_tested_people_per_small_age_group",
+				"description": "Positive Tested People Per Small Age Group",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "age_group_totals",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_POSITIVE_TESTED_PEOPLE_PER_SMALL_AGE_GROUP]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "set_type",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toLower(last(array(split(pipeline().parameters.TriggerFileName, '.'))))",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "csv",
+							"activities": [
+								{
+									"name": "df_SplitDelimitedTextDatasets",
+									"type": "ExecuteDataFlow",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "1.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataflow": {
+											"referenceName": "df_SplitDelimitedTextDatasets",
+											"type": "DataFlowReference",
+											"parameters": {
+												"PartitionCount": "12",
+												"FolderPath": "\"sources\"",
+												"FileName": {
+													"value": "'@{pipeline().parameters.TriggerFileName}'",
+													"type": "Expression"
+												},
+												"PartitionPath": {
+													"value": "'@{variables('partitionContainerName')}'",
+													"type": "Expression"
+												},
+												"ContainerName": "\"factory\""
+											}
+										},
+										"compute": {
+											"coreCount": 8,
+											"computeType": "General"
+										},
+										"traceLevel": "Fine"
+									}
+								}
+							]
+						},
+						{
+							"value": "gz",
+							"activities": [
+								{
+									"name": "abs_to_sqldb - gz",
+									"description": "Insert Into VWSSTAGE",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "@{concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))}",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"parallelCopies": 32
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_abs_delimited_text_compressed",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@pipeline().parameters.TriggerFileName",
+													"type": "Expression"
+												},
+												"FolderName": {
+													"value": "@pipeline().parameters.TriggerFolderPath",
+													"type": "Expression"
+												},
+												"ColumnDelimiter": ";",
+												"QuoteCharacter": "\"",
+												"CompressionType": "gzip",
+												"CompressionLevel": "Optimal",
+												"EscapeCharacter": "\\"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_asqldb",
+											"type": "DatasetReference",
+											"parameters": {
+												"TableName": {
+													"value": "@variables('databaseTableName')",
+													"type": "Expression"
+												},
+												"TableSchema": {
+													"value": "@variables('databaseTableSchema')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "pl_CopyFromDatabaseToArchive",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "deceased_per_age_group",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "positive_tested_people_per_age_group_over_time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "positive_tested_people_per_age_group",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "age_group_totals",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_CopyFromDatabaseToArchive",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": false,
+					"parameters": {
+						"SourceTableName": {
+							"value": "@variables('databaseTableName')",
+							"type": "Expression"
+						},
+						"DestinationFileName": {
+							"value": "@pipeline().parameters.TriggerFileName",
+							"type": "Expression"
+						},
+						"DeleteAfterCompletion": false,
+						"DestinationFolderPath": "archive/protocols",
+						"SourceTableSchema": {
+							"value": "@variables('databaseTableSchema')",
+							"type": "Expression"
+						},
+						"DateOfReportColumnName": "DATE_FILE"
+					}
+				}
+			},
+			{
+				"name": "iterate_files",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "get_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "truncate_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get_files').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "abs_to_sqldb - csv",
+							"description": "Insert Into VWSINTER ",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "DATE_LAST_INSERTED",
+											"value": {
+												"value": "@pipeline().TriggerTime",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": true,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"parallelCopies": 16,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Date_file",
+												"type": "DateTime"
+											},
+											"sink": {
+												"name": "DATE_FILE",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"name": "Date_statistics",
+												"type": "DateTime"
+											},
+											"sink": {
+												"name": "DATE_STATISTICS",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"name": "Date_statistics_type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "DATE_STATISTICS_TYPE",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Agegroup",
+												"type": "String"
+											},
+											"sink": {
+												"name": "AGEGROUP",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Sex",
+												"type": "String"
+											},
+											"sink": {
+												"name": "SEX",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Province",
+												"type": "String"
+											},
+											"sink": {
+												"name": "PROVINCE",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Deceased",
+												"type": "String"
+											},
+											"sink": {
+												"name": "DECEASED",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Week_of_death",
+												"type": "String"
+											},
+											"sink": {
+												"name": "WEEK_OF_DEATH",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Municipal_health_service",
+												"type": "String"
+											},
+											"sink": {
+												"name": "MUNICIPAL_HEALTH_SERVICE",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "DATE_LAST_INSERTED"
+											},
+											"sink": {
+												"name": "DATE_LAST_INSERTED",
+												"type": "DateTime"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_abs_delimited_text",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@concat(variables('partitionContainerName'),'/', pipeline().parameters.TriggerFileName)",
+											"type": "Expression"
+										},
+										"ColumnDelimiter": ";",
+										"QuoteCharacter": "@{concat('')}",
+										"EscapeCharacter": "\\"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_asqldb",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@variables('databaseTableName')",
+											"type": "Expression"
+										},
+										"TableSchema": {
+											"value": "@variables('databaseTableSchema')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "get_files",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "set_type",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_abs_delimited_text",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "part*.csv",
+							"FolderName": {
+								"value": "@concat(variables('partitionContainerName'),'/', pipeline().parameters.TriggerFileName)",
+								"type": "Expression"
+							},
+							"ColumnDelimiter": ";",
+							"QuoteCharacter": "@{concat('')}",
+							"EscapeCharacter": "\\"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "truncate_table",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat('TRUNCATE TABLE ', variables('databaseTableSchema'), '.', variables('databaseTableName'))",
+								"type": "Expression"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "pl_ExecuteSProcByTableFind",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "truncate_table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ExecuteSProcByTableFind",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DatabaseTableName": "RIVM_COVID_19_CASE_NATIONAL",
+						"DatabaseTableSchema": "VWSSTATIC",
+						"TrueStatementSProc": "[dbo].[SP_RIVM_COVID_19_NATIONAL_STATIC_TO_INTER]",
+						"TriggerTime": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "update_table",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "iterate_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "pl_ExecuteSProcByTableFind",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ls_asqldb",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": "DECLARE @date_of_file DATETIME = (SELECT MAX([DATE_FILE]) FROM [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL]);\n\nUPDATE T1\nSET\n    [DATE_FILE] = @date_of_file\nFROM [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL] T1\nWHERE [DATE_FILE] != @date_of_file\n\nDELETE FROM [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL]\nWHERE DATE_STATISTICS >= CONVERT(date, (SELECT MAX(DATE_FILE) FROM [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL]))\nAND DATE_LAST_INSERTED = (SELECT MAX(DATE_LAST_INSERTED) FROM [VWSINTER].[RIVM_COVID_19_CASE_NATIONAL])\n"
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"TriggerFileName": {
+				"type": "string",
+				"defaultValue": "COVID-19_casus_landelijk.csv"
+			},
+			"TriggerFolderPath": {
+				"type": "string",
+				"defaultValue": "factory/sources"
+			}
+		},
+		"variables": {
+			"databaseTableName": {
+				"type": "String",
+				"defaultValue": "RIVM_COVID_19_CASE_NATIONAL"
+			},
+			"databaseTableSchema": {
+				"type": "String",
+				"defaultValue": "VWSINTER"
+			},
+			"partitionContainerName": {
+				"type": "String",
+				"defaultValue": "partitions"
+			}
+		},
+		"folder": {
+			"name": "Protocols"
+		},
+		"annotations": [
+			"Positief geteste mensen per leeftijdsgroep",
+			"Positief geteste mensen door de tijd heen",
+			"Overleden mensen per leeftijdsgroep"
+		],
+		"lastPublishTime": "2022-07-11T11:53:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

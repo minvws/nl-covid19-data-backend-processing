@@ -1,0 +1,327 @@
+{
+	"name": "pl_TriggerDatatino",
+	"properties": {
+		"activities": [
+			{
+				"name": "set_parameter",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.TriggerType",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "Protos",
+							"activities": [
+								{
+									"name": "set_flow_type_jsonCreate",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "flowType",
+										"value": "1"
+									}
+								},
+								{
+									"name": "set_request_body_jsonCreate",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "set_flow_type_jsonCreate",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "requestBody",
+										"value": {
+											"value": "{\n  \"flowType\": @{variables('flowType')},\n  \"workFlows\": null,\n  \"protos\": [\n    @{pipeline().parameters.Identity}\n  ],\n  \"pipeLines\": null,\n  \"requestTime\": \"@{variables('requestTime')}\",\n  \"waitForWorkFlows\": true,\n  \"waitForProtos\": true,\n  \"issuer\": \"@{variables('issuer')}\"\",\n  \"overrideDataFlowDownTime\": @{toLower(string(pipeline().parameters.OverrideDownTime))}\n}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"value": "Pipeline",
+							"activities": [
+								{
+									"name": "set_flow_type_pipeline",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "flowType",
+										"value": "5"
+									}
+								},
+								{
+									"name": "set_request_body_RunPipeline",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "set_flow_type_pipeline",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "requestBody",
+										"value": {
+											"value": "{\n  \"flowType\": @{variables('flowType')},\n  \"dataFlows\": null,\n  \"protos\": null,\n  \"pipelines\": [\n    {\n      \"Organization\": \"digital-solutions\",\n      \"DefinitionId\": @{pipeline().parameters.Identity},\n      \"BuildId\": 0,\n      \"ApprovalId\": \"\",\n      \"DevOpsType\": 0,\n      \"ActionType\": 1\n    }\n  ],\n  \"requestTime\": \"@{variables('requestTime')}\",\n  \"issuer\": \"@{variables('issuer')}\",\n  \"overrideDataFlowDowntime\": @{toLower(string(pipeline().parameters.OverrideDownTime))}\n}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"value": "Status",
+							"activities": [
+								{
+									"name": "set_request_body_GetStatus",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "requestBody",
+										"value": {
+											"value": "{\n  \"organization\": \"digital-solutions\",\n  \"definitionId\": @{pipeline().parameters.Identity},\n  \"devOpsType\": 0,\n  \"overrideDataFlowDowntime\": @{toLower(string(pipeline().parameters.OverrideDownTime))}\n}",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "override_function_name_GetStatus",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "set_request_body_GetStatus",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "functionName",
+										"value": {
+											"value": "A_Pipeline_RefreshPipelineStatus",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"value": "DataFlow",
+							"activities": [
+								{
+									"name": "set_flow_type_RunDataFlow",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "flowType",
+										"value": {
+											"value": "@if(equals(pipeline().parameters.Identity, '*'),\n    2,\n    4\n)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "set_request_body_RunDataFlow",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "set_flow_type_RunDataFlow",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										},
+										{
+											"activity": "append_identity_list_RunDataFlow",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "requestBody",
+										"value": {
+											"value": "{\n  \"flowType\": @{variables('flowType')},\n  \"dataFlows\": @{if(equals(pipeline().parameters.Identity, '*'), \n    null,\n    pipeline().parameters.Identity\n  )},\n  \"protos\": null,\n  \"pipelines\": null,\n  \"requestTime\": \"@{variables('requestTime')}\",\n  \"issuer\": \"Datatino\",\n  \"overrideDataFlowDownTime\": @{toLower(string(pipeline().parameters.OverrideDownTime))}\n}",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "append_identity_list_RunDataFlow",
+									"type": "AppendVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "identityList",
+										"value": {
+											"value": "A_Flow_HttpStart",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "throw_exception",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": {
+									"value": "Failed to determine flow type from TriggerType: @{pipeline().parameters.TriggerType}. \nPossible TriggerTypes are 'Protos', 'Pipeline', 'Status' or 'DataFlow'.",
+									"type": "Expression"
+								},
+								"errorCode": "500"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "REST_call",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [
+					{
+						"activity": "override_request_jsonCreate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": {
+						"value": "@variables('functionName')",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@variables('requestBody')",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_af",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "override_request_jsonCreate",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "set_parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(\r\n    equals(pipeline().parameters.Identity, '*'), \r\n    equals(toLower(pipeline().parameters.TriggerType), 'protos')\r\n)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "override_function_name_jsonCreate",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "functionName",
+								"value": {
+									"value": "A_Proto_ZipProtos",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "override_request_body_jsonCreate",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "requestBody",
+								"value": {
+									"value": "{\n  \"storageName\": null,\n  \"protoPath\": \"datatino/protos\",\n  \"refreshProtos\": true,\n  \"zipPath\": \"dashboardfiles/zip_result\",\n  \"zipFileName\": \"protos.zip\",\n  \"overrideDataFlowDownTime\": @{toLower(string(pipeline().parameters.OverrideDownTime))}\n}",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"Identity": {
+				"type": "string",
+				"defaultValue": "*"
+			},
+			"TriggerType": {
+				"type": "string",
+				"defaultValue": "Protos"
+			},
+			"OverrideDownTime": {
+				"type": "bool",
+				"defaultValue": true
+			}
+		},
+		"variables": {
+			"requestTime": {
+				"type": "String",
+				"defaultValue": "@{utcNow()}"
+			},
+			"issuer": {
+				"type": "String",
+				"defaultValue": "Datatino"
+			},
+			"flowType": {
+				"type": "String",
+				"defaultValue": "N/A"
+			},
+			"requestBody": {
+				"type": "String"
+			},
+			"functionName": {
+				"type": "String",
+				"defaultValue": "A_Flow_HttpStart"
+			},
+			"identityList": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "Utils"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-05T09:56:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
