@@ -2,9 +2,11 @@
 
 ---
 
-The **[Corona Dashboard](https://coronadashboard.rijksoverheid.nl)** provides information on the breakout and prevalence of the *Coronavirus* in The Netherlands. It combines measured and modelled indicators from various sources to give a broad perspective on the subject. See **[documentation](docs/)** for more information. 
+The **[Coronadashboard](https://coronadashboard.rijksoverheid.nl)** provides information on the breakout and prevalence of the *Coronavirus* in The Netherlands. It combines measured and modelled indicators from various sources to give a broad perspective on the subject. See **[documentation](docs/)** for more information.
 
-It was taken off the air on 2024-04-02 and now redirects to the RIVM website containing information about Corona.
+This repository includes all the business logic for the data-processing from source data to .json files in the form of the archive `protos.zip`. This `protos.zip` archive is ingested by the front-end application to display all the data on the Coronadashboard. The code for the front-end application can be found **[here](https://github.com/minvws/nl-covid19-data-dashboard)**.
+
+The Coronadashboard was taken offline on 2024-04-02 and now redirects to the RIVM website containing information about Corona.
 
 ## **Getting Started**
 
